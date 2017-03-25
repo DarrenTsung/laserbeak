@@ -1,0 +1,6 @@
+[submodule "Assets/Plugins/DTCommandPalette"]
+	path = Assets/Plugins/DTCommandPalette
+	url = https://github.com/DarrenTsung/DTCommandPalette.git
+[submodule "Assets/Plugins/DTPrefabSandbox"]
+	path = Assets/Plugins/DTPrefabSandbox
+	url = https://github.com/DarrenTsung/DTPrefabSandbox.git
