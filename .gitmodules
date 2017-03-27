@@ -7,3 +7,6 @@
 [submodule "Assets/Plugins/DTCoreModule"]
 	path = Assets/Plugins/DTCoreModule
 	url = https://github.com/DarrenTsung/DTCoreModule.git
+[submodule "Assets/Plugins/compile-time-tracker"]
+	path = Assets/Plugins/compile-time-tracker
+	url = https://github.com/DarrenTsung/compile-time-tracker.git
