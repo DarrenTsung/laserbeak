@@ -4,3 +4,6 @@
 [submodule "Assets/Plugins/DTPrefabSandbox"]
 	path = Assets/Plugins/DTPrefabSandbox
 	url = https://github.com/DarrenTsung/DTPrefabSandbox.git
+[submodule "Assets/Plugins/DTCoreModule"]
+	path = Assets/Plugins/DTCoreModule
+	url = https://github.com/DarrenTsung/DTCoreModule.git
