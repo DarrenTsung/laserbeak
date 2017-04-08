@@ -25,7 +25,7 @@ namespace DT.Game.Battle.Player {
 			rigidbody_.MovePosition(rigidbody_.position + deltaWorldPosition);
 
 			// snap rotation if input is not (0, 0)
-			if (deltaWorldPosition.magnitude > Mathf.Epsilon) {
+			if (deltaWorldPosition.magnitude > Mathf.Epsilon * 2.0f) {
 				rigidbody_.MoveRotation(Quaternion.LookRotation(deltaWorldPosition));
 			}
 		}

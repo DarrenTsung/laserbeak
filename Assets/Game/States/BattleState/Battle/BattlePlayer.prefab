@@ -78,6 +78,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1434085983608032
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4049423539500226}
+  m_Layer: 0
+  m_Name: LaserContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1464095493266084
 GameObject:
   m_ObjectHideFlags: 1
@@ -129,6 +144,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1708296404416702
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4541650799955302}
+  - component: {fileID: 114352156763685936}
+  m_Layer: 0
+  m_Name: ChargedLaser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1742500350947718
 GameObject:
   m_ObjectHideFlags: 1
@@ -145,6 +176,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4049423539500226
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434085983608032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.15, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4541650799955302}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4125125527362084
 Transform:
   m_ObjectHideFlags: 1
@@ -200,6 +244,20 @@ Transform:
   m_Father: {fileID: 4125125527362084}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+--- !u!4 &4541650799955302
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1708296404416702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4049423539500226}
+  m_Father: {fileID: 4780191843166834}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4581339409554848
 Transform:
   m_ObjectHideFlags: 1
@@ -253,6 +311,7 @@ Transform:
   m_Children:
   - {fileID: 4278106538346712}
   - {fileID: 4650929460296728}
+  - {fileID: 4541650799955302}
   m_Father: {fileID: 4581339409554848}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -431,6 +490,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114352156763685936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1708296404416702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5f2dfc6fe144d2aaf6d05912851056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargingLaserPrefab_: {fileID: 1561157919223570, guid: 710ddc2c9cfb64bfbb534934bdfcd27e,
+    type: 2}
+  laserPrefab_: {fileID: 1544999162912050, guid: 53a87c6a3dd8445cab4cb1ecef38fa8a,
+    type: 2}
+  rigidbody_: {fileID: 54537648449484532}
+  chargingLaserContainer_: {fileID: 1434085983608032}
+  controlType_: 21
+  chargedTime_: 0
 --- !u!114 &114567178079199390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -478,3 +556,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody_: {fileID: 54537648449484532}
   controlType_: 19
+  cooldownTimer_: 0
