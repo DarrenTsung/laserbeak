@@ -9,18 +9,31 @@ using InControl;
 namespace DT.Game.Battle.Player {
 	public class BattlePlayerInputController : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
-		public void SetInput(InputDevice inputDevice) {
+		public void DisableInput() {
+			foreach (var component in playerInputComponents_) {
+				component.Enabled = false;
+			}
+		}
+
+		public void EnableInput() {
+			foreach (var component in playerInputComponents_) {
+				component.Enabled = true;
+			}
+		}
+
+		public void InitInput(InputDevice inputDevice) {
 			foreach (var component in playerInputComponents_) {
 				component.Init(this, inputDevice);
 			}
+			EnableInput();
 		}
 
 
 		// PRAGMA MARK - Internal
-		private IBattlePlayerInputComponent[] playerInputComponents_;
+		private BattlePlayerInputComponent[] playerInputComponents_;
 
 		private void Awake() {
-			playerInputComponents_ = this.GetComponentsInChildren<IBattlePlayerInputComponent>();
+			playerInputComponents_ = this.GetComponentsInChildren<BattlePlayerInputComponent>();
 		}
 	}
 }

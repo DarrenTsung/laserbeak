@@ -15,9 +15,12 @@ namespace DT.Game.Battle.Player {
 		private Rigidbody rigidbody_;
 
 		private void FixedUpdate() {
+			if (!Enabled) {
+				return;
+			}
+
 			Vector2 deltaPosition = InputDevice_.LeftStick.Value * Time.fixedDeltaTime * kPlayerSpeed;
-			// convert 2D coord -> 3D
-			Vector3 deltaWorldPosition = new Vector3(deltaPosition.x, 0.0f, deltaPosition.y);
+			Vector3 deltaWorldPosition = deltaPosition.Vector3XZValue();
 
 			rigidbody_.MovePosition(rigidbody_.position + deltaWorldPosition);
 

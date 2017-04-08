@@ -27,7 +27,7 @@ namespace DT.Game.Battle {
 				player.transform.position = selectedSpawnPoint.transform.position;
 
 				BattlePlayerInputController playerInput = player.GetRequiredComponentInChildren<BattlePlayerInputController>();
-				playerInput.SetInput(inputDevice);
+				playerInput.InitInput(inputDevice);
 
 				chosenSpawnPoints.Add(selectedSpawnPoint);
 			}
