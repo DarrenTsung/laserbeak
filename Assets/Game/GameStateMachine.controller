@@ -32,6 +32,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a588675c21b4478ab3eb90b049ff08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuPrefab_: {fileID: 1569526195804042, guid: 7b95deb1581dc4d9fa2b58ca471e5830,
+    type: 2}
 --- !u!1102 &1102145686092063760
 AnimatorState:
   serializedVersion: 5

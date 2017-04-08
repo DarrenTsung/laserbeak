@@ -3,17 +3,25 @@ using System.Collections;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
+using DTObjectPoolManager;
 
 namespace DT.Game.MainMenu {
-	[RequireComponent(typeof(Animator))]
 	public class MainMenuState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
+		[SerializeField]
+		private GameObject mainMenuPrefab_;
+
+		private MainMenu mainMenu_;
+
 		protected override void OnStateEntered() {
-			// stub
+			ObjectPoolManager.CreateView(mainMenuPrefab_);
 		}
 
 		protected override void OnStateExited() {
-			// stub
+			if (mainMenu_ != null) {
+				ObjectPoolManager.Recycle(mainMenu_);
+				mainMenu_ = null;
+			}
 		}
 	}
 }
