@@ -1,0 +1,1225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 342976093, guid: 5eb872180e6624b46b2fa8b2229cc7ac, type: 3}
+  m_Name: InControl-log
+  m_EditorClassIdentifier: 
+  ruleName: InControl
+  rootDirectoryGUID: aa5ef927fce364d88af35fece5b28c28
+  rules:
+  - sourcePath: Assets/InControl/Editor/EditorTextures.cs
+    sourceGUID: 65c7afa4759374e0cab8254061ebc026
+    targetPath: Assets/Plugins/Editor/InControl/Editor/EditorTextures.cs
+  - sourcePath: Assets/InControl/Editor/EditorUtility.cs
+    sourceGUID: e42cb4441ce7a4752bdb72a03f763450
+    targetPath: Assets/Plugins/Editor/InControl/Editor/EditorUtility.cs
+  - sourcePath: Assets/InControl/Editor/InControlBuilder.cs
+    sourceGUID: 5cfd9f41ede60450498aefbb913dbdec
+    targetPath: Assets/Plugins/Editor/InControl/Editor/InControlBuilder.cs
+  - sourcePath: Assets/InControl/Editor/InControlInputModuleEditor.cs
+    sourceGUID: 7da94b3dcb78e4b6a88710a534e3a31d
+    targetPath: Assets/Plugins/Editor/InControl/Editor/InControlInputModuleEditor.cs
+  - sourcePath: Assets/InControl/Editor/InControlManagerEditor.cs
+    sourceGUID: e795c374f5d3748a78ab7d2457d47089
+    targetPath: Assets/Plugins/Editor/InControl/Editor/InControlManagerEditor.cs
+  - sourcePath: Assets/InControl/Editor/InputManagerAssetGenerator.cs
+    sourceGUID: 715148ddd826c47a08e6e5f3abf458c0
+    targetPath: Assets/Plugins/Editor/InControl/Editor/InputManagerAssetGenerator.cs
+  - sourcePath: Assets/InControl/Editor/NativeProfileListGenerator.cs
+    sourceGUID: 79bf5d26cb1e84f4c95cef69becf5890
+    targetPath: Assets/Plugins/Editor/InControl/Editor/NativeProfileListGenerator.cs
+  - sourcePath: Assets/InControl/Editor/ProfileListGenerator.cs
+    sourceGUID: 8414cf20bfe8445fbb0689c0e94ab18a
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ProfileListGenerator.cs
+  - sourcePath: Assets/InControl/Editor/UnityProfileListGenerator.cs
+    sourceGUID: d2b80e1f55ce140d9a0bcd8fbe0b31cc
+    targetPath: Assets/Plugins/Editor/InControl/Editor/UnityProfileListGenerator.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/GenericListAdaptor.cs
+    sourceGUID: 9f0d672aa539a4371ad43e2c6ecd87c2
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/GenericListAdaptor.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/IReorderableListAdaptor.cs
+    sourceGUID: 52bf7b2b1c31b459896c69f347ec3479
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/IReorderableListAdaptor.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/ReorderableListControl.cs
+    sourceGUID: 7449d5ee58dc949ae9e48df297608904
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/ReorderableListControl.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/ReorderableListFlags.cs
+    sourceGUID: d78a12eba9cd148d9a5d02acc6bf2e62
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/ReorderableListFlags.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/ReorderableListGUI.cs
+    sourceGUID: 62c907a173e8e4c739cf8dd36cdf2621
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/ReorderableListGUI.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/SerializedPropertyAdaptor.cs
+    sourceGUID: 97e2cf2107a0b436cad75d75f8906fb6
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/SerializedPropertyAdaptor.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/Internal/GUIHelper.cs
+    sourceGUID: 773910b00b8de49dd8ac0192e11e3227
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/Internal/GUIHelper.cs
+  - sourcePath: Assets/InControl/Editor/ReorderableList/Internal/ReorderableListResources.cs
+    sourceGUID: c3b30bdfa18154060bb6945bed65d8eb
+    targetPath: Assets/Plugins/Editor/InControl/Editor/ReorderableList/Internal/ReorderableListResources.cs
+  - sourcePath: Assets/InControl/Editor/iOS/ICadePostProcessor.cs
+    sourceGUID: c334e69fc4d764c4f90978bcf424a2d0
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/ICadePostProcessor.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBXProject.cs
+    sourceGUID: e5406ba67305045ab9540f3c5eb4a5aa
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBXProject.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBX/Elements.cs
+    sourceGUID: a57d46495275748e185c8f1731a58390
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBX/Elements.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBX/Lexer.cs
+    sourceGUID: bed3fe2ef14e9454a9433874b0f21121
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBX/Lexer.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBX/Objects.cs
+    sourceGUID: a74c30646c6614b0c97e25ca7e7b4f82
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBX/Objects.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBX/Parser.cs
+    sourceGUID: 62311257777f84445adf6646a2c291b4
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBX/Parser.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBX/Sections.cs
+    sourceGUID: 70ddb0d0ccd984707abfbd879d47ab87
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBX/Sections.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBX/Serializer.cs
+    sourceGUID: cd18cf784e46543d5a25d67ee89e40be
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBX/Serializer.cs
+  - sourcePath: Assets/InControl/Editor/iOS/XCodeAPI/PBX/Utils.cs
+    sourceGUID: e2770029dc585487ba26eb9372841027
+    targetPath: Assets/Plugins/Editor/InControl/Editor/iOS/XCodeAPI/PBX/Utils.cs
+  - sourcePath: Assets/InControl/Plugins/iOS/ICadePluginPath.cs
+    sourceGUID: 687218e5dc91e4fa3aebe6449a444b65
+    targetPath: Assets/Plugins/InControl/Plugins/iOS/ICadePluginPath.cs
+  - sourcePath: Assets/InControl/Source/InputManager.cs
+    sourceGUID: 647aa14c38a6340e3a7082b11893f570
+    targetPath: Assets/Plugins/InControl/Source/InputManager.cs
+  - sourcePath: Assets/InControl/Source/VersionInfo.cs
+    sourceGUID: 28aa9c3c1243246f29f80bc029737429
+    targetPath: Assets/Plugins/InControl/Source/VersionInfo.cs
+  - sourcePath: Assets/InControl/Source/Binding/BindingListenOptions.cs
+    sourceGUID: 7887be036599a4ec4a5f276a1e1fdf5f
+    targetPath: Assets/Plugins/InControl/Source/Binding/BindingListenOptions.cs
+  - sourcePath: Assets/InControl/Source/Binding/BindingSource.cs
+    sourceGUID: 18f1dfffb732a42878ded0868df0c9dd
+    targetPath: Assets/Plugins/InControl/Source/Binding/BindingSource.cs
+  - sourcePath: Assets/InControl/Source/Binding/BindingSourceListener.cs
+    sourceGUID: 1c872461075a441838f9b5768ea9fcfa
+    targetPath: Assets/Plugins/InControl/Source/Binding/BindingSourceListener.cs
+  - sourcePath: Assets/InControl/Source/Binding/BindingSourceRejectionType.cs
+    sourceGUID: 3c7bfb788019343268100eb8b6f76400
+    targetPath: Assets/Plugins/InControl/Source/Binding/BindingSourceRejectionType.cs
+  - sourcePath: Assets/InControl/Source/Binding/BindingSourceType.cs
+    sourceGUID: 55e1dfab07a24480b97dcae29e164f48
+    targetPath: Assets/Plugins/InControl/Source/Binding/BindingSourceType.cs
+  - sourcePath: Assets/InControl/Source/Binding/DeviceBindingSource.cs
+    sourceGUID: dfd49f3bb069347a09e81dacdfad7253
+    targetPath: Assets/Plugins/InControl/Source/Binding/DeviceBindingSource.cs
+  - sourcePath: Assets/InControl/Source/Binding/DeviceBindingSourceListener.cs
+    sourceGUID: ac2c561d800544baeb31d8371a8f74eb
+    targetPath: Assets/Plugins/InControl/Source/Binding/DeviceBindingSourceListener.cs
+  - sourcePath: Assets/InControl/Source/Binding/Key.cs
+    sourceGUID: b5a9bd5aa90984460bcb8716040daf32
+    targetPath: Assets/Plugins/InControl/Source/Binding/Key.cs
+  - sourcePath: Assets/InControl/Source/Binding/KeyBindingSource.cs
+    sourceGUID: 3d65cfa470fbd4f55bc8ad0049f22768
+    targetPath: Assets/Plugins/InControl/Source/Binding/KeyBindingSource.cs
+  - sourcePath: Assets/InControl/Source/Binding/KeyBindingSourceListener.cs
+    sourceGUID: 91b68a13ad1c14fa89914289971da75b
+    targetPath: Assets/Plugins/InControl/Source/Binding/KeyBindingSourceListener.cs
+  - sourcePath: Assets/InControl/Source/Binding/KeyCombo.cs
+    sourceGUID: 35ed562c583754219bc5309a09080eaf
+    targetPath: Assets/Plugins/InControl/Source/Binding/KeyCombo.cs
+  - sourcePath: Assets/InControl/Source/Binding/KeyInfo.cs
+    sourceGUID: f117604a62a894dfd85bd3a0cc38402a
+    targetPath: Assets/Plugins/InControl/Source/Binding/KeyInfo.cs
+  - sourcePath: Assets/InControl/Source/Binding/Mouse.cs
+    sourceGUID: c4a0abf1d7f974fb89222ef4679a6a7d
+    targetPath: Assets/Plugins/InControl/Source/Binding/Mouse.cs
+  - sourcePath: Assets/InControl/Source/Binding/MouseBindingSource.cs
+    sourceGUID: 37240337078b848ec9b03cfab6c7a970
+    targetPath: Assets/Plugins/InControl/Source/Binding/MouseBindingSource.cs
+  - sourcePath: Assets/InControl/Source/Binding/MouseBindingSourceListener.cs
+    sourceGUID: 8ed8ff89729594e1ab5444256be76006
+    targetPath: Assets/Plugins/InControl/Source/Binding/MouseBindingSourceListener.cs
+  - sourcePath: Assets/InControl/Source/Binding/PlayerAction.cs
+    sourceGUID: 8b3d5a2631c814c0587ce8418d3ed049
+    targetPath: Assets/Plugins/InControl/Source/Binding/PlayerAction.cs
+  - sourcePath: Assets/InControl/Source/Binding/PlayerActionSet.cs
+    sourceGUID: 4b989a1fa2c1a43b58058a31c5bb28d5
+    targetPath: Assets/Plugins/InControl/Source/Binding/PlayerActionSet.cs
+  - sourcePath: Assets/InControl/Source/Binding/PlayerOneAxisAction.cs
+    sourceGUID: 6e8e00d21df9547ca8bb2de42319fbf2
+    targetPath: Assets/Plugins/InControl/Source/Binding/PlayerOneAxisAction.cs
+  - sourcePath: Assets/InControl/Source/Binding/PlayerTwoAxisAction.cs
+    sourceGUID: ea49b2712c2244d358d23be4cfd24992
+    targetPath: Assets/Plugins/InControl/Source/Binding/PlayerTwoAxisAction.cs
+  - sourcePath: Assets/InControl/Source/Binding/UnknownDeviceBindingSource.cs
+    sourceGUID: e34356e695cc141a0979b8a9c599839d
+    targetPath: Assets/Plugins/InControl/Source/Binding/UnknownDeviceBindingSource.cs
+  - sourcePath: Assets/InControl/Source/Binding/UnknownDeviceBindingSourceListener.cs
+    sourceGUID: b9ac386b8dae24f68997cc8ae8c5b693
+    targetPath: Assets/Plugins/InControl/Source/Binding/UnknownDeviceBindingSourceListener.cs
+  - sourcePath: Assets/InControl/Source/Binding/UnknownDeviceControl.cs
+    sourceGUID: d2fae62463b4c436cb4e14e33ae874aa
+    targetPath: Assets/Plugins/InControl/Source/Binding/UnknownDeviceControl.cs
+  - sourcePath: Assets/InControl/Source/Compatibility/HeaderAttribute.cs
+    sourceGUID: a6f9df388a384442bb101cc67126f194
+    targetPath: Assets/Plugins/InControl/Source/Compatibility/HeaderAttribute.cs
+  - sourcePath: Assets/InControl/Source/Compatibility/RangeAttribute.cs
+    sourceGUID: 6658719ee0a0544fdbce2ed84ae60f09
+    targetPath: Assets/Plugins/InControl/Source/Compatibility/RangeAttribute.cs
+  - sourcePath: Assets/InControl/Source/Compatibility/SpaceAttribute.cs
+    sourceGUID: a0d6089ba8556408882dca53437e776e
+    targetPath: Assets/Plugins/InControl/Source/Compatibility/SpaceAttribute.cs
+  - sourcePath: Assets/InControl/Source/Components/InControlManager.cs
+    sourceGUID: c7b5e8de77c5b4597ae7fbfb49a95e22
+    targetPath: Assets/Plugins/InControl/Source/Components/InControlManager.cs
+  - sourcePath: Assets/InControl/Source/Control/IInputControl.cs
+    sourceGUID: dfdbc4a84fb3f444b80b1f73f9175378
+    targetPath: Assets/Plugins/InControl/Source/Control/IInputControl.cs
+  - sourcePath: Assets/InControl/Source/Control/InputControl.cs
+    sourceGUID: a331fa841dd36460cb3c9805af10b205
+    targetPath: Assets/Plugins/InControl/Source/Control/InputControl.cs
+  - sourcePath: Assets/InControl/Source/Control/InputControlBase.cs
+    sourceGUID: 345874a9b4adb4b529d1057bbe7c5976
+    targetPath: Assets/Plugins/InControl/Source/Control/InputControlBase.cs
+  - sourcePath: Assets/InControl/Source/Control/InputControlMapping.cs
+    sourceGUID: 158934c73677f4587a09b752977c95cb
+    targetPath: Assets/Plugins/InControl/Source/Control/InputControlMapping.cs
+  - sourcePath: Assets/InControl/Source/Control/InputControlSource.cs
+    sourceGUID: b8357bf40f8764dd490da258112083f5
+    targetPath: Assets/Plugins/InControl/Source/Control/InputControlSource.cs
+  - sourcePath: Assets/InControl/Source/Control/InputControlState.cs
+    sourceGUID: 59bdf6bbbd3674d9daca7fc11231fcb6
+    targetPath: Assets/Plugins/InControl/Source/Control/InputControlState.cs
+  - sourcePath: Assets/InControl/Source/Control/InputControlType.cs
+    sourceGUID: fd80fea9a85704f83848bf66704dd42c
+    targetPath: Assets/Plugins/InControl/Source/Control/InputControlType.cs
+  - sourcePath: Assets/InControl/Source/Control/InputRange.cs
+    sourceGUID: f13e8f49bd10846e08f4751074893994
+    targetPath: Assets/Plugins/InControl/Source/Control/InputRange.cs
+  - sourcePath: Assets/InControl/Source/Control/InputRangeType.cs
+    sourceGUID: 63f27bcc877d74afb9c6e241af217401
+    targetPath: Assets/Plugins/InControl/Source/Control/InputRangeType.cs
+  - sourcePath: Assets/InControl/Source/Control/OneAxisInputControl.cs
+    sourceGUID: f64459b0e09934afba39eef3f4bff61b
+    targetPath: Assets/Plugins/InControl/Source/Control/OneAxisInputControl.cs
+  - sourcePath: Assets/InControl/Source/Control/TwoAxisInputControl.cs
+    sourceGUID: 2f1825cfc5dae489c84b73d77137794a
+    targetPath: Assets/Plugins/InControl/Source/Control/TwoAxisInputControl.cs
+  - sourcePath: Assets/InControl/Source/Debug/InControlException.cs
+    sourceGUID: 630967dda349945ebbc457caf9156820
+    targetPath: Assets/Plugins/InControl/Source/Debug/InControlException.cs
+  - sourcePath: Assets/InControl/Source/Debug/Logger.cs
+    sourceGUID: 5e434901b21a544b58614da9f38cb261
+    targetPath: Assets/Plugins/InControl/Source/Debug/Logger.cs
+  - sourcePath: Assets/InControl/Source/Device/InputDevice.cs
+    sourceGUID: fe926333032524309be5399211293619
+    targetPath: Assets/Plugins/InControl/Source/Device/InputDevice.cs
+  - sourcePath: Assets/InControl/Source/Device/InputDeviceClass.cs
+    sourceGUID: 187a5a728adb04362bfe2c72767633e3
+    targetPath: Assets/Plugins/InControl/Source/Device/InputDeviceClass.cs
+  - sourcePath: Assets/InControl/Source/Device/InputDeviceManager.cs
+    sourceGUID: bcfac7f074e8e41b289eccbdbf6229fc
+    targetPath: Assets/Plugins/InControl/Source/Device/InputDeviceManager.cs
+  - sourcePath: Assets/InControl/Source/Device/InputDeviceProfile.cs
+    sourceGUID: f3a91d13937374adeb9447fb55409e46
+    targetPath: Assets/Plugins/InControl/Source/Device/InputDeviceProfile.cs
+  - sourcePath: Assets/InControl/Source/Device/InputDeviceStyle.cs
+    sourceGUID: 3b3a6cf5528094a14b31322e52f7e886
+    targetPath: Assets/Plugins/InControl/Source/Device/InputDeviceStyle.cs
+  - sourcePath: Assets/InControl/Source/GUI/InControlInputModule.cs
+    sourceGUID: b24994c7bab8d436a8b302ce62dfa856
+    targetPath: Assets/Plugins/InControl/Source/GUI/InControlInputModule.cs
+  - sourcePath: Assets/InControl/Source/Native/Native.cs
+    sourceGUID: c4d0b30df095842fe922b5d8279594f8
+    targetPath: Assets/Plugins/InControl/Source/Native/Native.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeDeviceDriverType.cs
+    sourceGUID: e688e28a6c9e544bf922d52c2add43b7
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeDeviceDriverType.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeDeviceInfo.cs
+    sourceGUID: 3fd80201a27d343b4a77c29ccb3f41d0
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeDeviceInfo.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeDeviceTransportType.cs
+    sourceGUID: 9bb2af9d1a6384f60a2eb442c369b5b2
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeDeviceTransportType.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeInputDevice.cs
+    sourceGUID: 6d78c9f200de14030a5b8e8def2f2d27
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeInputDevice.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeInputDeviceManager.cs
+    sourceGUID: fcf67c4f173844ecdbc6dc8e6a51f858
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeInputDeviceManager.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeInputDeviceMatcher.cs
+    sourceGUID: baeca52f635464113ab4c72f0e8c7c1e
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeInputDeviceMatcher.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeInputDeviceProfile.cs
+    sourceGUID: c5dfce4fc3b714030941afe7fa863127
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeInputDeviceProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeInputDeviceProfileList.cs
+    sourceGUID: 7c9dbb211e2df419ca488a6fd5671dcd
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeInputDeviceProfileList.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeInputOptions.cs
+    sourceGUID: 7ced03cf9036c40ada050495ed8f68ca
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeInputOptions.cs
+  - sourcePath: Assets/InControl/Source/Native/NativeVersionInfo.cs
+    sourceGUID: b8eed17bb85334de1a4c938d24189fac
+    targetPath: Assets/Plugins/InControl/Source/Native/NativeVersionInfo.cs
+  - sourcePath: Assets/InControl/Source/Native/ControlSources/NativeAnalogSource.cs
+    sourceGUID: b85d87040bfd340c4bea6e346dbaadce
+    targetPath: Assets/Plugins/InControl/Source/Native/ControlSources/NativeAnalogSource.cs
+  - sourcePath: Assets/InControl/Source/Native/ControlSources/NativeButtonSource.cs
+    sourceGUID: a6a19e94c20f94f0a9689e20fc193fe6
+    targetPath: Assets/Plugins/InControl/Source/Native/ControlSources/NativeButtonSource.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/AfterglowPrismaticXboxOneControllerMacProfile.cs
+    sourceGUID: 54667c419bb96455ba27cee6788ae849
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/AfterglowPrismaticXboxOneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/BETAOPControllerMacProfile.cs
+    sourceGUID: eee7f4088bb7e4b0489d61195cfe2acb
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/BETAOPControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/BatarangControllerMacProfile.cs
+    sourceGUID: 97a681a990c8c401195daee592d579fc
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/BatarangControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/BigBenControllerMacProfile.cs
+    sourceGUID: 7b46d6719685c4793bf684234efd9212
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/BigBenControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/EASportsControllerMacProfile.cs
+    sourceGUID: 17e9335f267934bcfa881d7d4782d124
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/EASportsControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/GameStopControllerMacProfile.cs
+    sourceGUID: d1a5d471a980848ff82d60f554fb45a4
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/GameStopControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/GuitarHeroControllerMacProfile.cs
+    sourceGUID: 27d7ecd3dfe9d4bb2a073f7b3cd824b1
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/GuitarHeroControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HORIRealArcadeProVKaiFightingStickMacProfile.cs
+    sourceGUID: 27bec673dc45c4c5b9a9c93447509f15
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HORIRealArcadeProVKaiFightingStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HORIRealArcadeProVXMacProfile.cs
+    sourceGUID: 3f82839f6484849d9b030c584bc57ab5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HORIRealArcadeProVXMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriBlueSoloControllerMacProfile.cs
+    sourceGUID: a62a26ce5433245e5b96e9bc7ddd2633
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriBlueSoloControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriControllerMacProfile.cs
+    sourceGUID: a0d40eaca00d64665a4d9e689470000d
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriDOA4ArcadeStickMacProfile.cs
+    sourceGUID: 380d02b60928e4bf6a46afb12c7e53fb
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriDOA4ArcadeStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriEX2ControllerMacProfile.cs
+    sourceGUID: e91a888812efc46bf925a983a27c7b5a
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriEX2ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriFightStickMacProfile.cs
+    sourceGUID: cf709156de9224188ad101a08b32ea6d
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriFightStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriFightingStickEX2MacProfile.cs
+    sourceGUID: eb5162c8a46134d71a1924510311d4d2
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriFightingStickEX2MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriFightingStickVXMacProfile.cs
+    sourceGUID: 381c73356cb394aac815c1cfa377dadb
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriFightingStickVXMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriPadEXTurboControllerMacProfile.cs
+    sourceGUID: 3a74aafa519d141309db0ed93f99d925
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriPadEXTurboControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProEXMacProfile.cs
+    sourceGUID: 5c4fdaa7fedc149e4bec146ca0954a06
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProEXMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProEXPremiumVLXMacProfile.cs
+    sourceGUID: cead2ad892396491eb41b8945e062701
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProEXPremiumVLXMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProEXSEMacProfile.cs
+    sourceGUID: 59307419dc21244149c08fe5cfb9e5c0
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProEXSEMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProHayabusaMacProfile.cs
+    sourceGUID: 22ef942d5abcc44a286a1297dd2ffacf
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProHayabusaMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProVXSAMacProfile.cs
+    sourceGUID: 903c7a6de64cb4e0a9e52fbb4b0f89c7
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriRealArcadeProVXSAMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriXbox360GemPadExMacProfile.cs
+    sourceGUID: 09d023ae5530b49c6a0a7f5deda09c14
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriXbox360GemPadExMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/HoriXboxOneControllerMacProfile.cs
+    sourceGUID: a4440ec3927dd4f8d9d7a3e9eaf107b6
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/HoriXboxOneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/IonDrumRockerMacProfile.cs
+    sourceGUID: bbfbef6ad10514890ba007b229ddc5a8
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/IonDrumRockerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/JoytekXbox360ControllerMacProfile.cs
+    sourceGUID: 350d8930de7424fd0b9797b7072e0dfe
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/JoytekXbox360ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/KonamiDancePadMacProfile.cs
+    sourceGUID: 6bdaf6731ef634d31ad2e242d00d0a65
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/KonamiDancePadMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/LogitechChillStreamControllerMacProfile.cs
+    sourceGUID: 84d7d8d8528824aeba2ab5031cc891bb
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/LogitechChillStreamControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/LogitechControllerMacProfile.cs
+    sourceGUID: 9fe6d3fa58ffa4f36b26f3d71b9a1d9c
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/LogitechControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/LogitechF310ControllerMacProfile.cs
+    sourceGUID: e7fe4781f700d4a21ad0773e00b5ee4d
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/LogitechF310ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/LogitechF510ControllerMacProfile.cs
+    sourceGUID: 3cfe538172db4457f840e3ff44d750f6
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/LogitechF510ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/LogitechF710ControllerMacProfile.cs
+    sourceGUID: a895c8deebfac46b5be55ebde320e6cf
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/LogitechF710ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/LogitechG920RacingWheelMacProfile.cs
+    sourceGUID: ac69ac2d81ebb4b41aea36f76a26965f
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/LogitechG920RacingWheelMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MLGControllerMacProfile.cs
+    sourceGUID: 8dcc7b44c93f8405a86308cdae786cb5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MLGControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MVCTEStickMacProfile.cs
+    sourceGUID: 7c4d86078695545aeb4cb292ce045c04
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MVCTEStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzArcadeStickMacProfile.cs
+    sourceGUID: f810ecb809595480791db39769c72b70
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzArcadeStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzBrawlStickMacProfile.cs
+    sourceGUID: 9eb492d8db4594f99b810e87ca3cd8a4
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzBrawlStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzCODControllerMacProfile.cs
+    sourceGUID: 3b46624a8b37844abaa22ef61d674e51
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzCODControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzControllerMacProfile.cs
+    sourceGUID: 7d6ff48c602394f78b3ac6033d5a2c95
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzFPSProMacProfile.cs
+    sourceGUID: bedf45252d7374b999e710723454016a
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzFPSProMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzFightPadControllerMacProfile.cs
+    sourceGUID: c1258697a77244633be154be44a86000
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzFightPadControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzFightPadMacProfile.cs
+    sourceGUID: 8cda6911c937640a3b800dbcbd715b80
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzFightPadMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzMicroConControllerMacProfile.cs
+    sourceGUID: 1ab0fef919d194f2d93b55e751f93b43
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzMicroConControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzMicroControllerMacProfile.cs
+    sourceGUID: 29af607f00da640dab83adebff1b0dd7
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzMicroControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzPortableDrumMacProfile.cs
+    sourceGUID: 98bb3d7250da6497695f72a7236e50e9
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzPortableDrumMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzProControllerMacProfile.cs
+    sourceGUID: ccfef0d33b55949c3ad1a59802a84c31
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzProControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSF4FightStickRound2TEMacProfile.cs
+    sourceGUID: e5b445aeeec264ad9916566113f0a0a2
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSF4FightStickRound2TEMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSF4FightStickSEMacProfile.cs
+    sourceGUID: 4084bb1209dc24f8599dec47f005e881
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSF4FightStickSEMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSF4FightStickTEMacProfile.cs
+    sourceGUID: 47f3deddbf3804369b0916dac1bd4531
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSF4FightStickTEMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSSF4ChunLiFightStickTEMacProfile.cs
+    sourceGUID: 55d5561fa402d49f2b116e6192b49009
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSSF4ChunLiFightStickTEMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSSF4FightStickTEMacProfile.cs
+    sourceGUID: 746c74b880e7345348be27313a53bbaa
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSSF4FightStickTEMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSaitekAV8R02MacProfile.cs
+    sourceGUID: b667f3880d8f54964a8a477742e119d9
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MadCatzSaitekAV8R02MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MatCatzControllerMacProfile.cs
+    sourceGUID: 40884e69a4f86410f98854acd22d421e
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MatCatzControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXbox360ControllerMacProfile.cs
+    sourceGUID: e8056fc37ac6c4d4c9f390781e570cdb
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXbox360ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXboxControllerMacProfile.cs
+    sourceGUID: 70f41d73ee5c641ff951dd27be6fcb44
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXboxControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXboxOneControllerMacProfile.cs
+    sourceGUID: 4e2bea5b68b0d44d5a2da03780de5094
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXboxOneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXboxOneEliteControllerMacProfile.cs
+    sourceGUID: 3691df7fef6da47d48dd75abf4fc73aa
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/MicrosoftXboxOneEliteControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/NaconGC100XFControllerMacProfile.cs
+    sourceGUID: 4b92696a6021a46ceb7d5bc80d95c85b
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/NaconGC100XFControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PDPAfterglowControllerMacProfile.cs
+    sourceGUID: 0c389dfc1382542889fa6f67eb00f558
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PDPAfterglowControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PDPMarvelControllerMacProfile.cs
+    sourceGUID: 4765da98088e244d1b306ff2b69f2eba
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PDPMarvelControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PDPTronControllerMacProfile.cs
+    sourceGUID: 6fede4d0b65c34b209ede207ac54cf63
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PDPTronControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PDPVersusControllerMacProfile.cs
+    sourceGUID: 18f454b414a7045eaac078e0f2016e7a
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PDPVersusControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PDPXboxOneArcadeStickMacProfile.cs
+    sourceGUID: 06688406bbf094ae9979288d8d6a1716
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PDPXboxOneArcadeStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PDPXboxOneControllerMacProfile.cs
+    sourceGUID: 4877cb47185e843a0b3da99592043ac1
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PDPXboxOneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/POWERAFUS1ONTournamentControllerMacProfile.cs
+    sourceGUID: 545fd0d028ac04c26b65e4e20d9b1eec
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/POWERAFUS1ONTournamentControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PowerAAirflowControllerMacProfile.cs
+    sourceGUID: 7e19563da9c414db58a9474ac843ac4d
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PowerAAirflowControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PowerAMiniControllerMacProfile.cs
+    sourceGUID: 0d3babc1c068b4d06babca0f286f1528
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PowerAMiniControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PowerAMiniProExControllerMacProfile.cs
+    sourceGUID: 09d3013475f1c438a99b2c9d3d48107a
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PowerAMiniProExControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PowerAMiniXboxOneControllerMacProfile.cs
+    sourceGUID: 8304d9df13d534867a18896c037bc265
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PowerAMiniXboxOneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/PowerASpectraIlluminatedControllerMacProfile.cs
+    sourceGUID: 5bbc7d488a00f49ccb431dcab7830fd8
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/PowerASpectraIlluminatedControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/ProEXXbox360ControllerMacProfile.cs
+    sourceGUID: a296656d240fc4f13a7e2b251b32af3f
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/ProEXXbox360ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/ProEXXboxOneControllerMacProfile.cs
+    sourceGUID: 9c356960f4f2a4792bb88be1a388594d
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/ProEXXboxOneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/QanbaFightStickPlusMacProfile.cs
+    sourceGUID: 17c94d4c46aa54b20a2c9da9aa903d89
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/QanbaFightStickPlusMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RazerAtroxArcadeStickMacProfile.cs
+    sourceGUID: 050c76afe296f4a00aefff3ede842bc5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RazerAtroxArcadeStickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RazerOnzaControllerMacProfile.cs
+    sourceGUID: 33dea7490e8354f5693f6c8c7759b6f4
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RazerOnzaControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RazerOnzaTEControllerMacProfile.cs
+    sourceGUID: 886c1dc2a7c1f427ab50fc9ea248156a
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RazerOnzaTEControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RazerSabertoothEliteControllerMacProfile.cs
+    sourceGUID: 5b67d1c77df6b4793a15435f8d35f4c5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RazerSabertoothEliteControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RazerStrikeControllerMacProfile.cs
+    sourceGUID: 289daacb356af4fe19e3bad372ab8004
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RazerStrikeControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RazerWildcatControllerMacProfile.cs
+    sourceGUID: 169f5b70a7f5746aa9036618e3518d60
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RazerWildcatControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RedOctaneControllerMacProfile.cs
+    sourceGUID: fc302c5cf3ae444fe9827b8a51f49009
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RedOctaneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RockBandDrumsMacProfile.cs
+    sourceGUID: 7dbc505b65007468a800c939c8a643a5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RockBandDrumsMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RockBandGuitarMacProfile.cs
+    sourceGUID: 432fda6a7d7984287a66d85ebecb4393
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RockBandGuitarMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RockCandyControllerMacProfile.cs
+    sourceGUID: e9668b646eca0447dbd917b86d4ef5e1
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RockCandyControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RockCandyXbox360ControllerMacProfile.cs
+    sourceGUID: 81ea8fe82c8914599b745c7bb982da6b
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RockCandyXbox360ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/RockCandyXboxOneControllerMacProfile.cs
+    sourceGUID: 297a94304e095494ea3accde2d3ba89f
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/RockCandyXboxOneControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/SaitekXbox360ControllerMacProfile.cs
+    sourceGUID: 34e347fdf442643508acf747710bec6d
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/SaitekXbox360ControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/TSZPelicanControllerMacProfile.cs
+    sourceGUID: 237e9dda3362342529bc0d186d85b8e8
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/TSZPelicanControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/ThrustmasterFerrari458RacingWheelMacProfile.cs
+    sourceGUID: 7f8becf9041a841a1a462151788661cb
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/ThrustmasterFerrari458RacingWheelMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/ThrustmasterGPXControllerMacProfile.cs
+    sourceGUID: 7ddec1abe849542b49d1eb5be99738e3
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/ThrustmasterGPXControllerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Generated/TrustPredatorJoystickMacProfile.cs
+    sourceGUID: d983c283ec27344b9950054e0342ccc1
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Generated/TrustPredatorJoystickMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/BuffaloClassicMacProfile.cs
+    sourceGUID: 94e0f95263ab344deac5f6a5a2be2871
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/BuffaloClassicMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoNES30ProBTMacNativeProfile.cs
+    sourceGUID: efe6e058c4b9e4fb8aba4add31fe5590
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoNES30ProBTMacNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoNES30ProUSBMacNativeProfile1.cs
+    sourceGUID: 09f7de9d23bd246b1a28e61b4344fd70
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoNES30ProUSBMacNativeProfile1.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoSFC30MacNativeProfile.cs
+    sourceGUID: f01f6660a071a4ee18820672dac23569
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoSFC30MacNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoSNES30MacNativeProfile.cs
+    sourceGUID: ba3a30c2aeb8b474fb4f8f76b18f71b5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/EightBitdoSNES30MacNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/LogitechF310ModeDMacProfile.cs
+    sourceGUID: 088046db281be4a909e81670a3ceb4d6
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/LogitechF310ModeDMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/LogitechF510ModeDMacProfile.cs
+    sourceGUID: 03b07914a52dc4708be9fa39e1774608
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/LogitechF510ModeDMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/LogitechF710ModeDMacProfile.cs
+    sourceGUID: e11e338ded286483eb3a37bba0bfdfb7
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/LogitechF710ModeDMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/PlayStation3MacProfile.cs
+    sourceGUID: 917deb0c193644a5594211d4d8ae720a
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/PlayStation3MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/PlayStation4MacProfile.cs
+    sourceGUID: 8b9cd860756934bf7a69a85aa94c59f9
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/PlayStation4MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/XTR55_G2_MacNativeProfile.cs
+    sourceGUID: 53c2559d1a76e413da54c2c9f64fb464
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/XTR55_G2_MacNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/XTR_G2_MacNativeProfile.cs
+    sourceGUID: df9dd08bcd29f41cc81af64b7483e351
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/XTR_G2_MacNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/Xbox360DriverMacProfile.cs
+    sourceGUID: 06c3975b498234171a3830e3b944db5d
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/Xbox360DriverMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Mac/XboxOneDriverMacProfile.cs
+    sourceGUID: e548e1cfa700b46fb8e22e9ad4d62188
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Mac/XboxOneDriverMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/AfterglowXbox360WindowsNativeProfile.cs
+    sourceGUID: 168c2f4ac3ed34871b43171281446a64
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/AfterglowXbox360WindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/AirFloPS3WindowsNativeProfile.cs
+    sourceGUID: 279e75df8e902416985bd729007dda16
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/AirFloPS3WindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/BuffaloClassicWindowsNativeProfile.cs
+    sourceGUID: 5cb432a651e1542cc8d8d712e35fe0ca
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/BuffaloClassicWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/EightBitdoNES30ProWindowsNativeProfile.cs
+    sourceGUID: c3a317e23bb183d479a305ef6cc5cf3c
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/EightBitdoNES30ProWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/EightBitdoSFC30WindowsNativeProfile.cs
+    sourceGUID: d7b338976ddb84a4184cae2b2df74088
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/EightBitdoSFC30WindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/EightBitdoSNES30WindowsNativeProfile.cs
+    sourceGUID: 341281762c000a14f9e1a0ef58358820
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/EightBitdoSNES30WindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/LogitechF310ModeDWindowsNativeProfile.cs
+    sourceGUID: 2ab1e520b1d4d471a9e3ef3098137b5c
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/LogitechF310ModeDWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/LogitechF310ModeXWindowsNativeProfile.cs
+    sourceGUID: a54b24a1cd1384c31a982ef10c108682
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/LogitechF310ModeXWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/LogitechF510ModeDWindowsNativeProfile.cs
+    sourceGUID: 657654af0e2c240809c8a3f6d31a4ab2
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/LogitechF510ModeDWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/LogitechF510ModeXWindowsNativeProfile.cs
+    sourceGUID: 2f03b4e8e8a4c4385864ec32bf45f984
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/LogitechF510ModeXWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/LogitechF710ModeDWindowsNativeProfile.cs
+    sourceGUID: 3c67f848358e842ce98550263f8d12c8
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/LogitechF710ModeDWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/LogitechF710ModeXWindowsNativeProfile.cs
+    sourceGUID: 66cd0811abc8842ebb9d21c8ab74aac5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/LogitechF710ModeXWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/NVidiaShieldWindowsNativeProfile.cs
+    sourceGUID: 5209ad4a5469141539454b694bc154f5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/NVidiaShieldWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/PlayStation4WindowsNativeProfile.cs
+    sourceGUID: 94fa6d2818ec643bea8ffd492b03930c
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/PlayStation4WindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/RazerServalWindowsNativeProfile.cs
+    sourceGUID: b0916d350134b479dbe4a92f7e02ace5
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/RazerServalWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/SteamWindowsNativeProfile.cs
+    sourceGUID: 60eaf514dbf6d4322933ad01c1cdf585
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/SteamWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XInputWindowsNativeProfile.cs
+    sourceGUID: b452ab0f9da65476688bdb091cfce1b7
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XInputWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XTR55_G2_WindowsNativeProfile.cs
+    sourceGUID: b8bd1b1a1af721d4998ab3f1a8784afe
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XTR55_G2_WindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XTR_G2_WindowsNativeProfile.cs
+    sourceGUID: f390e657835f51141813faaae0f560f9
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XTR_G2_WindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/Xbox360WiredWindowsNativeProfile.cs
+    sourceGUID: 912a8e6b57cbe419db06621c1053f4d2
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/Xbox360WiredWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/Xbox360WirelessWindowsNativeProfile.cs
+    sourceGUID: e945a1a8e930c4a528e26cccbffa11a8
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/Xbox360WirelessWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XboxOneEliteWindows10AENativeProfile.cs
+    sourceGUID: fec8d343eecd13b42b2e2999ca91652a
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XboxOneEliteWindows10AENativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XboxOneEliteWindowsNativeProfile.cs
+    sourceGUID: 2b230c8973a344ffdaf177fdf10094b2
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XboxOneEliteWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWindows10AENativeProfile.cs
+    sourceGUID: 01acba3664ba7804e86e3aba3f2c1165
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWindows10AENativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWindows10NativeProfile.cs
+    sourceGUID: ed10994df8e244174833d6fb1d0f97e8
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWindows10NativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWindowsNativeProfile.cs
+    sourceGUID: 578a241f2b731448f82cc23062db1c1e
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWirelessAdapterWindowsNativeProfile.cs
+    sourceGUID: 25d868d5b153e48008530c4e7ecd2952
+    targetPath: Assets/Plugins/InControl/Source/Native/DeviceProfiles/Windows/XboxOneWirelessAdapterWindowsNativeProfile.cs
+  - sourcePath: Assets/InControl/Source/Touch/Touch.cs
+    sourceGUID: 1d27e0367c645484f9369b49a98443c8
+    targetPath: Assets/Plugins/InControl/Source/Touch/Touch.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchControl.cs
+    sourceGUID: bb1cecc9e870a44ffbd8b470f221148e
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchControl.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchControlAnchor.cs
+    sourceGUID: 9a776484f61b54395ba066e85655fab2
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchControlAnchor.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchInputDevice.cs
+    sourceGUID: c5d5186e09d7845ccb38079a6f15f81f
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchInputDevice.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchManager.cs
+    sourceGUID: e6c474df4ff4c4f5bbabeb9f44d56014
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchManager.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchPool.cs
+    sourceGUID: b99f5b8a7bd4c45448a7e01add6c91a2
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchPool.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchSprite.cs
+    sourceGUID: 93e39a52e31cc4c90bdbd9cdec724f90
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchSprite.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchType.cs
+    sourceGUID: 36a95a13e5c75418581e257731d4c1e8
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchType.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchUnitType.cs
+    sourceGUID: 3fb43b70b96664c738020e027961804b
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchUnitType.cs
+  - sourcePath: Assets/InControl/Source/Touch/TouchUtility.cs
+    sourceGUID: 994e2bb11afed4b10a9d6aca292d8be6
+    targetPath: Assets/Plugins/InControl/Source/Touch/TouchUtility.cs
+  - sourcePath: Assets/InControl/Source/Touch/Controls/TouchButtonControl.cs
+    sourceGUID: 05c28010e244e4ca2ad9d7e8e71ecc50
+    targetPath: Assets/Plugins/InControl/Source/Touch/Controls/TouchButtonControl.cs
+  - sourcePath: Assets/InControl/Source/Touch/Controls/TouchStickControl.cs
+    sourceGUID: 22f566de049b04240b6621f25c01d1f2
+    targetPath: Assets/Plugins/InControl/Source/Touch/Controls/TouchStickControl.cs
+  - sourcePath: Assets/InControl/Source/Touch/Controls/TouchSwipeControl.cs
+    sourceGUID: 1e93eb45041724688a33d870c7320691
+    targetPath: Assets/Plugins/InControl/Source/Touch/Controls/TouchSwipeControl.cs
+  - sourcePath: Assets/InControl/Source/Touch/Controls/TouchTrackControl.cs
+    sourceGUID: 5414a42a055b6449282453561a90c671
+    targetPath: Assets/Plugins/InControl/Source/Touch/Controls/TouchTrackControl.cs
+  - sourcePath: Assets/InControl/Source/Touch/Editor/TouchBuilder.cs
+    sourceGUID: 7c4daf7021a0c4992908e283eaef14bd
+    targetPath: Assets/Plugins/Editor/InControl/Source/Touch/Editor/TouchBuilder.cs
+  - sourcePath: Assets/InControl/Source/Touch/Editor/TouchButtonControlEditor.cs
+    sourceGUID: eb6d3cef6bdda4f98927e0be1037f768
+    targetPath: Assets/Plugins/Editor/InControl/Source/Touch/Editor/TouchButtonControlEditor.cs
+  - sourcePath: Assets/InControl/Source/Touch/Editor/TouchControlEditor.cs
+    sourceGUID: dc5e8df2572d343f593929044956e89b
+    targetPath: Assets/Plugins/Editor/InControl/Source/Touch/Editor/TouchControlEditor.cs
+  - sourcePath: Assets/InControl/Source/Touch/Editor/TouchManagerEditor.cs
+    sourceGUID: 939090bba09bb427587987a0949f1dc0
+    targetPath: Assets/Plugins/Editor/InControl/Source/Touch/Editor/TouchManagerEditor.cs
+  - sourcePath: Assets/InControl/Source/Touch/Editor/TouchStickControlEditor.cs
+    sourceGUID: a689a62d348e649ac8a47d2e9dc8497d
+    targetPath: Assets/Plugins/Editor/InControl/Source/Touch/Editor/TouchStickControlEditor.cs
+  - sourcePath: Assets/InControl/Source/Touch/Editor/TouchSwipeControlEditor.cs
+    sourceGUID: 63a17f971af5c4847858e804ec250df0
+    targetPath: Assets/Plugins/Editor/InControl/Source/Touch/Editor/TouchSwipeControlEditor.cs
+  - sourcePath: Assets/InControl/Source/Touch/Editor/TouchTrackControlEditor.cs
+    sourceGUID: cb009d5c8edef44ee9725174cd35349c
+    targetPath: Assets/Plugins/Editor/InControl/Source/Touch/Editor/TouchTrackControlEditor.cs
+  - sourcePath: Assets/InControl/Source/Unity/CustomInputDeviceProfile.cs
+    sourceGUID: 23de466638f474b43b30dc427576ec0b
+    targetPath: Assets/Plugins/InControl/Source/Unity/CustomInputDeviceProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/InputDeviceProfile.cs
+    sourceGUID: 52e7c174bd87447fbbd440fe29636240
+    targetPath: Assets/Plugins/InControl/Source/Unity/InputDeviceProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnityInputDevice.cs
+    sourceGUID: 6c43d7af44d624607a26e3a67a87b9ab
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnityInputDevice.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnityInputDeviceManager.cs
+    sourceGUID: 36a3af59792064848b05061b938f3e8a
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnityInputDeviceManager.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnityInputDeviceProfile.cs
+    sourceGUID: 576d0f88f6ce245a19cf491efd613bd4
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnityInputDeviceProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnityInputDeviceProfileBase.cs
+    sourceGUID: ceda916ebcf004d69bcc54c8a1a1aac5
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnityInputDeviceProfileBase.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnityInputDeviceProfileList.cs
+    sourceGUID: 4156265165e994e96883cb1c766d6583
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnityInputDeviceProfileList.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnknownUnityDevice.cs
+    sourceGUID: 6c6d31953d8944d44b7ac5a4a6a8434d
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnknownUnityDevice.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnknownUnityDeviceProfile.cs
+    sourceGUID: 82c244e8e65e0496e9646b96aadd10ef
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnknownUnityDeviceProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnknownUnityInputDevice.cs
+    sourceGUID: c0f685158e4654930ac6cfea17b418bb
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnknownUnityInputDevice.cs
+  - sourcePath: Assets/InControl/Source/Unity/UnknownUnityInputDeviceProfile.cs
+    sourceGUID: 25cf1f888eefb44d284b86a61f1f06a0
+    targetPath: Assets/Plugins/InControl/Source/Unity/UnknownUnityInputDeviceProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityAnalogSource.cs
+    sourceGUID: a287debc819324ea4b4878fbe872d89b
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityAnalogSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityButtonSource.cs
+    sourceGUID: 1828b10a143a3467193aaf26703acb34
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityButtonSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityGyroAxisSource.cs
+    sourceGUID: a8ddb2e45a0dd43d6b15d07d83e16204
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityGyroAxisSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityKeyCodeAxisSource.cs
+    sourceGUID: 20964e0f5fde540aaa0888995c733abc
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityKeyCodeAxisSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityKeyCodeComboSource.cs
+    sourceGUID: 3fee4c0056ff6454392967ac294b4376
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityKeyCodeComboSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityKeyCodeSource.cs
+    sourceGUID: ca04a9e9a03084c3da32288c5df304c5
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityKeyCodeSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityMouseAxisSource.cs
+    sourceGUID: adbf4a4d2a1634dc98bc2527ea9b6bef
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityMouseAxisSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/ControlSources/UnityMouseButtonSource.cs
+    sourceGUID: 30f8614bb307f4ce68354078dcacfbb0
+    targetPath: Assets/Plugins/InControl/Source/Unity/ControlSources/UnityMouseButtonSource.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AirFloWiredPS3MacProfile.cs
+    sourceGUID: a0faf9d203b6b457e87401bfd6b4282b
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AirFloWiredPS3MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AirFloWiredPS3WinProfile.cs
+    sourceGUID: 81c0485f34722495da84af6d79d8b19c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AirFloWiredPS3WinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AmazonFireTVProfile.cs
+    sourceGUID: 5c725c752a36741809fad8d59e38180f
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AmazonFireTVProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AmazonFireTVRemoteProfile.cs
+    sourceGUID: 80ad4e35aa78842e58a40b54d6fa4660
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AmazonFireTVRemoteProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AndroidTVAmazonProfile.cs
+    sourceGUID: f8089fd44e3074740a0571f4f8b9a4fd
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AndroidTVAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AndroidTVProfile.cs
+    sourceGUID: 54d2ec3308b484f8c9231d1eb0f291f6
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AndroidTVProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AndroidTVRemoteProfile.cs
+    sourceGUID: 2780272058d174cb69990315a2089ba5
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AndroidTVRemoteProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AppleMFiProfile.cs
+    sourceGUID: c89260f1a809240da93263417fd69da4
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AppleMFiProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AppleTVControllerProfile.cs
+    sourceGUID: 0b2172f4199ab4c2fabfa075a2fa5537
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AppleTVControllerProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/AppleTVRemoteProfile.cs
+    sourceGUID: 61cd6b298b9a9423e9fd0b5fdffe7f06
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/AppleTVRemoteProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/BuffaloClassicAmazonProfile.cs
+    sourceGUID: 3f0cbcd7b02494eefa89d46806a224df
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/BuffaloClassicAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/BuffaloClassicMacProfile.cs
+    sourceGUID: 5c04862a38f1549dabe3b05a0171d9ec
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/BuffaloClassicMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/BuffaloClassicWinProfile.cs
+    sourceGUID: a825016bd4a9f4a31b19ffece40d0b33
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/BuffaloClassicWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/DroidBoxPS3AndroidProfile.cs
+    sourceGUID: bfc83906d024442bc837384595365082
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/DroidBoxPS3AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/DroidBoxXboxAndroidProfile.cs
+    sourceGUID: c7ea41e2248024fc1ae4f875389d6a58
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/DroidBoxXboxAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoFC30ProAndroidProfile.cs
+    sourceGUID: ab8dd2575fffb4555adfd0143228c16e
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoFC30ProAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoNES30ProAndroidProfile.cs
+    sourceGUID: 8151e001d8e264eae812566c19833158
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoNES30ProAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoNES30ProMacProfile.cs
+    sourceGUID: de37dea78f3f2439091e34b48d207b8b
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoNES30ProMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoNES30ProWindowsProfile.cs
+    sourceGUID: 5fd2b4a8ee7d56449849f7a4a7f68fb6
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoNES30ProWindowsProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoSFC30AndroidProfile.cs
+    sourceGUID: 8c01a56e456d743778d0354019fca8f8
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoSFC30AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoSFC30MacProfile.cs
+    sourceGUID: 6dd85467b639344ffb1f5cf726d1c8f2
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoSFC30MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoSFC30WindowsProfile.cs
+    sourceGUID: 9b039dece04062a4f89056ca6ae5c664
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoSFC30WindowsProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoSNES30AndroidProfile.cs
+    sourceGUID: 5392d76deee64404cadfceb2422ab971
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoSNES30AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoSNES30MacProfile.cs
+    sourceGUID: 65c2d9ddebfc44a99a4c939b29092fee
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoSNES30MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/EightBitdoSNES30WindowsProfile.cs
+    sourceGUID: 3635f9825838bc145817af08532482bd
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/EightBitdoSNES30WindowsProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/ExecutionerXProfile.cs
+    sourceGUID: 42ec64635f5114355ba3cdb475542c7e
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/ExecutionerXProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/FixXBG301AndroidProfile.cs
+    sourceGUID: 7d2a1a92d695143f1b1cd64db723d3a9
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/FixXBG301AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/FlareAndroidProfile.cs
+    sourceGUID: e90ed0498fe1f462d8d2180ef4985ff7
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/FlareAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GameCubeWinProfile.cs
+    sourceGUID: 30c8dc32f85ff4298b6da141b26a8d5a
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GameCubeWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GameSirG3sAndroidProfile.cs
+    sourceGUID: 551c082434f7a439d83cec5924ad3371
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GameSirG3sAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GameSirG3wAndroidProfile.cs
+    sourceGUID: b0e8e25df49cb45748372c3c6264a697
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GameSirG3wAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GameStickLinuxProfile.cs
+    sourceGUID: d68013e94a92d42bd846a742809769e4
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GameStickLinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GameStickProfile.cs
+    sourceGUID: b82340723690943c29aa2be77990d1e5
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GameStickProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GenericAndroidProfile.cs
+    sourceGUID: b8bcb7b2354dc4dd8b9ff7d594501f85
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GenericAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GenericBlackberryProfile.cs
+    sourceGUID: 3c9dda98a43b14bff871df4350a82673
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GenericBlackberryProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GenericLinuxProfile.cs
+    sourceGUID: e3cafd54facc94cbcafc6eafb171ba4d
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GenericLinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/GreenThrottleAtlasAndroidProfile.cs
+    sourceGUID: fd35e17dfbfb4446398900fb071ee49b
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/GreenThrottleAtlasAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/HamaBlackForceWinProfile.cs
+    sourceGUID: 9102d4af6163548298824732695f103f
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/HamaBlackForceWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/IpegaPG9023AndroidProfile.cs
+    sourceGUID: ebc6bec85f4244ff39be93d1e113aef7
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/IpegaPG9023AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/IpegaPG9025AndroidProfile.cs
+    sourceGUID: 50f086859f98d49f1a93564668bf3de9
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/IpegaPG9025AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LevelUpBlackHawkWinProfile.cs
+    sourceGUID: fff9da41ee8054f0dbc85905eacc2a57
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LevelUpBlackHawkWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF310LinuxProfile.cs
+    sourceGUID: 01bb39d8958ad4feaa2a70545ac2d9f7
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF310LinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeDMacProfile.cs
+    sourceGUID: 060c4af5275694a398999bd8c7aa86e5
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeDMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeDWinProfile.cs
+    sourceGUID: 876470a578a335a4c91a3f26292be86a
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeDWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeXMacProfile.cs
+    sourceGUID: 6d91e1ac4eb9c40649b1f75903351a2b
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeXMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeXWinProfile.cs
+    sourceGUID: 3790a7f5feb26c943a2915ff29fa0b06
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF310ModeXWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF510LinuxProfile.cs
+    sourceGUID: a180fabb46b1a4b8d97d73e711e1f206
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF510LinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeDMacProfile.cs
+    sourceGUID: 3f84bab24bd314c65b56f1d4c12a3633
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeDMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeDWinProfile.cs
+    sourceGUID: ff3a27d1fffaa4bdcb911761a896f964
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeDWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeXMacProfile.cs
+    sourceGUID: 6d7e9b592b3ae458bbbb016ef0d86878
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeXMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeXWinProfile.cs
+    sourceGUID: b3f785c4371fc483a87ab3ddb170ad5d
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF510ModeXWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF710LinuxProfile.cs
+    sourceGUID: 6ac543e3791694e13b83a372746c27e9
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF710LinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF710MacProfile.cs
+    sourceGUID: 772fce0c29f3e4c59a7d6c1dad7402fc
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF710MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF710ModeDWinProfile.cs
+    sourceGUID: 5f529a5b5e2df484cac96f684d8e3a8c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF710ModeDWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechF710ModeXWinProfile.cs
+    sourceGUID: 88159174d7db7444ea4f29c7fff0182e
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechF710ModeXWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechModeDAmazonProfile.cs
+    sourceGUID: bd6706151b4974daaa40f40ad8ed9edc
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechModeDAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechModeXAmazonProfile.cs
+    sourceGUID: 3137bf0d8e57e42979e7bc8e81a635fa
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechModeXAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/LogitechWingManWinProfile.cs
+    sourceGUID: c36d04b711976475d9b17eb06a880cf4
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/LogitechWingManWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MadCatzCTRLRAmazonProfile.cs
+    sourceGUID: 0560365e3084c464992937de16bd9d80
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MadCatzCTRLRAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MadCatzCTRLRAndroidProfile.cs
+    sourceGUID: a52fcaecb3a7445d3a73ff4c2ed89463
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MadCatzCTRLRAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MadCatzMicroCTRLRAmazonProfile.cs
+    sourceGUID: 9c7af80e05ab2419a94414569d9d647d
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MadCatzMicroCTRLRAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MaxFireBlaze5WinProfile.cs
+    sourceGUID: 103b82924388243979cda8bef293e186
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MaxFireBlaze5WinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MogaHeroPowerAndroidProfile.cs
+    sourceGUID: f44c34ff430a84bf297e8b25482e929e
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MogaHeroPowerAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MogaProAndroidProfile.cs
+    sourceGUID: 8646d52993f5140fc8f1d10657e0965a
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MogaProAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MogaProLinuxProfile.cs
+    sourceGUID: 42d4d1a8b480b4ac99ecf0a7f6d0639c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MogaProLinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MogaProMacProfile.cs
+    sourceGUID: 6d2bfa46800f942da87f120f421ab2c0
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MogaProMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MogaProPowerAndroidProfile.cs
+    sourceGUID: 68841602f93534ebd8042e8f046ada3c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MogaProPowerAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/MogaProWinProfile.cs
+    sourceGUID: 25c66976183c4422dad22c53647d705c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/MogaProWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NVidiaShieldAndroidProfile.cs
+    sourceGUID: 5ea369cf9c06d46c38bc190dd56cbc55
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NVidiaShieldAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NVidiaShieldWin10Profile.cs
+    sourceGUID: 33c8bcd35b5dd483d80f182049a7f388
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NVidiaShieldWin10Profile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NVidiaShieldWinProfile.cs
+    sourceGUID: ca396517f8a061c46ba17340d735dfc2
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NVidiaShieldWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NatecGenesisP44WinProfile.cs
+    sourceGUID: 1ce4b0d50cf4b40c7ba35bcd189eb813
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NatecGenesisP44WinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NexusPlayerMacProfile.cs
+    sourceGUID: dff62ede90077401e97aab1fb3a8967c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NexusPlayerMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NexusPlayerProfile.cs
+    sourceGUID: 3cba62433d2e947ebbd7ddb53f08226a
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NexusPlayerProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NexusPlayerRemoteProfile.cs
+    sourceGUID: 988e530d747144b9e8d7dacb259bf390
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NexusPlayerRemoteProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NexusPlayerWinProfile.cs
+    sourceGUID: 25f1fd4a2282f444ea8c7e194741fa38
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NexusPlayerWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/NykoPlayPadProAmazonProfile.cs
+    sourceGUID: c6bc9ab6083c3418085238e48b4b5d3a
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/NykoPlayPadProAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/OuyaAmazonProfile.cs
+    sourceGUID: f5aaf9e72d5b549529430a2101f26245
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/OuyaAmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/OuyaLinuxProfile.cs
+    sourceGUID: ce1481152bdf34d2386af5fcd9f94477
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/OuyaLinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/OuyaWinProfile.cs
+    sourceGUID: ff36a3f030ca5475eb996f03eca2c1b4
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/OuyaWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation2WinProfile.cs
+    sourceGUID: 3ef4e6024cccd4b7f88ea287b01dd877
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation2WinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation3AndroidProfile.cs
+    sourceGUID: 52cb89bbfa4524354b3b8681fca2c440
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation3AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation3BWinProfile.cs
+    sourceGUID: 313b47860a2693649985aa7514060ebf
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation3BWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation3LinuxProfile.cs
+    sourceGUID: 362efd5e82cbb487fb63146b39f0e2d1
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation3LinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation3MacProfile.cs
+    sourceGUID: 40e804e59de9c4248aa158509ae39cbd
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation3MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation3ShenghicWinProfile.cs
+    sourceGUID: a7737b2b34b3c49d28cc85fefa7670a8
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation3ShenghicWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation3WinProfile.cs
+    sourceGUID: fb71f5e575d7143889e34a9deb58b8be
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation3WinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4AmazonProfile.cs
+    sourceGUID: 4b668d106097f46acbb674ff60664552
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4AmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4AndroidProfile.cs
+    sourceGUID: bc79200a7e6364af3ac666e3ed3c1bd4
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4AndroidXperiaZ5Profile.cs
+    sourceGUID: 5165ba58ac5b74bcab25fa0ae365804c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4AndroidXperiaZ5Profile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4LinuxProfile.cs
+    sourceGUID: ee0173926a748490b844f209e48aa364
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4LinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4MacBTProfile.cs
+    sourceGUID: 808c4b8146aef4add98c4abc6f2b49eb
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4MacBTProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4MacUSBProfile.cs
+    sourceGUID: 2c2cd6f808adc4a5391eb5552b3edb48
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4MacUSBProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4Profile.cs
+    sourceGUID: 8fc3a1f6ad8734200904d98198ac1ff4
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4Profile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4SteamLinkMacProfile.cs
+    sourceGUID: cb6f43d30079341ef96bbe08a7e0a924
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4SteamLinkMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStation4WinProfile.cs
+    sourceGUID: b10bd08a3217845da96176a8901301f9
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStation4WinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/PlayStationVitaPSMProfile.cs
+    sourceGUID: 782a7529c72a14f90bcf6e9bd6a7adab
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/PlayStationVitaPSMProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/RazerServalForgeTVProfile.cs
+    sourceGUID: 33f956b1b5e0b422f949eb45a5691fb5
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/RazerServalForgeTVProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/RazerServalMacProfile.cs
+    sourceGUID: 3ff5cea3137a944c0b075511ecd5e9fe
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/RazerServalMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/RedSamuraiAndroidProfile.cs
+    sourceGUID: 3cbc5e5595fcc49de82a3c2606739117
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/RedSamuraiAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SaitekAviatorWinProfile.cs
+    sourceGUID: 6acd8fcdd566540c1b9234b03b22db45
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SaitekAviatorWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SamsungGP20AndroidProfile.cs
+    sourceGUID: e582333a49ad644c8912f54326c659c0
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SamsungGP20AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SpeedlinkStrikeMacProfile.cs
+    sourceGUID: 17b41a155d2944b8fbc211c0aaa4325c
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SpeedlinkStrikeMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SpeedlinkStrikeWinProfile.cs
+    sourceGUID: 3fb8f4e680cf7496792867584ac46b90
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SpeedlinkStrikeWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeAndroidProfile.cs
+    sourceGUID: 417627cee7cc94eba84d5c994f325672
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeLinuxProfile.cs
+    sourceGUID: b1aa41884759d40619d6e229687cbe95
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeLinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeMacProfile.cs
+    sourceGUID: 24ec9e1eba0004a159018e76afa97ac8
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeWinProfile.cs
+    sourceGUID: 72056303b572e454b95b916030a99297
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SteelSeriesFreeWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SteelSeriesStratusXLAndroidProfile.cs
+    sourceGUID: 1a629c949466b4aad9931aca7376c155
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SteelSeriesStratusXLAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/SteelSeriesStratusXLWinProfile.cs
+    sourceGUID: f76fc96668d2a411896ca99574800ff3
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/SteelSeriesStratusXLWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/ValveStreamingWinProfile.cs
+    sourceGUID: 42ee9f53f428143a8b0444b8f31430dc
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/ValveStreamingWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XTR55_G2_MacUnityProfile.cs
+    sourceGUID: 0fedaf4a2a81e464782496c913786742
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XTR55_G2_MacUnityProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XTR55_G2_WindowsUnityProfile.cs
+    sourceGUID: af9781d94bf494f1ab3af96d5470bf62
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XTR55_G2_WindowsUnityProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XTR_G2_MacUnityProfile.cs
+    sourceGUID: 535328ed1e243415c8a00553fba308b6
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XTR_G2_MacUnityProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XTR_G2_WindowsUnityProfile.cs
+    sourceGUID: 205d23b01e6de45d594f0065e4694117
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XTR_G2_WindowsUnityProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/Xbox360AmazonProfile.cs
+    sourceGUID: 27b03c46d3f3748868073080f09f7e58
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/Xbox360AmazonProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/Xbox360AndroidProfile.cs
+    sourceGUID: 21de40203f5704dd3ab09818db8667e6
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/Xbox360AndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/Xbox360LinuxProfile.cs
+    sourceGUID: ef90acf26b8b343d98d6a44c9f000b16
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/Xbox360LinuxProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/Xbox360MacProfile.cs
+    sourceGUID: 2043ac890529d4001b285c8f3814239e
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/Xbox360MacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/Xbox360RockCandyAndroidProfile.cs
+    sourceGUID: 5239aa78df9a64b04a3cbf9a8b81b100
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/Xbox360RockCandyAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/Xbox360WinProfile.cs
+    sourceGUID: dbaa8cf0a5080454994c80f8f68a564f
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/Xbox360WinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XboxOneBluetoothAndroidProfile.cs
+    sourceGUID: 16b371fe3cee946da8a0fc1765abb327
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XboxOneBluetoothAndroidProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XboxOneMacProfile.cs
+    sourceGUID: d989f914a27ab465d91368513f095bf6
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XboxOneMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XboxOneProfile.cs
+    sourceGUID: e33c6cea5332b4eeb89fb4972594a1bc
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XboxOneProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XboxOneWin10AEProfile.cs
+    sourceGUID: 229c3fe35a5b76f4391ef8efebe4fea7
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XboxOneWin10AEProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XboxOneWin10Profile.cs
+    sourceGUID: e6c68f1e38f746f4f89d5f1577bac12f
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XboxOneWin10Profile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XboxOneWinProfile.cs
+    sourceGUID: 6e2d225caa1d94a93bcc84ca8e0518fc
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XboxOneWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XiaomiMacProfile.cs
+    sourceGUID: cb17ddd8ba45445308138752a3e3d614
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XiaomiMacProfile.cs
+  - sourcePath: Assets/InControl/Source/Unity/DeviceProfiles/XiaomiWinProfile.cs
+    sourceGUID: 4263326efea4942b08cc6d1e468ba021
+    targetPath: Assets/Plugins/InControl/Source/Unity/DeviceProfiles/XiaomiWinProfile.cs
+  - sourcePath: Assets/InControl/Source/Utility/CodeWriter.cs
+    sourceGUID: 1f1778bed9a034b838c3dbfb5be0ce90
+    targetPath: Assets/Plugins/InControl/Source/Utility/CodeWriter.cs
+  - sourcePath: Assets/InControl/Source/Utility/MarshalUtility.cs
+    sourceGUID: a2c05695ad957499ab624ef1bc26cc7c
+    targetPath: Assets/Plugins/InControl/Source/Utility/MarshalUtility.cs
+  - sourcePath: Assets/InControl/Source/Utility/RingBuffer.cs
+    sourceGUID: 2dae986b6c2bac4479ffab03b79c065b
+    targetPath: Assets/Plugins/InControl/Source/Utility/RingBuffer.cs
+  - sourcePath: Assets/InControl/Source/Utility/SingletonMonoBehavior.cs
+    sourceGUID: 5fadcc7f9c1db4b069a415f1da269e5d
+    targetPath: Assets/Plugins/InControl/Source/Utility/SingletonMonoBehavior.cs
+  - sourcePath: Assets/InControl/Source/Utility/ThreadSafeQueue.cs
+    sourceGUID: 45a03adf988b14ea1acd5650075a8266
+    targetPath: Assets/Plugins/InControl/Source/Utility/ThreadSafeQueue.cs
+  - sourcePath: Assets/InControl/Source/Utility/Utility.cs
+    sourceGUID: 9c16c380ccbab49f0a636bd5ec1fce50
+    targetPath: Assets/Plugins/InControl/Source/Utility/Utility.cs
+  - sourcePath: Assets/InControl/Source/XInput/XInputDevice.cs
+    sourceGUID: 84a8b7d76fb854fd996c8368c1db87b2
+    targetPath: Assets/Plugins/InControl/Source/XInput/XInputDevice.cs
+  - sourcePath: Assets/InControl/Source/XInput/XInputDeviceManager.cs
+    sourceGUID: 9bfdb776fa3614588b8bf2eb57e5402e
+    targetPath: Assets/Plugins/InControl/Source/XInput/XInputDeviceManager.cs
+  - sourcePath: Assets/InControl/Source/XInput/XInputDotNetPure/GamePad.cs
+    sourceGUID: 4443c7055dc8e4288966deaf9b1d3244
+    targetPath: Assets/Plugins/InControl/Source/XInput/XInputDotNetPure/GamePad.cs
+  - sourcePath: Assets/InControl/Source/XboxOne/XboxOneInputDevice.cs
+    sourceGUID: 6aaf48900710a407ca414df228148aa0
+    targetPath: Assets/Plugins/InControl/Source/XboxOne/XboxOneInputDevice.cs
+  - sourcePath: Assets/InControl/Source/XboxOne/XboxOneInputDeviceManager.cs
+    sourceGUID: 63b7a9f5c659f409dbdfc980a94f61a7
+    targetPath: Assets/Plugins/InControl/Source/XboxOne/XboxOneInputDeviceManager.cs
+  - sourcePath: Assets/InControl/Source/iCade/ICadeDevice.cs
+    sourceGUID: b617cdb61539c4eeaab480e975b097bc
+    targetPath: Assets/Plugins/InControl/Source/iCade/ICadeDevice.cs
+  - sourcePath: Assets/InControl/Source/iCade/ICadeDeviceManager.cs
+    sourceGUID: 5be6537f47f364af5b30a68d237173e2
+    targetPath: Assets/Plugins/InControl/Source/iCade/ICadeDeviceManager.cs
+  - sourcePath: Assets/InControl/Source/iCade/ICadeNative.cs
+    sourceGUID: 9f63ba6ccdedc47e891988e28ab91271
+    targetPath: Assets/Plugins/InControl/Source/iCade/ICadeNative.cs
+  - sourcePath: Assets/InControl/Source/iCade/ICadeState.cs
+    sourceGUID: e594f9eece83e470c8d595dd83bfabc8
+    targetPath: Assets/Plugins/InControl/Source/iCade/ICadeState.cs
+  forRemoval: 0
+  forRemovalDeleteEmptyDirs: 0
+  persistent: 1
