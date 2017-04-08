@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 342976093, guid: 5eb872180e6624b46b2fa8b2229cc7ac, type: 3}
+  m_Name: TextMesh Pro-log
+  m_EditorClassIdentifier: 
+  ruleName: TextMesh Pro
+  rootDirectoryGUID: fb68e73b85ee34256b467a69c5c7eea7
+  rules:
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_BaseShaderGUI.cs
+    sourceGUID: 2ec7cce2f96863f4fabc9dc8a69a0a75
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_BaseShaderGUI.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_BitmapShaderGUI.cs
+    sourceGUID: fa6473128ba094449ad03e44fd3d349a
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_BitmapShaderGUI.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_ColorGradientAssetMenu.cs
+    sourceGUID: e46271170712aec48bc1ac67bd96e8ef
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_ColorGradientAssetMenu.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_ColorGradientEditor.cs
+    sourceGUID: d95d320e6c1185d42a261bb8ed7dfb3f
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_ColorGradientEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_DropdownEditor.cs
+    sourceGUID: 26ccb9bc5d0adf543a4c3778f348d9ad
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_DropdownEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_EditorPanel.cs
+    sourceGUID: f9c2018ba05bbb845ae93b3578f48c67
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_EditorPanel.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_EditorUtility.cs
+    sourceGUID: 03df690944dcf5d46aba97d8b60c42ea
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_EditorUtility.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_FontAssetEditor.cs
+    sourceGUID: 6c1543462143bfd4c9b4e6b54f564ae0
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_FontAssetEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_InputFieldEditor.cs
+    sourceGUID: 338d036361c88e244a6eb3ee7657b3d8
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_InputFieldEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_MeshRendererEditor.cs
+    sourceGUID: 4e44ec51dc7ebaf429e9e7a3afa3d793
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_MeshRendererEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_PostBuildProcessHandler.cs
+    sourceGUID: d5d332e0b17cdef4d8bc056af07ae387
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_PostBuildProcessHandler.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_ResourcesLoader.cs
+    sourceGUID: e571909beae4d8744aed076002a644c1
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_ResourcesLoader.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_SDFShaderGUI.cs
+    sourceGUID: 8bad5eaddfed1e74e82e510f2d46f205
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_SDFShaderGUI.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_SettingsEditor.cs
+    sourceGUID: 4c28b8e37a3c4724a9f15c6a08e48721
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_SettingsEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_SpriteAssetEditor.cs
+    sourceGUID: 4c105b9e717a10542bf9021d98907d59
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_SpriteAssetEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_SpriteAssetImporter.cs
+    sourceGUID: da53655badbb5ba4aaf54c546f2630a6
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_SpriteAssetImporter.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_SpriteAssetMenu.cs
+    sourceGUID: 730228a82f871db4fb4b839282bfbc1d
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_SpriteAssetMenu.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_StyleAssetMenu.cs
+    sourceGUID: 6db72953b2e16e544aa2bb9f060773e0
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_StyleAssetMenu.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_StyleSheetEditor.cs
+    sourceGUID: 08f89453a8d9e594c90d61f7c37daf50
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_StyleSheetEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_SubMeshUI_Editor.cs
+    sourceGUID: 40b30b439d3481144b1e2b15049fa97f
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_SubMeshUI_Editor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_SubMesh_Editor.cs
+    sourceGUID: b7a23d3c8066d8046a0f1551ed5c226d
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_SubMesh_Editor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_UIStyleManager.cs
+    sourceGUID: a58a71284970117429add3889cc994a9
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_UIStyleManager.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMP_UiEditorPanel.cs
+    sourceGUID: 4a8b271b4e321544d88f5ffb45ed5cae
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMP_UiEditorPanel.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_ContextMenus.cs
+    sourceGUID: 9af14103d0739514da98f1a5aafd79a4
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_ContextMenus.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_CreateObjectMenu.cs
+    sourceGUID: c9ca60a7f24cd95499feea7fe34907d0
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_CreateObjectMenu.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_EditorShaderUtilities.cs
+    sourceGUID: 2be0e7663436d7e489736e101798314d
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_EditorShaderUtilities.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_FontAssetCreatorWindow.cs
+    sourceGUID: a7a3d2105d504af41bc244c1183faf43
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_FontAssetCreatorWindow.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_FontPlugin.cs
+    sourceGUID: 4edbb63168f708c4ab4ac69d7605c50a
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_FontPlugin.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_SDFMaterialEditor.cs
+    sourceGUID: a063642184ad060409efbd5cfe665ebf
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_SDFMaterialEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_SortingLayerHelper.cs
+    sourceGUID: 2481ed331b06c764ba89816f298b7fb8
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_SortingLayerHelper.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_TextContainerEditor.cs
+    sourceGUID: 293ca108339990043ad3550e978a7418
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_TextContainerEditor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/TMPro_TexturePostProcessor.cs
+    sourceGUID: a947892a3b8f7d747a446c2ea8c790c5
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/TMPro_TexturePostProcessor.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/Property Drawers/DropdownOptionListDrawer.cs
+    sourceGUID: ad6d67aa3691e2e40a91c5658fffc391
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/Property Drawers/DropdownOptionListDrawer.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/Property Drawers/GlyphInfoDrawer.cs
+    sourceGUID: 02e0e69a1d7086f4492ba6ebadff6392
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/Property Drawers/GlyphInfoDrawer.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/Property Drawers/KerningPairDrawer.cs
+    sourceGUID: 1cd4a25f3285e1e4cbfdde3d8b82a97e
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/Property Drawers/KerningPairDrawer.cs
+  - sourcePath: Assets/TextMesh Pro/Editor/Property Drawers/SpriteInfoDrawer.cs
+    sourceGUID: 3d015705b1c6c50408a08e3094b37951
+    targetPath: Assets/Plugins/Editor/TextMesh Pro/Editor/Property Drawers/SpriteInfoDrawer.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/FastAction.cs
+    sourceGUID: 81aef1919125e68418e68bfb8adb2777
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/FastAction.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/InlineGraphic.cs
+    sourceGUID: acad1b29b4fa38344ac775aade9ac185
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/InlineGraphic.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/InlineGraphicManager.cs
+    sourceGUID: 3849e1601c4ff034f93ece771466626b
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/InlineGraphicManager.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/MaterialReferenceManager.cs
+    sourceGUID: 63b658b2c1e8b2d4380c3dd7325be755
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/MaterialReferenceManager.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_Asset.cs
+    sourceGUID: e2c4405608b405a4680436e183e53c45
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_Asset.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_ColorGradient.cs
+    sourceGUID: e90e18dd4a044ff4394833216e6bf4d2
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_ColorGradient.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_Compatibility.cs
+    sourceGUID: f48830ebdef0c1a43ade7d12ca590746
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_Compatibility.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_CoroutineTween.cs
+    sourceGUID: 840ecf187b507af4696daf99dbf3ec02
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_CoroutineTween.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_DefaultControls.cs
+    sourceGUID: cdfd86407ff26a240b5be5cade1e6928
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_DefaultControls.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_Dropdown.cs
+    sourceGUID: 44cb1d34ddab9d449a05fc3747876be1
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_Dropdown.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_FontAsset.cs
+    sourceGUID: 74dfce233ddb29b4294c3e23c1d3650d
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_FontAsset.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_InputField.cs
+    sourceGUID: 7b85855a3deaa2e44ac6741a6bbc85f6
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_InputField.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_InputValidator.cs
+    sourceGUID: 9e97cbdd7a42d3543b2abfd333370b70
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_InputValidator.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_LineInfo.cs
+    sourceGUID: f7a81399618d74a45ad063beac5a877a
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_LineInfo.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_ListPool.cs
+    sourceGUID: 325b7844c1c224540975a04bbf36d071
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_ListPool.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_MaterialManager.cs
+    sourceGUID: 83cc2f81141bc374e8f221e3a8f93a11
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_MaterialManager.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_MeshInfo.cs
+    sourceGUID: 08b3da7a615f4d643bf9703671604c00
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_MeshInfo.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_ObjectPool.cs
+    sourceGUID: 68b429501b2cc154fa3c9aca5838d3c8
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_ObjectPool.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_PhoneNumberValidator.cs
+    sourceGUID: 7f3548045a3c0d54199eb7673a50f770
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_PhoneNumberValidator.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_ScrollbarEventHandler.cs
+    sourceGUID: 77ce81d8b763e064faab099bde262574
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_ScrollbarEventHandler.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_SelectionCaret.cs
+    sourceGUID: 3f206e0e0306d7b43bba20c4f3d0de9c
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_SelectionCaret.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_Settings.cs
+    sourceGUID: aafc3c7b9e915d64e8ec3d2c88b3a231
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_Settings.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_Sprite.cs
+    sourceGUID: e818f6ab0a78efe46bf0a444fb55fa47
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_Sprite.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_SpriteAnimator.cs
+    sourceGUID: cb9c5ebf2e1490445850c7caf5248576
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_SpriteAnimator.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_SpriteAsset.cs
+    sourceGUID: 90940d439ca0ef746af0b48419b92d2e
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_SpriteAsset.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_SpriteAssetImportFormats.cs
+    sourceGUID: dc04956f73a751e4aa39ad6e644791b3
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_SpriteAssetImportFormats.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_Style.cs
+    sourceGUID: 183c6bc9fa7cc324dbf7781542c24975
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_Style.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_StyleSheet.cs
+    sourceGUID: 13259b4ce497b194eb52a33d8eda0bdc
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_StyleSheet.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_SubMesh.cs
+    sourceGUID: bd950677b2d06c74494b1c1118584fff
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_SubMesh.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_SubMeshUI.cs
+    sourceGUID: a5378e1f14d974d419f811d6b0861f20
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_SubMeshUI.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_Text.cs
+    sourceGUID: 9ec8dc9c3fa2e5d41b939b5888d2f1e8
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_Text.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_TextElement.cs
+    sourceGUID: 9cbdbf02abacd684b9299b513f77ca69
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_TextElement.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_TextInfo.cs
+    sourceGUID: 746823f9e1ba32440a514416c0999d8b
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_TextInfo.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_TextUtilities.cs
+    sourceGUID: d4af2b8d75840424cb07cfa9abf76811
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_TextUtilities.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_UpdateManager.cs
+    sourceGUID: 4ff212e36e2c2ed4fb6db42dde06d660
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_UpdateManager.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_UpdateRegistery.cs
+    sourceGUID: c5de0b8d0b102fb4894880943bf2e629
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_UpdateRegistery.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMP_XmlTagStack.cs
+    sourceGUID: 7c302acd71c26654d809bfa6bbb7f299
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMP_XmlTagStack.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMPro_EventManager.cs
+    sourceGUID: d09b930f44e6c5b4db230120295009b2
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMPro_EventManager.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMPro_ExtensionMethods.cs
+    sourceGUID: 4c945d23faa2f5e49bd2380020342965
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMPro_ExtensionMethods.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMPro_FontUtilities.cs
+    sourceGUID: 6e5767b0fdf1d4749b7c1390d66e97b4
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMPro_FontUtilities.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMPro_MeshUtilities.cs
+    sourceGUID: 7bc5908043d637b4f9f754791fb07e5d
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMPro_MeshUtilities.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMPro_Private.cs
+    sourceGUID: 107d333ade494294b84623420397e168
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMPro_Private.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMPro_ShaderUtilities.cs
+    sourceGUID: fc13bb6a5a6c0944c8a7e1d67fb12516
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMPro_ShaderUtilities.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TMPro_UGUI_Private.cs
+    sourceGUID: 329fb9c37d74a564ab25f1381c697e01
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TMPro_UGUI_Private.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TextContainer.cs
+    sourceGUID: 3b34fc186f40e8043b977d4fa70db8c5
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TextContainer.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TextMeshPro.cs
+    sourceGUID: 1a1578b9753d2604f98d608cb4239e2f
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TextMeshPro.cs
+  - sourcePath: Assets/TextMesh Pro/Scripts/TextMeshProUGUI.cs
+    sourceGUID: 496f2e385b0c62542b5c739ccfafd8da
+    targetPath: Assets/Plugins/TextMesh Pro/Scripts/TextMeshProUGUI.cs
+  forRemoval: 0
+  forRemovalDeleteEmptyDirs: 0
+  persistent: 1
