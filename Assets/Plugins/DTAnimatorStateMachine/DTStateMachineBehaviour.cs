@@ -13,25 +13,25 @@ namespace DTAnimatorStateMachine {
 
 		// PRAGMA MARK - StateMachineBehaviour Lifecycle
 		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-			if (this._active) {
+			if (active_) {
 				return;
 			}
 
-			this.OnStateEntered();
-			this._active = true;
+			OnStateEntered();
+			active_ = true;
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-			if (!this._active) {
+			if (!active_) {
 				return;
 			}
 
-			this._active = false;
-			this.OnStateExited();
+			active_ = false;
+			OnStateExited();
 		}
 
 		public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-			this.OnStateUpdated();
+			OnStateUpdated();
 		}
 
 
@@ -41,15 +41,15 @@ namespace DTAnimatorStateMachine {
 		}
 
 		private TStateMachine stateMachine_;
-		private bool _active = false;
+		private bool active_ = false;
 
-		void OnDisable() {
-			if (!this._active) {
+		private void OnDisable() {
+			if (!active_) {
 				return;
 			}
 
-			this.OnStateExited();
-			this._active = false;
+			OnStateExited();
+			active_ = false;
 		}
 
 		protected virtual void OnInitialized() {
