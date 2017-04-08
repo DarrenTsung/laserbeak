@@ -7,7 +7,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Player {
-	public class BattlePlayer : MonoBehaviour {
-		// PRAGMA MARK - Internal
+	public interface IBattlePlayerInputComponent {
+		void Init(BattlePlayerInputController controller, InputDevice inputDevice);
 	}
 }

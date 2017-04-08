@@ -1,0 +1,30 @@
+using System;
+using System.Collections;
+using UnityEngine;
+
+using DTAnimatorStateMachine;
+using DTObjectPoolManager;
+using InControl;
+
+namespace DT.Game.Battle.Player {
+	public class BattlePlayerInputMovement : BattlePlayerInputComponent {
+		// PRAGMA MARK - Internal
+		private const float kPlayerSpeed = 4.8f;
+
+		[SerializeField]
+		private Rigidbody rigidbody_;
+
+		private void FixedUpdate() {
+			Vector2 deltaPosition = InputDevice_.LeftStick.Value * Time.fixedDeltaTime * kPlayerSpeed;
+			// convert 2D coord -> 3D
+			Vector3 deltaWorldPosition = new Vector3(deltaPosition.x, 0.0f, deltaPosition.y);
+
+			rigidbody_.MovePosition(rigidbody_.position + deltaWorldPosition);
+
+			// snap rotation if input is not (0, 0)
+			if (deltaWorldPosition.magnitude > Mathf.Epsilon) {
+				rigidbody_.MoveRotation(Quaternion.LookRotation(deltaWorldPosition));
+			}
+		}
+	}
+}

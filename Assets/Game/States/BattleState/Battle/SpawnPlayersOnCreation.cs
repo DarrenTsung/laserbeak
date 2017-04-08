@@ -7,6 +7,8 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Player;
+
 namespace DT.Game.Battle {
 	public class SpawnPlayersOnCreation : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
@@ -23,7 +25,9 @@ namespace DT.Game.Battle {
 
 				BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject);
 				player.transform.position = selectedSpawnPoint.transform.position;
-				player.SetInput(inputDevice);
+
+				BattlePlayerInputController playerInput = player.GetRequiredComponentInChildren<BattlePlayerInputController>();
+				playerInput.SetInput(inputDevice);
 
 				chosenSpawnPoints.Add(selectedSpawnPoint);
 			}
