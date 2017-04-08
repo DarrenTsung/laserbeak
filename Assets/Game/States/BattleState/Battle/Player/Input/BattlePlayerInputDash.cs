@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
+using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
@@ -52,7 +53,7 @@ namespace DT.Game.Battle.Player {
 			Controller_.DisableInput();
 			Vector3 startPosition = rigidbody_.position;
 			Vector3 endPosition = rigidbody_.position + (kDashDistance * direction);
-			CoroutineWrapper.DoLerpFor(kDashDuration, (float p) => {
+			CoroutineWrapper.DoEaseFor(kDashDuration, EaseType.CubicEaseOut, (float p) => {
 				rigidbody_.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
 			}, () => {
 				Controller_.EnableInput();
