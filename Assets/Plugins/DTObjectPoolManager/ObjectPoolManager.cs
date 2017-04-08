@@ -23,6 +23,10 @@ namespace DTObjectPoolManager {
 			return ObjectPoolManager.Instance.CreateInternal(prefabName, parent, worldPositionStays);
 		}
 
+		public static T Create<T>(GameObject prefab, GameObject parent = null, bool worldPositionStays = false) where T : UnityEngine.Component {
+			return Create(prefab, parent, worldPositionStays).GetRequiredComponent<T>();
+		}
+
 		public static GameObject Create(GameObject prefab, GameObject parent = null, bool worldPositionStays = false) {
 			return ObjectPoolManager.Instance.CreateInternal(prefab.name, parent, worldPositionStays, (prefabName) => prefab);
 		}

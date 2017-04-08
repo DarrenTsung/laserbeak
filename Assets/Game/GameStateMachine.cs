@@ -7,6 +7,11 @@ using DTAnimatorStateMachine;
 namespace DT.Game {
 	[RequireComponent(typeof(Animator))]
 	public class GameStateMachine : MonoBehaviour {
+		public void StartBattle() {
+			animator_.SetTrigger("StartBattle");
+		}
+
+
 		// PRAGMA MARK - Internal
 		private Animator animator_;
 

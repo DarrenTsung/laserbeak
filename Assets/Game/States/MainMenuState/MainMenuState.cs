@@ -14,7 +14,8 @@ namespace DT.Game.MainMenu {
 		private MainMenu mainMenu_;
 
 		protected override void OnStateEntered() {
-			ObjectPoolManager.CreateView(mainMenuPrefab_);
+			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
+			mainMenu_.SetPlayHandler(() => StateMachine_.StartBattle());
 		}
 
 		protected override void OnStateExited() {
