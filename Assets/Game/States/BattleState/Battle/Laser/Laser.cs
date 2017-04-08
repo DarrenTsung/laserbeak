@@ -9,7 +9,7 @@ using InControl;
 namespace DT.Game.Battle.Lasers {
 	public class Laser : MonoBehaviour {
 		// PRAGMA MARK - Internal
-		private const float kLaserSpeed = 15.0f;
+		private const float kLaserSpeed = 25.0f;
 
 		private Rigidbody rigidbody_;
 
