@@ -19,11 +19,13 @@ namespace DT.Game.Battle.Player {
 
 
 		// PRAGMA MARK - Internal
-		private const int kBaseHealth = 1;
+		private const int kBaseHealth = 2;
 
 		private const float kExplosionForce = 600.0f;
 		private const float kExplosionRadius = 6.0f;
-		private const float kEmissionDuration = 0.3f;
+
+		private const float kEmissionDuration = 0.15f;
+		private const float kEmissionWhiteBalance = 0.2f;
 
 		[Header("Outlets")]
 		[SerializeField]
@@ -38,10 +40,7 @@ namespace DT.Game.Battle.Player {
 		private Material[] EmissiveMaterials_ {
 			get {
 				if (emissiveMaterials_ == null) {
-					emissiveMaterials_ = Player_.GetComponentsInChildren<Renderer>()
-												.SelectMany(r => r.materials)
-												.Where(m => m.HasProperty("_EmissionColor"))
-												.ToArray();
+					emissiveMaterials_ = GetEmissiveMaterialsFor(Player_.gameObject);
 				}
 				return emissiveMaterials_;
 			}
@@ -72,20 +71,29 @@ namespace DT.Game.Battle.Player {
 					explosionForce *= UnityEngine.Random.Range(0.1f, 1.3f);
 					rigidbody.AddExplosionForce(explosionForce * kExplosionForce, explosionPosition, kExplosionRadius, upwardsModifier: 1.0f);
 				}
+				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));
 
 				ObjectPoolManager.Recycle(this);
 			} else {
-				AnimateDamageEmission();
+				AnimateDamageEmissionFor(EmissiveMaterials_);
 			}
 		}
 
-		private void AnimateDamageEmission() {
+		private void AnimateDamageEmissionFor(Material[] materials) {
 			CoroutineWrapper.DoEaseFor(kEmissionDuration, EaseType.QuadraticEaseOut, (float percentage) => {
 				float inversePercentage = 1.0f - percentage;
-				foreach (Material material in EmissiveMaterials_) {
-					material.SetColor("_EmissionColor", new Color(inversePercentage, inversePercentage, inversePercentage));
+				float whiteBalance = inversePercentage * kEmissionWhiteBalance;
+				foreach (Material material in materials) {
+					material.SetColor("_EmissionColor", new Color(whiteBalance, whiteBalance, whiteBalance));
 				}
 			});
+		}
+
+		private Material[] GetEmissiveMaterialsFor(GameObject gameObject) {
+			return gameObject.GetComponentsInChildren<Renderer>()
+							.SelectMany(r => r.materials)
+							.Where(m => m.HasProperty("_EmissionColor"))
+							.ToArray();
 		}
 	}
 }
