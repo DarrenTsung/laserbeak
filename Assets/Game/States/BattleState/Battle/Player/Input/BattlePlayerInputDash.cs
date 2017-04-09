@@ -52,7 +52,7 @@ namespace DT.Game.Battle.Player {
 		private void Dash(Vector3 direction) {
 			Controller_.DisableInput();
 			Vector3 startPosition = rigidbody_.position;
-			Vector3 endPosition = rigidbody_.position + (kDashDistance * direction);
+			Vector3 endPosition = rigidbody_.position + (kDashDistance * Player_.WeightedRatio() * direction);
 			CoroutineWrapper.DoEaseFor(kDashDuration, EaseType.CubicEaseOut, (float p) => {
 				rigidbody_.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
 			}, () => {

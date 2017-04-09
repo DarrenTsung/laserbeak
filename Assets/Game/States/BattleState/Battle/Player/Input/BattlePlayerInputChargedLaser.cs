@@ -19,6 +19,8 @@ namespace DT.Game.Battle.Player {
 		private const float kChargeRate = 1.0f;
 		private const float kDischargeRate = 2.0f;
 
+		private const float kPlayerAddedWeight = 0.8f;
+
 		[Header("Prefabs")]
 		[SerializeField]
 		private GameObject chargingLaserPrefab_;
@@ -42,8 +44,13 @@ namespace DT.Game.Battle.Player {
 
 		private ChargingLaser chargingLaser_ = null;
 
+		private void UpdateWeightModification() {
+			Player_.SetWeightModification(this, chargedTime_ > 0.0f ? kPlayerAddedWeight : 0.0f);
+		}
+
 		private void Update() {
 			if (!Enabled) {
+				UpdateWeightModification();
 				return;
 			}
 
@@ -71,6 +78,8 @@ namespace DT.Game.Battle.Player {
 			if (chargingLaser_ != null) {
 				chargingLaser_.UpdateWithPercentage(percentCharged);
 			}
+
+			UpdateWeightModification();
 		}
 
 		private void ShootLaser() {

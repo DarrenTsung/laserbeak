@@ -21,9 +21,9 @@ namespace DT.Game.Battle.Player {
 			}
 		}
 
-		public void InitInput(InputDevice inputDevice) {
+		public void InitInput(BattlePlayer player, InputDevice inputDevice) {
 			foreach (var component in playerInputComponents_) {
-				component.Init(this, inputDevice);
+				component.Init(player, this, inputDevice);
 			}
 			EnableInput();
 		}

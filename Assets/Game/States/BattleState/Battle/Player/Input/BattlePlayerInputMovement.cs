@@ -19,7 +19,7 @@ namespace DT.Game.Battle.Player {
 				return;
 			}
 
-			Vector2 deltaPosition = InputDevice_.LeftStick.Value * Time.fixedDeltaTime * kPlayerSpeed;
+			Vector2 deltaPosition = InputDevice_.LeftStick.Value * Time.fixedDeltaTime * kPlayerSpeed * Player_.WeightedRatio();
 			Vector3 deltaWorldPosition = deltaPosition.Vector3XZValue();
 
 			rigidbody_.MovePosition(rigidbody_.position + deltaWorldPosition);

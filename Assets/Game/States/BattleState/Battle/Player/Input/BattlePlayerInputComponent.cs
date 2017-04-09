@@ -14,7 +14,8 @@ namespace DT.Game.Battle.Player {
 			set { enabled_ = value; }
 		}
 
-		public void Init(BattlePlayerInputController controller, InputDevice inputDevice) {
+		public void Init(BattlePlayer player, BattlePlayerInputController controller, InputDevice inputDevice) {
+			player_ = player;
 			controller_ = controller;
 			inputDevice_ = inputDevice;
 		}
@@ -29,8 +30,13 @@ namespace DT.Game.Battle.Player {
 			get { return inputDevice_; }
 		}
 
+		protected BattlePlayer Player_ {
+			get { return player_; }
+		}
+
 		private BattlePlayerInputController controller_;
 		private InputDevice inputDevice_;
+		private BattlePlayer player_;
 
 		private bool enabled_;
 	}
