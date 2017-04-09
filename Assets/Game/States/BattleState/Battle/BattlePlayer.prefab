@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114751467881738060}
   - component: {fileID: 114628784557723942}
   - component: {fileID: 114076392782616166}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BattlePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4125125527362084}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 65028011014032066}
   - component: {fileID: 23114773245817948}
   - component: {fileID: 114534996994193850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4650929460296728}
   - component: {fileID: 114756151786186018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4564048398220312}
   - component: {fileID: 198743201416120474}
   - component: {fileID: 199634270298182180}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DustParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4049423539500226}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LaserContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 23607737029288758}
   - component: {fileID: 95001683119848172}
   - component: {fileID: 114377805960980924}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopBeak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4780191843166834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 23718284869243260}
   - component: {fileID: 95908795766152994}
   - component: {fileID: 114980615123385314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BottomBeak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4541650799955302}
   - component: {fileID: 114352156763685936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ChargedLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4278106538346712}
   - component: {fileID: 114567178079199390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,6 +536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a60abfdf247f44a6a3237b62e6d0b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPartsPrefab_: {fileID: 1424833563842176, guid: 039a40fbfa7c84690a93246a46db2964,
+    type: 2}
   health_: 0
 --- !u!114 &114352156763685936
 MonoBehaviour:

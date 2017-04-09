@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4070033816227180}
   - component: {fileID: 33221631255121542}
   - component: {fileID: 23174452395410766}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4561226168117992}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4576789417339824}
   - component: {fileID: 114816641791388064}
   - component: {fileID: 114879109747830020}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ChargingLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4831084679828386}
   - component: {fileID: 198471110877470988}
   - component: {fileID: 199533437259915258}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4305240105218222}
   - component: {fileID: 108891639590693944}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

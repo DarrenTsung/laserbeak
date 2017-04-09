@@ -47,7 +47,9 @@ namespace DT.Game.Battle {
 
 		private void RespawnDummyPlayer(RecyclablePrefab unused) {
 			CleanupDummyPlayer(recycle: false);
-			SpawnDummyPlayer();
+			CoroutineWrapper.DoAfterDelay(3.0f, () => {
+				SpawnDummyPlayer();
+			});
 		}
 	}
 }

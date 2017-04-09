@@ -19,9 +19,15 @@ namespace DT.Game.Battle.Player {
 
 
 		// PRAGMA MARK - Internal
-		private const int kBaseHealth = 2;
+		private const int kBaseHealth = 1;
 
+		private const float kExplosionForce = 500.0f;
+		private const float kExplosionRadius = 6.0f;
 		private const float kEmissionDuration = 0.3f;
+
+		[Header("Outlets")]
+		[SerializeField]
+		private GameObject playerPartsPrefab_;
 
 		[Header("Properties")]
 		[SerializeField, ReadOnly]
@@ -48,14 +54,25 @@ namespace DT.Game.Battle.Player {
 				return;
 			}
 
-			TakeDamage();
+			Vector3 forward = laser.transform.forward;
+
+			TakeDamage(forward);
 			ObjectPoolManager.Recycle(laser.gameObject);
 		}
 
-		private void TakeDamage() {
+		private void TakeDamage(Vector3 forward) {
 			health_--;
 
 			if (health_ <= 0) {
+				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, position: this.transform.position);
+				Vector3 explosionPosition = this.transform.position - (forward.normalized * kExplosionRadius / 4.0f);
+				foreach (Rigidbody rigidbody in playerParts.GetComponentsInChildren<Rigidbody>()) {
+					float distance = (rigidbody.position - explosionPosition).magnitude;
+					float explosionForce = Mathf.Clamp(1.0f - (distance / kExplosionForce), 0.0f, 1.0f);
+					explosionForce *= UnityEngine.Random.Range(0.1f, 1.2f);
+					rigidbody.AddExplosionForce(explosionForce * kExplosionForce, explosionPosition, kExplosionRadius, upwardsModifier: 1.0f);
+				}
+
 				ObjectPoolManager.Recycle(this);
 			} else {
 				AnimateDamageEmission();
