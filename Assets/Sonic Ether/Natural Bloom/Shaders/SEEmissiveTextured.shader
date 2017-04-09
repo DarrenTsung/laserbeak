@@ -7,6 +7,9 @@ Properties {
 	_EmissionGain ("Emission Gain", Range(0, 1)) = 0.5
 	_EmissionTextureContrast ("Emission Texture Contrast", Range(1, 3)) = 1.0
 
+	_Glossiness("Smoothness", Range(0,1)) = 0.5
+	_Metallic("Metallic", Range(0,1)) = 0.0
+
 	// START SMEAR ADD-ON
 	_Position("Position", Vector) = (0, 0, 0, 0)
 	_PrevPosition("Prev Position", Vector) = (0, 0, 0, 0)
@@ -21,7 +24,7 @@ SubShader {
 	LOD 200
 
 CGPROGRAM
-#pragma surface surf Lambert vertex:vert
+#pragma surface surf Standard vertex:vert
 #pragma target 3.0
 
 sampler2D _MainTex;
@@ -35,6 +38,9 @@ struct Input {
 	float2 uv_MainTex;
 	float2 uv_Illum;
 };
+
+half _Glossiness;
+half _Metallic;
 
 // START SMEAR ADD-ON
 fixed4 _PrevPosition;
@@ -84,7 +90,7 @@ void vert(inout appdata_full v, out Input o)
 }
 // END SMEAR ADD-ON
 
-void surf (Input IN, inout SurfaceOutput o) {
+void surf (Input IN, inout SurfaceOutputStandard o) {
 	fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
 	fixed4 c = tex * _DiffuseColor;
 	o.Albedo = c.rgb;
@@ -93,6 +99,10 @@ void surf (Input IN, inout SurfaceOutput o) {
 	fixed3 emissN = emissTex / (emissL + 0.0001);
 	emissL = pow(emissL, _EmissionTextureContrast);
 	emissTex = emissN * emissL;
+
+	// Metallic and smoothness come from slider variables
+	o.Metallic = _Metallic;
+	o.Smoothness = _Glossiness;
 
 	o.Emission = _EmissionColor * emissTex * (exp(_EmissionGain * 10.0f));
 	o.Alpha = c.a;
