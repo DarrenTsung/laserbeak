@@ -21,9 +21,6 @@ namespace DT.Game.Battle.Lasers {
 
 		private void Awake() {
 			rigidbody_ = this.GetRequiredComponent<Rigidbody>();
-			CoroutineWrapper.DoAfterDelay(2.0f, () => {
-				ObjectPoolManager.Recycle(this);
-			});
 		}
 
 		private void FixedUpdate() {

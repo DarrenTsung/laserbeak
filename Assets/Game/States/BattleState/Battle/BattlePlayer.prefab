@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 54537648449484532}
   - component: {fileID: 114751467881738060}
   - component: {fileID: 114628784557723942}
+  - component: {fileID: 114076392782616166}
   m_Layer: 0
   m_Name: BattlePlayer
   m_TagString: Untagged
@@ -524,6 +525,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114076392782616166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1008062535264508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a60abfdf247f44a6a3237b62e6d0b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health_: 0
 --- !u!114 &114352156763685936
 MonoBehaviour:
   m_ObjectHideFlags: 1

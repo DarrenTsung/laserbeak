@@ -58,7 +58,12 @@ namespace DT.Game.Battle.Player {
 		[SerializeField]
 		private BattlePlayerInputController inputController_;
 
-
 		private readonly Dictionary<object, float> weightModifications_ = new Dictionary<object, float>();
+
+		private void Awake() {
+			foreach (BattlePlayerComponent component in this.GetComponentsInChildren<BattlePlayerComponent>()) {
+				component.Init(this);
+			}
+		}
 	}
 }
