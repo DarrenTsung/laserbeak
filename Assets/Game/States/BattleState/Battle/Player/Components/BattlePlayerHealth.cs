@@ -21,7 +21,7 @@ namespace DT.Game.Battle.Player {
 		// PRAGMA MARK - Internal
 		private const int kBaseHealth = 1;
 
-		private const float kExplosionForce = 500.0f;
+		private const float kExplosionForce = 600.0f;
 		private const float kExplosionRadius = 6.0f;
 		private const float kEmissionDuration = 0.3f;
 
@@ -69,7 +69,7 @@ namespace DT.Game.Battle.Player {
 				foreach (Rigidbody rigidbody in playerParts.GetComponentsInChildren<Rigidbody>()) {
 					float distance = (rigidbody.position - explosionPosition).magnitude;
 					float explosionForce = Mathf.Clamp(1.0f - (distance / kExplosionForce), 0.0f, 1.0f);
-					explosionForce *= UnityEngine.Random.Range(0.1f, 1.2f);
+					explosionForce *= UnityEngine.Random.Range(0.1f, 1.3f);
 					rigidbody.AddExplosionForce(explosionForce * kExplosionForce, explosionPosition, kExplosionRadius, upwardsModifier: 1.0f);
 				}
 
