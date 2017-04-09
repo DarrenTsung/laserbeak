@@ -48,6 +48,11 @@ namespace DT.Game.Battle.Player {
 			}
 
 			InputControl control = InputDevice_.GetControl(controlType_);
+			if (control.WasReleased && chargedTime_ >= kChargeTime) {
+				ShootLaser();
+				chargedTime_ = 0.0f;
+			}
+
 			if (control.IsPressed) {
 				chargedTime_ += Time.deltaTime * kChargeRate;
 			} else {
@@ -56,13 +61,6 @@ namespace DT.Game.Battle.Player {
 
 			chargedTime_ = Mathf.Clamp(chargedTime_, 0.0f, kChargeTime);
 			float percentCharged = chargedTime_ / kChargeTime;
-
-			if (percentCharged >= 1.0f) {
-				ShootLaser();
-				chargedTime_ = 0.0f;
-				percentCharged = 0.0f;
-			}
-
 			if (percentCharged <= 0.0f && chargingLaser_ != null) {
 				ObjectPoolManager.Recycle(chargingLaser_);
 				chargingLaser_ = null;
