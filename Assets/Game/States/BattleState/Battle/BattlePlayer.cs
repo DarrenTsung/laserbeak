@@ -9,7 +9,17 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Player {
-	public class BattlePlayer : MonoBehaviour, IRecycleCleanupSubscriber {
+	public class BattlePlayer : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Static Public Interface
+		public static IList<BattlePlayer> ActivePlayers {
+			get { return activePlayers_; }
+		}
+
+
+		// PRAGMA MARK - Static Internal
+		private static readonly List<BattlePlayer> activePlayers_ = new List<BattlePlayer>();
+
+
 		// PRAGMA MARK - Public Interface
 		public void InitInput(InputDevice inputDevice) {
 			inputController_.InitInput(this, inputDevice);
@@ -28,8 +38,15 @@ namespace DT.Game.Battle.Player {
 		}
 
 
+		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
+		public void OnRecycleSetup() {
+			activePlayers_.Add(this);
+		}
+
+
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		public void OnRecycleCleanup() {
+			activePlayers_.Remove(this);
 			weightModifications_.Clear();
 		}
 
