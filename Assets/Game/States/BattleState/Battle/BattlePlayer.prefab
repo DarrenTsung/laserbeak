@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 33494712967061688}
   - component: {fileID: 65028011014032066}
   - component: {fileID: 23114773245817948}
+  - component: {fileID: 114534996994193850}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -104,6 +105,7 @@ GameObject:
   - component: {fileID: 33260757553201188}
   - component: {fileID: 23607737029288758}
   - component: {fileID: 95001683119848172}
+  - component: {fileID: 114377805960980924}
   m_Layer: 0
   m_Name: TopBeak
   m_TagString: Untagged
@@ -137,6 +139,7 @@ GameObject:
   - component: {fileID: 33749332127758202}
   - component: {fileID: 23718284869243260}
   - component: {fileID: 95908795766152994}
+  - component: {fileID: 114980615123385314}
   m_Layer: 0
   m_Name: BottomBeak
   m_TagString: Untagged
@@ -509,6 +512,32 @@ MonoBehaviour:
   chargingLaserContainer_: {fileID: 1434085983608032}
   controlType_: 21
   chargedTime_: 0
+--- !u!114 &114377805960980924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464095493266084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979a4b9c7b8a842c886915c3eee9166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameLag_: 1
+  renderer_: {fileID: 23607737029288758}
+--- !u!114 &114534996994193850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156603236783960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979a4b9c7b8a842c886915c3eee9166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameLag_: 1
+  renderer_: {fileID: 23114773245817948}
 --- !u!114 &114567178079199390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -557,3 +586,16 @@ MonoBehaviour:
   rigidbody_: {fileID: 54537648449484532}
   controlType_: 19
   cooldownTimer_: 0
+--- !u!114 &114980615123385314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567780167205352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979a4b9c7b8a842c886915c3eee9166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameLag_: 1
+  renderer_: {fileID: 23718284869243260}

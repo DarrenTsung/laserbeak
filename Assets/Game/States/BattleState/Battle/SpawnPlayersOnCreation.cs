@@ -23,8 +23,7 @@ namespace DT.Game.Battle {
 					continue;
 				}
 
-				BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject);
-				player.transform.position = selectedSpawnPoint.transform.position;
+				BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject, position: selectedSpawnPoint.transform.position);
 
 				BattlePlayerInputController playerInput = player.GetRequiredComponentInChildren<BattlePlayerInputController>();
 				playerInput.InitInput(inputDevice);

@@ -77,6 +77,7 @@ namespace DTObjectPoolManager {
 			List<Behaviour> behaviours = new List<Behaviour>();
 			behaviours.AddRange(GetComponentsInChildren<Canvas>());
 			behaviours.AddRange(GetComponentsInChildren<Collider2D>());
+			behaviours.AddRange(GetComponentsInChildren<Light>());
 
 			behavioursToModify_ = behaviours.ToArray();
 		}

@@ -23,12 +23,12 @@ namespace DTObjectPoolManager {
 			return ObjectPoolManager.Instance.CreateInternal(prefabName, parent, worldPositionStays);
 		}
 
-		public static T Create<T>(GameObject prefab, GameObject parent = null, bool worldPositionStays = false) where T : UnityEngine.Component {
-			return Create(prefab, parent, worldPositionStays).GetRequiredComponent<T>();
+		public static T Create<T>(GameObject prefab, GameObject parent = null, bool worldPositionStays = false, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion)) where T : UnityEngine.Component {
+			return Create(prefab, parent, worldPositionStays, position, rotation).GetRequiredComponent<T>();
 		}
 
-		public static GameObject Create(GameObject prefab, GameObject parent = null, bool worldPositionStays = false) {
-			return ObjectPoolManager.Instance.CreateInternal(prefab.name, parent, worldPositionStays, (prefabName) => prefab);
+		public static GameObject Create(GameObject prefab, GameObject parent = null, bool worldPositionStays = false, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion)) {
+			return ObjectPoolManager.Instance.CreateInternal(prefab.name, parent, worldPositionStays, (prefabName) => prefab, position, rotation);
 		}
 
 		public static void Recycle(MonoBehaviour usedObject, bool worldPositionStays = false) {
@@ -44,10 +44,10 @@ namespace DTObjectPoolManager {
 		private HashSet<GameObject> objectsBeingCleanedUp_ = new HashSet<GameObject>();
 		private Dictionary<string, Stack<GameObject>> objectPools_ = new Dictionary<string, Stack<GameObject>>();
 
-		private GameObject CreateInternal(string prefabName, GameObject parent = null, bool worldPositionStays = false, Func<string, GameObject> prefabProvider = null) {
+		private GameObject CreateInternal(string prefabName, GameObject parent = null, bool worldPositionStays = false, Func<string, GameObject> prefabProvider = null, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion)) {
 			prefabName = prefabName.ToLower();
 
-			GameObject instantiatedPrefab = GetGameObjectForPrefabName(prefabName, prefabProvider);
+			GameObject instantiatedPrefab = GetGameObjectForPrefabName(prefabName, prefabProvider, position, rotation);
 
 			if (parent != null) {
 				instantiatedPrefab.transform.SetParent(parent.transform, worldPositionStays);
@@ -96,7 +96,7 @@ namespace DTObjectPoolManager {
 			return objectPools_.GetAndCreateIfNotFound(prefabName);
 		}
 
-		private GameObject GetGameObjectForPrefabName(string prefabName, Func<string, GameObject> prefabProvider) {
+		private GameObject GetGameObjectForPrefabName(string prefabName, Func<string, GameObject> prefabProvider, Vector3 position, Quaternion rotation) {
 			Stack<GameObject> recycledObjects = ObjectPoolForPrefabName(prefabName);
 
 			// try to find a recycled object that is usable
@@ -111,6 +111,8 @@ namespace DTObjectPoolManager {
 						return null;
 					}
 
+					recycledObj.transform.position = position;
+					recycledObj.transform.rotation = rotation;
 					recycledObj.SetActive(true);
 					return recycledObj;
 				}
@@ -125,7 +127,7 @@ namespace DTObjectPoolManager {
 				return null;
 			}
 
-			GameObject instantiatedPrefab = GameObject.Instantiate(prefab);
+			GameObject instantiatedPrefab = GameObject.Instantiate(prefab, position, rotation);
 
 			RecyclablePrefab recycleData = instantiatedPrefab.GetOrAddComponent<RecyclablePrefab>();
 			recycleData.prefabName = prefabName;

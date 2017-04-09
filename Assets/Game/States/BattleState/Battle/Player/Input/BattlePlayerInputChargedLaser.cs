@@ -76,10 +76,7 @@ namespace DT.Game.Battle.Player {
 		}
 
 		private void ShootLaser() {
-			Laser laser = ObjectPoolManager.Create<Laser>(laserPrefab_);
-			laser.transform.position = chargingLaserContainer_.transform.position;
-			laser.transform.rotation = chargingLaserContainer_.transform.rotation;
-
+			ObjectPoolManager.Create<Laser>(laserPrefab_, position: chargingLaserContainer_.transform.position, rotation: chargingLaserContainer_.transform.rotation);
 			Recoil();
 		}
 
