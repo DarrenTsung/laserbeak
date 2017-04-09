@@ -45,7 +45,9 @@ namespace DT.Game.Battle.Player {
 		private ChargingLaser chargingLaser_ = null;
 
 		private void UpdateWeightModification() {
-			Player_.SetWeightModification(this, chargedTime_ > 0.0f ? kPlayerAddedWeight : 0.0f);
+			if (Player_ != null) {
+				Player_.SetWeightModification(this, chargedTime_ > 0.0f ? kPlayerAddedWeight : 0.0f);
+			}
 		}
 
 		private void Update() {
