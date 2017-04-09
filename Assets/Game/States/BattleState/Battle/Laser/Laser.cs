@@ -9,8 +9,18 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Lasers {
-	public class Laser : MonoBehaviour {
+	public class Laser : MonoBehaviour, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		public void OnRecycleCleanup() {
+			ObjectPoolManager.Create(laserHitParticlePrefab_, position: this.transform.position);
+		}
+
+
 		// PRAGMA MARK - Internal
+		[Header("Outlets")]
+		[SerializeField]
+		private GameObject laserHitParticlePrefab_;
+
 		private const float kLaserSpeed = 25.0f;
 
 		// in degrees per second

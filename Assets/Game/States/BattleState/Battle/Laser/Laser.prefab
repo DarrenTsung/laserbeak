@@ -244,6 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4883b2c555946afa3ce79af6a3f23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserHitParticlePrefab_: {fileID: 1217161595659822, guid: e380204293f704fb4882259aad76ecf4,
+    type: 2}
 --- !u!135 &135522954359376670
 SphereCollider:
   m_ObjectHideFlags: 1
