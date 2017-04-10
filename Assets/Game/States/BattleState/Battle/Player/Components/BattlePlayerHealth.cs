@@ -35,17 +35,6 @@ namespace DT.Game.Battle.Player {
 		[SerializeField, ReadOnly]
 		private int health_;
 
-		private Material[] emissiveMaterials_;
-
-		private Material[] EmissiveMaterials_ {
-			get {
-				if (emissiveMaterials_ == null) {
-					emissiveMaterials_ = GetEmissiveMaterialsFor(Player_.gameObject);
-				}
-				return emissiveMaterials_;
-			}
-		}
-
 		private void OnCollisionEnter(Collision collision) {
 			Laser laser = collision.gameObject.GetComponent<Laser>();
 			if (laser == null) {
@@ -64,6 +53,7 @@ namespace DT.Game.Battle.Player {
 
 			if (health_ <= 0) {
 				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, position: this.transform.position);
+
 				Vector3 explosionPosition = this.transform.position - (forward.normalized * kExplosionRadius / 4.0f);
 				foreach (Rigidbody rigidbody in playerParts.GetComponentsInChildren<Rigidbody>()) {
 					float distance = (rigidbody.position - explosionPosition).magnitude;
@@ -71,11 +61,16 @@ namespace DT.Game.Battle.Player {
 					explosionForce *= UnityEngine.Random.Range(0.1f, 1.3f);
 					rigidbody.AddExplosionForce(explosionForce * kExplosionForce, explosionPosition, kExplosionRadius, upwardsModifier: 1.0f);
 				}
+
+				foreach (Renderer renderer in playerParts.GetComponentsInChildren<Renderer>()) {
+					renderer.material = Player_.Skin.BodyMaterial;
+				}
+
 				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));
 
 				ObjectPoolManager.Recycle(this);
 			} else {
-				AnimateDamageEmissionFor(EmissiveMaterials_);
+				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.gameObject));
 			}
 		}
 

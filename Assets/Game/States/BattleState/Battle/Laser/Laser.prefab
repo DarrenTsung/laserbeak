@@ -246,6 +246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserHitParticlePrefab_: {fileID: 1217161595659822, guid: e380204293f704fb4882259aad76ecf4,
     type: 2}
+  light_: {fileID: 108785627938583924}
+  laserRenderer_: {fileID: 23901430379633486}
 --- !u!135 &135522954359376670
 SphereCollider:
   m_ObjectHideFlags: 1

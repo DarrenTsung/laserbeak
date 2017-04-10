@@ -10,9 +10,17 @@ using InControl;
 
 namespace DT.Game.Battle.Lasers {
 	public class Laser : MonoBehaviour, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Public Interface
+		public void SetMaterial(Material material) {
+			laserRenderer_.material = material;
+			light_.color = material.GetColor("_EmissionColor");
+		}
+
+
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		public void OnRecycleCleanup() {
-			ObjectPoolManager.Create(laserHitParticlePrefab_, position: this.transform.position);
+			LaserHit laserHit = ObjectPoolManager.Create<LaserHit>(laserHitParticlePrefab_, position: this.transform.position);
+			laserHit.SetMaterial(laserRenderer_.material);
 		}
 
 
@@ -20,6 +28,12 @@ namespace DT.Game.Battle.Lasers {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject laserHitParticlePrefab_;
+
+		[SerializeField]
+		private Light light_;
+
+		[SerializeField]
+		private Renderer laserRenderer_;
 
 		private const float kLaserSpeed = 25.0f;
 

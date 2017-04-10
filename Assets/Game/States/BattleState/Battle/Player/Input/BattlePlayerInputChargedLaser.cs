@@ -75,6 +75,7 @@ namespace DT.Game.Battle.Player {
 				chargingLaser_ = null;
 			} else if (percentCharged > 0.0f && chargingLaser_ == null) {
 				chargingLaser_ = ObjectPoolManager.Create<ChargingLaser>(chargingLaserPrefab_, parent: chargingLaserContainer_);
+				chargingLaser_.SetLaserMaterial(Player_.Skin.LaserMaterial);
 			}
 
 			if (chargingLaser_ != null) {
@@ -85,7 +86,8 @@ namespace DT.Game.Battle.Player {
 		}
 
 		private void ShootLaser() {
-			ObjectPoolManager.Create<Laser>(laserPrefab_, position: chargingLaserContainer_.transform.position, rotation: chargingLaserContainer_.transform.rotation);
+			Laser laser = ObjectPoolManager.Create<Laser>(laserPrefab_, position: chargingLaserContainer_.transform.position, rotation: chargingLaserContainer_.transform.rotation);
+			laser.SetMaterial(Player_.Skin.LaserMaterial);
 			Recoil();
 		}
 

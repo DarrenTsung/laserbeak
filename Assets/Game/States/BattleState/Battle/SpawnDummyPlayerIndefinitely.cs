@@ -26,6 +26,9 @@ namespace DT.Game.Battle {
 		[SerializeField]
 		private GameObject playerPrefab_;
 
+		[SerializeField]
+		private BattlePlayerSkin skin_;
+
 		private RecyclablePrefab dummyPlayerRecyclable_;
 
 		private void CleanupDummyPlayer(bool recycle) {
@@ -40,8 +43,9 @@ namespace DT.Game.Battle {
 		}
 
 		private void SpawnDummyPlayer() {
-			GameObject playerObject = ObjectPoolManager.Create(playerPrefab_, parent: this.gameObject, position: this.transform.position);
-			dummyPlayerRecyclable_ = playerObject.GetComponentInChildren<RecyclablePrefab>();
+			BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject, position: this.transform.position);
+			player.SetSkin(skin_);
+			dummyPlayerRecyclable_ = player.GetComponentInChildren<RecyclablePrefab>();
 			dummyPlayerRecyclable_.OnCleanup += RespawnDummyPlayer;
 		}
 

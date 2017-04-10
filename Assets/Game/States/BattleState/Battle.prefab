@@ -511,6 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
+  skin_: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
 --- !u!114 &114568662751242374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -551,6 +552,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
+  playerSkins_:
+  - {fileID: 11400000, guid: 10e8e740af832432f9f8f61b097e1b26, type: 2}
+  - {fileID: 11400000, guid: 3f5209ea347a9415e94ddeeef1360583, type: 2}
+  - {fileID: 11400000, guid: 2d212f342362c4de8bae265d511314ff, type: 2}
 --- !u!114 &114800140936903440
 MonoBehaviour:
   m_ObjectHideFlags: 1

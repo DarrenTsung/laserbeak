@@ -16,6 +16,12 @@ namespace DT.Game.Battle.Lasers {
 			particleSystem_.SetEmissionRateOverTime(Mathf.Lerp(kMaxParticleRateOverTime, 0.0f, percentage));
 		}
 
+		public void SetLaserMaterial(Material laserMaterial) {
+			laserRenderer_.material = laserMaterial;
+			pointLight_.color = laserMaterial.GetColor("_EmissionColor");
+			particleSystem_.GetComponent<ParticleSystemRenderer>().material = laserMaterial;
+		}
+
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		public void OnRecycleCleanup() {
@@ -29,10 +35,14 @@ namespace DT.Game.Battle.Lasers {
 		private const float kMaxParticleRateOverTime = 35.0f;
 		private const float kLightRange = 4.0f;
 
+		[Header("Outlets")]
 		[SerializeField]
 		private Light pointLight_;
 
 		[SerializeField]
 		private ParticleSystem particleSystem_;
+
+		[SerializeField]
+		private Renderer laserRenderer_;
 	}
 }

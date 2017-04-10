@@ -247,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointLight_: {fileID: 108891639590693944}
   particleSystem_: {fileID: 198471110877470988}
+  laserRenderer_: {fileID: 23174452395410766}
 --- !u!114 &114879109747830020
 MonoBehaviour:
   m_ObjectHideFlags: 1

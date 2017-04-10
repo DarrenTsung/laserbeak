@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PlayerBodyMaterial
+  m_Name: BluePlayer
   m_Shader: {fileID: 4800000, guid: fb944acb6ea5b6b4e961e6f8feb2b64a, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -142,7 +142,7 @@ Material:
       second: {r: 1, g: 0.5514706, b: 0.5514706, a: 1}
     - first:
         name: _DiffuseColor
-      second: {r: 1, g: 0.38235295, b: 0.38235295, a: 1}
+      second: {r: 0.30588236, g: 0.39215687, b: 0.9647059, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

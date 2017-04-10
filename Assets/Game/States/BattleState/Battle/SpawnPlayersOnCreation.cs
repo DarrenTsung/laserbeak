@@ -14,6 +14,7 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			HashSet<PlayerSpawnPoint> chosenSpawnPoints = new HashSet<PlayerSpawnPoint>();
+			HashSet<BattlePlayerSkin> chosenSkins = new HashSet<BattlePlayerSkin>();
 
 			PlayerSpawnPoint[] spawnPoints = UnityEngine.Object.FindObjectsOfType<PlayerSpawnPoint>();
 
@@ -23,8 +24,14 @@ namespace DT.Game.Battle {
 					continue;
 				}
 
+				BattlePlayerSkin chosenSkin = playerSkins_.Random();
+				// NOTE (darren): could do a better random here..
+				while (chosenSkins.Contains(chosenSkin) && !playerSkins_.All(chosenSkins.Contains)) {
+					chosenSkin = playerSkins_.Random();
+				}
+
 				BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject, position: selectedSpawnPoint.transform.position);
-				player.InitInput(inputDevice);
+				player.Init(inputDevice, chosenSkin);
 
 				chosenSpawnPoints.Add(selectedSpawnPoint);
 			}
@@ -39,5 +46,8 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - Internal
 		[SerializeField]
 		private GameObject playerPrefab_;
+
+		[SerializeField]
+		private BattlePlayerSkin[] playerSkins_;
 	}
 }

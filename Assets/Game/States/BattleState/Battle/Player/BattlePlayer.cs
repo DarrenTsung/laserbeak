@@ -21,8 +21,16 @@ namespace DT.Game.Battle.Player {
 
 
 		// PRAGMA MARK - Public Interface
-		public void InitInput(InputDevice inputDevice) {
+		public event Action OnSkinChanged = delegate {};
+
+		public void Init(InputDevice inputDevice, BattlePlayerSkin skin) {
 			inputController_.InitInput(this, inputDevice);
+			SetSkin(skin);
+		}
+
+		public void SetSkin(BattlePlayerSkin skin) {
+			skin_ = skin;
+			OnSkinChanged.Invoke();
 		}
 
 		public float BaseWeight {
@@ -31,6 +39,10 @@ namespace DT.Game.Battle.Player {
 
 		public float Weight {
 			get { return kBaseWeight + weightModifications_.Values.Sum(); }
+		}
+
+		public BattlePlayerSkin Skin {
+			get { return skin_; }
 		}
 
 		public void SetWeightModification(object key, float weightModification) {
@@ -57,6 +69,8 @@ namespace DT.Game.Battle.Player {
 		[Header("Outlets")]
 		[SerializeField]
 		private BattlePlayerInputController inputController_;
+
+		private BattlePlayerSkin skin_;
 
 		private readonly Dictionary<object, float> weightModifications_ = new Dictionary<object, float>();
 

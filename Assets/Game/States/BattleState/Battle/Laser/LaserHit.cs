@@ -10,6 +10,12 @@ using InControl;
 
 namespace DT.Game.Battle.Lasers {
 	public class LaserHit : MonoBehaviour, IRecycleSetupSubscriber {
+		// PRAGMA MARK - Public Interface
+		public void SetMaterial(Material laserMaterial) {
+			light_.color = laserMaterial.GetColor("_EmissionColor");
+		}
+
+
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			CoroutineWrapper.DoEaseFor(duration_, EaseType.CubicEaseOut, (float percentage) => {
