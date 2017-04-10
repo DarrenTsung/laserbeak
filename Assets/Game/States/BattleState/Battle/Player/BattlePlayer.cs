@@ -23,8 +23,8 @@ namespace DT.Game.Battle.Player {
 		// PRAGMA MARK - Public Interface
 		public event Action OnSkinChanged = delegate {};
 
-		public void Init(InputDevice inputDevice, BattlePlayerSkin skin) {
-			inputController_.InitInput(this, inputDevice);
+		public void Init(IInputDelegate inputDelegate, BattlePlayerSkin skin) {
+			inputController_.InitInput(this, inputDelegate);
 			SetSkin(skin);
 		}
 

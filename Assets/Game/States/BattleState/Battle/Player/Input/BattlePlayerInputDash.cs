@@ -21,9 +21,6 @@ namespace DT.Game.Battle.Player {
 		[SerializeField]
 		private Rigidbody rigidbody_;
 
-		[SerializeField]
-		private InputControlType controlType_ = InputControlType.Action1;
-
 		[Header("Properties")]
 		[SerializeField, ReadOnly]
 		private float cooldownTimer_ = 0.0f;
@@ -39,9 +36,8 @@ namespace DT.Game.Battle.Player {
 				return;
 			}
 
-			InputControl control = InputDevice_.GetControl(controlType_);
-			if (control.WasPressed) {
-				Vector3 direction = InputDevice_.LeftStick.Value.Vector3XZValue().normalized;
+			if (InputDelegate_.DashPressed) {
+				Vector3 direction = InputDelegate_.MovementVector.Vector3XZValue().normalized;
 				if (direction.magnitude > kDashIntentThreshold) {
 					Dash(direction);
 					cooldownTimer_ = kDashCooldown;

@@ -36,9 +36,6 @@ namespace DT.Game.Battle.Player {
 		private GameObject chargingLaserContainer_;
 
 		[Header("Properties")]
-		[SerializeField]
-		private InputControlType controlType_ = InputControlType.Action3;
-
 		[SerializeField, ReadOnly]
 		private float chargedTime_ = 0.0f;
 
@@ -56,13 +53,12 @@ namespace DT.Game.Battle.Player {
 				return;
 			}
 
-			InputControl control = InputDevice_.GetControl(controlType_);
-			if (control.WasReleased && chargedTime_ >= kChargeTime) {
+			if (!InputDelegate_.LaserPressed && chargedTime_ >= kChargeTime) {
 				ShootLaser();
 				chargedTime_ = 0.0f;
 			}
 
-			if (control.IsPressed) {
+			if (InputDelegate_.LaserPressed) {
 				chargedTime_ += Time.deltaTime * kChargeRate;
 			} else {
 				chargedTime_ -= Time.deltaTime * kDischargeRate;
