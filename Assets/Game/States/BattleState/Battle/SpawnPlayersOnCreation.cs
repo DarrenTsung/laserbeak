@@ -31,7 +31,6 @@ namespace DT.Game.Battle {
 				}
 
 				BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject, position: selectedSpawnPoint.transform.position);
-				Debug.Log("spawning player for: " + inputDevice);
 				player.Init(new InputDeviceDelegate(inputDevice), chosenSkin);
 
 				chosenSpawnPoints.Add(selectedSpawnPoint);
