@@ -27,6 +27,9 @@ namespace DT.Game.Battle.Player {
 		private const float kEmissionDuration = 0.15f;
 		private const float kEmissionWhiteBalance = 0.2f;
 
+		private const float kDamageKnockbackDuration = 0.3f;
+		private const float kDamageKnockbackDistance = 2.5f;
+
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject playerPartsPrefab_;
@@ -71,6 +74,7 @@ namespace DT.Game.Battle.Player {
 				ObjectPoolManager.Recycle(this);
 			} else {
 				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.gameObject));
+				Knockback(forward);
 			}
 		}
 
@@ -89,6 +93,11 @@ namespace DT.Game.Battle.Player {
 							.SelectMany(r => r.materials)
 							.Where(m => m.HasProperty("_EmissionColor"))
 							.ToArray();
+		}
+
+		private void Knockback(Vector3 forward) {
+			Vector3 endPosition = Player_.Rigidbody.position + (kDamageKnockbackDistance * forward);
+			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration, EaseType.CubicEaseOut);
 		}
 	}
 }

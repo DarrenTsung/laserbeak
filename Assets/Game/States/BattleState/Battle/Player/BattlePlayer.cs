@@ -49,6 +49,10 @@ namespace DT.Game.Battle.Player {
 			get { return rigidbody_; }
 		}
 
+		public BattlePlayerInputController InputController {
+			get { return inputController_; }
+		}
+
 		public void SetWeightModification(object key, float weightModification) {
 			weightModifications_[key] = weightModification;
 		}
