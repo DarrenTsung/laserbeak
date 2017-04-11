@@ -7,7 +7,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Player {
-	public abstract class BattlePlayerInputComponent : MonoBehaviour {
+	public abstract class BattlePlayerInputComponent : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public bool Enabled {
 			get { return enabled_; }
@@ -18,6 +18,15 @@ namespace DT.Game.Battle.Player {
 			player_ = player;
 			controller_ = controller;
 			inputDelegate_ = inputDelegate;
+		}
+
+
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			controller_ = null;
+			inputDelegate_ = null;
+
+			Cleanup();
 		}
 
 
@@ -32,6 +41,10 @@ namespace DT.Game.Battle.Player {
 
 		protected BattlePlayer Player_ {
 			get { return player_; }
+		}
+
+		protected virtual void Cleanup() {
+			// stub
 		}
 
 		private BattlePlayerInputController controller_;

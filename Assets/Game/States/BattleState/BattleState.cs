@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
+using InControl;
 
 namespace DT.Game.Battle {
 	public class BattleState : DTStateMachineBehaviour<GameStateMachine> {
@@ -21,6 +23,12 @@ namespace DT.Game.Battle {
 			if (battleObject_ != null) {
 				ObjectPoolManager.Recycle(battleObject_);
 				battleObject_ = null;
+			}
+		}
+
+		protected override void OnStateUpdated() {
+			if (InputManager.Devices.Any(d => d.CommandWasPressed)) {
+				StateMachine_.GoToMainMenu();
 			}
 		}
 	}

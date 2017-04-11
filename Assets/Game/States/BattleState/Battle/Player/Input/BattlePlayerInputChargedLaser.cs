@@ -41,6 +41,14 @@ namespace DT.Game.Battle.Player {
 
 		private ChargingLaser chargingLaser_ = null;
 
+		protected override void Cleanup() {
+			chargedTime_ = 0.0f;
+			if (chargingLaser_ != null) {
+				ObjectPoolManager.Recycle(chargingLaser_);
+				chargingLaser_ = null;
+			}
+		}
+
 		private void UpdateWeightModification() {
 			if (Player_ != null) {
 				Player_.SetWeightModification(this, chargedTime_ > 0.0f ? kPlayerAddedWeight : 0.0f);
@@ -91,11 +99,12 @@ namespace DT.Game.Battle.Player {
 			Controller_.DisableInput();
 			Vector3 startPosition = rigidbody_.position;
 			Vector3 endPosition = rigidbody_.position - (kRecoilDistance * this.transform.forward);
-			CoroutineWrapper.DoEaseFor(kRecoilDuration, EaseType.CubicEaseOut, (float p) => {
+			var coroutine = CoroutineWrapper.DoEaseFor(kRecoilDuration, EaseType.CubicEaseOut, (float p) => {
 				rigidbody_.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
 			}, () => {
 				Controller_.EnableInput();
 			});
+			Controller_.RegisterAnimatedMovement(coroutine);
 		}
 	}
 }

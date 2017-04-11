@@ -11,6 +11,10 @@ namespace DT.Game {
 			animator_.SetTrigger("StartBattle");
 		}
 
+		public void GoToMainMenu() {
+			animator_.SetTrigger("GoToMainMenu");
+		}
+
 
 		// PRAGMA MARK - Internal
 		private Animator animator_;

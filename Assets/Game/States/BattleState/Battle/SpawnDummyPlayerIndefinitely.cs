@@ -33,12 +33,14 @@ namespace DT.Game.Battle {
 
 		private void CleanupDummyPlayer(bool recycle) {
 			if (dummyPlayerRecyclable_ != null) {
-				if (recycle) {
-					ObjectPoolManager.Recycle(dummyPlayerRecyclable_);
-				}
+				GameObject recycleReference = dummyPlayerRecyclable_.gameObject;
 
 				dummyPlayerRecyclable_.OnCleanup -= RespawnDummyPlayer;
 				dummyPlayerRecyclable_ = null;
+
+				if (recycle) {
+					ObjectPoolManager.Recycle(recycleReference);
+				}
 			}
 		}
 
