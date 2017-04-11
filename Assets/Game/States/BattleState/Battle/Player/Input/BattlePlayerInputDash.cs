@@ -42,15 +42,8 @@ namespace DT.Game.Battle.Player {
 		}
 
 		private void Dash(Vector3 direction) {
-			Controller_.DisableInput();
-			Vector3 startPosition = Player_.Rigidbody.position;
 			Vector3 endPosition = Player_.Rigidbody.position + (kDashDistance * Player_.WeightedRatio() * direction);
-			var coroutine = CoroutineWrapper.DoEaseFor(kDashDuration, EaseType.CubicEaseOut, (float p) => {
-				Player_.Rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
-			}, () => {
-				Controller_.EnableInput();
-			});
-			Controller_.RegisterAnimatedMovement(coroutine);
+			Controller_.MoveTo(Player_, endPosition, kDashDuration, EaseType.CubicEaseOut);
 		}
 	}
 }
