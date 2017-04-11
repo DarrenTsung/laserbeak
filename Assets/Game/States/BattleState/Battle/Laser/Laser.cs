@@ -59,11 +59,11 @@ namespace DT.Game.Battle.Lasers {
 			float minDeltaAngle = float.MaxValue;
 			foreach (BattlePlayer player in BattlePlayer.ActivePlayers) {
 				Vector3 delta = (player.transform.position - this.transform.position).normalized;
-				if (delta.magnitude <= Mathf.Epsilon * 2.0f) {
+				if (delta.magnitude <= Mathf.Epsilon) {
 					continue;
 				}
 
-				Quaternion rotationToPlayer = Quaternion.LookRotation(delta);
+				Quaternion rotationToPlayer = Quaternion.LookRotation(delta.normalized);
 				float deltaAngle = Quaternion.Angle(this.transform.rotation, rotationToPlayer);
 				if (deltaAngle < minDeltaAngle) {
 					minDeltaAngle = deltaAngle;
