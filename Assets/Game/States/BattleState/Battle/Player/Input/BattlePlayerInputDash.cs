@@ -17,10 +17,6 @@ namespace DT.Game.Battle.Player {
 		private const float kDashDuration = 0.15f;
 		private const float kDashDistance = 4.0f;
 
-		[Header("Outlets")]
-		[SerializeField]
-		private Rigidbody rigidbody_;
-
 		[Header("Properties")]
 		[SerializeField, ReadOnly]
 		private float cooldownTimer_ = 0.0f;
@@ -47,10 +43,10 @@ namespace DT.Game.Battle.Player {
 
 		private void Dash(Vector3 direction) {
 			Controller_.DisableInput();
-			Vector3 startPosition = rigidbody_.position;
-			Vector3 endPosition = rigidbody_.position + (kDashDistance * Player_.WeightedRatio() * direction);
+			Vector3 startPosition = Player_.Rigidbody.position;
+			Vector3 endPosition = Player_.Rigidbody.position + (kDashDistance * Player_.WeightedRatio() * direction);
 			var coroutine = CoroutineWrapper.DoEaseFor(kDashDuration, EaseType.CubicEaseOut, (float p) => {
-				rigidbody_.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
+				Player_.Rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
 			}, () => {
 				Controller_.EnableInput();
 			});

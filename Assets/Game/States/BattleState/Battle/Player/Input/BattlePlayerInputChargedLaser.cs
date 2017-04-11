@@ -30,9 +30,6 @@ namespace DT.Game.Battle.Player {
 
 		[Header("Outlets")]
 		[SerializeField]
-		private Rigidbody rigidbody_;
-
-		[SerializeField]
 		private GameObject chargingLaserContainer_;
 
 		[Header("Properties")]
@@ -97,10 +94,10 @@ namespace DT.Game.Battle.Player {
 
 		private void Recoil() {
 			Controller_.DisableInput();
-			Vector3 startPosition = rigidbody_.position;
-			Vector3 endPosition = rigidbody_.position - (kRecoilDistance * this.transform.forward);
+			Vector3 startPosition = Player_.Rigidbody.position;
+			Vector3 endPosition = Player_.Rigidbody.position - (kRecoilDistance * this.transform.forward);
 			var coroutine = CoroutineWrapper.DoEaseFor(kRecoilDuration, EaseType.CubicEaseOut, (float p) => {
-				rigidbody_.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
+				Player_.Rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, p));
 			}, () => {
 				Controller_.EnableInput();
 			});

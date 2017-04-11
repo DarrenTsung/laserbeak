@@ -11,9 +11,6 @@ namespace DT.Game.Battle.Player {
 		// PRAGMA MARK - Internal
 		private const float kPlayerSpeed = 4.8f;
 
-		[SerializeField]
-		private Rigidbody rigidbody_;
-
 		private void FixedUpdate() {
 			if (!Enabled) {
 				return;
@@ -22,11 +19,11 @@ namespace DT.Game.Battle.Player {
 			Vector2 deltaPosition = InputDelegate_.MovementVector * Time.fixedDeltaTime * kPlayerSpeed * Player_.WeightedRatio();
 			Vector3 deltaWorldPosition = deltaPosition.Vector3XZValue();
 
-			rigidbody_.MovePosition(rigidbody_.position + deltaWorldPosition);
+			Player_.Rigidbody.MovePosition(Player_.Rigidbody.position + deltaWorldPosition);
 
 			// snap rotation if input is not (0, 0)
 			if (deltaWorldPosition.magnitude > Mathf.Epsilon * 2.0f) {
-				rigidbody_.MoveRotation(Quaternion.LookRotation(deltaWorldPosition));
+				Player_.Rigidbody.MoveRotation(Quaternion.LookRotation(deltaWorldPosition));
 			}
 		}
 	}

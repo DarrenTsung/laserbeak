@@ -45,6 +45,10 @@ namespace DT.Game.Battle.Player {
 			get { return skin_; }
 		}
 
+		public Rigidbody Rigidbody {
+			get { return rigidbody_; }
+		}
+
 		public void SetWeightModification(object key, float weightModification) {
 			weightModifications_[key] = weightModification;
 		}
@@ -70,11 +74,14 @@ namespace DT.Game.Battle.Player {
 		[SerializeField]
 		private BattlePlayerInputController inputController_;
 
+		private Rigidbody rigidbody_;
 		private BattlePlayerSkin skin_;
 
 		private readonly Dictionary<object, float> weightModifications_ = new Dictionary<object, float>();
 
 		private void Awake() {
+			rigidbody_ = this.GetRequiredComponent<Rigidbody>();
+
 			foreach (BattlePlayerComponent component in this.GetComponentsInChildren<BattlePlayerComponent>()) {
 				component.Init(this);
 			}
