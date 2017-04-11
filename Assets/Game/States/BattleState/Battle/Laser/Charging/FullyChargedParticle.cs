@@ -29,9 +29,9 @@ namespace DT.Game.Battle.Lasers {
 
 
 		// PRAGMA MARK - Internal
-		private const float kDuration = 0.60f;
+		private const float kDuration = 0.50f;
 		private const float kFinalScale = 0.65f;
-		private const float kEmissionGain = 0.50f;
+		private const float kEmissionGain = 0.65f;
 
 		// because texture finishes dissolving at 0.75, scaling lerp here
 		private const float kDissolveMaxCap = 0.75f;
