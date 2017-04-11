@@ -63,6 +63,8 @@ namespace DT.Game.Battle.Player {
 				chargedTime_ = 0.0f;
 			}
 
+			float previousPercentCharged = chargedTime_ / kChargeTime;
+
 			if (InputDelegate_.LaserPressed) {
 				chargedTime_ += Time.deltaTime * kChargeRate;
 			} else {
@@ -81,6 +83,9 @@ namespace DT.Game.Battle.Player {
 
 			if (chargingLaser_ != null) {
 				chargingLaser_.UpdateWithPercentage(percentCharged);
+				if (previousPercentCharged != 1.0f && percentCharged == 1.0f) {
+					chargingLaser_.HandleMaxPercentage();
+				}
 			}
 
 			UpdateWeightModification();

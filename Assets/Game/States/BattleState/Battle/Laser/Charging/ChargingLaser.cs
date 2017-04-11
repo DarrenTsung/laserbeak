@@ -13,13 +13,21 @@ namespace DT.Game.Battle.Lasers {
 			this.transform.localScale = new Vector3(percentage, percentage, percentage);
 			pointLight_.range = percentage * kLightRange;
 
-			particleSystem_.SetEmissionRateOverTime(Mathf.Lerp(kMaxParticleRateOverTime, 0.0f, percentage));
+			chargingParticleSystem_.SetEmissionRateOverTime(Mathf.Lerp(kMaxParticleRateOverTime, 0.0f, percentage));
+		}
+
+		public void HandleMaxPercentage() {
+			fullyChargedParticleSystem_.Emit(1);
 		}
 
 		public void SetLaserMaterial(Material laserMaterial) {
 			laserRenderer_.material = laserMaterial;
-			pointLight_.color = laserMaterial.GetColor("_EmissionColor");
-			particleSystem_.GetComponent<ParticleSystemRenderer>().material = laserMaterial;
+
+			Color laserColor = laserMaterial.GetColor("_EmissionColor");
+			pointLight_.color = laserColor;
+			fullyChargedParticleSystem_.SetStartColor(laserColor);
+
+			chargingParticleSystem_.GetComponent<ParticleSystemRenderer>().material = laserMaterial;
 		}
 
 
@@ -27,7 +35,7 @@ namespace DT.Game.Battle.Lasers {
 		public void OnRecycleCleanup() {
 			this.transform.localScale = Vector3.zero;
 			pointLight_.range = 0.0f;
-			particleSystem_.SetEmissionRateOverTime(0.0f);
+			chargingParticleSystem_.SetEmissionRateOverTime(0.0f);
 		}
 
 
@@ -40,7 +48,10 @@ namespace DT.Game.Battle.Lasers {
 		private Light pointLight_;
 
 		[SerializeField]
-		private ParticleSystem particleSystem_;
+		private ParticleSystem fullyChargedParticleSystem_;
+
+		[SerializeField]
+		private ParticleSystem chargingParticleSystem_;
 
 		[SerializeField]
 		private Renderer laserRenderer_;
