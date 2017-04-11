@@ -10,7 +10,7 @@ namespace DT.Game.Battle.Player {
 	public abstract class BattlePlayerInputComponent : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public bool Enabled {
-			get { return enabled_; }
+			get { return enabled_ && inputDelegate_ != null && controller_ != null; }
 			set { enabled_ = value; }
 		}
 
