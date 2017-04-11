@@ -16,16 +16,11 @@ namespace DT.Game.Battle.Lasers {
 			chargingParticleSystem_.SetEmissionRateOverTime(Mathf.Lerp(kMaxParticleRateOverTime, 0.0f, percentage));
 		}
 
-		public void HandleMaxPercentage() {
-			fullyChargedParticleSystem_.Emit(1);
-		}
-
 		public void SetLaserMaterial(Material laserMaterial) {
 			laserRenderer_.material = laserMaterial;
 
 			Color laserColor = laserMaterial.GetColor("_EmissionColor");
 			pointLight_.color = laserColor;
-			fullyChargedParticleSystem_.SetStartColor(laserColor);
 
 			chargingParticleSystem_.GetComponent<ParticleSystemRenderer>().material = laserMaterial;
 		}
@@ -46,9 +41,6 @@ namespace DT.Game.Battle.Lasers {
 		[Header("Outlets")]
 		[SerializeField]
 		private Light pointLight_;
-
-		[SerializeField]
-		private ParticleSystem fullyChargedParticleSystem_;
 
 		[SerializeField]
 		private ParticleSystem chargingParticleSystem_;

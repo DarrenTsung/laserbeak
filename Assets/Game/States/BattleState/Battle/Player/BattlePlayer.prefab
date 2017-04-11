@@ -567,9 +567,9 @@ MonoBehaviour:
     type: 2}
   laserPrefab_: {fileID: 1544999162912050, guid: 53a87c6a3dd8445cab4cb1ecef38fa8a,
     type: 2}
-  rigidbody_: {fileID: 54537648449484532}
+  fullyChargedParticlePrefab_: {fileID: 1496579831053276, guid: 5ea6ed422deb24e77bbec5b36d06f348,
+    type: 2}
   chargingLaserContainer_: {fileID: 1434085983608032}
-  controlType_: 21
   chargedTime_: 0
 --- !u!114 &114377805960980924
 MonoBehaviour:
@@ -608,7 +608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da6c424149924f3fa850e0e5448b29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody_: {fileID: 54537648449484532}
 --- !u!114 &114628784557723942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -643,8 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3074d18a39d5b41768824d229c3253a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody_: {fileID: 54537648449484532}
-  controlType_: 19
   cooldownTimer_: 0
 --- !u!114 &114980615123385314
 MonoBehaviour:

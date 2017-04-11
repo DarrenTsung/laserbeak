@@ -2,6 +2,8 @@ Shader "Sonic Ether/Particles/Additive" {
 Properties {
 	_TintColor ("Tint Color", Color) = (0.5,0.5,0.5,0.5)
 	_MainTex ("Particle Texture", 2D) = "white" {}
+	_DissolveTex ("Dissolve Texture", 2D) = "white" {}
+	_DissolveFactor ("Dissolve Factor", Range(0, 1)) = 1.0
 	_InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
 	_EmissionGain ("Emission Gain", Range(0, 1)) = 0.3
 }
@@ -12,10 +14,10 @@ Category {
 	AlphaTest Greater .01
 	ColorMask RGB
 	Cull Off Lighting Off ZWrite Off Fog { Color (0,0,0,0) }
-	
+
 	SubShader {
 		Pass {
-		
+
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -24,8 +26,9 @@ Category {
 			#include "UnityCG.cginc"
 
 			sampler2D _MainTex;
+			sampler2D _DissolveTex;
 			fixed4 _TintColor;
-			
+
 			struct appdata_t {
 				float4 vertex : POSITION;
 				fixed4 color : COLOR;
@@ -40,7 +43,7 @@ Category {
 				float4 projPos : TEXCOORD1;
 				#endif
 			};
-			
+
 			float4 _MainTex_ST;
 
 			v2f vert (appdata_t v)
@@ -58,8 +61,9 @@ Category {
 
 			sampler2D _CameraDepthTexture;
 			float _InvFade;
+			float _DissolveFactor;
 			float _EmissionGain;
-			
+
 			fixed4 frag (v2f i) : SV_Target
 			{
 				#ifdef SOFTPARTICLES_ON
@@ -68,11 +72,14 @@ Category {
 				float fade = saturate (_InvFade * (sceneZ-partZ));
 				i.color.a *= fade;
 				#endif
-				
+
+				// grayscale texture but using red channel right now
+				i.color.a *= step(_DissolveFactor, tex2D(_DissolveTex, i.texcoord).r);
+
 				return 2.0f * i.color * _TintColor * tex2D(_MainTex, i.texcoord) * (exp(_EmissionGain * 5.0f));
 			}
-			ENDCG 
+			ENDCG
 		}
-	}	
+	}
 }
 }

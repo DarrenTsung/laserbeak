@@ -28,6 +28,9 @@ namespace DT.Game.Battle.Player {
 		[SerializeField]
 		private GameObject laserPrefab_;
 
+		[SerializeField]
+		private GameObject fullyChargedParticlePrefab_;
+
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject chargingLaserContainer_;
@@ -40,10 +43,8 @@ namespace DT.Game.Battle.Player {
 
 		protected override void Cleanup() {
 			chargedTime_ = 0.0f;
-			if (chargingLaser_ != null) {
-				ObjectPoolManager.Recycle(chargingLaser_);
-				chargingLaser_ = null;
-			}
+			chargingLaserContainer_.transform.RecycleAllChildren();
+			chargingLaser_ = null;
 		}
 
 		private void UpdateWeightModification() {
@@ -84,7 +85,8 @@ namespace DT.Game.Battle.Player {
 			if (chargingLaser_ != null) {
 				chargingLaser_.UpdateWithPercentage(percentCharged);
 				if (previousPercentCharged != 1.0f && percentCharged == 1.0f) {
-					chargingLaser_.HandleMaxPercentage();
+					var fullyChargedParticle = ObjectPoolManager.Create<FullyChargedParticle>(fullyChargedParticlePrefab_, parent: chargingLaserContainer_);
+					fullyChargedParticle.SetColor(Player_.Skin.LaserMaterial.GetColor("_EmissionColor"));
 				}
 			}
 

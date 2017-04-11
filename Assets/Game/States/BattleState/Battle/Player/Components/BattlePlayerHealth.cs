@@ -55,7 +55,7 @@ namespace DT.Game.Battle.Player {
 			health_--;
 
 			if (health_ <= 0) {
-				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, position: this.transform.position);
+				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, this.transform.position, Quaternion.identity);
 
 				Vector3 explosionPosition = this.transform.position - (forward.normalized * kExplosionRadius / 4.0f);
 				foreach (Rigidbody rigidbody in playerParts.GetComponentsInChildren<Rigidbody>()) {

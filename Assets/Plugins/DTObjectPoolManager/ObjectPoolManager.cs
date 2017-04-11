@@ -23,11 +23,19 @@ namespace DTObjectPoolManager {
 			return ObjectPoolManager.Instance.CreateInternal(prefabName, parent, worldPositionStays);
 		}
 
-		public static T Create<T>(GameObject prefab, GameObject parent = null, bool worldPositionStays = false, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion)) where T : UnityEngine.Component {
-			return Create(prefab, parent, worldPositionStays, position, rotation).GetRequiredComponent<T>();
+		public static T Create<T>(GameObject prefab, GameObject parent = null, bool worldPositionStays = false) where T : UnityEngine.Component {
+			return Create(prefab, parent, worldPositionStays).GetRequiredComponent<T>();
 		}
 
-		public static GameObject Create(GameObject prefab, GameObject parent = null, bool worldPositionStays = false, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion)) {
+		public static GameObject Create(GameObject prefab, GameObject parent = null, bool worldPositionStays = false) {
+			return ObjectPoolManager.Instance.CreateInternal(prefab.name, parent, worldPositionStays, (prefabName) => prefab);
+		}
+
+		public static T Create<T>(GameObject prefab, Vector3 position, Quaternion rotation, GameObject parent = null, bool worldPositionStays = false) where T : UnityEngine.Component {
+			return Create(prefab, position, rotation, parent, worldPositionStays).GetRequiredComponent<T>();
+		}
+
+		public static GameObject Create(GameObject prefab, Vector3 position, Quaternion rotation, GameObject parent = null, bool worldPositionStays = false) {
 			return ObjectPoolManager.Instance.CreateInternal(prefab.name, parent, worldPositionStays, (prefabName) => prefab, position, rotation);
 		}
 
@@ -44,7 +52,7 @@ namespace DTObjectPoolManager {
 		private HashSet<GameObject> objectsBeingCleanedUp_ = new HashSet<GameObject>();
 		private Dictionary<string, Stack<GameObject>> objectPools_ = new Dictionary<string, Stack<GameObject>>();
 
-		private GameObject CreateInternal(string prefabName, GameObject parent = null, bool worldPositionStays = false, Func<string, GameObject> prefabProvider = null, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion)) {
+		private GameObject CreateInternal(string prefabName, GameObject parent = null, bool worldPositionStays = false, Func<string, GameObject> prefabProvider = null, Vector3? position = null, Quaternion? rotation = null) {
 			prefabName = prefabName.ToLower();
 
 			GameObject instantiatedPrefab = GetGameObjectForPrefabName(prefabName, prefabProvider, position, rotation);
@@ -96,7 +104,7 @@ namespace DTObjectPoolManager {
 			return objectPools_.GetAndCreateIfNotFound(prefabName);
 		}
 
-		private GameObject GetGameObjectForPrefabName(string prefabName, Func<string, GameObject> prefabProvider, Vector3 position, Quaternion rotation) {
+		private GameObject GetGameObjectForPrefabName(string prefabName, Func<string, GameObject> prefabProvider, Vector3? position, Quaternion? rotation) {
 			Stack<GameObject> recycledObjects = ObjectPoolForPrefabName(prefabName);
 
 			// try to find a recycled object that is usable
@@ -111,8 +119,14 @@ namespace DTObjectPoolManager {
 						return null;
 					}
 
-					recycledObj.transform.position = position;
-					recycledObj.transform.rotation = rotation;
+					if (position != null) {
+						recycledObj.transform.position = (Vector3)position;
+					}
+
+					if (rotation != null) {
+						recycledObj.transform.rotation = (Quaternion)rotation;
+					}
+
 					recycledObj.SetActive(true);
 					return recycledObj;
 				}
@@ -127,7 +141,12 @@ namespace DTObjectPoolManager {
 				return null;
 			}
 
-			GameObject instantiatedPrefab = GameObject.Instantiate(prefab, position, rotation);
+			GameObject instantiatedPrefab = null;
+			if (position != null && rotation != null) {
+				instantiatedPrefab = GameObject.Instantiate(prefab, (Vector3)position, (Quaternion)rotation);
+			} else {
+				instantiatedPrefab = GameObject.Instantiate(prefab);
+			}
 
 			RecyclablePrefab recycleData = instantiatedPrefab.GetOrAddComponent<RecyclablePrefab>();
 			recycleData.prefabName = prefabName;

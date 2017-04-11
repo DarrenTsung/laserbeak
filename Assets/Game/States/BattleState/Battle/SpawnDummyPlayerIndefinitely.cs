@@ -45,7 +45,7 @@ namespace DT.Game.Battle {
 		}
 
 		private void SpawnDummyPlayer() {
-			BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject, position: this.transform.position);
+			BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, this.transform.position, Quaternion.identity, parent: this.gameObject);
 			player.SetSkin(skin_);
 			dummyPlayerRecyclable_ = player.GetComponentInChildren<RecyclablePrefab>();
 			dummyPlayerRecyclable_.OnCleanup += RespawnDummyPlayer;

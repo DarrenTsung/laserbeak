@@ -30,7 +30,7 @@ namespace DT.Game.Battle {
 					chosenSkin = playerSkins_.Random();
 				}
 
-				BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, parent: this.gameObject, position: selectedSpawnPoint.transform.position);
+				BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, selectedSpawnPoint.transform.position, Quaternion.identity, parent: this.gameObject);
 				player.Init(new InputDeviceDelegate(inputDevice), chosenSkin);
 
 				chosenSkins.Add(chosenSkin);
