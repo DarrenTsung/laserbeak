@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186f1ee8967c44e94892d4d1cdd98846, type: 3}
   m_Name: HardAI
   m_EditorClassIdentifier: 
-  skillLevel_: 0
+  skillLevel_: 0.2

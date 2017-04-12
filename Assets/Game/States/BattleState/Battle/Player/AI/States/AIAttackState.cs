@@ -12,6 +12,8 @@ namespace DT.Game.Battle.AI {
 		// PRAGMA MARK - Internal
 		private const float kNearDistance = 5.0f;
 
+		private CoroutineWrapper delayedAttackAction_;
+
 		private BattlePlayerInputChargedLaser chargedLaserComponent_;
 		private BattlePlayerInputChargedLaser ChargedLaserComponent_ {
 			get {
@@ -28,7 +30,12 @@ namespace DT.Game.Battle.AI {
 		}
 
 		protected override void OnStateExited() {
-			// stub
+			ChargedLaserComponent_.OnFullCharge -= HandleFullyChargedLaser;
+
+			if (delayedAttackAction_ != null) {
+				delayedAttackAction_.Cancel();
+				delayedAttackAction_ = null;
+			}
 		}
 
 		protected override void OnStateUpdated() {
@@ -36,10 +43,6 @@ namespace DT.Game.Battle.AI {
 		}
 
 		private void HeadTowardsClosestEnemyPlayer() {
-			if (StateMachine_.Player == null) {
-				return;
-			}
-
 			BattlePlayer closestEnemyPlayer = BattlePlayer.ActivePlayers.Where(p => p != StateMachine_.Player).Min(p => (p.transform.position - StateMachine_.Player.transform.position).magnitude);
 			if (closestEnemyPlayer == null) {
 				StateMachine_.InputState.MovementVector = Vector2.zero;
@@ -65,10 +68,11 @@ namespace DT.Game.Battle.AI {
 		}
 
 		private void HandleFullyChargedLaser() {
-			CoroutineWrapper.DoAfterDelay(StateMachine_.AIConfiguration.RandomReactionTime(), () => {
+			delayedAttackAction_ = CoroutineWrapper.DoAfterDelay(StateMachine_.AIConfiguration.RandomReactionTime(), () => {
 				StateMachine_.InputState.LaserPressed = false;
 				// TODO (darren): leave state properly
-				CoroutineWrapper.DoAfterDelay(StateMachine_.AIConfiguration.RandomReactionTime(), () => {
+				delayedAttackAction_ = CoroutineWrapper.DoAfterDelay(StateMachine_.AIConfiguration.RandomReactionTime(), () => {
+					OnStateExited();
 					OnStateEntered();
 				});
 			});

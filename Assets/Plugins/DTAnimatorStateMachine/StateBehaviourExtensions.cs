@@ -28,5 +28,17 @@ namespace DTAnimatorStateMachine {
 				configurableState.InitializeWithContext(animator, stateMachine, context);
 			}
 		}
+
+		public static void ExitAllStateBehaviours<TStateMachine>(this TStateMachine stateMachine, Animator animator) {
+			StateMachineBehaviour[] behaviours = animator.GetBehaviours<StateMachineBehaviour>();
+			foreach (StateMachineBehaviour behaviour in behaviours) {
+				IStateBehaviour<TStateMachine> configurableState = behaviour as IStateBehaviour<TStateMachine>;
+				if (configurableState == null) {
+					continue;
+				}
+
+				behaviour.OnStateExit(animator, default(AnimatorStateInfo), layerIndex: default(int));
+			}
+		}
 	}
 }

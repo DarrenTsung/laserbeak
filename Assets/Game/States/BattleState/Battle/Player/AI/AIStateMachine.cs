@@ -49,6 +49,8 @@ namespace DT.Game.Battle.AI {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			this.ExitAllStateBehaviours(animator_);
+
 			player_ = null;
 			configuration_ = null;
 
