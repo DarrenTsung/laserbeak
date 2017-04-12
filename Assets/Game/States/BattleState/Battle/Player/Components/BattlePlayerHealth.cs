@@ -12,6 +12,43 @@ using InControl;
 
 namespace DT.Game.Battle.Player {
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
+		// PRAGMA MARK - Public Interface
+		public void TakeDamage(int damage, Vector3 forward) {
+			if (health_ <= 0) {
+				return;
+			}
+
+			forward = forward.normalized;
+
+			health_ -= damage;
+
+			if (health_ <= 0) {
+				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, this.transform.position, Quaternion.identity);
+
+				// NOTE (darren): remove any negative y component from damage forward vector
+				// since gravity + explosive downwards force looks crazy
+				Vector3 explosionForward = forward.SetY(Mathf.Max(forward.y, 0.0f));
+				Vector3 explosionPosition = this.transform.position - (explosionForward.normalized * kExplosionRadius / 4.0f);
+				foreach (Rigidbody rigidbody in playerParts.GetComponentsInChildren<Rigidbody>()) {
+					float distance = (rigidbody.position - explosionPosition).magnitude;
+					float explosionForce = Mathf.Clamp(1.0f - (distance / kExplosionForce), 0.0f, 1.0f);
+					explosionForce *= UnityEngine.Random.Range(0.1f, 1.3f);
+					rigidbody.AddExplosionForce(explosionForce * kExplosionForce, explosionPosition, kExplosionRadius, upwardsModifier: 1.0f);
+				}
+
+				foreach (Renderer renderer in playerParts.GetComponentsInChildren<Renderer>()) {
+					renderer.material = Player_.Skin.BodyMaterial;
+				}
+
+				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));
+
+				ObjectPoolManager.Recycle(this);
+			} else {
+				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.gameObject));
+				Knockback(forward);
+			}
+		}
+
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			health_ = kBaseHealth;
@@ -41,41 +78,13 @@ namespace DT.Game.Battle.Player {
 		private void OnCollisionEnter(Collision collision) {
 			Laser laser = collision.gameObject.GetComponent<Laser>();
 			if (laser == null) {
-				Debug.LogWarning("BattlePlayerHealth - unexpected collision: " + collision.gameObject.FullName());
 				return;
 			}
 
 			Vector3 forward = laser.transform.forward;
 
-			TakeDamage(forward);
+			TakeDamage(1, forward);
 			ObjectPoolManager.Recycle(laser.gameObject);
-		}
-
-		private void TakeDamage(Vector3 forward) {
-			health_--;
-
-			if (health_ <= 0) {
-				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, this.transform.position, Quaternion.identity);
-
-				Vector3 explosionPosition = this.transform.position - (forward.normalized * kExplosionRadius / 4.0f);
-				foreach (Rigidbody rigidbody in playerParts.GetComponentsInChildren<Rigidbody>()) {
-					float distance = (rigidbody.position - explosionPosition).magnitude;
-					float explosionForce = Mathf.Clamp(1.0f - (distance / kExplosionForce), 0.0f, 1.0f);
-					explosionForce *= UnityEngine.Random.Range(0.1f, 1.3f);
-					rigidbody.AddExplosionForce(explosionForce * kExplosionForce, explosionPosition, kExplosionRadius, upwardsModifier: 1.0f);
-				}
-
-				foreach (Renderer renderer in playerParts.GetComponentsInChildren<Renderer>()) {
-					renderer.material = Player_.Skin.BodyMaterial;
-				}
-
-				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));
-
-				ObjectPoolManager.Recycle(this);
-			} else {
-				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.gameObject));
-				Knockback(forward);
-			}
 		}
 
 		private void AnimateDamageEmissionFor(Material[] materials) {

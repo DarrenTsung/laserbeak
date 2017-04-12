@@ -11,7 +11,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Player {
-	public class BattlePlayerPart : MonoBehaviour, IRecycleSetupSubscriber {
+	public class BattlePlayerPart : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			foreach (var collider in colliders_) {
@@ -26,10 +26,18 @@ namespace DT.Game.Battle.Player {
 		}
 
 
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			rigidbody_.velocity = Vector3.zero;
+		}
+
+
 		// PRAGMA MARK - Internal
+		private Rigidbody rigidbody_;
 		private Collider[] colliders_;
 
 		private void Awake() {
+			rigidbody_ = this.GetRequiredComponent<Rigidbody>();
 			colliders_ = this.GetComponentsInChildren<Collider>();
 		}
 	}

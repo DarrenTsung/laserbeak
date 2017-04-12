@@ -61,6 +61,7 @@ namespace DT.Game.Battle.Player {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			activePlayers_.Add(this);
+			Rigidbody.isKinematic = true;
 		}
 
 
