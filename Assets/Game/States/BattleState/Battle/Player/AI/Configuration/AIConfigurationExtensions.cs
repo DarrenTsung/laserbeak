@@ -16,6 +16,10 @@ namespace DT.Game.Battle.AI {
 			return Mathf.Clamp(deviatedReactionTime, kMinReactionTime, kMaxReactionTime);
 		}
 
+		public static float AccuracyInDegrees(this AIConfiguration configuration) {
+			return Mathf.Lerp(kMaxAccuracyInDegrees, kMinAccuracyInDegrees, configuration.SkillLevel);
+		}
+
 
 		// PRAGMA MARK - Internal
 		// Minimum reaction time with visual stimulus - 0.25f seconds
@@ -23,5 +27,8 @@ namespace DT.Game.Battle.AI {
 		private const float kMaxReactionTime = 1.25f;
 
 		private const float kReactionTimeStandardDeviation = 0.05f;
+
+		private const float kMinAccuracyInDegrees = 0.0f;
+		private const float kMaxAccuracyInDegrees = 45.0f;
 	}
 }
