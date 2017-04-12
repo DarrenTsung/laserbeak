@@ -25,6 +25,12 @@ namespace DT.Game.Battle.Lasers {
 
 
 		// PRAGMA MARK - Internal
+		private const float kLaserSpeed = 25.0f;
+
+		// in degrees per second
+		private const float kRotationSpeed = 40.0f;
+		private const float kRotationMaxAngle = 60.0f;
+
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject laserHitParticlePrefab_;
@@ -35,12 +41,6 @@ namespace DT.Game.Battle.Lasers {
 		[SerializeField]
 		private Renderer laserRenderer_;
 
-		private const float kLaserSpeed = 25.0f;
-
-		// in degrees per second
-		private const float kRotationSpeed = 40.0f;
-		private const float kRotationMaxAngle = 60.0f;
-
 		private Rigidbody rigidbody_;
 
 		private void Awake() {
@@ -48,6 +48,9 @@ namespace DT.Game.Battle.Lasers {
 		}
 
 		private void FixedUpdate() {
+			rigidbody_.velocity = Vector3.zero;
+			rigidbody_.angularVelocity = Vector3.zero;
+
 			CurveLaserTowardPlayers();
 
 			Vector3 deltaWorldPosition = this.transform.forward * kLaserSpeed * Time.fixedDeltaTime;
