@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 124327603801706452}
   - component: {fileID: 81099062136004802}
   - component: {fileID: 114586466088040934}
+  - component: {fileID: 114166343620669660}
   m_Layer: 8
   m_Name: BattleCamera
   m_TagString: MainCamera
@@ -638,6 +639,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}
   aiConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb, type: 2}
+--- !u!114 &114166343620669660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1019792573134180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78115e3e66a504706b0b675575ec4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114377684454368588
 MonoBehaviour:
   m_ObjectHideFlags: 1
