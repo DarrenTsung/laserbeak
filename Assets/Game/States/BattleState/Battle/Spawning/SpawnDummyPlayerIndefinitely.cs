@@ -11,6 +11,10 @@ using DT.Game.Battle.Player;
 
 namespace DT.Game.Battle {
 	public class SpawnDummyPlayerIndefinitely : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Public Interface
+		public event Action<BattlePlayer> OnPlayerSpawned = delegate {};
+
+
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			SpawnDummyPlayer();
@@ -45,10 +49,11 @@ namespace DT.Game.Battle {
 		}
 
 		private void SpawnDummyPlayer() {
-			BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, this.transform.position, Quaternion.identity, parent: this.gameObject);
+			BattlePlayer player = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, Vector3.zero, Quaternion.identity, parent: this.gameObject);
 			player.SetSkin(skin_);
 			dummyPlayerRecyclable_ = player.GetComponentInChildren<RecyclablePrefab>();
 			dummyPlayerRecyclable_.OnCleanup += RespawnDummyPlayer;
+			OnPlayerSpawned.Invoke(player);
 		}
 
 		private void RespawnDummyPlayer(RecyclablePrefab unused) {

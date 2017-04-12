@@ -24,8 +24,12 @@ namespace DT.Game.Battle.Player {
 		public event Action OnSkinChanged = delegate {};
 
 		public void Init(IInputDelegate inputDelegate, BattlePlayerSkin skin) {
-			inputController_.InitInput(this, inputDelegate);
+			SetInputDelegate(inputDelegate);
 			SetSkin(skin);
+		}
+
+		public void SetInputDelegate(IInputDelegate inputDelegate) {
+			inputController_.InitInput(this, inputDelegate);
 		}
 
 		public void SetSkin(BattlePlayerSkin skin) {

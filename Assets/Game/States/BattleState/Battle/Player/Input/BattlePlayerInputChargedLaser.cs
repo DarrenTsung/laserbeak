@@ -10,6 +10,10 @@ using InControl;
 
 namespace DT.Game.Battle.Player {
 	public class BattlePlayerInputChargedLaser : BattlePlayerInputComponent {
+		// PRAGMA MARK - Public Interface
+		public event Action OnFullCharge = delegate {};
+
+
 		// PRAGMA MARK - Internal
 		private const float kChargeTime = 0.85f;
 
@@ -87,6 +91,8 @@ namespace DT.Game.Battle.Player {
 				if (previousPercentCharged != 1.0f && percentCharged == 1.0f) {
 					var fullyChargedParticle = ObjectPoolManager.Create<FullyChargedParticle>(fullyChargedParticlePrefab_, parent: chargingLaserContainer_);
 					fullyChargedParticle.SetColor(Player_.Skin.LaserMaterial.GetColor("_EmissionColor"));
+
+					OnFullCharge.Invoke();
 				}
 			}
 
