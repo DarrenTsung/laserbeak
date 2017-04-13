@@ -759,7 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloomIntensity: 0.05
   shader: {fileID: 4800000, guid: 6581f8d2f208b8340b8d59c7bf38cc9a, type: 3}
-  lensDirtTexture: {fileID: 0}
+  lensDirtTexture: {fileID: 2800000, guid: e4384c6346de11f4781af0dea7c0af7a, type: 3}
   lensDirtIntensity: 0.1
   inputIsHDR: 1
 --- !u!114 &114602753346659788
