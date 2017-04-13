@@ -690,6 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputController_: {fileID: 114628784557723942}
+  body_: {fileID: 1074212480659128}
 --- !u!114 &114756151786186018
 MonoBehaviour:
   m_ObjectHideFlags: 1

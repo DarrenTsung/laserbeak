@@ -46,7 +46,7 @@ namespace DT.Game.Battle.Player {
 
 				ObjectPoolManager.Recycle(this);
 			} else {
-				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.gameObject));
+				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.Body));
 				Knockback(forward);
 			}
 		}

@@ -57,6 +57,10 @@ namespace DT.Game.Battle.Player {
 			get { return inputController_; }
 		}
 
+		public GameObject Body {
+			get { return body_; }
+		}
+
 		public BattlePlayerHealth Health {
 			get { return health_; }
 		}
@@ -86,6 +90,9 @@ namespace DT.Game.Battle.Player {
 		[Header("Outlets")]
 		[SerializeField]
 		private BattlePlayerInputController inputController_;
+
+		[SerializeField]
+		private GameObject body_;
 
 		private BattlePlayerHealth health_;
 
