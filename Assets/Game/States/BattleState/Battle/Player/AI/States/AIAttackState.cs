@@ -10,9 +10,13 @@ using DTObjectPoolManager;
 namespace DT.Game.Battle.AI {
 	public class AIAttackState : DTStateMachineBehaviour<AIStateMachine> {
 		// PRAGMA MARK - Internal
-		private const float kNearDistance = 5.0f;
+		private const float kNearDistance = 10.0f;
+		private const float kMovementVectorLerpSpeed = 2.0f;
 
 		private CoroutineWrapper delayedAttackAction_;
+
+		private BattlePlayer target_;
+		private Vector3? fuzzyTargetPosition_;
 
 		private BattlePlayerInputChargedLaser chargedLaserComponent_;
 		private BattlePlayerInputChargedLaser ChargedLaserComponent_ {
@@ -25,6 +29,7 @@ namespace DT.Game.Battle.AI {
 		}
 
 		protected override void OnStateEntered() {
+			fuzzyTargetPosition_ = null;
 			StateMachine_.InputState.LaserPressed = true;
 			ChargedLaserComponent_.OnFullCharge += HandleFullyChargedLaser;
 		}
@@ -39,32 +44,87 @@ namespace DT.Game.Battle.AI {
 		}
 
 		protected override void OnStateUpdated() {
-			HeadTowardsClosestEnemyPlayer();
+			UpdateTarget();
+
+			if (target_ == null) {
+				return;
+			}
+
+			UpdateFuzzyTargetPosition();
+			HeadTowardsFuzzyTargetPosition();
 		}
 
-		private void HeadTowardsClosestEnemyPlayer() {
+		private void UpdateTarget() {
+			// if target is valid, do nothing
+			if (target_ != null && BattlePlayer.ActivePlayers.Contains(target_)) {
+				StateMachine_.GizmoOutlet.SetSphere("AttackTarget", target_.transform.position, radius: 0.5f);
+				return;
+			}
+
 			BattlePlayer closestEnemyPlayer = BattlePlayer.ActivePlayers.Where(p => p != StateMachine_.Player).Min(p => (p.transform.position - StateMachine_.Player.transform.position).magnitude);
-			if (closestEnemyPlayer == null) {
+			target_ = closestEnemyPlayer;
+
+			fuzzyTargetPosition_ = null;
+		}
+
+		private void UpdateFuzzyTargetPosition() {
+			Vector3 currentPosition = StateMachine_.Player.transform.position;
+			float accuracyInDegrees = StateMachine_.AIConfiguration.AccuracyInDegrees();
+
+			Vector3 targetVector = target_.transform.position - currentPosition;
+			Quaternion rotationToTarget = Quaternion.LookRotation(targetVector);
+
+			if (fuzzyTargetPosition_ != null) {
+				// check if target has moved out of accurancy cone, if so recompute fuzzyTargetPosition_
+				Vector3 targetPositionVector = (Vector3)fuzzyTargetPosition_ - currentPosition;
+				Quaternion rotationToTargetPosition = Quaternion.LookRotation(targetPositionVector);
+
+				float angleToTarget = Quaternion.Angle(rotationToTarget, rotationToTargetPosition);
+				if (angleToTarget > accuracyInDegrees) {
+					fuzzyTargetPosition_ = null;
+				}
+			}
+
+			if (fuzzyTargetPosition_ != null) {
+				// update fuzzyTargetPosition_ to have same distance as target_ currently does
+				fuzzyTargetPosition_ = currentPosition + (((Vector3)fuzzyTargetPosition_ - currentPosition).normalized * targetVector.magnitude);
+				return;
+			}
+
+			Vector3 rotationToTargetEuler = rotationToTarget.eulerAngles;
+			// NOTE (darren): divide by three since 3 * standardDeviation is 95% percentile of generated normal deviation
+			float newYRotation = MathUtil.SampleGaussian(rotationToTargetEuler.y, accuracyInDegrees / 3.0f);
+			rotationToTargetEuler = rotationToTargetEuler.SetY(newYRotation);
+
+			Quaternion rotationToGeneratedTargetPosition = Quaternion.Euler(rotationToTargetEuler);
+
+			fuzzyTargetPosition_ = currentPosition + (rotationToGeneratedTargetPosition * Vector3.forward * targetVector.magnitude);
+		}
+
+		private void HeadTowardsFuzzyTargetPosition() {
+			if (fuzzyTargetPosition_ == null) {
 				StateMachine_.InputState.MovementVector = Vector2.zero;
 				return;
 			}
 
-			Vector3 distance = closestEnemyPlayer.transform.position - StateMachine_.Player.transform.position;
-			Vector2 xzDirection = new Vector2(distance.x, distance.z);
+			StateMachine_.GizmoOutlet.SetSphere("AttackFuzzyTargetPositionSphere", (Vector3)fuzzyTargetPosition_, radius: 0.2f);
+			StateMachine_.GizmoOutlet.SetLineTarget("AttackFuzzyTargetPosition", (Vector3)fuzzyTargetPosition_);
+			Vector3 fuzzyTargetPositionVector = (Vector3)fuzzyTargetPosition_ - StateMachine_.Player.transform.position;
+			Vector2 xzDirection = fuzzyTargetPositionVector.Vector2XZValue();
 			if (xzDirection.magnitude <= kNearDistance) {
+				// don't move if already near player position and pointing to fuzzyTargetPosition_
 				Quaternion rotation = StateMachine_.Player.transform.rotation;
-				Quaternion rotationToTarget = Quaternion.LookRotation(distance);
+				Quaternion rotationToTarget = Quaternion.LookRotation(fuzzyTargetPositionVector);
 
 				// if accurate enough then don't move anymore
 				float angleToTarget = Quaternion.Angle(rotation, rotationToTarget);
-				if (angleToTarget < StateMachine_.AIConfiguration.AccuracyInDegrees()) {
-					// don't move if already near player position
+				if (angleToTarget < 1.0f) {
 					StateMachine_.InputState.MovementVector = Vector2.zero;
 					return;
 				}
 			}
 
-			StateMachine_.InputState.MovementVector = xzDirection.normalized;
+			StateMachine_.InputState.MovementVector = Vector2.Lerp(StateMachine_.InputState.MovementVector, xzDirection.normalized, kMovementVectorLerpSpeed * Time.deltaTime);
 		}
 
 		private void HandleFullyChargedLaser() {

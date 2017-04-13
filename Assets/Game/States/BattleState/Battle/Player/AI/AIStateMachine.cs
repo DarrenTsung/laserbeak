@@ -27,6 +27,10 @@ namespace DT.Game.Battle.AI {
 			get { return configuration_; }
 		}
 
+		public GizmoOutlet GizmoOutlet {
+			get; private set;
+		}
+
 		public void Init(BattlePlayer player, AIConfiguration configuration) {
 			player_ = player;
 			configuration_ = configuration;
@@ -75,6 +79,8 @@ namespace DT.Game.Battle.AI {
 		private void Awake() {
 			inputState_ = this.GetRequiredComponent<AIInputState>();
 			animator_ = this.GetRequiredComponent<Animator>();
+
+			GizmoOutlet = this.GetRequiredComponent<GizmoOutlet>();
 		}
 
 		private void RecycleSelf(RecyclablePrefab unused) {

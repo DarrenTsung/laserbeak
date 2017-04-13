@@ -17,7 +17,9 @@ namespace DT.Game.Battle {
 
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
-			SpawnDummyPlayer();
+			if (this.gameObject.activeSelf) {
+				SpawnDummyPlayer();
+			}
 		}
 
 

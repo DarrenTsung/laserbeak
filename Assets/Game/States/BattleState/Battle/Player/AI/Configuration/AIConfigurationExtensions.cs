@@ -29,6 +29,6 @@ namespace DT.Game.Battle.AI {
 		private const float kReactionTimeStandardDeviation = 0.05f;
 
 		private const float kMinAccuracyInDegrees = 0.0f;
-		private const float kMaxAccuracyInDegrees = 45.0f;
+		private const float kMaxAccuracyInDegrees = 25.0f;
 	}
 }
