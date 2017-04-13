@@ -44,11 +44,13 @@ namespace DT.Game.Battle.Player {
 		private float chargedTime_ = 0.0f;
 
 		private ChargingLaser chargingLaser_ = null;
+		private FullyChargedParticle fullyChargedParticle_ = null;
 
 		protected override void Cleanup() {
 			chargedTime_ = 0.0f;
 			chargingLaserContainer_.transform.RecycleAllChildren();
 			chargingLaser_ = null;
+			fullyChargedParticle_ = null;
 		}
 
 		private void UpdateWeightModification() {
@@ -89,8 +91,8 @@ namespace DT.Game.Battle.Player {
 			if (chargingLaser_ != null) {
 				chargingLaser_.UpdateWithPercentage(percentCharged);
 				if (previousPercentCharged != 1.0f && percentCharged == 1.0f) {
-					var fullyChargedParticle = ObjectPoolManager.Create<FullyChargedParticle>(fullyChargedParticlePrefab_, parent: chargingLaserContainer_);
-					fullyChargedParticle.SetColor(Player_.Skin.LaserMaterial.GetColor("_EmissionColor"));
+					fullyChargedParticle_ = ObjectPoolManager.Create<FullyChargedParticle>(fullyChargedParticlePrefab_, parent: chargingLaserContainer_);
+					fullyChargedParticle_.SetColor(Player_.Skin.LaserMaterial.GetColor("_EmissionColor"));
 
 					OnFullCharge.Invoke();
 				}
@@ -103,6 +105,14 @@ namespace DT.Game.Battle.Player {
 			Laser laser = ObjectPoolManager.Create<Laser>(laserPrefab_, position: chargingLaserContainer_.transform.position, rotation: chargingLaserContainer_.transform.rotation);
 			laser.SetMaterial(Player_.Skin.LaserMaterial);
 			Recoil();
+			DisperseFullyChargedParticle();
+		}
+
+		private void DisperseFullyChargedParticle() {
+			if (fullyChargedParticle_ != null) {
+				fullyChargedParticle_.Disperse();
+				fullyChargedParticle_ = null;
+			}
 		}
 
 		private void Recoil() {
