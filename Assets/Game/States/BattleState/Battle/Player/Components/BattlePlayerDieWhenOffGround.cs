@@ -51,8 +51,7 @@ namespace DT.Game.Battle.Player {
 				dustParticleSystem_.SetEmissionRateOverDistance(0.0f);
 				CoroutineWrapper.DoAfterDelay(kDeathDelay, () => {
 					// kill self
-					var health = Player_.GetComponentInChildren<BattlePlayerHealth>();
-					health.TakeDamage(999, Player_.Rigidbody.velocity);
+					Player_.Health.TakeDamage(BattlePlayerHealth.kMaxDamage, Player_.Rigidbody.velocity);
 				});
 			}
 		}

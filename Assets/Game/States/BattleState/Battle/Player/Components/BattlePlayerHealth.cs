@@ -13,6 +13,8 @@ using InControl;
 namespace DT.Game.Battle.Player {
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Public Interface
+		public const int kMaxDamage = 999;
+
 		public void TakeDamage(int damage, Vector3 forward) {
 			if (health_ <= 0) {
 				return;
