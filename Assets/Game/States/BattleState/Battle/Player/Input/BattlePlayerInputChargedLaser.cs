@@ -13,6 +13,10 @@ namespace DT.Game.Battle.Player {
 		// PRAGMA MARK - Public Interface
 		public event Action OnFullCharge = delegate {};
 
+		public bool FullyCharged {
+			get { return chargedTime_ >= kChargeTime; }
+		}
+
 
 		// PRAGMA MARK - Internal
 		private const float kChargeTime = 0.85f;

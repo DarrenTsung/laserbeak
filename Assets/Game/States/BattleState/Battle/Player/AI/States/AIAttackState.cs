@@ -31,7 +31,11 @@ namespace DT.Game.Battle.AI {
 		protected override void OnStateEntered() {
 			fuzzyTargetPosition_ = null;
 			StateMachine_.InputState.LaserPressed = true;
-			ChargedLaserComponent_.OnFullCharge += HandleFullyChargedLaser;
+			if (ChargedLaserComponent_.FullyCharged) {
+				HandleFullyChargedLaser();
+			} else {
+				ChargedLaserComponent_.OnFullCharge += HandleFullyChargedLaser;
+			}
 		}
 
 		protected override void OnStateExited() {
