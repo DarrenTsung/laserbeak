@@ -54,11 +54,11 @@ namespace DT.Game.Battle.AI {
 					break;
 				}
 
-				stateMachine_.InputState.MovementVector = (xzPosition - currentXZPosition).normalized;
+				stateMachine_.InputState.LerpMovementVectorTo(xzPosition - currentXZPosition);
 				yield return null;
 			}
 
-			stateMachine_.InputState.MovementVector = Vector2.zero;
+			stateMachine_.InputState.LerpMovementVectorTo(Vector2.zero);
 			coroutine_ = CoroutineWrapper.DoAfterDelay(Math.Max(0.0f, MathUtil.SampleGaussian(0.0f, kIdleStandardDeviation)), () => {
 				MoveToRandomNearbyPosition();
 			});

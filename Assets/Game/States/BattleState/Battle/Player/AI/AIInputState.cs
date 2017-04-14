@@ -11,10 +11,15 @@ using InControl;
 namespace DT.Game.Battle.AI {
 	public class AIInputState : MonoBehaviour, IInputDelegate {
 		// PRAGMA MARK - Public Interface
-		[Header("Properties")]
-		[ReadOnly]
-		public Vector2 MovementVector;
+		public Vector2 MovementVector {
+			get { return movementVector_; }
+		}
 
+		public void LerpMovementVectorTo(Vector2 vector) {
+			movementVector_ = Vector2.Lerp(movementVector_, vector.normalized, kMovementVectorLerpSpeed * Time.deltaTime);
+		}
+
+		[Header("Properties")]
 		[ReadOnly]
 		public bool LaserPressed;
 
@@ -41,7 +46,12 @@ namespace DT.Game.Battle.AI {
 
 
 		// PRAGMA MARK - Internal
+		private const float kMovementVectorLerpSpeed = 2.0f;
+
 		[SerializeField, ReadOnly]
 		private bool dashPressed_ = false;
+
+		[SerializeField, ReadOnly]
+		public Vector2 movementVector_;
 	}
 }

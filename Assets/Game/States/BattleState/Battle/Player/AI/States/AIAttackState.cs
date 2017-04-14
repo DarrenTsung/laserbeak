@@ -11,7 +11,6 @@ namespace DT.Game.Battle.AI {
 	public class AIAttackState : DTStateMachineBehaviour<AIStateMachine> {
 		// PRAGMA MARK - Internal
 		private const float kNearDistance = 10.0f;
-		private const float kMovementVectorLerpSpeed = 2.0f;
 
 		private CoroutineWrapper delayedAttackAction_;
 
@@ -108,7 +107,7 @@ namespace DT.Game.Battle.AI {
 
 		private void HeadTowardsFuzzyTargetPosition() {
 			if (fuzzyTargetPosition_ == null) {
-				StateMachine_.InputState.MovementVector = Vector2.zero;
+				StateMachine_.InputState.LerpMovementVectorTo(Vector2.zero);
 				return;
 			}
 
@@ -124,12 +123,12 @@ namespace DT.Game.Battle.AI {
 				// if accurate enough then don't move anymore
 				float angleToTarget = Quaternion.Angle(rotation, rotationToTarget);
 				if (angleToTarget < 1.0f) {
-					StateMachine_.InputState.MovementVector = Vector2.zero;
+					StateMachine_.InputState.LerpMovementVectorTo(Vector2.zero);
 					return;
 				}
 			}
 
-			StateMachine_.InputState.MovementVector = Vector2.Lerp(StateMachine_.InputState.MovementVector, xzDirection.normalized, kMovementVectorLerpSpeed * Time.deltaTime);
+			StateMachine_.InputState.LerpMovementVectorTo(xzDirection);
 		}
 
 		private void HandleFullyChargedLaser() {
