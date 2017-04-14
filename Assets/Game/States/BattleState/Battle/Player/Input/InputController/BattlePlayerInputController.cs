@@ -13,7 +13,7 @@ namespace DT.Game.Battle.Player {
 		public enum PriorityKey {
 			Internal = 0,
 			Movement = 1,
-			Death = 10,
+			OffGround = 10,
 		}
 
 		public void DisableInput(PriorityKey key) {

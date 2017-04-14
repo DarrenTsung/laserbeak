@@ -11,11 +11,17 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Player {
-	public class BattlePlayerDieWhenOffGround : BattlePlayerComponent, IRecycleSetupSubscriber {
+	public class BattlePlayerDieWhenOffGround : BattlePlayerComponent, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			dustParticleSystem_.SetEmissionRateOverDistance(kDustParticleEmissionRate);
 			enabled_ = true;
+		}
+
+
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			enabled_ = false;
 		}
 
 
@@ -46,7 +52,7 @@ namespace DT.Game.Battle.Player {
 			int resultCount = Physics.RaycastNonAlloc(new Ray(this.transform.position, -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: kLayerMask);
 			if (resultCount <= 0) {
 				enabled_ = false;
-				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.Death);
+				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
 				Player_.Rigidbody.isKinematic = false;
 				dustParticleSystem_.SetEmissionRateOverDistance(0.0f);
 				CoroutineWrapper.DoAfterDelay(kDeathDelay, () => {
