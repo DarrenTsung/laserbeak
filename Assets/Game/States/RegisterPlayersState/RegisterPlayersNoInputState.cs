@@ -19,6 +19,10 @@ namespace DT.Game.RegisterPlayers {
 
 		protected override void OnStateEntered() {
 			foreach (InputDevice inputDevice in InputManager.Devices) {
+				if (RegisteredPlayers.IsInputDeviceAlreadyRegistered(inputDevice)) {
+					continue;
+				}
+
 				Player player = new Player(inputDevice);
 
 				StringBuilder nicknameBuilder = new StringBuilder();

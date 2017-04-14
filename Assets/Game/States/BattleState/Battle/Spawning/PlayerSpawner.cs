@@ -12,9 +12,9 @@ using DT.Game.Battle.Players;
 using DT.Game.Players;
 
 namespace DT.Game.Battle {
-	public class SpawnPlayers : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
-		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
-		public void OnRecycleSetup() {
+	public static class PlayerSpawner {
+		// PRAGMA MARK - Static Public Interface
+		public static void SpawnAllPlayers() {
 			HashSet<PlayerSpawnPoint> chosenSpawnPoints = new HashSet<PlayerSpawnPoint>();
 			PlayerSpawnPoint[] spawnPoints = UnityEngine.Object.FindObjectsOfType<PlayerSpawnPoint>();
 
@@ -29,26 +29,25 @@ namespace DT.Game.Battle {
 			}
 		}
 
-
-		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
-		public void OnRecycleCleanup() {
-			this.transform.RecycleAllChildren();
+		public static void CleanupAllPlayers() {
+			// ToArray() since we are still listening to OnCleanup which will modify dictionary
+			foreach (BattlePlayer battlePlayer in playerMap_.Values.ToArray()) {
+				ObjectPoolManager.Recycle(battlePlayer);
+			}
+			playerMap_.Clear();
 		}
 
 
 		// PRAGMA MARK - Internal
-		[SerializeField]
-		private GameObject playerPrefab_;
+		private static readonly Dictionary<Player, BattlePlayer> playerMap_ = new Dictionary<Player, BattlePlayer>();
 
-		private readonly Dictionary<Player, BattlePlayer> playerMap_ = new Dictionary<Player, BattlePlayer>();
-
-		private void SpawnPlayerFor(Player player, PlayerSpawnPoint spawnPoint) {
+		private static void SpawnPlayerFor(Player player, PlayerSpawnPoint spawnPoint) {
 			if (PlayerExistsFor(player)) {
 				Debug.LogWarning("Could not spawn player for: " + player);
 				return;
 			}
 
-			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(playerPrefab_, spawnPoint.transform.position, Quaternion.identity, parent: this.gameObject);
+			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GameConstants.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity);
 			battlePlayer.Init(new InputDeviceDelegate(player.InputDevice), player.Skin);
 
 			RecyclablePrefab recyclablePrefab = battlePlayer.GetComponent<RecyclablePrefab>();
@@ -62,11 +61,11 @@ namespace DT.Game.Battle {
 			playerMap_[player] = battlePlayer;
 		}
 
-		private bool PlayerExistsFor(Player player) {
+		private static bool PlayerExistsFor(Player player) {
 			return playerMap_.ContainsKey(player);
 		}
 
-		private void CleanupPlayerFor(Player player) {
+		private static void CleanupPlayerFor(Player player) {
 			playerMap_.Remove(player);
 		}
 	}

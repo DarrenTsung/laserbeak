@@ -11,12 +11,11 @@ namespace DT.Game.Battle {
 	public class BattleState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
 		protected override void OnStateEntered() {
-			// TODO (darren): spawn players
-			// stub
+			PlayerSpawner.SpawnAllPlayers();
 		}
 
 		protected override void OnStateExited() {
-			// stub
+			PlayerSpawner.CleanupAllPlayers();
 		}
 
 		protected override void OnStateUpdated() {

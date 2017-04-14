@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
@@ -14,7 +15,16 @@ namespace DT.Game.Players {
 		public static event Action OnPlayerAdded = delegate {};
 		public static event Action OnPlayerRemoved = delegate {};
 
+		public static bool IsInputDeviceAlreadyRegistered(InputDevice inputDevice) {
+			return players_.Any(p => p.InputDevice == inputDevice);
+		}
+
 		public static void Add(Player player) {
+			if (IsInputDeviceAlreadyRegistered(player.InputDevice)) {
+				Debug.LogWarning("Cannot add player: " + player + " because input device: " + player.InputDevice + " is already registered!");
+				return;
+			}
+
 			players_.Add(player);
 			OnPlayerAdded.Invoke();
 		}
