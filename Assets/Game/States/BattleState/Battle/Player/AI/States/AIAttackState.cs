@@ -47,6 +47,7 @@ namespace DT.Game.Battle.AI {
 			UpdateTarget();
 
 			if (target_ == null) {
+				StateMachine_.SwitchState(AIStateMachine.State.Idle);
 				return;
 			}
 
@@ -130,10 +131,10 @@ namespace DT.Game.Battle.AI {
 		private void HandleFullyChargedLaser() {
 			delayedAttackAction_ = CoroutineWrapper.DoAfterDelay(StateMachine_.AIConfiguration.RandomReactionTime(), () => {
 				StateMachine_.InputState.LaserPressed = false;
-				// TODO (darren): leave state properly
+
+				// NOTE (darren): why delay here? to simulate AI watching laser hit / miss target :)
 				delayedAttackAction_ = CoroutineWrapper.DoAfterDelay(StateMachine_.AIConfiguration.RandomReactionTime(), () => {
-					OnStateExited();
-					OnStateEntered();
+					StateMachine_.SwitchState(AIStateMachine.State.Idle);
 				});
 			});
 		}

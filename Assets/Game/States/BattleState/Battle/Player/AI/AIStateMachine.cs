@@ -13,6 +13,7 @@ namespace DT.Game.Battle.AI {
 		// PRAGMA MARK - Public Interface
 		public enum State {
 			Attack,
+			Idle,
 		}
 
 		public AIInputState InputState {

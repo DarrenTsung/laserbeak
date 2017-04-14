@@ -65,6 +65,19 @@ namespace DT.Game.Battle.Player {
 			playerInputComponents_ = this.GetComponentsInChildren<BattlePlayerInputComponent>();
 		}
 
+		[SerializeField]
+		private bool debug_ = false;
+		private void Update() {
+			if (!debug_) {
+				return;
+			}
+
+			foreach (var kvp in priorityKeyEnabledMap_) {
+				Debug.Log("kvp.Key: " + kvp.Key);
+				Debug.Log("kvp.Value: " + kvp.Value);
+			}
+		}
+
 		private void RefreshEnabledStatus() {
 			bool enabled = priorityKeyEnabledMap_.Max(kvp => kvp.Key).Value;
 			foreach (var component in playerInputComponents_) {
