@@ -8,7 +8,7 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputChargedLaser : BattlePlayerInputComponent {
 		// PRAGMA MARK - Public Interface
 		public event Action OnFullCharge = delegate {};

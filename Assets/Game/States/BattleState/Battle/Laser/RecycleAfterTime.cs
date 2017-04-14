@@ -7,7 +7,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public class RecycleAfterTime : MonoBehaviour, IRecycleSetupSubscriber {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {

@@ -8,7 +8,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	[CreateAssetMenu(fileName = "BattlePlayerSkin", menuName = "Game/BattlePlayerSkin")]
 	public class BattlePlayerSkin : ScriptableObject {
 		// PRAGMA MARK - Public Interface

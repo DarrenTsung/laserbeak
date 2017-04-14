@@ -7,7 +7,7 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public class InputDeviceDelegate : IInputDelegate {
 		// PRAGMA MARK - Public Interface
 		public InputDeviceDelegate(InputDevice inputDevice) {

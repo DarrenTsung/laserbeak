@@ -6,7 +6,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputMovement : BattlePlayerInputComponent {
 		// PRAGMA MARK - Internal
 		private const float kPlayerSpeed = 4.8f;

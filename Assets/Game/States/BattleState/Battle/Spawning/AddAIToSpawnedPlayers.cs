@@ -7,7 +7,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
-using DT.Game.Battle.Player;
+using DT.Game.Battle.Players;
 
 namespace DT.Game.Battle.AI {
 	[RequireComponent(typeof(SpawnDummyPlayerIndefinitely))]

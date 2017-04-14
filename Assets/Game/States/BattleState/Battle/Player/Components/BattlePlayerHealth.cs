@@ -10,7 +10,7 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public const int kMaxDamage = 999;

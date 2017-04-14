@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-using DT.Game.Battle.Player;
+using DT.Game.Battle.Players;
 using DT.Game.Players;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;

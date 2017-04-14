@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-using DT.Game.Battle.Player;
+using DT.Game.Battle.Players;
 using DTAnimatorStateMachine;
 using DTEasings;
 using DTObjectPoolManager;

@@ -7,7 +7,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputController : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public enum PriorityKey {

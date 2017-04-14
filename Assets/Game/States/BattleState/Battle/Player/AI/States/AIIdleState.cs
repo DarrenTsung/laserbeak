@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-using DT.Game.Battle.Player;
+using DT.Game.Battle.Players;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 

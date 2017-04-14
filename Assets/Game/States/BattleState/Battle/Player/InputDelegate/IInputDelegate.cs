@@ -7,7 +7,7 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public interface IInputDelegate {
 		Vector2 MovementVector {
 			get;

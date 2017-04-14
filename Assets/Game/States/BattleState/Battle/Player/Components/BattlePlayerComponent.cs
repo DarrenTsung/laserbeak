@@ -7,7 +7,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
-namespace DT.Game.Battle.Player {
+namespace DT.Game.Battle.Players {
 	public class BattlePlayerComponent : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public void Init(BattlePlayer player) {
