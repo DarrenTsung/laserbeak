@@ -24,7 +24,7 @@ namespace DT.Game.Players {
 			OnPlayerRemoved.Invoke();
 		}
 
-		public static IList<Player> All {
+		public static IList<Player> AllPlayers {
 			get { return players_; }
 		}
 

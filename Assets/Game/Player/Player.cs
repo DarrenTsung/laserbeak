@@ -44,13 +44,32 @@ namespace DT.Game.Players {
 			}
 		}
 
+		// TODO (darren): will probably need an input device recovery system (if controller gets unplugged)
+		// will probably require InputDevice to be public set
+		public InputDevice InputDevice {
+			get { return inputDevice_; }
+		}
+
+		public Player(InputDevice inputDevice) {
+			inputDevice_ = inputDevice;
+		}
+
 
 		// PRAGMA MARK - Internal
-		private BattlePlayerSkin skin_;
-		private string nickname_;
+		private BattlePlayerSkin skin_ = null;
+		private string nickname_ = "";
+		private InputDevice inputDevice_;
 
 		private bool IsValidNickname(string nickname) {
-			return nickname.Length == 3;
+			if (nickname == null) {
+				return false;
+			}
+
+			if (nickname.Length > 3) {
+				return false;
+			}
+
+			return true;
 		}
 	}
 }
