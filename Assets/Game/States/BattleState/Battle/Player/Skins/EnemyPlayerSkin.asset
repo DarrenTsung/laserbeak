@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: EnemyPlayerSkin
   m_EditorClassIdentifier: 
   bodyMaterial_: {fileID: 2100000, guid: d51ff343116fa481fb7c0d7ec1b4b314, type: 2}
-  laserMaterial_: {fileID: 2100000, guid: 8682526435cee4eb89f88469de9ffd01, type: 2}
+  laserMaterial_: {fileID: 2100000, guid: c955e315cf3ff4901882649a6e7eb9ee, type: 2}

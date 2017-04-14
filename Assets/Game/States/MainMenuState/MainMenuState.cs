@@ -5,6 +5,8 @@ using UnityEngine;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 
+using DT.Game.Battle;
+
 namespace DT.Game.MainMenu {
 	public class MainMenuState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
@@ -14,6 +16,8 @@ namespace DT.Game.MainMenu {
 		private MainMenu mainMenu_;
 
 		protected override void OnStateEntered() {
+			ArenaManager.Instance.LoadRandomArena();
+
 			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
 			mainMenu_.SetPlayHandler(() => StateMachine_.StartBattle());
 		}
