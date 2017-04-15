@@ -24,10 +24,7 @@ namespace DT.Game.Players {
 			}
 		}
 
-
 		private static InGamePlayerCollectionView collectionView_;
-
-
 
 
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
