@@ -8,6 +8,7 @@ using DTObjectPoolManager;
 using InControl;
 
 using DT.Game.GameModes;
+using DT.Game.Players;
 
 namespace DT.Game.Battle {
 	public class BattleState : DTStateMachineBehaviour<GameStateMachine> {
@@ -18,6 +19,8 @@ namespace DT.Game.Battle {
 			// cleanup in-case
 			CleanupCurrentGameMode();
 
+			InGamePlayerCollectionView.Show();
+
 			// TODO (darren): filtering based on options will be here
 			currentGameMode_ = GameConstants.Instance.GameModes.Random();
 			currentGameMode_.Activate(HandleGameModeFinished);
@@ -25,6 +28,8 @@ namespace DT.Game.Battle {
 
 		protected override void OnStateExited() {
 			CleanupCurrentGameMode();
+
+			InGamePlayerCollectionView.Hide();
 		}
 
 		private void HandleGameModeFinished() {

@@ -441,7 +441,7 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
-    1: DT_COMMAND_PALETTE
+    1: DT_COMMAND_PALETTE;TMPRO
     7: DT_COMMAND_PALETTE
   platformArchitecture: {}
   scriptingBackend:

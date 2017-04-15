@@ -65,10 +65,6 @@ namespace DT.Game.Players {
 				return false;
 			}
 
-			if (nickname.Length > 3) {
-				return false;
-			}
-
 			return true;
 		}
 	}
