@@ -57,7 +57,7 @@ namespace DT.Game.Battle {
 				return;
 			}
 
-			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GameConstants.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity, parent: ArenaManager.Instance.LoadedArena.GameObject);
+			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GamePrefabs.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity, parent: ArenaManager.Instance.LoadedArena.GameObject);
 			if (player.InputDevice != null) {
 				battlePlayer.Init(new InputDeviceDelegate(player.InputDevice), player.Skin);
 			} else {

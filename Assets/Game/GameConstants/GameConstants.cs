@@ -14,31 +14,20 @@ using DT.Game.GameModes;
 namespace DT.Game {
 	public class GameConstants : Singleton<GameConstants> {
 		// PRAGMA MARK - Public Interface
-		public GameObject PlayerPrefab {
-			get { return playerPrefab_; }
-		}
-
 		public GameMode[] GameModes {
 			get { return gameModes_; }
 		}
 
 		public void ConfigureWithSubstitutePlayerAI(BattlePlayer player) {
-			AIStateMachine ai = ObjectPoolManager.Create<AIStateMachine>(aiPrefab_, parent: player.gameObject);
+			AIStateMachine ai = ObjectPoolManager.Create<AIStateMachine>(GamePrefabs.Instance.AIPrefab, parent: player.gameObject);
 			ai.Init(player, substitutePlayerAIConfiguration_);
 		}
 
 
 		// PRAGMA MARK - Internal
-		[SerializeField]
-		private GameObject playerPrefab_;
-
-		[Space]
+		[Header("Properties")]
 		[SerializeField]
 		private GameMode[] gameModes_;
-
-		[Space]
-		[SerializeField]
-		private GameObject aiPrefab_;
 
 		[SerializeField]
 		private AIConfiguration substitutePlayerAIConfiguration_;
