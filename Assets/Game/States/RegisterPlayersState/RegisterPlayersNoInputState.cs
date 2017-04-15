@@ -36,6 +36,17 @@ namespace DT.Game.RegisterPlayers {
 				RegisteredPlayers.Add(player);
 			}
 
+			// TODO (darren): do this is a different way later
+			// when we have actual AI selection
+			int missingPlayersCount = 4 - RegisteredPlayers.AllPlayers.Count;
+			for (int i = 1; i <= missingPlayersCount; i++) {
+				Player player = new Player(null);
+				player.Nickname = "AI" + i;
+				player.Skin = GetBestSkin();
+
+				RegisteredPlayers.Add(player);
+			}
+
 			StateMachine_.StartBattle();
 		}
 

@@ -16,6 +16,11 @@ namespace DT.Game.Players {
 		public static event Action OnPlayerRemoved = delegate {};
 
 		public static bool IsInputDeviceAlreadyRegistered(InputDevice inputDevice) {
+			// null inputDevice represents AI player
+			if (inputDevice == null) {
+				return false;
+			}
+
 			return players_.Any(p => p.InputDevice == inputDevice);
 		}
 

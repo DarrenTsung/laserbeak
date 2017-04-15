@@ -29,8 +29,8 @@ namespace DT.Game.Battle {
 
 		private void CleanupLoadedArena() {
 			if (loadedArena_ != null) {
-				loadedArena_.Dispose();
 				ObjectPoolManager.Recycle(loadedArena_.GameObject);
+				loadedArena_.Dispose();
 				loadedArena_ = null;
 			}
 		}

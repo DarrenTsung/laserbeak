@@ -24,6 +24,11 @@ namespace DT.Game.MainMenu {
 					HandlePlayPressed();
 				}
 			}
+
+			// TODO (darren): custom profiles binding later
+			if (Input.GetKeyDown(KeyCode.Space)) {
+				HandlePlayPressed();
+			}
 		}
 
 		private void HandlePlayPressed() {

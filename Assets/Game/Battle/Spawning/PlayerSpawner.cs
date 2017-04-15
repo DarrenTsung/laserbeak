@@ -14,14 +14,20 @@ using DT.Game.Players;
 namespace DT.Game.Battle {
 	public static class PlayerSpawner {
 		// PRAGMA MARK - Static Public Interface
+		public static event Action OnSpawnedPlayerRemoved = delegate {};
+
 		public static void SpawnAllPlayers() {
 			HashSet<PlayerSpawnPoint> chosenSpawnPoints = new HashSet<PlayerSpawnPoint>();
 			IList<PlayerSpawnPoint> spawnPoints = ArenaManager.Instance.LoadedArena.PlayerSpawnPoints;
 
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
 				PlayerSpawnPoint selectedSpawnPoint = spawnPoints.Random();
-				if (chosenSpawnPoints.Contains(selectedSpawnPoint) && !spawnPoints.All(chosenSpawnPoints.Contains)) {
-					continue;
+				// if not all spawn points are chosen
+				if (!spawnPoints.All(chosenSpawnPoints.Contains)) {
+					// keep randomizing till find non-chosen spawn point
+					while (chosenSpawnPoints.Contains(selectedSpawnPoint)) {
+						selectedSpawnPoint = spawnPoints.Random();
+					}
 				}
 
 				chosenSpawnPoints.Add(selectedSpawnPoint);
@@ -37,6 +43,10 @@ namespace DT.Game.Battle {
 			playerMap_.Clear();
 		}
 
+		public static IEnumerable<BattlePlayer> AllSpawnedPlayers {
+			get { return playerMap_.Values; }
+		}
+
 
 		// PRAGMA MARK - Internal
 		private static readonly Dictionary<Player, BattlePlayer> playerMap_ = new Dictionary<Player, BattlePlayer>();
@@ -48,13 +58,19 @@ namespace DT.Game.Battle {
 			}
 
 			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GameConstants.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity, parent: ArenaManager.Instance.LoadedArena.GameObject);
-			battlePlayer.Init(new InputDeviceDelegate(player.InputDevice), player.Skin);
+			if (player.InputDevice != null) {
+				battlePlayer.Init(new InputDeviceDelegate(player.InputDevice), player.Skin);
+			} else {
+				// spawn player with substitute AI
+				GameConstants.Instance.ConfigureWithSubstitutePlayerAI(battlePlayer);
+				battlePlayer.SetSkin(player.Skin);
+			}
 
 			RecyclablePrefab recyclablePrefab = battlePlayer.GetComponent<RecyclablePrefab>();
 			Action<RecyclablePrefab> onCleanupCallback = null;
 			onCleanupCallback = (RecyclablePrefab unused) => {
 				recyclablePrefab.OnCleanup -= onCleanupCallback;
-				CleanupPlayerFor(player);
+				RemovePlayer(player);
 			};
 			recyclablePrefab.OnCleanup += onCleanupCallback;
 
@@ -65,8 +81,9 @@ namespace DT.Game.Battle {
 			return playerMap_.ContainsKey(player);
 		}
 
-		private static void CleanupPlayerFor(Player player) {
+		private static void RemovePlayer(Player player) {
 			playerMap_.Remove(player);
+			OnSpawnedPlayerRemoved.Invoke();
 		}
 	}
 }

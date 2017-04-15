@@ -639,6 +639,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
+  gameModes_:
+  - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
+  aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}
+  substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
+    type: 2}
 --- !u!1 &1675223163
 GameObject:
   m_ObjectHideFlags: 0
