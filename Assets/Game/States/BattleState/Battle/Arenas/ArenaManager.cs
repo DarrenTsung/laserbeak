@@ -13,7 +13,11 @@ namespace DT.Game.Battle {
 		public void LoadRandomArena() {
 			CleanupLoadedArena();
 			ArenaConfig config = arenas_.Random();
-			loadedArena_ = ObjectPoolManager.Create(config.Prefab, parent: this.gameObject);
+			loadedArena_ = new Arena(ObjectPoolManager.Create(config.Prefab, parent: this.gameObject));
+		}
+
+		public Arena LoadedArena {
+			get { return loadedArena_; }
 		}
 
 
@@ -21,11 +25,12 @@ namespace DT.Game.Battle {
 		[SerializeField]
 		private ArenaConfig[] arenas_;
 
-		private GameObject loadedArena_;
+		private Arena loadedArena_;
 
 		private void CleanupLoadedArena() {
 			if (loadedArena_ != null) {
-				ObjectPoolManager.Recycle(loadedArena_);
+				loadedArena_.Dispose();
+				ObjectPoolManager.Recycle(loadedArena_.GameObject);
 				loadedArena_ = null;
 			}
 		}

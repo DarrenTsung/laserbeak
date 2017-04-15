@@ -16,7 +16,7 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - Static Public Interface
 		public static void SpawnAllPlayers() {
 			HashSet<PlayerSpawnPoint> chosenSpawnPoints = new HashSet<PlayerSpawnPoint>();
-			PlayerSpawnPoint[] spawnPoints = UnityEngine.Object.FindObjectsOfType<PlayerSpawnPoint>();
+			IList<PlayerSpawnPoint> spawnPoints = ArenaManager.Instance.LoadedArena.PlayerSpawnPoints;
 
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
 				PlayerSpawnPoint selectedSpawnPoint = spawnPoints.Random();
@@ -47,7 +47,7 @@ namespace DT.Game.Battle {
 				return;
 			}
 
-			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GameConstants.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity);
+			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GameConstants.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity, parent: ArenaManager.Instance.LoadedArena.GameObject);
 			battlePlayer.Init(new InputDeviceDelegate(player.InputDevice), player.Skin);
 
 			RecyclablePrefab recyclablePrefab = battlePlayer.GetComponent<RecyclablePrefab>();
