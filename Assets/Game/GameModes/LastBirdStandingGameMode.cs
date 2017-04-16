@@ -8,6 +8,7 @@ using DTObjectPoolManager;
 using InControl;
 
 using DT.Game.Battle;
+using DT.Game.Battle.Players;
 using DT.Game.Players;
 using DT.Game.Scoring;
 
@@ -21,9 +22,22 @@ namespace DT.Game.GameModes {
 
 
 		// PRAGMA MARK - Internal
+		// TODO (darren): make this tied to the intro game state UI
+		private const float kInitialInputDelay = 1.5f;
+
 		protected override void Activate() {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
+
+			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
+			}
+
+			CoroutineWrapper.DoAfterDelay(kInitialInputDelay, () => {
+				foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+					battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
+				}
+			});
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}

@@ -14,10 +14,16 @@ namespace DT.Game.Battle.Players {
 			Internal = 0,
 			Movement = 1,
 			OffGround = 10,
+			GameMode = 15,
 		}
 
 		public void DisableInput(PriorityKey key) {
 			priorityKeyEnabledMap_[(int)key] = false;
+			RefreshEnabledStatus();
+		}
+
+		public void ClearInput(PriorityKey key) {
+			priorityKeyEnabledMap_.Remove((int)key);
 			RefreshEnabledStatus();
 		}
 

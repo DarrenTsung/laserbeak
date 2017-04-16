@@ -47,6 +47,10 @@ namespace DT.Game.Battle {
 			get { return playerMap_.Keys; }
 		}
 
+		public static IEnumerable<BattlePlayer> AllSpawnedBattlePlayers {
+			get { return playerMap_.Values; }
+		}
+
 
 		// PRAGMA MARK - Internal
 		private static readonly Dictionary<Player, BattlePlayer> playerMap_ = new Dictionary<Player, BattlePlayer>();
