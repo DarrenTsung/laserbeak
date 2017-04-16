@@ -23,6 +23,10 @@ namespace DT.Game {
 			ai.Init(player, substitutePlayerAIConfiguration_);
 		}
 
+		public int ScoresToWin {
+			get { return scoresToWin_; }
+		}
+
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]
@@ -32,5 +36,7 @@ namespace DT.Game {
 		[SerializeField]
 		private AIConfiguration substitutePlayerAIConfiguration_;
 
+		[SerializeField]
+		private int scoresToWin_ = 5;
 	}
 }

@@ -22,6 +22,22 @@ namespace DT.Game {
 			get { return aiPrefab_; }
 		}
 
+		public GameObject InGamePlayerScoringView {
+			get { return inGamePlayerScoringView_; }
+		}
+
+		public GameObject InGamePlayerViewPrefab {
+			get { return inGamePlayerViewPrefab_; }
+		}
+
+		public GameObject IndividualPlayerScoringViewPrefab {
+			get { return individualPlayerScoringViewPrefab_; }
+		}
+
+		public GameObject ScoreBubbleViewPrefab {
+			get { return scoreBubbleViewPrefab_; }
+		}
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]
@@ -30,5 +46,17 @@ namespace DT.Game {
 
 		[SerializeField]
 		private GameObject aiPrefab_;
+
+		[SerializeField]
+		private GameObject inGamePlayerScoringView_;
+
+		[SerializeField]
+		private GameObject inGamePlayerViewPrefab_;
+
+		[SerializeField]
+		private GameObject individualPlayerScoringViewPrefab_;
+
+		[SerializeField]
+		private GameObject scoreBubbleViewPrefab_;
 	}
 }

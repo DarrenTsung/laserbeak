@@ -43,8 +43,8 @@ namespace DT.Game.Battle {
 			playerMap_.Clear();
 		}
 
-		public static IEnumerable<BattlePlayer> AllSpawnedPlayers {
-			get { return playerMap_.Values; }
+		public static IEnumerable<Player> AllSpawnedPlayers {
+			get { return playerMap_.Keys; }
 		}
 
 

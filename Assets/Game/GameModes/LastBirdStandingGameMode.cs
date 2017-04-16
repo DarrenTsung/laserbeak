@@ -8,6 +8,8 @@ using DTObjectPoolManager;
 using InControl;
 
 using DT.Game.Battle;
+using DT.Game.Players;
+using DT.Game.Scoring;
 
 namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "LastBirdStandingGameMode", menuName = "Game/Modes/LastBirdStandingGameMode")]
@@ -32,6 +34,9 @@ namespace DT.Game.GameModes {
 			}
 
 			Finish();
+			foreach (Player player in PlayerSpawner.AllSpawnedPlayers) {
+				PlayerScores.IncrementPendingScoreFor(player);
+			}
 		}
 	}
 }

@@ -561,6 +561,14 @@ MonoBehaviour:
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}
+  inGamePlayerScoringView_: {fileID: 1466384693120092, guid: cc61160eafc0541989b086fe9aeb66e3,
+    type: 2}
+  inGamePlayerViewPrefab_: {fileID: 1424797130372690, guid: f01329a75ea704daaa718027ef6b5123,
+    type: 2}
+  individualPlayerScoringViewPrefab_: {fileID: 1244183671406430, guid: 8fdad07ec38974bdfa84d867f1128f32,
+    type: 2}
+  scoreBubbleViewPrefab_: {fileID: 1163178287772246, guid: a82e1e056e5044ebf86aba36280617a7,
+    type: 2}
 --- !u!4 &1351997730
 Transform:
   m_ObjectHideFlags: 0
@@ -684,6 +692,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
+  scoresToWin_: 5
 --- !u!1 &1675223163
 GameObject:
   m_ObjectHideFlags: 0

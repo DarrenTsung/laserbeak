@@ -17,6 +17,7 @@ namespace DT.Game.Battle {
 
 		protected override void OnStateEntered() {
 			// cleanup in-case
+			PlayerSpawner.CleanupAllPlayers();
 			CleanupCurrentGameMode();
 
 			InGamePlayerCollectionView.Show();
