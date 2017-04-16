@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -22,9 +23,6 @@ namespace DT.Game.GameModes {
 
 
 		// PRAGMA MARK - Internal
-		// TODO (darren): make this tied to the intro game state UI
-		private const float kInitialInputDelay = 1.5f;
-
 		protected override void Activate() {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
@@ -33,7 +31,14 @@ namespace DT.Game.GameModes {
 				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
 			}
 
-			CoroutineWrapper.DoAfterDelay(kInitialInputDelay, () => {
+			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();
+			foreach (Player player in RegisteredPlayers.AllPlayers) {
+				icons.Add(GameModeIntroView.Icon.Player);
+				icons.Add(GameModeIntroView.Icon.Swords);
+			}
+			icons.RemoveLast();
+
+			GameModeIntroView.Show("LAST BIRD STANDING", icons, () => {
 				foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
 					battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
 				}

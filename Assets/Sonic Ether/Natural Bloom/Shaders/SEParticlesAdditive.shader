@@ -1,6 +1,6 @@
 Shader "Sonic Ether/Particles/Additive" {
 Properties {
-	_TintColor ("Tint Color", Color) = (0.5,0.5,0.5,0.5)
+	_Color ("Color", Color) = (0.5,0.5,0.5,0.5)
 	_MainTex ("Particle Texture", 2D) = "white" {}
 	_DissolveTex ("Dissolve Texture", 2D) = "white" {}
 	_DissolveFactor ("Dissolve Factor", Range(0, 1)) = 1.0
@@ -27,7 +27,7 @@ Category {
 
 			sampler2D _MainTex;
 			sampler2D _DissolveTex;
-			fixed4 _TintColor;
+			fixed4 _Color;
 
 			struct appdata_t {
 				float4 vertex : POSITION;
@@ -76,7 +76,7 @@ Category {
 				// grayscale texture but using red channel right now
 				i.color.a *= step(_DissolveFactor, tex2D(_DissolveTex, i.texcoord).r);
 
-				return 2.0f * i.color * _TintColor * tex2D(_MainTex, i.texcoord) * (exp(_EmissionGain * 5.0f));
+				return 2.0f * i.color * _Color * tex2D(_MainTex, i.texcoord) * (exp(_EmissionGain * 5.0f));
 			}
 			ENDCG
 		}

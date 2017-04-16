@@ -38,6 +38,8 @@ namespace DT.Game {
 			get { return scoreBubbleViewPrefab_; }
 		}
 
+		public GameObject GameModeIntroViewPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]
