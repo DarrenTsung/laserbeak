@@ -36,7 +36,21 @@ namespace DT.Game.Battle {
 
 		public Arena(GameObject arenaObject) {
 			gameObject_ = arenaObject;
-			playerSpawnPoints_ = new ReadOnlyCollection<PlayerSpawnPoint>(arenaObject.GetComponentsInChildren<PlayerSpawnPoint>());
+
+			PlayerSpawnPoint[] spawnPoints = arenaObject.GetComponentsInChildren<PlayerSpawnPoint>();
+			Array.Sort(spawnPoints, (PlayerSpawnPoint a, PlayerSpawnPoint b) => {
+				Vector3 aPos = a.transform.position.Floor();
+				Vector3 bPos = b.transform.position.Floor();
+
+				if (aPos.z != bPos.z) {
+					// higher z -> first
+					return bPos.z.CompareTo(aPos.z);
+				}
+
+				// lower x -> first
+				return aPos.x.CompareTo(bPos.x);
+			});
+			playerSpawnPoints_ = new ReadOnlyCollection<PlayerSpawnPoint>(spawnPoints);
 		}
 
 		public void Dispose() {

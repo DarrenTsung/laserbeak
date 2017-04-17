@@ -17,21 +17,14 @@ namespace DT.Game.Battle {
 		public static event Action OnSpawnedPlayerRemoved = delegate {};
 
 		public static void SpawnAllPlayers() {
-			HashSet<PlayerSpawnPoint> chosenSpawnPoints = new HashSet<PlayerSpawnPoint>();
 			IList<PlayerSpawnPoint> spawnPoints = ArenaManager.Instance.LoadedArena.PlayerSpawnPoints;
 
+			int playerIndex = 0;
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
-				PlayerSpawnPoint selectedSpawnPoint = spawnPoints.Random();
-				// if not all spawn points are chosen
-				if (!spawnPoints.All(chosenSpawnPoints.Contains)) {
-					// keep randomizing till find non-chosen spawn point
-					while (chosenSpawnPoints.Contains(selectedSpawnPoint)) {
-						selectedSpawnPoint = spawnPoints.Random();
-					}
-				}
+				PlayerSpawnPoint spawnPoint = spawnPoints.GetClamped(playerIndex);
+				SpawnPlayerFor(player, spawnPoint);
 
-				chosenSpawnPoints.Add(selectedSpawnPoint);
-				SpawnPlayerFor(player, selectedSpawnPoint);
+				playerIndex++;
 			}
 		}
 
