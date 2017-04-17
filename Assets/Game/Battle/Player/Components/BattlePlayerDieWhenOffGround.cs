@@ -12,6 +12,16 @@ using InControl;
 
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerDieWhenOffGround : BattlePlayerComponent, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Public Interface
+		public void PauseCheckingDeath() {
+			checkDeath_ = false;
+		}
+
+		public void ResumeCheckingDeath() {
+			checkDeath_ = true;
+		}
+
+
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			dustParticleSystem_.SetEmissionRateOverDistance(kDustParticleEmissionRate);
@@ -44,6 +54,7 @@ namespace DT.Game.Battle.Players {
 		private RaycastHit[] results_ = new RaycastHit[10];
 		private bool enabled_ = true;
 		private CoroutineWrapper coroutine_;
+		private bool checkDeath_ = true;
 
 		private void Awake() {
 			kLayerMask = LayerMask.GetMask("Platforms");
@@ -55,7 +66,7 @@ namespace DT.Game.Battle.Players {
 			}
 
 			int resultCount = Physics.RaycastNonAlloc(new Ray(this.transform.position, -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: kLayerMask);
-			if (resultCount <= 0) {
+			if (checkDeath_ && resultCount <= 0) {
 				enabled_ = false;
 				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
 				Player_.Rigidbody.isKinematic = false;

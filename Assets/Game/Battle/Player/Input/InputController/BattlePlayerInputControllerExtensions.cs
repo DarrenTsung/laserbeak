@@ -22,6 +22,7 @@ namespace DT.Game.Battle.Players {
 				player.Rigidbody.velocity = new Vector3(xzVelocity.x, player.Rigidbody.velocity.y, xzVelocity.z);
 			}, () => {
 				controller.EnableInput(BattlePlayerInputController.PriorityKey.Movement);
+				controller.CancelAnyAnimatedMovements();
 			});
 			controller.RegisterAnimatedMovement(coroutine);
 		}

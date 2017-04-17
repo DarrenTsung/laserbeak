@@ -611,6 +611,7 @@ MonoBehaviour:
   playerPartsPrefab_: {fileID: 1424833563842176, guid: 039a40fbfa7c84690a93246a46db2964,
     type: 2}
   health_: 0
+  invulnerable_: 0
 --- !u!114 &114352156763685936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -678,6 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8455c1a1f4f1840b0a8bf446fdfa0d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug_: 0
 --- !u!114 &114751467881738060
 MonoBehaviour:
   m_ObjectHideFlags: 1

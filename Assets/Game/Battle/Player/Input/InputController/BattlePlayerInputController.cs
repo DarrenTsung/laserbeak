@@ -42,6 +42,7 @@ namespace DT.Game.Battle.Players {
 		public void RegisterAnimatedMovement(CoroutineWrapper movementCoroutine) {
 			CancelAnyAnimatedMovements();
 			movementCoroutine_ = movementCoroutine;
+			dieWhenOffGround_.PauseCheckingDeath();
 		}
 
 		public void CancelAnyAnimatedMovements() {
@@ -49,6 +50,7 @@ namespace DT.Game.Battle.Players {
 				movementCoroutine_.Cancel();
 				movementCoroutine_ = null;
 			}
+			dieWhenOffGround_.ResumeCheckingDeath();
 		}
 
 
@@ -66,9 +68,11 @@ namespace DT.Game.Battle.Players {
 		private readonly Dictionary<int, bool> priorityKeyEnabledMap_ = new Dictionary<int, bool>();
 
 		private CoroutineWrapper movementCoroutine_;
+		private BattlePlayerDieWhenOffGround dieWhenOffGround_;
 
 		private void Awake() {
 			playerInputComponents_ = this.GetComponentsInChildren<BattlePlayerInputComponent>();
+			dieWhenOffGround_ = this.GetComponentInChildren<BattlePlayerDieWhenOffGround>();
 		}
 
 		[SerializeField]
