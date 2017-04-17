@@ -51,7 +51,9 @@ namespace DT.Game.Battle.Players {
 
 				ObjectPoolManager.Recycle(this);
 			} else {
-				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.Body));
+				if (damage > 0) {
+					AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.Body));
+				}
 				Knockback(forward);
 			}
 		}
@@ -95,9 +97,15 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
+			int damage = 1;
+			// laser only does damage if not on same team
+			if (BattlePlayerTeams.AreOnSameTeam(laser.BattlePlayer, Player_)) {
+				damage = 0;
+			}
+
 			Vector3 forward = laser.transform.forward;
 
-			TakeDamage(1, forward);
+			TakeDamage(damage, forward);
 			ObjectPoolManager.Recycle(laser.gameObject);
 		}
 

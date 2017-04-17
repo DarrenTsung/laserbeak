@@ -43,6 +43,10 @@ namespace DT.Game.Battle {
 			playerMap_.Clear();
 		}
 
+		public static bool IsAlive(Player player) {
+			return PlayerExistsFor(player);
+		}
+
 		public static IEnumerable<Player> AllSpawnedPlayers {
 			get { return playerMap_.Keys; }
 		}

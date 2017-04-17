@@ -9,6 +9,8 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle;
+using DT.Game.Battle.Players;
 using DT.Game.Players;
 
 namespace DT.Game.GameModes {
@@ -20,9 +22,13 @@ namespace DT.Game.GameModes {
 		}
 
 		// PRAGMA MARK - Static Public Interface
-		public static void Show(string text, IList<Icon> icons, Action onFinishedCallback) {
+		public static void Show(string text, IList<Icon> icons, Action onFinishedCallback = null) {
 			var view = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
 			view.Init(text, icons, onFinishedCallback);
+
+			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
+			}
 		}
 
 
@@ -54,8 +60,14 @@ namespace DT.Game.GameModes {
 		}
 
 		public void Finish() {
-			onFinishedCallback_.Invoke();
+			if (onFinishedCallback_ != null) {
+				onFinishedCallback_.Invoke();
+			}
 			ObjectPoolManager.Recycle(this);
+
+			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+				battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
+			}
 		}
 
 

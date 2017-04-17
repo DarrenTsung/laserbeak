@@ -22,6 +22,10 @@ namespace DT.Game.Battle.Players {
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			enabled_ = false;
+			if (coroutine_ != null) {
+				coroutine_.Cancel();
+				coroutine_ = null;
+			}
 		}
 
 
@@ -39,6 +43,7 @@ namespace DT.Game.Battle.Players {
 
 		private RaycastHit[] results_ = new RaycastHit[10];
 		private bool enabled_ = true;
+		private CoroutineWrapper coroutine_;
 
 		private void Awake() {
 			kLayerMask = LayerMask.GetMask("Platforms");
@@ -55,7 +60,7 @@ namespace DT.Game.Battle.Players {
 				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
 				Player_.Rigidbody.isKinematic = false;
 				dustParticleSystem_.SetEmissionRateOverDistance(0.0f);
-				CoroutineWrapper.DoAfterDelay(kDeathDelay, () => {
+				coroutine_ = CoroutineWrapper.DoAfterDelay(kDeathDelay, () => {
 					// kill self
 					Player_.Health.TakeDamage(BattlePlayerHealth.kMaxDamage, Player_.Rigidbody.velocity);
 				});

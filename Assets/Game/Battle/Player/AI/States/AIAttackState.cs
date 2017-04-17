@@ -65,7 +65,9 @@ namespace DT.Game.Battle.AI {
 				return;
 			}
 
-			BattlePlayer closestEnemyPlayer = BattlePlayer.ActivePlayers.Where(p => p != StateMachine_.Player).Min(p => (p.transform.position - StateMachine_.Player.transform.position).magnitude);
+			BattlePlayer closestEnemyPlayer = BattlePlayer.ActivePlayers.Where(p => p != StateMachine_.Player)
+																		.Where(p => !BattlePlayerTeams.AreOnSameTeam(StateMachine_.Player, p))
+																		.Min(p => (p.transform.position - StateMachine_.Player.transform.position).magnitude);
 			target_ = closestEnemyPlayer;
 
 			fuzzyTargetPosition_ = null;

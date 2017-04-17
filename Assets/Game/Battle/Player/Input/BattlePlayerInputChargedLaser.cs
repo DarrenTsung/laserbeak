@@ -107,6 +107,7 @@ namespace DT.Game.Battle.Players {
 
 		private void ShootLaser() {
 			Laser laser = ObjectPoolManager.Create<Laser>(laserPrefab_, position: chargingLaserContainer_.transform.position, rotation: chargingLaserContainer_.transform.rotation);
+			laser.Init(Player_);
 			laser.SetMaterial(Player_.Skin.LaserMaterial);
 			Recoil();
 			DisperseFullyChargedParticle();

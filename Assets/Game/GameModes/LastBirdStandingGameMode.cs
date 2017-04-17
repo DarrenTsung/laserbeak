@@ -27,10 +27,6 @@ namespace DT.Game.GameModes {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
 
-			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
-				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
-			}
-
 			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
 				icons.Add(GameModeIntroView.Icon.Player);
@@ -38,11 +34,7 @@ namespace DT.Game.GameModes {
 			}
 			icons.RemoveLast();
 
-			GameModeIntroView.Show("LAST BIRD STANDING", icons, () => {
-				foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
-					battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
-				}
-			});
+			GameModeIntroView.Show("LAST BIRD STANDING", icons);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}

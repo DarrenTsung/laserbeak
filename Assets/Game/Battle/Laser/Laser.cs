@@ -11,6 +11,14 @@ using InControl;
 namespace DT.Game.Battle.Lasers {
 	public class Laser : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
+		public BattlePlayer BattlePlayer {
+			get { return battlePlayer_; }
+		}
+
+		public void Init(BattlePlayer battlePlayer) {
+			battlePlayer_ = battlePlayer;
+		}
+
 		public void SetMaterial(Material material) {
 			laserRenderer_.material = material;
 			light_.color = material.GetColor("_EmissionColor");
@@ -41,6 +49,7 @@ namespace DT.Game.Battle.Lasers {
 		[SerializeField]
 		private Renderer laserRenderer_;
 
+		private BattlePlayer battlePlayer_;
 		private Rigidbody rigidbody_;
 
 		private void Awake() {
