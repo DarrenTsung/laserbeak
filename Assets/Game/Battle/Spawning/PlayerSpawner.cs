@@ -51,6 +51,10 @@ namespace DT.Game.Battle {
 			get { return playerMap_.Values; }
 		}
 
+		public static BattlePlayer GetBattlePlayerFor(Player player) {
+			return playerMap_.GetValueOrDefault(player);
+		}
+
 
 		// PRAGMA MARK - Internal
 		private static readonly Dictionary<Player, BattlePlayer> playerMap_ = new Dictionary<Player, BattlePlayer>();

@@ -7,6 +7,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Players;
 using DT.Game.GameModes;
 using DT.Game.Players;
 
@@ -25,6 +26,8 @@ namespace DT.Game.Battle {
 			// TODO (darren): filtering based on options will be here
 			currentGameMode_ = GameConstants.Instance.GameModes.Random();
 			currentGameMode_.Activate(HandleGameModeFinished);
+
+			InGamePlayerHUDEffect.CreateForAllPlayers();
 		}
 
 		protected override void OnStateExited() {

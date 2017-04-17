@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: UIEmissive
+  m_Name: UIBorderEmissive
   m_Shader: {fileID: 4800000, guid: 31bfda934c27bd54a96d5f3f1ae1d398, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -99,7 +99,7 @@ Material:
       second: 0
     - first:
         name: _EmissionGain
-      second: 0.3
+      second: 0.25
     - first:
         name: _EmissionTextureContrast
       second: 1
@@ -151,7 +151,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.4044118, g: 0.40851927, b: 1, a: 1}
     - first:
         name: _DiffuseColor
       second: {r: 0.30588236, g: 0.39215687, b: 0.9647059, a: 1}

@@ -39,6 +39,7 @@ namespace DT.Game {
 		}
 
 		public GameObject GameModeIntroViewPrefab;
+		public GameObject InGamePlayerHUDEffect;
 
 
 		// PRAGMA MARK - Internal

@@ -560,6 +560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameModeIntroViewPrefab: {fileID: 1365466225008888, guid: 2c7d208f0d15145c6b992937929bf000,
     type: 2}
+  InGamePlayerHUDEffect: {fileID: 1673531252340798, guid: 97f03e82fa2b241d78b1805b68b6ac70,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}

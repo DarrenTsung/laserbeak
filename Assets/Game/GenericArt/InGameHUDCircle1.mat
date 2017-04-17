@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: UIEmissive
-  m_Shader: {fileID: 4800000, guid: 31bfda934c27bd54a96d5f3f1ae1d398, type: 3}
+  m_Name: InGameHUDCircle1
+  m_Shader: {fileID: 4800000, guid: 788bde7c5c45d405a9280cf2cdafa11b, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,12 +48,6 @@ Material:
     - first:
         name: _EmissionMap
       second:
-        m_Texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Illum
-      second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -83,6 +77,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: _AngleOffset
+      second: 0.49
+    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -93,28 +90,25 @@ Material:
       second: 1
     - first:
         name: _DissolveFactor
-      second: 1
+      second: 0
     - first:
         name: _DstBlend
       second: 0
     - first:
         name: _EmissionGain
-      second: 0.3
-    - first:
-        name: _EmissionTextureContrast
-      second: 1
+      second: 0.8
     - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
     - first:
         name: _InvFade
-      second: 1
+      second: 0.01
     - first:
         name: _Metallic
       second: 0
@@ -122,17 +116,17 @@ Material:
         name: _Mode
       second: 0
     - first:
-        name: _NoiseHeight
-      second: 1.3
-    - first:
-        name: _NoiseScale
-      second: 7
-    - first:
         name: _OcclusionStrength
       second: 1
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _Radius
+      second: 0.5
+    - first:
+        name: _SegmentLength
+      second: 0.59552485
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -146,6 +140,9 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _Width
+      second: 0.016
+    - first:
         name: _ZWrite
       second: 1
     m_Colors:
@@ -153,17 +150,5 @@ Material:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
-        name: _DiffuseColor
-      second: {r: 0.30588236, g: 0.39215687, b: 0.9647059, a: 1}
-    - first:
         name: _EmissionColor
-      second: {r: 0.3045524, g: 0.3908625, b: 0.9632353, a: 1}
-    - first:
-        name: _Position
-      second: {r: 0, g: 0, b: 0, a: 0}
-    - first:
-        name: _PrevPosition
-      second: {r: 0, g: 0, b: 0, a: 0}
-    - first:
-        name: _TintColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+      second: {r: 0, g: 0, b: 0, a: 1}
