@@ -20,9 +20,14 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
+			if (invulnerable_) {
+				return;
+			}
+
 			forward = forward.normalized;
 
 			health_ -= damage;
+			SetInvulnerableFor(kDamageInvulnerabilityTime);
 
 			if (health_ <= 0) {
 				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, this.transform.position, Quaternion.identity);
@@ -69,6 +74,8 @@ namespace DT.Game.Battle.Players {
 		private const float kDamageKnockbackDuration = 0.3f;
 		private const float kDamageKnockbackDistance = 2.5f;
 
+		private const float kDamageInvulnerabilityTime = 0.1f;
+
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject playerPartsPrefab_;
@@ -76,6 +83,11 @@ namespace DT.Game.Battle.Players {
 		[Header("Properties")]
 		[SerializeField, ReadOnly]
 		private int health_;
+
+		[SerializeField, ReadOnly]
+		private bool invulnerable_;
+
+		private CoroutineWrapper invulnerableCoroutine_;
 
 		private void OnCollisionEnter(Collision collision) {
 			Laser laser = collision.gameObject.GetComponent<Laser>();
@@ -109,6 +121,18 @@ namespace DT.Game.Battle.Players {
 		private void Knockback(Vector3 forward) {
 			Vector3 endPosition = Player_.Rigidbody.position + (kDamageKnockbackDistance * forward);
 			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration, EaseType.CubicEaseOut);
+		}
+
+		private void SetInvulnerableFor(float time) {
+			if (invulnerableCoroutine_ != null) {
+				invulnerableCoroutine_.Cancel();
+				invulnerableCoroutine_ = null;
+			}
+
+			invulnerable_ = true;
+			invulnerableCoroutine_ = CoroutineWrapper.DoAfterDelay(time, () => {
+				invulnerable_ = false;
+			});
 		}
 	}
 }
