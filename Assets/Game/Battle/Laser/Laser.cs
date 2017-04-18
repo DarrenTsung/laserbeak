@@ -27,7 +27,7 @@ namespace DT.Game.Battle.Lasers {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		public void OnRecycleCleanup() {
-			LaserHit laserHit = ObjectPoolManager.Create<LaserHit>(laserHitParticlePrefab_, this.transform.position, Quaternion.identity);
+			LaserHit laserHit = ObjectPoolManager.Create<LaserHit>(laserHitParticlePrefab_, this.transform.position, this.transform.rotation);
 			laserHit.SetMaterial(laserRenderer_.material);
 		}
 

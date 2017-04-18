@@ -12,7 +12,11 @@ namespace DT.Game.Battle.Lasers {
 	public class LaserHit : MonoBehaviour, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void SetMaterial(Material laserMaterial) {
-			light_.color = laserMaterial.GetColor("_EmissionColor");
+			Color color = laserMaterial.GetColor("_EmissionColor");
+
+			light_.color = color;
+			mistParticleSystem_.SetStartColor(color);
+			particleSystemRenderer_.material.SetColor("_EmissionColor", color);
 		}
 
 
@@ -32,6 +36,12 @@ namespace DT.Game.Battle.Lasers {
 		[Header("Outlets")]
 		[SerializeField]
 		private Light light_;
+
+		[SerializeField]
+		private ParticleSystem mistParticleSystem_;
+
+		[SerializeField]
+		private ParticleSystemRenderer particleSystemRenderer_;
 
 		[Header("Properties")]
 		[SerializeField]
