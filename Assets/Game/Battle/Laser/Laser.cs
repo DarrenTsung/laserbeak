@@ -9,7 +9,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Lasers {
-	public class Laser : MonoBehaviour, IRecycleCleanupSubscriber {
+	public class Laser : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public BattlePlayer BattlePlayer {
 			get { return battlePlayer_; }
@@ -24,9 +24,7 @@ namespace DT.Game.Battle.Lasers {
 			light_.color = material.GetColor("_EmissionColor");
 		}
 
-
-		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
-		public void OnRecycleCleanup() {
+		public void HandleHit() {
 			LaserHit laserHit = ObjectPoolManager.Create<LaserHit>(laserHitParticlePrefab_, this.transform.position, this.transform.rotation);
 			laserHit.SetMaterial(laserRenderer_.material);
 		}

@@ -106,6 +106,7 @@ namespace DT.Game.Battle.Players {
 			Vector3 forward = laser.transform.forward;
 
 			TakeDamage(damage, forward);
+			laser.HandleHit();
 			ObjectPoolManager.Recycle(laser.gameObject);
 		}
 
