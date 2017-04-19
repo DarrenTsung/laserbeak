@@ -26,7 +26,7 @@ namespace DT.Game.Battle.Players {
 				}
 			}
 
-			CoroutineWrapper.DoAfterDelay(4.0f, () => {
+			coroutine_ = CoroutineWrapper.DoAfterDelay(4.0f, () => {
 				ObjectPoolManager.Recycle(this);
 			});
 		}
@@ -35,6 +35,10 @@ namespace DT.Game.Battle.Players {
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		public void OnRecycleCleanup() {
 			this.transform.RecycleAllChildren();
+			if (coroutine_ != null) {
+				coroutine_.Cancel();
+				coroutine_ = null;
+			}
 		}
 
 
@@ -44,5 +48,7 @@ namespace DT.Game.Battle.Players {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject partPrefab_;
+
+		private CoroutineWrapper coroutine_;
 	}
 }

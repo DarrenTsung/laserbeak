@@ -30,7 +30,7 @@ namespace DT.Game.Battle.Players {
 			SetInvulnerableFor(kDamageInvulnerabilityTime);
 
 			if (health_ <= 0) {
-				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, this.transform.position, Quaternion.identity);
+				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, this.transform.position, Quaternion.identity, parent: BattleRecyclables.Instance);
 
 				// NOTE (darren): remove any negative y component from damage forward vector
 				// since gravity + explosive downwards force looks crazy

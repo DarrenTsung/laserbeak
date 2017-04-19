@@ -7,6 +7,8 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle;
+using DT.Game.Battle.Players;
 using DT.Game.GameModes;
 using DT.Game.Players;
 
@@ -22,7 +24,9 @@ namespace DT.Game.Scoring {
 		}
 
 		protected override void OnStateExited() {
-			// stub
+			// cleanup battle here
+			BattlePlayerTeams.ClearTeams();
+			BattleRecyclables.Clear();
 		}
 
 		private void HandleScoringFinished() {

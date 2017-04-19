@@ -17,8 +17,6 @@ namespace DT.Game.Battle {
 		private GameMode currentGameMode_ = null;
 
 		protected override void OnStateEntered() {
-			// cleanup teams when starting new battle - it is expected that teams exist here
-			BattlePlayerTeams.ClearTeams();
 			// cleanup in-case
 			PlayerSpawner.CleanupAllPlayers();
 			CleanupCurrentGameMode();

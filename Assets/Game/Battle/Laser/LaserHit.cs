@@ -9,7 +9,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Lasers {
-	public class LaserHit : MonoBehaviour, IRecycleSetupSubscriber {
+	public class LaserHit : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void SetMaterial(Material laserMaterial) {
 			Color color = laserMaterial.GetColor("_EmissionColor");
@@ -22,11 +22,20 @@ namespace DT.Game.Battle.Lasers {
 
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
-			CoroutineWrapper.DoEaseFor(duration_, EaseType.CubicEaseOut, (float percentage) => {
+			coroutine_ = CoroutineWrapper.DoEaseFor(duration_, EaseType.CubicEaseOut, (float percentage) => {
 				light_.intensity = Mathf.Lerp(kLightIntensity, 0.0f, percentage);
 			}, () => {
 				ObjectPoolManager.Recycle(this);
 			});
+		}
+
+
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			if (coroutine_ != null) {
+				coroutine_.Cancel();
+				coroutine_ = null;
+			}
 		}
 
 
@@ -46,5 +55,7 @@ namespace DT.Game.Battle.Lasers {
 		[Header("Properties")]
 		[SerializeField]
 		private float duration_ = 1.0f;
+
+		private CoroutineWrapper coroutine_;
 	}
 }
