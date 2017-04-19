@@ -48,13 +48,14 @@ namespace DT.Game.Battle.AI {
 
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
+			this.EnableAllStateBehaviours(animator_);
 			this.ConfigureAllStateBehaviours(animator_);
 		}
 
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			this.ExitAllStateBehaviours(animator_);
+			this.DisableAllStateBehaviours(animator_);
 
 			player_ = null;
 			configuration_ = null;

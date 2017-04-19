@@ -14,10 +14,11 @@ namespace DT.Game.Battle.AI {
 		private const float kCheckAttackMaxDelay = 1.0f;
 
 		private IAIMovementAction movementAction_;
+		private CoroutineWrapper coroutine_;
 
 		protected override void OnStateEntered() {
 			movementAction_ = new AIMoveRandomlyAction(StateMachine_);
-			CoroutineWrapper.DoAfterDelay(UnityEngine.Random.Range(kCheckAttackMinDelay, kCheckAttackMaxDelay), () => {
+			coroutine_ = CoroutineWrapper.DoAfterDelay(UnityEngine.Random.Range(kCheckAttackMinDelay, kCheckAttackMaxDelay), () => {
 				StateMachine_.SwitchState(AIStateMachine.State.Attack);
 			});
 		}
@@ -26,6 +27,11 @@ namespace DT.Game.Battle.AI {
 			if (movementAction_ != null) {
 				movementAction_.Dispose();
 				movementAction_ = null;
+			}
+
+			if (coroutine_ != null) {
+				coroutine_.Cancel();
+				coroutine_ = null;
 			}
 		}
 	}

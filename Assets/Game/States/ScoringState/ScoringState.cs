@@ -27,6 +27,7 @@ namespace DT.Game.Scoring {
 			// cleanup battle here
 			BattlePlayerTeams.ClearTeams();
 			BattleRecyclables.Clear();
+			PlayerSpawner.CleanupAllPlayers();
 		}
 
 		private void HandleScoringFinished() {

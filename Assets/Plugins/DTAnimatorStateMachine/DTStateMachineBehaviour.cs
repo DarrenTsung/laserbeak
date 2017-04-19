@@ -5,15 +5,23 @@ using UnityEngine;
 namespace DTAnimatorStateMachine {
 	public class DTStateMachineBehaviour<TStateMachine> : StateMachineBehaviour, IStateBehaviour<TStateMachine> {
 		// PRAGMA MARK - IStateBehaviour<TStateMachine> Implementation
-		public void InitializeWithContext(Animator animator, TStateMachine stateMachine) {
+		void IStateBehaviour<TStateMachine>.InitializeWithContext(Animator animator, TStateMachine stateMachine) {
 			stateMachine_ = stateMachine;
 			OnInitialized();
+		}
+
+		void IStateBehaviour<TStateMachine>.Enable() {
+			enabled_ = true;
+		}
+
+		void IStateBehaviour<TStateMachine>.Disable() {
+			DisableAndExit();
 		}
 
 
 		// PRAGMA MARK - StateMachineBehaviour Lifecycle
 		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-			if (active_) {
+			if (active_ || !enabled_) {
 				return;
 			}
 
@@ -22,7 +30,7 @@ namespace DTAnimatorStateMachine {
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-			if (!active_) {
+			if (!active_ || !enabled_) {
 				return;
 			}
 
@@ -31,6 +39,10 @@ namespace DTAnimatorStateMachine {
 		}
 
 		public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+			if (!enabled_) {
+				return;
+			}
+
 			OnStateUpdated();
 		}
 
@@ -42,14 +54,22 @@ namespace DTAnimatorStateMachine {
 
 		private TStateMachine stateMachine_;
 		private bool active_ = false;
+		private bool enabled_ = true;
 
 		private void OnDisable() {
-			if (!active_) {
+			DisableAndExit();
+		}
+
+		private void DisableAndExit() {
+			if (!enabled_) {
 				return;
 			}
 
-			OnStateExited();
-			active_ = false;
+			if (active_) {
+				OnStateExited();
+				active_ = false;
+			}
+			enabled_ = false;
 		}
 
 		protected virtual void OnInitialized() {
