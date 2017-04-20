@@ -33,6 +33,7 @@ namespace DT.Game {
 
 		[Header("Audio")]
 		public AudioClip UIBeep;
+		public AudioClip GameModeIntro;
 
 
 		// PRAGMA MARK - Internal

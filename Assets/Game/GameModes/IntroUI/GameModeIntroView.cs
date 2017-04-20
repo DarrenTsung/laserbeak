@@ -9,6 +9,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Audio;
 using DT.Game.Battle;
 using DT.Game.Battle.Players;
 using DT.Game.Players;
@@ -65,6 +66,7 @@ namespace DT.Game.GameModes {
 			}
 
 			animator_.SetTrigger("Play");
+			AudioManager.Instance.PlaySFX(GameConstants.Instance.GameModeIntro);
 		}
 
 		public void Finish() {

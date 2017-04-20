@@ -823,6 +823,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f5209ea347a9415e94ddeeef1360583, type: 2}
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
   UIBeep: {fileID: 8300000, guid: 1c8acfd9ab7204f58b1b85efad38b20b, type: 3}
+  GameModeIntro: {fileID: 8300000, guid: 90634c1682b1a42babd9f791c08e544b, type: 3}
   gameModes_:
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
