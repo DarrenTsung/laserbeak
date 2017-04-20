@@ -31,6 +31,9 @@ namespace DT.Game {
 
 		public BattlePlayerSkin EnemySkin;
 
+		[Header("Audio")]
+		public AudioClip UIBeep;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]

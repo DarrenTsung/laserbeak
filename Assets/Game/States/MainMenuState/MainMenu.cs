@@ -6,6 +6,8 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Audio;
+
 namespace DT.Game.MainMenu {
 	public class MainMenu : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
@@ -36,6 +38,7 @@ namespace DT.Game.MainMenu {
 				return;
 			}
 
+			AudioManager.Instance.PlaySFX(GameConstants.Instance.UIBeep);
 			playHandler_.Invoke();
 			// avoid invoke handler twice
 			playHandler_ = null;
