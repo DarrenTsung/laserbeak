@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaledObject_: {fileID: 1512550155048862}
+  image_: {fileID: 114017887871509650}
 --- !u!222 &222020458815090036
 CanvasRenderer:
   m_ObjectHideFlags: 1
