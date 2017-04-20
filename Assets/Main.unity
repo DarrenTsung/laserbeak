@@ -854,8 +854,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f5209ea347a9415e94ddeeef1360583, type: 2}
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
   gameModes_:
-  - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
-  - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
+  - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
+  - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
@@ -1042,6 +1042,7 @@ MonoBehaviour:
   BackgroundMusic: {fileID: 8300000, guid: 7ceb090a6cd1943e3a0aa8a4076c978d, type: 3}
   UIBeep: {fileID: 8300000, guid: 1c8acfd9ab7204f58b1b85efad38b20b, type: 3}
   GameModeIntro: {fileID: 8300000, guid: 90634c1682b1a42babd9f791c08e544b, type: 3}
+  ScoreAdded: {fileID: 8300000, guid: e80d43910d33848089a973bf525d2bb9, type: 3}
   LaserShoot: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
   Dash: {fileID: 8300000, guid: d238e8f9f7f77481ba45d31fadb7bb61, type: 3}
   PlayerHurt: {fileID: 8300000, guid: 4f67300d689f04112ae530091e6632d9, type: 3}

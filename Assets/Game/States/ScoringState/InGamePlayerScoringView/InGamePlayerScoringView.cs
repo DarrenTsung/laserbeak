@@ -60,6 +60,7 @@ namespace DT.Game.Scoring {
 		private IEnumerator DoScoring() {
 			WaitForSeconds betweenScoringDelay = new WaitForSeconds(kBetweenScoringDelay);
 			while (PlayerScores.HasPendingScores) {
+				AudioConstants.Instance.ScoreAdded.PlaySFX();
 				PlayerScores.StepConvertPendingScoresToScores();
 
 				if (!PlayerScores.HasPendingScores) {

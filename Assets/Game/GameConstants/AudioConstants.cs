@@ -15,9 +15,12 @@ namespace DT.Game {
 		[Header("Music")]
 		public AudioClip BackgroundMusic;
 
-		[Header("SFX")]
+		[Header("UI SFX")]
 		public AudioClip UIBeep;
 		public AudioClip GameModeIntro;
+		public AudioClip ScoreAdded;
+
+		[Header("Game SFX")]
 		public AudioClip LaserShoot;
 		public AudioClip Dash;
 
