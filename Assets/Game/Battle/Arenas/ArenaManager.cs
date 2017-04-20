@@ -11,9 +11,13 @@ namespace DT.Game.Battle {
 	public class ArenaManager : Singleton<ArenaManager> {
 		// PRAGMA MARK - Public Interface
 		public void LoadRandomArena() {
-			CleanupLoadedArena();
 			ArenaConfig config = arenas_.Random();
-			loadedArena_ = new Arena(ObjectPoolManager.Create(config.Prefab, parent: this.gameObject));
+			LoadArena(config);
+		}
+
+		public void LoadArena(ArenaConfig arenaConfig) {
+			CleanupLoadedArena();
+			loadedArena_ = new Arena(ObjectPoolManager.Create(arenaConfig.Prefab, parent: this.gameObject));
 		}
 
 		public Arena LoadedArena {

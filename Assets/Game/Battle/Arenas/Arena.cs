@@ -34,6 +34,17 @@ namespace DT.Game.Battle {
 			}
 		}
 
+		public ReadOnlyCollection<AISpawnPoint> AISpawnPoints {
+			get {
+				if (disposed_) {
+					Debug.LogError("Cannot access properties of disposed Arena!");
+					return null;
+				}
+
+				return aiSpawnPoints_;
+			}
+		}
+
 		public Arena(GameObject arenaObject) {
 			gameObject_ = arenaObject;
 
@@ -51,6 +62,7 @@ namespace DT.Game.Battle {
 				return aPos.x.CompareTo(bPos.x);
 			});
 			playerSpawnPoints_ = new ReadOnlyCollection<PlayerSpawnPoint>(spawnPoints);
+			aiSpawnPoints_ = new ReadOnlyCollection<AISpawnPoint>(arenaObject.GetComponentsInChildren<AISpawnPoint>());
 		}
 
 		public void Dispose() {
@@ -60,6 +72,7 @@ namespace DT.Game.Battle {
 
 		// PRAGMA MARK - Internal
 		private readonly ReadOnlyCollection<PlayerSpawnPoint> playerSpawnPoints_;
+		private readonly ReadOnlyCollection<AISpawnPoint> aiSpawnPoints_;
 		private readonly GameObject gameObject_ = null;
 
 		private bool disposed_ = false;

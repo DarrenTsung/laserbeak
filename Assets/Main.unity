@@ -684,6 +684,8 @@ MonoBehaviour:
     type: 2}
   InGamePlayerHUDEffect: {fileID: 1673531252340798, guid: 97f03e82fa2b241d78b1805b68b6ac70,
     type: 2}
+  InGameTimerPrefab: {fileID: 1369858089402618, guid: 809e2e19b9fec452093aebfe5b1f0366,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}
@@ -819,9 +821,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d212f342362c4de8bae265d511314ff, type: 2}
   - {fileID: 11400000, guid: 10e8e740af832432f9f8f61b097e1b26, type: 2}
   - {fileID: 11400000, guid: 3f5209ea347a9415e94ddeeef1360583, type: 2}
+  EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
   gameModes_:
-  - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
-  - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
+  - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
+  - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
+  - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
   scoresToWin_: 5

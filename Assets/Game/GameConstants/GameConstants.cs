@@ -29,6 +29,8 @@ namespace DT.Game {
 
 		public BattlePlayerSkin[] PlayerSkins;
 
+		public BattlePlayerSkin EnemySkin;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]

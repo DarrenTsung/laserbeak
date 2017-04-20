@@ -19,6 +19,7 @@ namespace DT.Game.GameModes {
 		public enum Icon {
 			Player,
 			Swords,
+			Skull,
 		}
 
 		// PRAGMA MARK - Static Public Interface
@@ -26,9 +27,13 @@ namespace DT.Game.GameModes {
 			var view = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
 			view.Init(text, icons, onFinishedCallback);
 
-			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+			foreach (BattlePlayer battlePlayer in AllBattlePlayers) {
 				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
 			}
+		}
+
+		private static IEnumerable<BattlePlayer> AllBattlePlayers {
+			get { return PlayerSpawner.AllSpawnedBattlePlayers.Concat(AISpawner.AllSpawnedBattlePlayers); }
 		}
 
 
@@ -46,6 +51,9 @@ namespace DT.Game.GameModes {
 						break;
 					case Icon.Swords:
 						prefab = swordsIconPrefab_;
+						break;
+					case Icon.Skull:
+						prefab = skullIconPrefab_;
 						break;
 				}
 
@@ -65,7 +73,7 @@ namespace DT.Game.GameModes {
 			}
 			ObjectPoolManager.Recycle(this);
 
-			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+			foreach (BattlePlayer battlePlayer in AllBattlePlayers) {
 				battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
 			}
 		}
@@ -84,6 +92,9 @@ namespace DT.Game.GameModes {
 
 		[SerializeField]
 		private GameObject swordsIconPrefab_;
+
+		[SerializeField]
+		private GameObject skullIconPrefab_;
 
 
 		[Header("Outlets")]
