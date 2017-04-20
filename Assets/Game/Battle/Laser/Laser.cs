@@ -19,7 +19,7 @@ namespace DT.Game.Battle.Lasers {
 
 		public void Init(BattlePlayer battlePlayer) {
 			battlePlayer_ = battlePlayer;
-			AudioManager.Instance.PlaySFX(startClip_);
+			AudioManager.Instance.PlaySFX(startClip_, volumeScale: 0.4f);
 			BattleCamera.Shake(0.14f);
 		}
 
