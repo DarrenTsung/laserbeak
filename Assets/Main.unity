@@ -822,8 +822,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10e8e740af832432f9f8f61b097e1b26, type: 2}
   - {fileID: 11400000, guid: 3f5209ea347a9415e94ddeeef1360583, type: 2}
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
-  UIBeep: {fileID: 8300000, guid: 1c8acfd9ab7204f58b1b85efad38b20b, type: 3}
-  GameModeIntro: {fileID: 8300000, guid: 90634c1682b1a42babd9f791c08e544b, type: 3}
   gameModes_:
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
@@ -874,3 +872,45 @@ MonoBehaviour:
   arenas_:
   - {fileID: 11400000, guid: d2b38beb731df489b9a423b6cb28fd3b, type: 2}
   - {fileID: 11400000, guid: 73d7e3e4fdf83444db9febe3e293fc1a, type: 2}
+--- !u!1 &2128445820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2128445822}
+  - component: {fileID: 2128445821}
+  m_Layer: 0
+  m_Name: AudioConstants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2128445821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128445820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0ad48145a8848cea679752789c922b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIBeep: {fileID: 8300000, guid: 1c8acfd9ab7204f58b1b85efad38b20b, type: 3}
+  GameModeIntro: {fileID: 8300000, guid: 90634c1682b1a42babd9f791c08e544b, type: 3}
+--- !u!4 &2128445822
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128445820}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

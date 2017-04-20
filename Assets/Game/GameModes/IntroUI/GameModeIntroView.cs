@@ -66,7 +66,7 @@ namespace DT.Game.GameModes {
 			}
 
 			animator_.SetTrigger("Play");
-			AudioManager.Instance.PlaySFX(GameConstants.Instance.GameModeIntro);
+			AudioConstants.Instance.GameModeIntro.PlaySFX();
 		}
 
 		public void Finish() {

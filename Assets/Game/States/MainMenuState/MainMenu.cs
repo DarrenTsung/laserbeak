@@ -38,7 +38,7 @@ namespace DT.Game.MainMenu {
 				return;
 			}
 
-			AudioManager.Instance.PlaySFX(GameConstants.Instance.UIBeep);
+			AudioConstants.Instance.UIBeep.PlaySFX();
 			playHandler_.Invoke();
 			// avoid invoke handler twice
 			playHandler_ = null;
