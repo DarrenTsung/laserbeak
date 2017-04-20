@@ -48,15 +48,20 @@ namespace DT.Game.Battle.Players {
 				}
 
 				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));
+				AudioConstants.Instance.PlayerDeath.PlaySFX();
 				BattleCamera.Shake(1.0f);
 
 				ObjectPoolManager.Recycle(this);
 			} else {
+				float multiplier = 1.0f;
 				if (damage > 0) {
 					AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.Body));
+					multiplier = 0.5f;
 				}
+
 				Knockback(forward);
-				BattleCamera.Shake(0.55f);
+				AudioConstants.Instance.PlayerHurt.PlaySFX(volumeScale: multiplier);
+				BattleCamera.Shake(0.55f * multiplier);
 			}
 		}
 

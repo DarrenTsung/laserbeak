@@ -17,6 +17,10 @@ namespace DT.Game {
 		public AudioClip GameModeIntro;
 		public AudioClip LaserShoot;
 		public AudioClip Dash;
+
+		[Header("Player")]
+		public AudioClip PlayerHurt;
+		public AudioClip PlayerDeath;
 	}
 
 	public static class GameAudioClipExtensions {

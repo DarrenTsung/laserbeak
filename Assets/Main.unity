@@ -903,6 +903,8 @@ MonoBehaviour:
   GameModeIntro: {fileID: 8300000, guid: 90634c1682b1a42babd9f791c08e544b, type: 3}
   LaserShoot: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
   Dash: {fileID: 8300000, guid: d238e8f9f7f77481ba45d31fadb7bb61, type: 3}
+  PlayerHurt: {fileID: 8300000, guid: 4f67300d689f04112ae530091e6632d9, type: 3}
+  PlayerDeath: {fileID: 8300000, guid: 99bfea1c611064efe9ada81f7f8e1521, type: 3}
 --- !u!4 &2128445822
 Transform:
   m_ObjectHideFlags: 0
