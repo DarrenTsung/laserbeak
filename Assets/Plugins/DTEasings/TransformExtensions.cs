@@ -11,14 +11,17 @@ namespace DTEasings {
 			if (coroutineMap_.ContainsKey(transform)) {
 				coroutineMap_[transform].Cancel();
 				coroutineMap_.Remove(transform);
+				transform.position = originalPositionMap_[transform];
 			}
 
+			originalPositionMap_[transform] = transform.position;
 			coroutineMap_[transform] = CoroutineWrapper.StartCoroutine(ShakeCoroutine(transform, magnitude, duration, easeType));
 		}
 
 		// PRAGMA MARK - Internal
 		private static readonly WaitForEndOfFrame kWaitForEndOfFrame = new WaitForEndOfFrame();
 		private static readonly Dictionary<Transform, CoroutineWrapper> coroutineMap_ = new Dictionary<Transform, CoroutineWrapper>();
+		private static readonly Dictionary<Transform, Vector3> originalPositionMap_ = new Dictionary<Transform, Vector3>();
 
 		private static IEnumerator ShakeCoroutine(Transform transform, float magnitude, float duration, EaseType easeType) {
 			Vector3 offset;
@@ -36,6 +39,7 @@ namespace DTEasings {
 			}
 
 			coroutineMap_.Remove(transform);
+			transform.position = originalPositionMap_[transform];
 		}
 	}
 }
