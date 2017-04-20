@@ -15,6 +15,7 @@ namespace DT.Game.Players {
 		// PRAGMA MARK - Public Interface
 		public void InitWith(Player player) {
 			nicknameText_.Text = player.Nickname;
+			nicknameText_.Color = player.Skin.Color;
 			backgroundImage_.color = player.Skin.Color;
 		}
 
