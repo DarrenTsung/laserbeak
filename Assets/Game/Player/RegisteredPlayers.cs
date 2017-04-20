@@ -39,6 +39,11 @@ namespace DT.Game.Players {
 			OnPlayerRemoved.Invoke();
 		}
 
+		public static void Clear() {
+			players_.Clear();
+			OnPlayerRemoved.Invoke();
+		}
+
 		public static IList<Player> AllPlayers {
 			get { return players_; }
 		}

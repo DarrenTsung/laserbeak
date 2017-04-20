@@ -17,14 +17,8 @@ namespace DT.Game.Battle {
 		public static event Action OnSpawnedPlayerRemoved = delegate {};
 
 		public static void SpawnAllPlayers() {
-			IList<PlayerSpawnPoint> spawnPoints = ArenaManager.Instance.LoadedArena.PlayerSpawnPoints;
-
-			int playerIndex = 0;
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
-				PlayerSpawnPoint spawnPoint = spawnPoints.GetClamped(playerIndex);
-				SpawnPlayerFor(player, spawnPoint);
-
-				playerIndex++;
+				SpawnPlayer(player);
 			}
 		}
 
@@ -52,11 +46,37 @@ namespace DT.Game.Battle {
 			return playerMap_.GetValueOrDefault(player);
 		}
 
+		public static bool ShouldRespawn {
+			get { return shouldRespawn_; }
+			set {
+				if (shouldRespawn_ == value) {
+					return;
+				}
+
+				shouldRespawn_ = value;
+				if (!shouldRespawn_) {
+					// cleanup any respawning coroutines
+					foreach (CoroutineWrapper coroutine in respawnCoroutines_) {
+						coroutine.Cancel();
+					}
+					respawnCoroutines_.Clear();
+				}
+			}
+		}
+
 
 		// PRAGMA MARK - Internal
-		private static readonly Dictionary<Player, BattlePlayer> playerMap_ = new Dictionary<Player, BattlePlayer>();
+		private const float kRespawnDelay = 2.0f;
 
-		private static void SpawnPlayerFor(Player player, PlayerSpawnPoint spawnPoint) {
+		private static readonly Dictionary<Player, BattlePlayer> playerMap_ = new Dictionary<Player, BattlePlayer>();
+		private static readonly HashSet<CoroutineWrapper> respawnCoroutines_ = new HashSet<CoroutineWrapper>();
+
+		private static bool shouldRespawn_ = false;
+
+		private static void SpawnPlayer(Player player) {
+			IList<PlayerSpawnPoint> spawnPoints = ArenaManager.Instance.LoadedArena.PlayerSpawnPoints;
+			PlayerSpawnPoint spawnPoint = spawnPoints.GetClamped(RegisteredPlayers.AllPlayers.IndexOf(player));
+
 			if (PlayerExistsFor(player)) {
 				Debug.LogWarning("Could not spawn player for: " + player);
 				return;
@@ -89,6 +109,12 @@ namespace DT.Game.Battle {
 		private static void RemovePlayer(Player player) {
 			playerMap_.Remove(player);
 			OnSpawnedPlayerRemoved.Invoke();
+
+			if (ShouldRespawn) {
+				respawnCoroutines_.Add(CoroutineWrapper.DoAfterDelay(kRespawnDelay, () => {
+					SpawnPlayer(player);
+				}));
+			}
 		}
 	}
 }

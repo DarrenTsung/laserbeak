@@ -31,7 +31,7 @@ namespace DT.Game.RegisterPlayers {
 				nicknameBuilder.Append(CharUtil.RandomUppercaseLetter());
 				player.Nickname = nicknameBuilder.ToString();
 
-				player.Skin = GetBestSkin();
+				player.Skin = RegisteredPlayersUtil.GetBestRandomSkin();
 
 				RegisteredPlayers.Add(player);
 			}
@@ -39,32 +39,13 @@ namespace DT.Game.RegisterPlayers {
 			// TODO (darren): do this is a different way later
 			// when we have actual AI selection
 			int missingPlayersCount = 4 - RegisteredPlayers.AllPlayers.Count;
-			for (int i = 1; i <= missingPlayersCount; i++) {
-				Player player = new Player(null);
-				player.Nickname = "AI-" + i;
-				player.Skin = GetBestSkin();
-
-				RegisteredPlayers.Add(player);
-			}
+			RegisteredPlayersUtil.RegisterAIPlayers(missingPlayersCount);
 
 			StateMachine_.StartBattle();
 		}
 
 		protected override void OnStateExited() {
-		}
-
-		private bool SkinAlreadyInUse(BattlePlayerSkin skin) {
-			return RegisteredPlayers.AllPlayers.Any(p => p.Skin == skin);
-		}
-
-		private BattlePlayerSkin GetBestSkin() {
-			BattlePlayerSkin chosenSkin = playerSkins_.Random();
-			// NOTE (darren): could do a better random here..
-			while (SkinAlreadyInUse(chosenSkin) && !playerSkins_.All(SkinAlreadyInUse)) {
-				chosenSkin = playerSkins_.Random();
-			}
-
-			return chosenSkin;
+			// stub
 		}
 	}
 }

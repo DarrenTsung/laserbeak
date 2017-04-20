@@ -27,6 +27,8 @@ namespace DT.Game {
 			get { return scoresToWin_; }
 		}
 
+		public BattlePlayerSkin[] PlayerSkins;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]

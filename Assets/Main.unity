@@ -814,6 +814,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerSkins:
+  - {fileID: 11400000, guid: f4391fb4d7c594a7faab01e17f7c9b53, type: 2}
+  - {fileID: 11400000, guid: 2d212f342362c4de8bae265d511314ff, type: 2}
+  - {fileID: 11400000, guid: 10e8e740af832432f9f8f61b097e1b26, type: 2}
+  - {fileID: 11400000, guid: 3f5209ea347a9415e94ddeeef1360583, type: 2}
   gameModes_:
   - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
   - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
