@@ -48,6 +48,7 @@ namespace DT.Game.Battle.Players {
 				}
 
 				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));
+				BattleCamera.Shake(1.0f);
 
 				ObjectPoolManager.Recycle(this);
 			} else {
@@ -55,6 +56,7 @@ namespace DT.Game.Battle.Players {
 					AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.Body));
 				}
 				Knockback(forward);
+				BattleCamera.Shake(0.55f);
 			}
 		}
 

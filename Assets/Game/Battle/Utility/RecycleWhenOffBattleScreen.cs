@@ -25,11 +25,11 @@ namespace DT.Game.Battle {
 				return;
 			}
 
-			if (Battle.Camera == null) {
+			if (BattleCamera.Instance == null) {
 				return;
 			}
 
-			Vector2 viewportPoint = Battle.Camera.WorldToViewportPoint(this.transform.position);
+			Vector2 viewportPoint = BattleCamera.Instance.WorldToViewportPoint(this.transform.position);
 			if (viewportPoint.x < -kMargin || viewportPoint.x > 1.0f + kMargin || viewportPoint.y < -kMargin || viewportPoint.y > 1.0f + kMargin) {
 				ObjectPoolManager.Recycle(this);
 				enabled_ = false;

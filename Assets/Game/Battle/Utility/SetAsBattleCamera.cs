@@ -12,7 +12,7 @@ namespace DT.Game.Battle {
 	public class SetAsBattleCamera : MonoBehaviour {
 		// PRAGMA MARK - Internal
 		private void Awake() {
-			Battle.Camera = this.GetRequiredComponent<Camera>();
+			BattleCamera.Instance = this.GetRequiredComponent<Camera>();
 		}
 	}
 }

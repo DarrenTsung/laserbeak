@@ -20,6 +20,7 @@ namespace DT.Game.Battle.Lasers {
 		public void Init(BattlePlayer battlePlayer) {
 			battlePlayer_ = battlePlayer;
 			AudioManager.Instance.PlaySFX(startClip_);
+			BattleCamera.Shake(0.14f);
 		}
 
 		public void SetMaterial(Material material) {
