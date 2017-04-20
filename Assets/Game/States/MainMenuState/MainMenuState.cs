@@ -33,6 +33,8 @@ namespace DT.Game.MainMenu {
 			RegisteredPlayers.Clear();
 			PlayerSpawner.ShouldRespawn = false;
 			PlayerSpawner.CleanupAllPlayers();
+			BattleRecyclables.Clear();
+
 			if (mainMenu_ != null) {
 				ObjectPoolManager.Recycle(mainMenu_);
 				mainMenu_ = null;
