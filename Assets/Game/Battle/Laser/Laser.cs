@@ -8,6 +8,8 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Audio;
+
 namespace DT.Game.Battle.Lasers {
 	public class Laser : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
@@ -17,6 +19,7 @@ namespace DT.Game.Battle.Lasers {
 
 		public void Init(BattlePlayer battlePlayer) {
 			battlePlayer_ = battlePlayer;
+			AudioManager.Instance.PlaySFX(startClip_);
 		}
 
 		public void SetMaterial(Material material) {
@@ -46,6 +49,9 @@ namespace DT.Game.Battle.Lasers {
 
 		[SerializeField]
 		private Renderer laserRenderer_;
+
+		[SerializeField]
+		private AudioClip startClip_;
 
 		private BattlePlayer battlePlayer_;
 		private Rigidbody rigidbody_;
