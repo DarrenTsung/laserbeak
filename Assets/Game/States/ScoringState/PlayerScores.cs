@@ -15,6 +15,7 @@ namespace DT.Game.Scoring {
 	public static class PlayerScores {
 		// PRAGMA MARK - Static Public Interface
 		public static event Action OnPlayerScoresChanged = delegate {};
+		public static event Action OnPlayerWon = delegate {};
 
 		public static void Clear() {
 			pendingScoreMap_.Clear();
@@ -22,6 +23,11 @@ namespace DT.Game.Scoring {
 		}
 
 		public static void IncrementPendingScoreFor(Player player) {
+			if (HasWinner) {
+				Debug.LogWarning("Shouldn't change pending scores while HasWinner!");
+				return;
+			}
+
 			pendingScoreMap_[player] = GetPendingScore(player) + 1;
 		}
 
@@ -29,7 +35,20 @@ namespace DT.Game.Scoring {
 			get { return pendingScoreMap_.Values.Any(score => score > 0); }
 		}
 
+		public static Player Winner {
+			get { return scoreMap_.FirstOrDefault(kvp => kvp.Value >= GameConstants.Instance.ScoreToWin).Key; }
+		}
+
+		public static bool HasWinner {
+			get { return Winner != null; }
+		}
+
 		public static void StepConvertPendingScoresToScores() {
+			if (HasWinner) {
+				Debug.LogWarning("Shouldn't convert scores while HasWinner!");
+				return;
+			}
+
 			foreach (Player player in pendingScoreMap_.Keys.ToArray()) {
 				int pendingScore = GetPendingScore(player);
 				if (pendingScore <= 0) {
@@ -39,6 +58,10 @@ namespace DT.Game.Scoring {
 				pendingScoreMap_[player] = pendingScore - 1;
 				scoreMap_[player] = GetScoreFor(player) + 1;
 				OnPlayerScoresChanged.Invoke();
+			}
+
+			if (HasWinner) {
+				OnPlayerWon.Invoke();
 			}
 		}
 

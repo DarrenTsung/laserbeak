@@ -19,6 +19,7 @@ namespace DT.Game {
 		public AudioClip UIBeep;
 		public AudioClip GameModeIntro;
 		public AudioClip ScoreAdded;
+		public AudioClip Win;
 
 		[Header("Game SFX")]
 		public AudioClip LaserShoot;

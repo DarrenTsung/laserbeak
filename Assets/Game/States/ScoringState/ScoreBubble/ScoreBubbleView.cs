@@ -16,10 +16,6 @@ namespace DT.Game.Scoring {
 	public class ScoreBubbleView : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public void SetFilled(bool filled, bool animate) {
-			if (filled_ == filled) {
-				return;
-			}
-
 			Vector3 endScale = filled ? Vector3.one : Vector3.zero;
 			if (animate) {
 				AnimateTo(endScale);
@@ -36,8 +32,6 @@ namespace DT.Game.Scoring {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject scaledObject_;
-
-		private bool filled_ = false;
 
 		private void AnimateTo(Vector3 endScale) {
 			this.StopAllCoroutines();

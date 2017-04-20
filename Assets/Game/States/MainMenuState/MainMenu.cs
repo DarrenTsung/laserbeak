@@ -20,15 +20,7 @@ namespace DT.Game.MainMenu {
 		private Action playHandler_;
 
 		private void Update() {
-			foreach (InputDevice device in InputManager.Devices) {
-				InputControl control = device.GetControl(InputControlType.Action1);
-				if (control.IsPressed) {
-					HandlePlayPressed();
-				}
-			}
-
-			// TODO (darren): custom profiles binding later
-			if (Input.GetKeyDown(KeyCode.Space)) {
+			if (InputUtil.IsAnyMainButtonPressed()) {
 				HandlePlayPressed();
 			}
 		}

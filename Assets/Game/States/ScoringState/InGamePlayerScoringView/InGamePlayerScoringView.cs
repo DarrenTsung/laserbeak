@@ -63,11 +63,19 @@ namespace DT.Game.Scoring {
 				AudioConstants.Instance.ScoreAdded.PlaySFX();
 				PlayerScores.StepConvertPendingScoresToScores();
 
-				if (!PlayerScores.HasPendingScores) {
+				if (!PlayerScores.HasPendingScores || PlayerScores.HasWinner) {
 					break;
 				}
 
 				yield return betweenScoringDelay;
+			}
+
+			if (PlayerScores.HasWinner) {
+				AudioConstants.Instance.Win.PlaySFX(randomPitchRange: 0.0f);
+				// wait for main button press
+				while (!InputUtil.IsAnyMainButtonPressed()) {
+					yield return null;
+				}
 			}
 
 			yield return new WaitForSeconds(kEndScoringDelay);

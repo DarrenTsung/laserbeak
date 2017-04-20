@@ -23,12 +23,9 @@ namespace DT.Game {
 			ai.Init(player, substitutePlayerAIConfiguration_);
 		}
 
-		public int ScoresToWin {
-			get { return scoresToWin_; }
-		}
+		public int ScoreToWin = 5;
 
 		public BattlePlayerSkin[] PlayerSkins;
-
 		public BattlePlayerSkin EnemySkin;
 
 
@@ -39,8 +36,5 @@ namespace DT.Game {
 
 		[SerializeField]
 		private AIConfiguration substitutePlayerAIConfiguration_;
-
-		[SerializeField]
-		private int scoresToWin_ = 5;
 	}
 }

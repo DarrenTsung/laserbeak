@@ -32,7 +32,13 @@ namespace DT.Game.Scoring {
 		}
 
 		private void HandleScoringFinished() {
-			StateMachine_.StartBattle();
+			if (PlayerScores.HasWinner) {
+				PlayerScores.Clear();
+				RegisteredPlayers.Clear();
+				StateMachine_.GoToMainMenu();
+			} else {
+				StateMachine_.StartBattle();
+			}
 		}
 	}
 }

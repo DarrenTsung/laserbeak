@@ -12,7 +12,7 @@ using DT.Game.GameModes;
 using DT.Game.Players;
 
 namespace DT.Game.Scoring {
-	public class IndividualPlayerScoringView : MonoBehaviour, IRecycleCleanupSubscriber {
+	public class IndividualPlayerScoringView : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void Init(Player player) {
 			player_ = player;
@@ -20,14 +20,21 @@ namespace DT.Game.Scoring {
 			var inGamePlayerView = ObjectPoolManager.Create<InGamePlayerView>(GamePrefabs.Instance.InGamePlayerViewPrefab, parent: playerViewContainer_);
 			inGamePlayerView.InitWith(player);
 
-			scoreBubbleViews_ = new ScoreBubbleView[GameConstants.Instance.ScoresToWin];
-			for (int i = 0; i < GameConstants.Instance.ScoresToWin; i++) {
+			scoreBubbleViews_ = new ScoreBubbleView[GameConstants.Instance.ScoreToWin];
+			for (int i = 0; i < GameConstants.Instance.ScoreToWin; i++) {
 				scoreBubbleViews_[i] = ObjectPoolManager.Create<ScoreBubbleView>(GamePrefabs.Instance.ScoreBubbleViewPrefab, parent: scoresContainer_);
 			}
 
 			RefreshScoreBubbles(animate: false);
 
 			PlayerScores.OnPlayerScoresChanged += HandlePlayerScoresChanged;
+			PlayerScores.OnPlayerWon += HandlePlayerWon;
+		}
+
+
+		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
+		void IRecycleSetupSubscriber.OnRecycleSetup() {
+			wonContainer_.SetActive(false);
 		}
 
 
@@ -37,6 +44,9 @@ namespace DT.Game.Scoring {
 			scoresContainer_.transform.RecycleAllChildren();
 
 			PlayerScores.OnPlayerScoresChanged -= HandlePlayerScoresChanged;
+			PlayerScores.OnPlayerWon -= HandlePlayerWon;
+
+			player_ = null;
 		}
 
 
@@ -48,6 +58,9 @@ namespace DT.Game.Scoring {
 		[SerializeField]
 		private GameObject scoresContainer_;
 
+		[SerializeField]
+		private GameObject wonContainer_;
+
 		private Player player_;
 		private ScoreBubbleView[] scoreBubbleViews_;
 
@@ -57,9 +70,17 @@ namespace DT.Game.Scoring {
 
 		private void RefreshScoreBubbles(bool animate) {
 			int playerScore = PlayerScores.GetScoreFor(player_);
-			for (int i = 0; i < GameConstants.Instance.ScoresToWin; i++) {
+			for (int i = 0; i < GameConstants.Instance.ScoreToWin; i++) {
 				scoreBubbleViews_[i].SetFilled(i < playerScore, animate);
 			}
+		}
+
+		private void HandlePlayerWon() {
+			if (PlayerScores.Winner != player_) {
+				return;
+			}
+
+			wonContainer_.SetActive(true);
 		}
 	}
 }

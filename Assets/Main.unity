@@ -847,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreToWin: 1
   PlayerSkins:
   - {fileID: 11400000, guid: f4391fb4d7c594a7faab01e17f7c9b53, type: 2}
   - {fileID: 11400000, guid: 2d212f342362c4de8bae265d511314ff, type: 2}
@@ -859,7 +860,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
-  scoresToWin_: 5
 --- !u!1 &1675223163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1043,7 @@ MonoBehaviour:
   UIBeep: {fileID: 8300000, guid: 1c8acfd9ab7204f58b1b85efad38b20b, type: 3}
   GameModeIntro: {fileID: 8300000, guid: 90634c1682b1a42babd9f791c08e544b, type: 3}
   ScoreAdded: {fileID: 8300000, guid: e80d43910d33848089a973bf525d2bb9, type: 3}
+  Win: {fileID: 8300000, guid: eb2b6b29de7a643358b1fc3e6f8d2ea8, type: 3}
   LaserShoot: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
   Dash: {fileID: 8300000, guid: d238e8f9f7f77481ba45d31fadb7bb61, type: 3}
   PlayerHurt: {fileID: 8300000, guid: 4f67300d689f04112ae530091e6632d9, type: 3}
