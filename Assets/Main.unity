@@ -901,6 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIBeep: {fileID: 8300000, guid: 1c8acfd9ab7204f58b1b85efad38b20b, type: 3}
   GameModeIntro: {fileID: 8300000, guid: 90634c1682b1a42babd9f791c08e544b, type: 3}
+  LaserShoot: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
   Dash: {fileID: 8300000, guid: d238e8f9f7f77481ba45d31fadb7bb61, type: 3}
 --- !u!4 &2128445822
 Transform:

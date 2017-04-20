@@ -19,7 +19,7 @@ namespace DT.Game.Battle.Lasers {
 
 		public void Init(BattlePlayer battlePlayer) {
 			battlePlayer_ = battlePlayer;
-			AudioManager.Instance.PlaySFX(startClip_, volumeScale: 0.4f);
+			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.4f);
 			BattleCamera.Shake(0.14f);
 		}
 
@@ -50,9 +50,6 @@ namespace DT.Game.Battle.Lasers {
 
 		[SerializeField]
 		private Renderer laserRenderer_;
-
-		[SerializeField]
-		private AudioClip startClip_;
 
 		private BattlePlayer battlePlayer_;
 		private Rigidbody rigidbody_;

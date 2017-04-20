@@ -15,6 +15,7 @@ namespace DT.Game {
 		[Header("Audio")]
 		public AudioClip UIBeep;
 		public AudioClip GameModeIntro;
+		public AudioClip LaserShoot;
 		public AudioClip Dash;
 	}
 
