@@ -44,6 +44,7 @@ namespace DT.Game.Battle.Players {
 		private void Dash(Vector3 direction) {
 			Vector3 endPosition = Player_.Rigidbody.position + (kDashDistance * Player_.WeightedRatio() * direction);
 			Controller_.MoveTo(Player_, endPosition, kDashDuration, EaseType.CubicEaseOut);
+			AudioConstants.Instance.Dash.PlaySFX();
 		}
 	}
 }
