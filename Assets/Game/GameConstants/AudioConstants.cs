@@ -12,7 +12,10 @@ using DT.Game.Audio;
 namespace DT.Game {
 	public class AudioConstants : Singleton<AudioConstants> {
 		// PRAGMA MARK - Public Interface
-		[Header("Audio")]
+		[Header("Music")]
+		public AudioClip BackgroundMusic;
+
+		[Header("SFX")]
 		public AudioClip UIBeep;
 		public AudioClip GameModeIntro;
 		public AudioClip LaserShoot;
@@ -24,8 +27,8 @@ namespace DT.Game {
 	}
 
 	public static class GameAudioClipExtensions {
-		public static void PlaySFX(this AudioClip clip, float volumeScale = 1.0f) {
-			AudioManager.Instance.PlaySFX(clip, volumeScale);
+		public static void PlaySFX(this AudioClip clip, float volumeScale = 1.0f, float randomPitchRange = 0.05f) {
+			AudioManager.Instance.PlaySFX(clip, volumeScale, randomPitchRange);
 		}
 	}
 }

@@ -31,6 +31,7 @@ namespace DT.Game.GameModes {
 			foreach (BattlePlayer battlePlayer in AllBattlePlayers) {
 				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
 			}
+			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Muted);
 		}
 
 		private static IEnumerable<BattlePlayer> AllBattlePlayers {
@@ -66,7 +67,7 @@ namespace DT.Game.GameModes {
 			}
 
 			animator_.SetTrigger("Play");
-			AudioConstants.Instance.GameModeIntro.PlaySFX();
+			AudioConstants.Instance.GameModeIntro.PlaySFX(randomPitchRange: 0.0f);
 		}
 
 		public void Finish() {
@@ -78,6 +79,7 @@ namespace DT.Game.GameModes {
 			foreach (BattlePlayer battlePlayer in AllBattlePlayers) {
 				battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
 			}
+			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Normal);
 		}
 
 

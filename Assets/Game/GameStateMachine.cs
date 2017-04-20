@@ -4,6 +4,8 @@ using UnityEngine;
 
 using DTAnimatorStateMachine;
 
+using DT.Game.Audio;
+
 namespace DT.Game {
 	[RequireComponent(typeof(Animator))]
 	public class GameStateMachine : MonoBehaviour {
@@ -26,6 +28,8 @@ namespace DT.Game {
 		private void Awake() {
 			animator_ = this.GetRequiredComponent<Animator>();
 			this.ConfigureAllStateBehaviours(animator_);
+
+			AudioManager.Instance.PlayBGM(AudioConstants.Instance.BackgroundMusic);
 		}
 	}
 }
