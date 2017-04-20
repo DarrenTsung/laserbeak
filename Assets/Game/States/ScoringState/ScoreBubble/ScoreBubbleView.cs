@@ -14,9 +14,14 @@ using DT.Game.GameModes;
 using DT.Game.Players;
 
 namespace DT.Game.Scoring {
-	public class ScoreBubbleView : MonoBehaviour {
+	public class ScoreBubbleView : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void SetFilled(bool filled, bool animate) {
+			if (filled_ == filled) {
+				return;
+			}
+
+			filled_ = filled;
 			Vector3 endScale = filled ? Vector3.one : Vector3.zero;
 			if (animate) {
 				// animated score bubbles become gold
@@ -27,6 +32,14 @@ namespace DT.Game.Scoring {
 				image_.color = Color.white;
 				scaledObject_.transform.localScale = endScale;
 			}
+		}
+
+
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			filled_ = false;
+			scaledObject_.transform.localScale = Vector3.zero;
+			image_.color = Color.white;
 		}
 
 
@@ -42,6 +55,8 @@ namespace DT.Game.Scoring {
 
 		[SerializeField]
 		private Image image_;
+
+		private bool filled_;
 
 		private void AnimateTo(Vector3 endScale) {
 			this.StopAllCoroutines();
