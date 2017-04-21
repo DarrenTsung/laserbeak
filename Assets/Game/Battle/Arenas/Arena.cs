@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
+using DT.Game.Players;
 using DTAnimatorStateMachine;
 using DTEasings;
 using DTObjectPoolManager;
@@ -48,19 +49,9 @@ namespace DT.Game.Battle {
 		public Arena(GameObject arenaObject) {
 			gameObject_ = arenaObject;
 
-			PlayerSpawnPoint[] spawnPoints = arenaObject.GetComponentsInChildren<PlayerSpawnPoint>();
-			Array.Sort(spawnPoints, (PlayerSpawnPoint a, PlayerSpawnPoint b) => {
-				Vector3 aPos = a.transform.position.Floor();
-				Vector3 bPos = b.transform.position.Floor();
+			List<PlayerSpawnPoint> spawnPoints = arenaObject.GetComponentsInChildren<PlayerSpawnPoint>().ToList();
+			PlayerUtil.Sort(spawnPoints, spawnPoint => spawnPoint.transform.position.Vector2XZValue());
 
-				if (aPos.z != bPos.z) {
-					// higher z -> first
-					return bPos.z.CompareTo(aPos.z);
-				}
-
-				// lower x -> first
-				return aPos.x.CompareTo(bPos.x);
-			});
 			playerSpawnPoints_ = new ReadOnlyCollection<PlayerSpawnPoint>(spawnPoints);
 			aiSpawnPoints_ = new ReadOnlyCollection<AISpawnPoint>(arenaObject.GetComponentsInChildren<AISpawnPoint>());
 		}

@@ -42,6 +42,11 @@ namespace DT.Game {
 		public GameObject InGamePlayerHUDEffect;
 		public GameObject InGameTimerPrefab;
 
+		[Header("Player Customization")]
+		public GameObject PlayerCustomizationViewPrefab;
+		public GameObject IndividualPlayerCustomizationViewPrefab;
+		public GameObject PlayerReadyView;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

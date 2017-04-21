@@ -73,7 +73,7 @@ namespace DT.Game.Scoring {
 			if (PlayerScores.HasWinner) {
 				AudioConstants.Instance.Win.PlaySFX(randomPitchRange: 0.0f);
 				// wait for main button press
-				while (!InputUtil.IsAnyMainButtonPressed()) {
+				while (!InputUtil.WasAnyMainButtonPressed()) {
 					yield return null;
 				}
 			}

@@ -44,6 +44,10 @@ namespace DT.Game.Players {
 			}
 		}
 
+		public bool IsAI {
+			get { return InputDevice == null; }
+		}
+
 		// TODO (darren): will probably need an input device recovery system (if controller gets unplugged)
 		// will probably require InputDevice to be public set
 		public InputDevice InputDevice {

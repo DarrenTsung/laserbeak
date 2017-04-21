@@ -20,7 +20,7 @@ namespace DT.Game.MainMenu {
 		private Action playHandler_;
 
 		private void Update() {
-			if (InputUtil.IsAnyMainButtonPressed()) {
+			if (InputUtil.WasAnyMainButtonPressed()) {
 				HandlePlayPressed();
 			}
 		}

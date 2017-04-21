@@ -11,10 +11,9 @@ using InControl;
 namespace DT.Game {
 	public static class InputUtil {
 		// PRAGMA MARK - Static Public Interface
-		public static bool IsAnyMainButtonPressed() {
+		public static bool WasAnyMainButtonPressed() {
 			foreach (InputDevice device in InputManager.Devices) {
-				InputControl control = device.GetControl(InputControlType.Action1);
-				if (control.IsPressed) {
+				if (WasPositivePressedFor(device)) {
 					return true;
 				}
 			}
@@ -25,6 +24,14 @@ namespace DT.Game {
 			}
 
 			return false;
+		}
+
+		public static bool WasPositivePressedFor(InputDevice device) {
+			return device.GetControl(InputControlType.Action1).WasPressed;
+		}
+
+		public static bool WasNegativePressedFor(InputDevice device) {
+			return device.GetControl(InputControlType.Action2).WasPressed;
 		}
 	}
 }

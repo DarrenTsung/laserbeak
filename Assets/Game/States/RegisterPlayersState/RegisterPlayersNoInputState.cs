@@ -41,7 +41,7 @@ namespace DT.Game.RegisterPlayers {
 			int missingPlayersCount = 4 - RegisteredPlayers.AllPlayers.Count;
 			RegisteredPlayersUtil.RegisterAIPlayers(missingPlayersCount);
 
-			StateMachine_.StartBattle();
+			StateMachine_.Continue();
 		}
 
 		protected override void OnStateExited() {
