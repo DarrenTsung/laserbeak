@@ -24,6 +24,8 @@ namespace DT.Game.Battle.Players {
 			get { return laserMaterial_.GetColor("_EmissionColor"); }
 		}
 
+		public Sprite ThumbnailSprite;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]

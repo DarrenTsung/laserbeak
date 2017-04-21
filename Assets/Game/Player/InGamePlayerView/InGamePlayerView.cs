@@ -16,14 +16,14 @@ namespace DT.Game.Players {
 		public void InitWith(Player player) {
 			nicknameText_.Text = player.Nickname;
 			nicknameText_.Color = player.Skin.Color;
-			backgroundImage_.color = player.Skin.Color;
+			image_.sprite = player.Skin.ThumbnailSprite;
 		}
 
 
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]
 		[SerializeField]
-		private Image backgroundImage_;
+		private Image image_;
 
 		[SerializeField]
 		private TextOutlet nicknameText_;
