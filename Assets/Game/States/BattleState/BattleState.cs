@@ -14,6 +14,7 @@ using DT.Game.Players;
 namespace DT.Game.Battle {
 	public class BattleState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
+		private GameMode previousGameMode_ = null;
 		private GameMode currentGameMode_ = null;
 
 		protected override void OnStateEntered() {
@@ -24,8 +25,15 @@ namespace DT.Game.Battle {
 			InGamePlayerCollectionView.Show();
 
 			// TODO (darren): filtering based on options will be here
-			currentGameMode_ = GameConstants.Instance.GameModes.Random();
+			do {
+				if (previousGameMode_ == null) {
+					currentGameMode_ = GameConstants.Instance.GameModes.First();
+				} else {
+					currentGameMode_ = GameConstants.Instance.GameModes.Random();
+				}
+			} while (previousGameMode_ == currentGameMode_);
 			currentGameMode_.Activate(HandleGameModeFinished);
+			previousGameMode_ = currentGameMode_;
 
 			InGamePlayerHUDEffect.CreateForAllPlayers();
 		}
