@@ -717,11 +717,17 @@ MonoBehaviour:
     type: 2}
   InGameTimerPrefab: {fileID: 1369858089402618, guid: 809e2e19b9fec452093aebfe5b1f0366,
     type: 2}
+  ElementSelectionViewPrefab: {fileID: 1815719729863646, guid: 1d5ee5250919147fc9b3f94c23f28821,
+    type: 2}
+  SelectorPrefab: {fileID: 1713116134444828, guid: 8b92283850deb439f99d770b8d65df23,
+    type: 2}
   PlayerCustomizationViewPrefab: {fileID: 1068083865735700, guid: 63425d685a8aa41e18c67f8d6b4babd4,
     type: 2}
   IndividualPlayerCustomizationViewPrefab: {fileID: 1772066702783634, guid: c4ed3af11a6d944798d493ab781ccb8a,
     type: 2}
   PlayerReadyView: {fileID: 1094276740224224, guid: 36596de093e86452693a4064375058e2,
+    type: 2}
+  NicknameCustomizationViewPrefab: {fileID: 1488986257577324, guid: 3504dc37e9f8c4eae9d4a4ffb787b472,
     type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}

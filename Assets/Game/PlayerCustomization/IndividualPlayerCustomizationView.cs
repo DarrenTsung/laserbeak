@@ -102,8 +102,7 @@ namespace DT.Game.PlayerCustomization {
 					stateHandler_ = new StatePlaceholder(player_, currentStateContainer_, MoveToNextState, MoveToPreviousState, "Skin");
 					break;
 				case State.Nickname:
-					// TODO (darren): add in Nickname selection
-					stateHandler_ = new StatePlaceholder(player_, currentStateContainer_, MoveToNextState, MoveToPreviousState, "Nickname");
+					stateHandler_ = new StateNicknameCustomization(player_, currentStateContainer_, MoveToNextState, MoveToPreviousState);
 					break;
 				case State.Ready:
 					stateHandler_ = new StateReady(player_, currentStateContainer_, MoveToNextState, MoveToPreviousState);

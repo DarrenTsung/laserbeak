@@ -159,9 +159,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'DAR
-
-'
+  m_text: DARREN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30985c2ab29a242688b03e19ccfeae68, type: 2}
   m_sharedMaterial: {fileID: 21307575556481456, guid: 30985c2ab29a242688b03e19ccfeae68,
@@ -229,9 +227,9 @@ MonoBehaviour:
   m_margin: {x: 6, y: 8, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114108261212175548}
-    characterCount: 4
+    characterCount: 6
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
@@ -444,7 +442,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 100, y: 30}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224688407873909198
 RectTransform:

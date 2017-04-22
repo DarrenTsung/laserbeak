@@ -95,7 +95,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: AI-1
+  m_text: DARRENNNN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30985c2ab29a242688b03e19ccfeae68, type: 2}
   m_sharedMaterial: {fileID: 21307575556481456, guid: 30985c2ab29a242688b03e19ccfeae68,
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114399542672271796}
-    characterCount: 4
+    characterCount: 9
     spriteCount: 0
     spaceCount: 0
     wordCount: 1

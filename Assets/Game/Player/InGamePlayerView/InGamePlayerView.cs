@@ -11,12 +11,24 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Players {
-	public class InGamePlayerView : MonoBehaviour {
+	public class InGamePlayerView : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void InitWith(Player player) {
-			nicknameText_.Text = player.Nickname;
-			nicknameText_.Color = player.Skin.Color;
-			image_.sprite = player.Skin.ThumbnailSprite;
+			player_ = player;
+			player_.OnNicknameChanged += HandleNicknameChanged;
+			player_.OnSkinChanged += HandleSkinChanged;
+
+			HandleNicknameChanged();
+			HandleSkinChanged();
+		}
+
+
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			if (player_ != null) {
+				player_.OnNicknameChanged -= HandleNicknameChanged;
+				player_ = null;
+			}
 		}
 
 
@@ -27,5 +39,16 @@ namespace DT.Game.Players {
 
 		[SerializeField]
 		private TextOutlet nicknameText_;
+
+		private Player player_;
+
+		private void HandleNicknameChanged() {
+			nicknameText_.Text = player_.Nickname;
+		}
+
+		private void HandleSkinChanged() {
+			nicknameText_.Color = player_.Skin.Color;
+			image_.sprite = player_.Skin.ThumbnailSprite;
+		}
 	}
 }

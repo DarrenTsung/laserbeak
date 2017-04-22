@@ -24,13 +24,7 @@ namespace DT.Game.RegisterPlayers {
 				}
 
 				Player player = new Player(inputDevice);
-
-				StringBuilder nicknameBuilder = new StringBuilder();
-				nicknameBuilder.Append(CharUtil.RandomUppercaseLetter());
-				nicknameBuilder.Append(CharUtil.RandomUppercaseLetter());
-				nicknameBuilder.Append(CharUtil.RandomUppercaseLetter());
-				player.Nickname = nicknameBuilder.ToString();
-
+				player.Nickname = "";
 				player.Skin = RegisteredPlayersUtil.GetBestRandomSkin();
 
 				RegisteredPlayers.Add(player);
