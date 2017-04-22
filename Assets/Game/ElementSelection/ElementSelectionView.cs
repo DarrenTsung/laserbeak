@@ -86,6 +86,7 @@ namespace DT.Game.ElementSelection {
 				selectorTransform_.pivot = selectableTransform.pivot;
 				selectorTransform_.anchoredPosition = selectableTransform.anchoredPosition + Vector2.Scale(kPadding, (selectableTransform.pivot - new Vector2(0.5f, 0.5f)));
 
+				AudioConstants.Instance.ScrollClick.PlaySFX(volumeScale: 0.7f);
 				OnSelectorMoved.Invoke();
 			}
 		}

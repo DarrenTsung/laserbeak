@@ -1057,6 +1057,7 @@ MonoBehaviour:
   ScoreAdded: {fileID: 8300000, guid: e80d43910d33848089a973bf525d2bb9, type: 3}
   Win: {fileID: 8300000, guid: eb2b6b29de7a643358b1fc3e6f8d2ea8, type: 3}
   Negative: {fileID: 8300000, guid: 72c663733866747c69076e102f70e0e6, type: 3}
+  ScrollClick: {fileID: 8300000, guid: 1eb30cde35529403197df4b502a3b5d2, type: 3}
   LaserShoot: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
   Dash: {fileID: 8300000, guid: d238e8f9f7f77481ba45d31fadb7bb61, type: 3}
   PlayerHurt: {fileID: 8300000, guid: 4f67300d689f04112ae530091e6632d9, type: 3}

@@ -21,6 +21,7 @@ namespace DT.Game {
 		public AudioClip ScoreAdded;
 		public AudioClip Win;
 		public AudioClip Negative;
+		public AudioClip ScrollClick;
 
 		[Header("Game SFX")]
 		public AudioClip LaserShoot;
