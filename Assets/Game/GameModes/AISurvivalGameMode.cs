@@ -50,25 +50,19 @@ namespace DT.Game.GameModes {
 			icons.Add(GameModeIntroView.Icon.Skull);
 			icons.Add(GameModeIntroView.Icon.Skull);
 
-			GameModeIntroView.Show("AI SURVIVAL", icons, () => {
-				InGameTimer.Start(kSurviveTime, () => {
-					foreach (Player player in PlayerSpawner.AllSpawnedPlayers) {
-						PlayerScores.IncrementPendingScoreFor(player);
-					}
-					Finish();
-				});
-			});
-
+			GameModeIntroView.Show("AI SURVIVAL", icons);
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
 
 		private void HandleSpawnedPlayerRemoved() {
-			if (PlayerSpawner.AllSpawnedPlayers.Count() > 0) {
+			if (PlayerSpawner.AllSpawnedPlayers.Count() > 1) {
 				return;
 			}
 
-			// finish with no points
 			Finish();
+			foreach (Player player in PlayerSpawner.AllSpawnedPlayers) {
+				PlayerScores.IncrementPendingScoreFor(player);
+			}
 		}
 	}
 }
