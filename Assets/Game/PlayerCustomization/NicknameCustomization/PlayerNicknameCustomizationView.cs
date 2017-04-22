@@ -21,7 +21,7 @@ namespace DT.Game.PlayerCustomization.Nickname {
 			player_ = player;
 			onFinishCustomization_ = onFinishCustomization;
 
-			nicknameOutlet_.Text = Nickname_;
+			RefreshNicknameText();
 		}
 
 		public void HandleOkButtonPressed() {
@@ -35,27 +35,24 @@ namespace DT.Game.PlayerCustomization.Nickname {
 		}
 
 		public void HandleDeleteButtonPressed() {
-			string oldNickname = Nickname_;
-			if (oldNickname.Length <= 0) {
-				return;
-			}
-
-			Nickname_ = oldNickname.Substring(0, oldNickname.Length - 1);
+			keypadIndex_ = 0;
+			RemoveLastCharacterFromNickname();
 		}
 
 		public void HandleKeypadSelected(KeypadSelectable keypad) {
 			char newChar = keypad.CharactersToChoose.GetWrapped(keypadIndex_);
 			if (keypadIndex_ != 0) {
-				HandleDeleteButtonPressed();
+				RemoveLastCharacterFromNickname();
 			}
 
 			if (Nickname_.Length >= kCharacterLimit) {
 				return;
 			}
 
-			Nickname_ = Nickname_ + newChar;
 			keypadIndex_++;
 			keypadDelay_ = kKeypadDelay;
+
+			Nickname_ = Nickname_ + newChar;
 		}
 
 
@@ -97,7 +94,7 @@ namespace DT.Game.PlayerCustomization.Nickname {
 				string newNickname = value.ToUpper();
 
 				PlayerPrefs.SetString(player_.Index() + "Nickname_", newNickname);
-				nicknameOutlet_.Text = newNickname;
+				RefreshNicknameText();
 			}
 		}
 
@@ -105,11 +102,35 @@ namespace DT.Game.PlayerCustomization.Nickname {
 			keypadDelay_ -= Time.deltaTime;
 			if (keypadDelay_ <= 0.0f) {
 				keypadIndex_ = 0;
+				RefreshNicknameText();
 			}
 		}
 
 		private void HandleSelectorMoved() {
 			keypadIndex_ = 0;
+			RefreshNicknameText();
+		}
+
+		private void RefreshNicknameText() {
+			if (keypadIndex_ > 0) {
+				// cursor on current space
+				nicknameOutlet_.Text = string.Format("{0}<u>{1}</u>", Nickname_.Substring(0, Nickname_.Length - 1), Nickname_.Last());
+			} else if (Nickname_.Length < kCharacterLimit) {
+				// cursor on next space
+				nicknameOutlet_.Text = string.Format("{0}_", Nickname_);
+			} else {
+				// no cursor because character limit
+				nicknameOutlet_.Text = Nickname_;
+			}
+		}
+
+		private void RemoveLastCharacterFromNickname() {
+			string oldNickname = Nickname_;
+			if (oldNickname.Length <= 0) {
+				return;
+			}
+
+			Nickname_ = oldNickname.Substring(0, oldNickname.Length - 1);
 		}
 	}
 }
