@@ -32,11 +32,13 @@ namespace DT.Game.PlayerCustomization.Nickname {
 			}
 
 			onFinishCustomization_.Invoke();
+			AudioConstants.Instance.UIBeep.PlaySFX();
 		}
 
 		public void HandleDeleteButtonPressed() {
 			keypadIndex_ = 0;
 			RemoveLastCharacterFromNickname();
+			AudioConstants.Instance.UIBeep.PlaySFX();
 		}
 
 		public void HandleKeypadSelected(KeypadSelectable keypad) {
@@ -46,6 +48,7 @@ namespace DT.Game.PlayerCustomization.Nickname {
 			}
 
 			if (Nickname_.Length >= kCharacterLimit) {
+				AudioConstants.Instance.Negative.PlaySFX();
 				return;
 			}
 
@@ -53,6 +56,7 @@ namespace DT.Game.PlayerCustomization.Nickname {
 			keypadDelay_ = kKeypadDelay;
 
 			Nickname_ = Nickname_ + newChar;
+			AudioConstants.Instance.UIBeep.PlaySFX();
 		}
 
 

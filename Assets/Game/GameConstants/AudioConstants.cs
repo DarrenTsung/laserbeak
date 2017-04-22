@@ -20,6 +20,7 @@ namespace DT.Game {
 		public AudioClip GameModeIntro;
 		public AudioClip ScoreAdded;
 		public AudioClip Win;
+		public AudioClip Negative;
 
 		[Header("Game SFX")]
 		public AudioClip LaserShoot;
@@ -32,6 +33,11 @@ namespace DT.Game {
 
 	public static class GameAudioClipExtensions {
 		public static void PlaySFX(this AudioClip clip, float volumeScale = 1.0f, float randomPitchRange = 0.05f) {
+			if (clip == null) {
+				Debug.LogError("Failed to play SFX because null!");
+				return;
+			}
+
 			AudioManager.Instance.PlaySFX(clip, volumeScale, randomPitchRange);
 		}
 	}
