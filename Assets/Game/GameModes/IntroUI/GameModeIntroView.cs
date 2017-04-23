@@ -24,6 +24,8 @@ namespace DT.Game.GameModes {
 		}
 
 		// PRAGMA MARK - Static Public Interface
+		public static event Action OnIntroFinished = delegate {};
+
 		public static void Show(string text, IList<Icon> icons, IList<int> playerOrdering = null, Action onFinishedCallback = null) {
 			var view = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
 			view.Init(text, icons, playerOrdering, onFinishedCallback);
@@ -84,6 +86,7 @@ namespace DT.Game.GameModes {
 				battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
 			}
 			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Normal);
+			OnIntroFinished.Invoke();
 		}
 
 

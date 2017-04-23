@@ -75,6 +75,9 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
+		public static float KnockbackMultiplier = 1.0f;
+		public static int LaserDamage = 1;
+
 		private const int kMaxDamage = 999;
 		private const int kBaseHealth = 2;
 
@@ -108,7 +111,7 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
-			int damage = 1;
+			int damage = LaserDamage;
 			// laser only does damage if not on same team
 			if (BattlePlayerTeams.AreOnSameTeam(laser.BattlePlayer, Player_)) {
 				damage = 0;
@@ -138,7 +141,7 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private void Knockback(Vector3 forward) {
-			Vector3 endPosition = Player_.Rigidbody.position + (kDamageKnockbackDistance * forward);
+			Vector3 endPosition = Player_.Rigidbody.position + (KnockbackMultiplier * kDamageKnockbackDistance * forward);
 			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration, EaseType.CubicEaseOut);
 		}
 

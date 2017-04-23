@@ -78,6 +78,7 @@ namespace DT.Game.Battle.Players {
 		public void OnRecycleSetup() {
 			activePlayers_.Add(this);
 			Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+			Rigidbody.velocity = Vector3.zero;
 			Rigidbody.drag = 6.0f;
 		}
 
