@@ -40,7 +40,7 @@ namespace DT.Game.GameModes {
 			}
 			icons.RemoveLast();
 
-			BattlePlayerHealth.KnockbackMultiplier = 1.3f;
+			BattlePlayerHealth.KnockbackMultiplier = 1.5f;
 			BattlePlayerHealth.LaserDamage = 0;
 
 			GameModeIntroView.Show("SUMO BATTLE", icons);
