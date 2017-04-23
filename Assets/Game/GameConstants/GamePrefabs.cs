@@ -51,6 +51,7 @@ namespace DT.Game {
 		public GameObject IndividualPlayerCustomizationViewPrefab;
 		public GameObject PlayerReadyView;
 		public GameObject NicknameCustomizationViewPrefab;
+		public GameObject SkinSelectablePrefab;
 
 
 		// PRAGMA MARK - Internal

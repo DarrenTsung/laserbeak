@@ -729,6 +729,8 @@ MonoBehaviour:
     type: 2}
   NicknameCustomizationViewPrefab: {fileID: 1488986257577324, guid: 3504dc37e9f8c4eae9d4a4ffb787b472,
     type: 2}
+  SkinSelectablePrefab: {fileID: 1331952161537844, guid: 59513831c41bb43529865fe07459f650,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}

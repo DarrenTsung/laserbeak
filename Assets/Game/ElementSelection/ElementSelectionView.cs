@@ -16,10 +16,11 @@ namespace DT.Game.ElementSelection {
 	public class ElementSelectionView : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public event Action OnSelectorMoved = delegate {};
+		public event Action<ISelectable> OnSelectableHover = delegate {};
+		public event Action<ISelectable> OnSelectableSelected = delegate {};
 
-		public void Init(Player player, GameObject elementsContainer) {
+		public void Init(Player player, GameObject elementsContainer, ISelectable startSelectable = null) {
 			player_ = player;
-			selectorTransform_ = ObjectPoolManager.CreateView(GamePrefabs.Instance.SelectorPrefab).GetComponent<RectTransform>();
 
 			foreach (var del in elementsContainer.GetComponentsInChildren<ISelectionViewDelegate>()) {
 				del.HandleSelectionView(this);
@@ -30,12 +31,19 @@ namespace DT.Game.ElementSelection {
 				Debug.LogError("ElementSelectionView - needs selectables??");
 			}
 
-			DefaultSelectableMarker defaultSelectableMarker = elementsContainer.GetComponentInChildren<DefaultSelectableMarker>();
-			if (defaultSelectableMarker != null) {
-				CurrentSelectable_ = defaultSelectableMarker.GetComponent<ISelectable>();
-			} else {
-				CurrentSelectable_ = selectables_[0];
-			}
+			CoroutineWrapper.DoAtEndOfFrame(() => {
+				selectorTransform_ = ObjectPoolManager.CreateView(GamePrefabs.Instance.SelectorPrefab).GetComponent<RectTransform>();
+				if (startSelectable != null) {
+					CurrentSelectable_ = startSelectable;
+				} else {
+					DefaultSelectableMarker defaultSelectableMarker = elementsContainer.GetComponentInChildren<DefaultSelectableMarker>();
+					if (defaultSelectableMarker != null) {
+						CurrentSelectable_ = defaultSelectableMarker.GetComponent<ISelectable>();
+					} else {
+						CurrentSelectable_ = selectables_[0];
+					}
+				}
+			});
 		}
 
 
@@ -70,29 +78,15 @@ namespace DT.Game.ElementSelection {
 				}
 
 				currentSelectable_ = value;
+				OnSelectableHover.Invoke(currentSelectable_);
 
-				MonoBehaviour selectableMonoBehaviour = (currentSelectable_ as MonoBehaviour);
-
-				Vector3[] fourCorners = new Vector3[4];
-				RectTransform selectableTransform = selectableMonoBehaviour.GetComponent<RectTransform>();
-				selectableTransform.GetLocalCorners(fourCorners);
-
-				// NOTE (darren): god this sucks... (setting the parent)
-				// maybe we just won't animate the selector :(
-				selectorTransform_.SetParent(selectableMonoBehaviour.transform.parent);
-				selectorTransform_.anchorMin = selectableTransform.anchorMin;
-				selectorTransform_.anchorMax = selectableTransform.anchorMax;
-				selectorTransform_.sizeDelta = selectableTransform.sizeDelta + kPadding;
-				selectorTransform_.pivot = selectableTransform.pivot;
-				selectorTransform_.anchoredPosition = selectableTransform.anchoredPosition + Vector2.Scale(kPadding, (selectableTransform.pivot - new Vector2(0.5f, 0.5f)));
-
-				AudioConstants.Instance.ScrollClick.PlaySFX(volumeScale: 0.7f);
-				OnSelectorMoved.Invoke();
+				RefreshSelectorPosition();
 			}
 		}
 
 		private void Update() {
 			if (InputUtil.WasPositivePressedFor(player_.InputDevice)) {
+				OnSelectableSelected.Invoke(currentSelectable_);
 				currentSelectable_.HandleSelected();
 			}
 
@@ -137,6 +131,26 @@ namespace DT.Game.ElementSelection {
 			((RectTransform)((MonoBehaviour)selectable).transform).GetWorldCorners(corners_);
 
 			return new Rect(corners_[0].Vector2XZValue(), corners_[2].Vector2XZValue() - corners_[0].Vector2XZValue());
+		}
+
+		private void RefreshSelectorPosition() {
+			MonoBehaviour selectableMonoBehaviour = (currentSelectable_ as MonoBehaviour);
+
+			Vector3[] fourCorners = new Vector3[4];
+			RectTransform selectableTransform = selectableMonoBehaviour.GetComponent<RectTransform>();
+			selectableTransform.GetLocalCorners(fourCorners);
+
+			// NOTE (darren): god this sucks... (setting the parent)
+			// maybe we just won't animate the selector :(
+			selectorTransform_.SetParent(selectableMonoBehaviour.transform.parent, worldPositionStays: false);
+			selectorTransform_.anchorMin = selectableTransform.anchorMin;
+			selectorTransform_.anchorMax = selectableTransform.anchorMax;
+			selectorTransform_.sizeDelta = selectableTransform.sizeDelta + kPadding;
+			selectorTransform_.pivot = selectableTransform.pivot;
+			selectorTransform_.anchoredPosition = selectableTransform.anchoredPosition + Vector2.Scale(kPadding, (selectableTransform.pivot - new Vector2(0.5f, 0.5f)));
+
+			AudioConstants.Instance.ScrollClick.PlaySFX(volumeScale: 0.7f);
+			OnSelectorMoved.Invoke();
 		}
 	}
 }
