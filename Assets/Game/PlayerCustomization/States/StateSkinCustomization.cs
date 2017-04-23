@@ -79,7 +79,8 @@ namespace DT.Game.PlayerCustomization.States {
 		private void HandleSelectableSelected(ISelectable selectable) {
 			BattlePlayerSkin skin = (selectable as SkinSelectable).Skin;
 			// if any player has already selected this skin, we cannot select it
-			if (RegisteredPlayers.AllPlayers.Where(p => IsPlayerNotSelectingSkin(p)).Any(p => p.Skin == skin)) {
+			// if all skins are selected then we ignore this check
+			if (IsSkinSelected(skin) && !GameConstants.Instance.PlayerSkins.All(s => IsSkinSelected(s))) {
 				AudioConstants.Instance.Negative.PlaySFX();
 				return;
 			}

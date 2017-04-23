@@ -50,8 +50,6 @@ namespace DT.Game.Battle {
 			gameObject_ = arenaObject;
 
 			List<PlayerSpawnPoint> spawnPoints = arenaObject.GetComponentsInChildren<PlayerSpawnPoint>().ToList();
-			PlayerUtil.Sort(spawnPoints, spawnPoint => spawnPoint.transform.position.Vector2XZValue());
-
 			playerSpawnPoints_ = new ReadOnlyCollection<PlayerSpawnPoint>(spawnPoints);
 			aiSpawnPoints_ = new ReadOnlyCollection<AISpawnPoint>(arenaObject.GetComponentsInChildren<AISpawnPoint>());
 		}

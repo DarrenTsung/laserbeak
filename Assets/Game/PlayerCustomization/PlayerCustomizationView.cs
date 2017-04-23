@@ -32,19 +32,19 @@ namespace DT.Game.PlayerCustomization {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			List<Transform> playerAnchors = playerAnchorsContainer_.transform.Cast<Transform>().ToList();
-			// NOTE (darren): because transform position for UI is calculated based on
-			// pivot we need to negate the vector2s
-			PlayerUtil.Sort(playerAnchors, t => t.position * -1);
 
 			views_.Clear();
-			int i = 0;
-			foreach (Player player in RegisteredPlayers.AllPlayers) {
-				var view = ObjectPoolManager.Create<IndividualPlayerCustomizationView>(GamePrefabs.Instance.IndividualPlayerCustomizationViewPrefab, parent: playerAnchors[i].gameObject);
-				view.Init(player);
-				view.OnReady += CheckAllPlayersReady;
-				views_.Add(view);
-
-				i++;
+			for (int i = 0; i < playerAnchors.Count; i++) {
+				Player player = RegisteredPlayers.AllPlayers.GetValueOrDefault(i);
+				if (player == null) {
+					playerAnchors[i].gameObject.SetActive(false);
+				} else {
+					playerAnchors[i].gameObject.SetActive(true);
+					var view = ObjectPoolManager.Create<IndividualPlayerCustomizationView>(GamePrefabs.Instance.IndividualPlayerCustomizationViewPrefab, parent: playerAnchors[i].gameObject);
+					view.Init(player);
+					view.OnReady += CheckAllPlayersReady;
+					views_.Add(view);
+				}
 			}
 		}
 
