@@ -14,13 +14,12 @@ namespace DT.Game.Battle.Players {
 			controller.DisableInput(BattlePlayerInputController.PriorityKey.Movement);
 			Vector3 startPosition = player.Rigidbody.position;
 			Vector3 lastPosition = startPosition;
+			player.Rigidbody.AddForce((endPosition - startPosition) * 10, ForceMode.Impulse);
 			var coroutine = CoroutineWrapper.DoEaseFor(duration, easeType, (float p) => {
-				Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, p);
-				player.Rigidbody.MovePosition(new Vector3(newPosition.x, player.Rigidbody.position.y, newPosition.z));
-
-				Vector3 xzVelocity = newPosition - lastPosition;
-				player.Rigidbody.velocity = new Vector3(xzVelocity.x, player.Rigidbody.velocity.y, xzVelocity.z);
+				// Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, p);
+				// player.Rigidbody.velocity = newPosition - player.Rigidbody.position;
 			}, () => {
+				// player.Rigidbody.velocity = Vector3.zero;
 				controller.EnableInput(BattlePlayerInputController.PriorityKey.Movement);
 				controller.CancelAnyAnimatedMovements();
 			});

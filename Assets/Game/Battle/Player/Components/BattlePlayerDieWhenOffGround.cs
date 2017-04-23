@@ -69,7 +69,8 @@ namespace DT.Game.Battle.Players {
 			if (checkDeath_ && resultCount <= 0) {
 				enabled_ = false;
 				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
-				Player_.Rigidbody.isKinematic = false;
+				Player_.Rigidbody.constraints = RigidbodyConstraints.None;
+				Player_.Rigidbody.drag = 0.0f;
 				dustParticleSystem_.SetEmissionRateOverDistance(0.0f);
 				coroutine_ = CoroutineWrapper.DoAfterDelay(kDeathDelay, () => {
 					Player_.Health.Kill();

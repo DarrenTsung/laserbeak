@@ -31,6 +31,7 @@ namespace DT.Game.Battle.Lasers {
 		public void HandleHit() {
 			LaserHit laserHit = ObjectPoolManager.Create<LaserHit>(laserHitParticlePrefab_, this.transform.position, this.transform.rotation, parent: BattleRecyclables.Instance);
 			laserHit.SetMaterial(laserRenderer_.material);
+			ObjectPoolManager.Recycle(this.gameObject);
 		}
 
 

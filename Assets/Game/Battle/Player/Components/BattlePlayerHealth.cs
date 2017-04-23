@@ -102,8 +102,8 @@ namespace DT.Game.Battle.Players {
 
 		private CoroutineWrapper invulnerableCoroutine_;
 
-		private void OnCollisionEnter(Collision collision) {
-			Laser laser = collision.gameObject.GetComponent<Laser>();
+		private void OnTriggerEnter(Collider collider) {
+			Laser laser = collider.gameObject.GetComponentInParent<Laser>();
 			if (laser == null) {
 				return;
 			}
@@ -118,7 +118,6 @@ namespace DT.Game.Battle.Players {
 
 			TakeDamage(damage, forward);
 			laser.HandleHit();
-			ObjectPoolManager.Recycle(laser.gameObject);
 		}
 
 		private void AnimateDamageEmissionFor(Material[] materials) {

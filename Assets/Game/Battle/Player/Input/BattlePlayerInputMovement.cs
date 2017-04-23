@@ -16,14 +16,14 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
-			Vector2 deltaPosition = InputDelegate_.MovementVector * Time.fixedDeltaTime * kPlayerSpeed * Player_.WeightedRatio();
-			Vector3 deltaWorldPosition = deltaPosition.Vector3XZValue();
+			Vector2 speedVector = InputDelegate_.MovementVector * kPlayerSpeed * Player_.WeightedRatio();
+			Vector3 speedWorldVector = speedVector.Vector3XZValue();
 
-			Player_.Rigidbody.MovePosition(Player_.Rigidbody.position + deltaWorldPosition);
+			Player_.Rigidbody.velocity = speedWorldVector;
 
 			// snap rotation if input is not (0, 0)
-			if (deltaWorldPosition.magnitude > Mathf.Epsilon) {
-				Player_.Rigidbody.MoveRotation(Quaternion.LookRotation(deltaWorldPosition.normalized));
+			if (speedWorldVector.magnitude > Mathf.Epsilon) {
+				Player_.Rigidbody.MoveRotation(Quaternion.LookRotation(speedWorldVector.normalized));
 			}
 		}
 	}

@@ -53,6 +53,9 @@ namespace DT.Game {
 		public GameObject NicknameCustomizationViewPrefab;
 		public GameObject SkinSelectablePrefab;
 
+		[Header("Walls")]
+		public GameObject WallSegmentPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]
