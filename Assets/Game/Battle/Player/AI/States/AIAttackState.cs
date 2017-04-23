@@ -78,16 +78,21 @@ namespace DT.Game.Battle.AI {
 			float accuracyInDegrees = StateMachine_.AIConfiguration.AccuracyInDegrees();
 
 			Vector3 targetVector = target_.transform.position - currentPosition;
-			Quaternion rotationToTarget = Quaternion.LookRotation(targetVector);
+			if (targetVector == Vector3.zero) {
+				return;
+			}
 
+			Quaternion rotationToTarget = Quaternion.LookRotation(targetVector);
 			if (fuzzyTargetPosition_ != null) {
 				// check if target has moved out of accurancy cone, if so recompute fuzzyTargetPosition_
 				Vector3 targetPositionVector = (Vector3)fuzzyTargetPosition_ - currentPosition;
-				Quaternion rotationToTargetPosition = Quaternion.LookRotation(targetPositionVector);
+				if (targetPositionVector != Vector3.zero) {
+					Quaternion rotationToTargetPosition = Quaternion.LookRotation(targetPositionVector);
 
-				float angleToTarget = Quaternion.Angle(rotationToTarget, rotationToTargetPosition);
-				if (angleToTarget > accuracyInDegrees) {
-					fuzzyTargetPosition_ = null;
+					float angleToTarget = Quaternion.Angle(rotationToTarget, rotationToTargetPosition);
+					if (angleToTarget > accuracyInDegrees) {
+						fuzzyTargetPosition_ = null;
+					}
 				}
 			}
 
@@ -116,6 +121,11 @@ namespace DT.Game.Battle.AI {
 			StateMachine_.GizmoOutlet.SetSphere("AttackFuzzyTargetPositionSphere", (Vector3)fuzzyTargetPosition_, radius: 0.2f);
 			StateMachine_.GizmoOutlet.SetLineTarget("AttackFuzzyTargetPosition", (Vector3)fuzzyTargetPosition_);
 			Vector3 fuzzyTargetPositionVector = (Vector3)fuzzyTargetPosition_ - StateMachine_.Player.transform.position;
+			if (fuzzyTargetPositionVector == Vector3.zero) {
+				StateMachine_.InputState.LerpMovementVectorTo(Vector2.zero);
+				return;
+			}
+
 			Vector2 xzDirection = fuzzyTargetPositionVector.Vector2XZValue();
 			if (xzDirection.magnitude <= kNearDistance) {
 				// don't move if already near player position and pointing to fuzzyTargetPosition_
