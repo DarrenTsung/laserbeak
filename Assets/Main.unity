@@ -734,6 +734,8 @@ MonoBehaviour:
     type: 2}
   WallSegmentPrefab: {fileID: 1258016260821346, guid: a60a2b4be91054664bd12de156cbcb1b,
     type: 2}
+  TagExplosivePrefab: {fileID: 1251852763226904, guid: e61770b0d400c4c508a0f0fd568a1ee2,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}
@@ -873,8 +875,8 @@ MonoBehaviour:
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
   PlayersToFill: 4
   gameModes_:
-  - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
-  - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
+  - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
+  - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
@@ -1099,6 +1101,7 @@ MonoBehaviour:
   ScrollClick: {fileID: 8300000, guid: 1eb30cde35529403197df4b502a3b5d2, type: 3}
   LaserShoot: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
   Dash: {fileID: 8300000, guid: d238e8f9f7f77481ba45d31fadb7bb61, type: 3}
+  ExplosiveTimerBeep: {fileID: 8300000, guid: ec4b477ecce66409cb5e57a3846f40d2, type: 3}
   PlayerHurt: {fileID: 8300000, guid: 4f67300d689f04112ae530091e6632d9, type: 3}
   PlayerDeath: {fileID: 8300000, guid: 99bfea1c611064efe9ada81f7f8e1521, type: 3}
 --- !u!4 &2128445822

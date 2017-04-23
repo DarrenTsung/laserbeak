@@ -26,6 +26,7 @@ namespace DT.Game {
 		[Header("Game SFX")]
 		public AudioClip LaserShoot;
 		public AudioClip Dash;
+		public AudioClip ExplosiveTimerBeep;
 
 		[Header("Player")]
 		public AudioClip PlayerHurt;

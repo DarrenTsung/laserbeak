@@ -56,6 +56,9 @@ namespace DT.Game {
 		[Header("Walls")]
 		public GameObject WallSegmentPrefab;
 
+		[Header("Tag")]
+		public GameObject TagExplosivePrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

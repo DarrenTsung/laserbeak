@@ -11,7 +11,13 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Players {
+	public delegate void BattlePlayerHitDelegate(BattlePlayer playerHit, BattlePlayer laserSourcePlayer);
+
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
+		// PRAGMA MARK - Static
+		public static event BattlePlayerHitDelegate OnBattlePlayerHit = delegate {};
+
+
 		// PRAGMA MARK - Public Interface
 		public void Kill() {
 			invulnerable_ = false;
@@ -121,6 +127,8 @@ namespace DT.Game.Battle.Players {
 
 			TakeDamage(damage, forward);
 			laser.HandleHit();
+
+			OnBattlePlayerHit.Invoke(Player_, laser.BattlePlayer);
 		}
 
 		private void AnimateDamageEmissionFor(Material[] materials) {
