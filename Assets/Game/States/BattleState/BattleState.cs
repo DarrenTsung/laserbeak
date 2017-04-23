@@ -22,8 +22,6 @@ namespace DT.Game.Battle {
 			PlayerSpawner.CleanupAllPlayers();
 			CleanupCurrentGameMode();
 
-			InGamePlayerCollectionView.Show();
-
 			// TODO (darren): filtering based on options will be here
 			do {
 				if (previousGameMode_ == null) {
@@ -35,6 +33,7 @@ namespace DT.Game.Battle {
 			currentGameMode_.Activate(HandleGameModeFinished);
 			previousGameMode_ = currentGameMode_;
 
+			InGamePlayerCollectionView.Show();
 			InGamePlayerHUDEffect.CreateForAllPlayers();
 		}
 

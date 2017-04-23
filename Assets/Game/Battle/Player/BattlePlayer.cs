@@ -61,6 +61,10 @@ namespace DT.Game.Battle.Players {
 			get { return body_; }
 		}
 
+		public GameObject AccessoriesContainer {
+			get { return accessoriesContainer_; }
+		}
+
 		public BattlePlayerHealth Health {
 			get { return health_; }
 		}
@@ -81,6 +85,7 @@ namespace DT.Game.Battle.Players {
 		public void OnRecycleCleanup() {
 			activePlayers_.Remove(this);
 			weightModifications_.Clear();
+			AccessoriesContainer.RecycleAllChildren();
 		}
 
 
@@ -93,6 +98,9 @@ namespace DT.Game.Battle.Players {
 
 		[SerializeField]
 		private GameObject body_;
+
+		[SerializeField]
+		private GameObject accessoriesContainer_;
 
 		private BattlePlayerHealth health_;
 

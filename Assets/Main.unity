@@ -871,7 +871,7 @@ MonoBehaviour:
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
   PlayersToFill: 4
   gameModes_:
-  - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
+  - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,

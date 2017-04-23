@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 222866842786598740}
   - component: {fileID: 114069850614771450}
   - component: {fileID: 114954177940372440}
+  - component: {fileID: 114512428913047288}
   m_Layer: 5
   m_Name: OkayButton
   m_TagString: Untagged
@@ -492,7 +493,6 @@ GameObject:
   - component: {fileID: 222525067527770758}
   - component: {fileID: 114250813759473838}
   - component: {fileID: 114210667889558142}
-  - component: {fileID: 114164002916419128}
   m_Layer: 5
   m_Name: KeypadObject
   m_TagString: Untagged
@@ -1184,17 +1184,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &114164002916419128
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1939555001654652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9f73acd62564964b9abc1e469af2da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114210667889558142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1471,6 +1460,17 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+--- !u!114 &114512428913047288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621947900368082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9f73acd62564964b9abc1e469af2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114537986970722340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2400,7 +2400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2352941, g: 0.2352941, b: 0.2352941, a: 1}
+  m_Color: {r: 0.4852941, g: 0.16005845, b: 0.08564013, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

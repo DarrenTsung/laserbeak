@@ -24,9 +24,9 @@ namespace DT.Game.GameModes {
 		}
 
 		// PRAGMA MARK - Static Public Interface
-		public static void Show(string text, IList<Icon> icons, Action onFinishedCallback = null) {
+		public static void Show(string text, IList<Icon> icons, IList<int> playerOrdering = null, Action onFinishedCallback = null) {
 			var view = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
-			view.Init(text, icons, onFinishedCallback);
+			view.Init(text, icons, playerOrdering, onFinishedCallback);
 
 			foreach (BattlePlayer battlePlayer in AllBattlePlayers) {
 				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
@@ -40,11 +40,11 @@ namespace DT.Game.GameModes {
 
 
 		// PRAGMA MARK - Public Interface
-		public void Init(string text, IList<Icon> icons, Action onFinishedCallback) {
+		public void Init(string text, IList<Icon> icons, IList<int> playerOrdering, Action onFinishedCallback) {
 			onFinishedCallback_ = onFinishedCallback;
 			gameModeText_.Text = text;
 
-			int playerIndex = 0;
+			int index = 0;
 			foreach (Icon icon in icons) {
 				GameObject prefab = null;
 				switch (icon) {
@@ -61,8 +61,12 @@ namespace DT.Game.GameModes {
 
 				GameObject createdObject = ObjectPoolManager.Create(prefab, parent: iconLayoutGroup_);
 				if (icon == Icon.Player) {
+					int playerIndex = index;
+					if (playerOrdering != null) {
+						playerIndex = playerOrdering[index];
+					}
 					createdObject.GetComponentInChildren<Image>().color = RegisteredPlayers.AllPlayers[playerIndex].Skin.BodyColor;
-					playerIndex++;
+					index++;
 				}
 			}
 

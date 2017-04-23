@@ -19,13 +19,21 @@ namespace DT.Game.GameModes {
 		// PRAGMA MARK - Public Interface
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
+
+			foreach (BattlePlayerSkin skin in GameConstants.Instance.PlayerSkins) {
+				skin.ClearOverrideColor();
+			}
 		}
 
 
 		// PRAGMA MARK - Internal
+		[Header("Outlets")]
+		[SerializeField]
+		private GameObject accessoryPrefab_;
+
 		[Header("Properties")]
 		[SerializeField]
-		private int numberOfTeams_ = 2;
+		private int playersPerTeam_ = 2;
 
 		private HashSet<Player>[] teams_;
 
@@ -33,50 +41,48 @@ namespace DT.Game.GameModes {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
 
-			teams_ = new HashSet<Player>[numberOfTeams_];
+			List<Player> players = RegisteredPlayers.AllPlayers.ToList();
+			players.Shuffle();
 
-			int playerCount = RegisteredPlayers.AllPlayers.Count;
+			int numberOfTeams = Mathf.CeilToInt(RegisteredPlayers.AllPlayers.Count / playersPerTeam_);
+			teams_ = new HashSet<Player>[numberOfTeams];
 
-			int playersPerTeam = (int)(playerCount / (float)numberOfTeams_);
-			int extraPlayers = playerCount % numberOfTeams_;
-
-			int[] teamMap = new int[playerCount];
-			int teamMapCounter = 0;
-			for (int n = 0; n < numberOfTeams_; n++) {
-				for (int p = 0; p < playersPerTeam; p++) {
-					teamMap[teamMapCounter] = n;
-					teamMapCounter++;
-				}
-
-				if (extraPlayers > 0) {
-					teamMap[teamMapCounter] = n;
-					teamMapCounter++;
-					extraPlayers--;
-				}
-			}
-
-			for (int i = 0; i < playerCount; i++) {
-				Player player = RegisteredPlayers.AllPlayers[i];
-
-				int teamIndex = teamMap[i];
+			for (int i = 0; i < players.Count; i++) {
+				int teamIndex = (int)(i / playersPerTeam_);
 				if (teams_[teamIndex] == null) {
 					teams_[teamIndex] = new HashSet<Player>();
 				}
-				teams_[teamIndex].Add(player);
+
+				teams_[teamIndex].Add(players[i]);
+			}
+
+			// set override color for players
+			foreach (HashSet<Player> team in teams_) {
+				Player firstPlayer = team.First();
+				Color teamColor = firstPlayer.Skin.BodyColor;
+
+				foreach (Player player in team) {
+					BattlePlayer battlePlayer = PlayerSpawner.GetBattlePlayerFor(player);
+					GameObject accessory = ObjectPoolManager.Create(accessoryPrefab_, parent: battlePlayer.AccessoriesContainer);
+					accessory.GetComponent<Renderer>().material.SetColor("_DiffuseColor", teamColor);
+				}
 			}
 
 			foreach (HashSet<Player> team in teams_) {
 				BattlePlayerTeams.DeclareTeam(team.Select(p => PlayerSpawner.GetBattlePlayerFor(p)));
 			}
 
+			List<int> playerOrdering = new List<int>();
 			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();
 			for (int i = 0; i < teams_.Length - 1; i++) {
+				playerOrdering.AddRange(teams_[i].Select(p => RegisteredPlayers.AllPlayers.IndexOf(p)));
 				icons.AddRange(teams_[i].Select(p => GameModeIntroView.Icon.Player));
 				icons.Add(GameModeIntroView.Icon.Swords);
 			}
+			playerOrdering.AddRange(teams_[teams_.Length - 1].Select(p => RegisteredPlayers.AllPlayers.IndexOf(p)));
 			icons.AddRange(teams_[teams_.Length - 1].Select(p => GameModeIntroView.Icon.Player));
 
-			GameModeIntroView.Show("TEAM BATTLE", icons);
+			GameModeIntroView.Show("TEAM BATTLE", icons, playerOrdering);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
