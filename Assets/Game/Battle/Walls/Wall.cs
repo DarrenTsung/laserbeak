@@ -44,6 +44,10 @@ namespace DT.Game.Battle.Walls {
 		private Vector3[] vertexLocalPositions_;
 
 		private void OnDrawGizmos() {
+			if (vertexLocalPositions_ == null) {
+				return;
+			}
+
 			for (int i = 0; i < vertexLocalPositions_.Length - 1; i++) {
 				Vector3 aPoint = vertexLocalPositions_[i] + this.transform.position;
 				Vector3 bPoint = vertexLocalPositions_[i + 1] + this.transform.position;
