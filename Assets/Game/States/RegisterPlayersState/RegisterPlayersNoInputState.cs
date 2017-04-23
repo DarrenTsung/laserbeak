@@ -32,7 +32,7 @@ namespace DT.Game.RegisterPlayers {
 
 			// TODO (darren): do this is a different way later
 			// when we have actual AI selection
-			int missingPlayersCount = 4 - RegisteredPlayers.AllPlayers.Count;
+			int missingPlayersCount = Math.Max(0, GameConstants.Instance.PlayersToFill - RegisteredPlayers.AllPlayers.Count);
 			RegisteredPlayersUtil.RegisterAIPlayers(missingPlayersCount);
 
 			StateMachine_.Continue();
