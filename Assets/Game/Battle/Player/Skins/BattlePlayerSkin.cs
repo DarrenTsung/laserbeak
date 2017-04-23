@@ -12,20 +12,12 @@ namespace DT.Game.Battle.Players {
 	[CreateAssetMenu(fileName = "BattlePlayerSkin", menuName = "Game/BattlePlayerSkin")]
 	public class BattlePlayerSkin : ScriptableObject {
 		// PRAGMA MARK - Public Interface
-		public void ClearOverrideColor() {
-			OverrideColor = null;
-		}
-
-		public Color? OverrideColor {
-			get; set;
-		}
-
 		public Color BodyColor {
-			get { return OverrideColor ?? bodyColor_; }
+			get { return bodyColor_; }
 		}
 
 		public Color LaserColor {
-			get { return OverrideColor ?? laserColor_; }
+			get { return laserColor_; }
 		}
 
 		public Sprite ThumbnailSprite;

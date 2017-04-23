@@ -29,11 +29,10 @@ namespace DT.Game.GameModes {
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]
 		[SerializeField]
-		private GameObject accessoryPrefab_;
+		private GameObject[] accessoryPrefabs_;
 
-		[Header("Properties")]
 		[SerializeField]
-		private int playersPerTeam_ = 2;
+		private int numberOfTeams_ = 2;
 
 		private HashSet<Player>[] teams_;
 
@@ -44,11 +43,11 @@ namespace DT.Game.GameModes {
 			List<Player> players = RegisteredPlayers.AllPlayers.ToList();
 			players.Shuffle();
 
-			int numberOfTeams = Mathf.CeilToInt(RegisteredPlayers.AllPlayers.Count / playersPerTeam_);
-			teams_ = new HashSet<Player>[numberOfTeams];
+			int playersPerTeam = Mathf.CeilToInt(RegisteredPlayers.AllPlayers.Count / numberOfTeams_);
+			teams_ = new HashSet<Player>[numberOfTeams_];
 
 			for (int i = 0; i < players.Count; i++) {
-				int teamIndex = (int)(i / playersPerTeam_);
+				int teamIndex = (int)(i / playersPerTeam);
 				if (teams_[teamIndex] == null) {
 					teams_[teamIndex] = new HashSet<Player>();
 				}
@@ -57,14 +56,12 @@ namespace DT.Game.GameModes {
 			}
 
 			// set override color for players
-			foreach (HashSet<Player> team in teams_) {
-				Player firstPlayer = team.First();
-				Color teamColor = firstPlayer.Skin.BodyColor;
+			for (int i = 0; i < teams_.Length; i++) {
+				HashSet<Player> team = teams_[i];
 
 				foreach (Player player in team) {
 					BattlePlayer battlePlayer = PlayerSpawner.GetBattlePlayerFor(player);
-					GameObject accessory = ObjectPoolManager.Create(accessoryPrefab_, parent: battlePlayer.AccessoriesContainer);
-					accessory.GetComponent<Renderer>().material.SetColor("_DiffuseColor", teamColor);
+					ObjectPoolManager.Create(accessoryPrefabs_[i], parent: battlePlayer.AccessoriesContainer);
 				}
 			}
 
