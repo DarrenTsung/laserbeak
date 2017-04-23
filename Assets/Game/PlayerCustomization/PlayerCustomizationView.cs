@@ -41,7 +41,7 @@ namespace DT.Game.PlayerCustomization {
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
 				var view = ObjectPoolManager.Create<IndividualPlayerCustomizationView>(GamePrefabs.Instance.IndividualPlayerCustomizationViewPrefab, parent: playerAnchors[i].gameObject);
 				view.Init(player);
-				view.OnReady += HandlePlayerReady;
+				view.OnReady += CheckAllPlayersReady;
 				views_.Add(view);
 
 				i++;
@@ -52,7 +52,7 @@ namespace DT.Game.PlayerCustomization {
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			foreach (var view in views_) {
-				view.OnReady -= HandlePlayerReady;
+				view.OnReady -= CheckAllPlayersReady;
 				ObjectPoolManager.Recycle(view);
 			}
 			views_.Clear();
@@ -74,9 +74,10 @@ namespace DT.Game.PlayerCustomization {
 			}
 
 			allPlayersReadyCallback_ = allPlayersReadyCallback;
+			CheckAllPlayersReady();
 		}
 
-		private void HandlePlayerReady() {
+		private void CheckAllPlayersReady() {
 			if (views_.All(v => v.Ready)) {
 				allPlayersReadyCallback_.Invoke();
 			}
