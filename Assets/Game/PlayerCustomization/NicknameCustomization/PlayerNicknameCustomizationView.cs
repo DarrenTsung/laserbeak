@@ -116,7 +116,7 @@ namespace DT.Game.PlayerCustomization.Nickname {
 		}
 
 		private void RefreshNicknameText() {
-			if (keypadIndex_ > 0) {
+			if (keypadIndex_ > 0 && Nickname_.Length > 0) {
 				// cursor on current space
 				nicknameOutlet_.Text = string.Format("{0}<u>{1}</u>", Nickname_.Substring(0, Nickname_.Length - 1), Nickname_.Last());
 			} else if (Nickname_.Length < kCharacterLimit) {
