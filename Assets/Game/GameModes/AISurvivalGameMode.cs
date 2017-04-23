@@ -59,6 +59,13 @@ namespace DT.Game.GameModes {
 				return;
 			}
 
+			AISpawner.ShouldRespawn = false;
+			foreach (BattlePlayer battlePlayer in AISpawner.AllSpawnedBattlePlayers.ToArray()) {
+				CoroutineWrapper.DoAfterDelay(UnityEngine.Random.Range(0.0f, 0.8f), () => {
+					battlePlayer.Health.Kill();
+				});
+			}
+
 			Finish();
 			foreach (Player player in PlayerSpawner.AllSpawnedPlayers) {
 				PlayerScores.IncrementPendingScoreFor(player);

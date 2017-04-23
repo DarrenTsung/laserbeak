@@ -13,7 +13,10 @@ using InControl;
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Public Interface
-		public const int kMaxDamage = 999;
+		public void Kill() {
+			invulnerable_ = false;
+			TakeDamage(kMaxDamage, forward: Vector3.zero);
+		}
 
 		public void TakeDamage(int damage, Vector3 forward) {
 			if (health_ <= 0) {
@@ -72,6 +75,7 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
+		private const int kMaxDamage = 999;
 		private const int kBaseHealth = 2;
 
 		private const float kExplosionForce = 600.0f;
