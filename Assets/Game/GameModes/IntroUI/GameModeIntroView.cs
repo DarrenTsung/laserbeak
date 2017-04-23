@@ -61,7 +61,7 @@ namespace DT.Game.GameModes {
 
 				GameObject createdObject = ObjectPoolManager.Create(prefab, parent: iconLayoutGroup_);
 				if (icon == Icon.Player) {
-					createdObject.GetComponentInChildren<Image>().color = RegisteredPlayers.AllPlayers[playerIndex].Skin.Color;
+					createdObject.GetComponentInChildren<Image>().color = RegisteredPlayers.AllPlayers[playerIndex].Skin.BodyColor;
 					playerIndex++;
 				}
 			}

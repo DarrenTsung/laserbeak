@@ -147,7 +147,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8682526435cee4eb89f88469de9ffd01, type: 2}
+  - {fileID: 2100000, guid: c955e315cf3ff4901882649a6e7eb9ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,7 +260,6 @@ MonoBehaviour:
     type: 2}
   light_: {fileID: 108785627938583924}
   laserRenderer_: {fileID: 23901430379633486}
-  startClip_: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
 --- !u!135 &135522954359376670
 SphereCollider:
   m_ObjectHideFlags: 1

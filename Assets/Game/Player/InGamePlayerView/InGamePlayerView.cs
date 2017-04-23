@@ -47,7 +47,7 @@ namespace DT.Game.Players {
 		}
 
 		private void HandleSkinChanged() {
-			nicknameText_.Color = player_.Skin.Color;
+			nicknameText_.Color = player_.Skin.BodyColor;
 			image_.sprite = player_.Skin.ThumbnailSprite;
 		}
 	}

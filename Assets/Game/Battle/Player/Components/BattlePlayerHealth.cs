@@ -47,7 +47,7 @@ namespace DT.Game.Battle.Players {
 				}
 
 				foreach (Renderer renderer in playerParts.GetComponentsInChildren<Renderer>()) {
-					renderer.material = Player_.Skin.BodyMaterial;
+					renderer.material.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
 				}
 
 				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));

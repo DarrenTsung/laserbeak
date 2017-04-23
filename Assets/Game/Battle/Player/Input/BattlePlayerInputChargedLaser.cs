@@ -89,14 +89,14 @@ namespace DT.Game.Battle.Players {
 				chargingLaser_ = null;
 			} else if (percentCharged > 0.0f && chargingLaser_ == null) {
 				chargingLaser_ = ObjectPoolManager.Create<ChargingLaser>(chargingLaserPrefab_, parent: chargingLaserContainer_);
-				chargingLaser_.SetLaserMaterial(Player_.Skin.LaserMaterial);
+				chargingLaser_.SetColor(Player_.Skin.LaserColor);
 			}
 
 			if (chargingLaser_ != null) {
 				chargingLaser_.UpdateWithPercentage(percentCharged);
 				if (previousPercentCharged != 1.0f && percentCharged == 1.0f) {
 					fullyChargedParticle_ = ObjectPoolManager.Create<FullyChargedParticle>(fullyChargedParticlePrefab_, parent: chargingLaserContainer_);
-					fullyChargedParticle_.SetColor(Player_.Skin.LaserMaterial.GetColor("_EmissionColor"));
+					fullyChargedParticle_.SetColor(Player_.Skin.LaserColor);
 
 					OnFullCharge.Invoke();
 				}
@@ -108,7 +108,6 @@ namespace DT.Game.Battle.Players {
 		private void ShootLaser() {
 			Laser laser = ObjectPoolManager.Create<Laser>(laserPrefab_, position: chargingLaserContainer_.transform.position, rotation: chargingLaserContainer_.transform.rotation, parent: BattleRecyclables.Instance);
 			laser.Init(Player_);
-			laser.SetMaterial(Player_.Skin.LaserMaterial);
 			Recoil();
 			DisperseFullyChargedParticle();
 		}

@@ -12,27 +12,8 @@ namespace DT.Game.Battle.Players {
 	[CreateAssetMenu(fileName = "BattlePlayerSkin", menuName = "Game/BattlePlayerSkin")]
 	public class BattlePlayerSkin : ScriptableObject {
 		// PRAGMA MARK - Public Interface
-		public Material BodyMaterial {
-			get { return bodyMaterial_; }
-		}
-
-		public Material LaserMaterial {
-			get { return laserMaterial_; }
-		}
-
-		public Color Color {
-			get { return laserMaterial_.GetColor("_EmissionColor"); }
-		}
-
+		public Color BodyColor;
+		public Color LaserColor;
 		public Sprite ThumbnailSprite;
-
-
-		// PRAGMA MARK - Internal
-		[Header("Outlets")]
-		[SerializeField]
-		private Material bodyMaterial_;
-
-		[SerializeField]
-		private Material laserMaterial_;
 	}
 }

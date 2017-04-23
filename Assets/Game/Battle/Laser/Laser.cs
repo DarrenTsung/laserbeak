@@ -21,11 +21,11 @@ namespace DT.Game.Battle.Lasers {
 			battlePlayer_ = battlePlayer;
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.33f);
 			BattleCamera.Shake(0.14f);
-		}
 
-		public void SetMaterial(Material material) {
-			laserRenderer_.material = material;
-			light_.color = material.GetColor("_EmissionColor");
+			Color laserColor = battlePlayer.Skin.LaserColor;
+			laserRenderer_.material.SetColor("_EmissionColor", laserColor);
+			laserRenderer_.material.SetColor("_DiffuseColor", laserColor);
+			light_.color = laserColor;
 		}
 
 		public void HandleHit() {

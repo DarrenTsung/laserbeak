@@ -29,7 +29,7 @@ namespace DT.Game.Battle.Players {
 		private Renderer bodyRenderer_;
 
 		private void HandleSkinChanged() {
-			bodyRenderer_.material = Player_.Skin.BodyMaterial;
+			bodyRenderer_.material.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
 		}
 	}
 }
