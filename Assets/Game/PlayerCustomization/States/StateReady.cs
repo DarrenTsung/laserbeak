@@ -32,10 +32,7 @@ namespace DT.Game.PlayerCustomization.States {
 
 		// PRAGMA MARK - Internal
 		protected override void Init() {
-			var view = ObjectPoolManager.Create(GamePrefabs.Instance.PlayerReadyView, parent: Container_);
-			// TODO (darren): move out placeholder stuff
-			view.GetComponentInChildren<TMP_Text>().text = "";
-			view.GetComponentInChildren<Image>().enabled = true;
+			ObjectPoolManager.Create(GamePrefabs.Instance.PlayerReadyView, parent: Container_);
 		}
 	}
 }
