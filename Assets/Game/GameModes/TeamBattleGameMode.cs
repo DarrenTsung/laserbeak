@@ -19,10 +19,6 @@ namespace DT.Game.GameModes {
 		// PRAGMA MARK - Public Interface
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
-
-			foreach (BattlePlayerSkin skin in GameConstants.Instance.PlayerSkins) {
-				skin.ClearOverrideColor();
-			}
 		}
 
 
