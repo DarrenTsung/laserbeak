@@ -9,6 +9,8 @@ namespace DT.Game {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			recentPositions_.Clear();
+			SmearMaterial_.SetVector("_PrevPosition", this.transform.position);
+			SmearMaterial_.SetVector("_Position", this.transform.position);
 
 			enabled_ = true;
 		}
@@ -36,8 +38,6 @@ namespace DT.Game {
 			get {
 				if (smearMaterial_ == null || smearMaterial_ != renderer_.material) {
 					smearMaterial_ = renderer_.material;
-					smearMaterial_.SetVector("_PrevPosition", this.transform.position);
-					smearMaterial_.SetVector("_Position", this.transform.position);
 				}
 
 				return smearMaterial_;
