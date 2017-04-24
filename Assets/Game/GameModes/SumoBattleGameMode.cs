@@ -43,7 +43,7 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.KnockbackMultiplier = 1.5f;
 			BattlePlayerHealth.LaserDamage = 0;
 
-			GameModeIntroView.Show("SUMO BATTLE", icons);
+			GameModeIntroView.Show("SUMO WRESTLERS", icons);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}

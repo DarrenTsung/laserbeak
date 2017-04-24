@@ -75,7 +75,7 @@ namespace DT.Game.GameModes {
 			playerOrdering.AddRange(teams_[teams_.Length - 1].Select(p => RegisteredPlayers.AllPlayers.IndexOf(p)));
 			icons.AddRange(teams_[teams_.Length - 1].Select(p => GameModeIntroView.Icon.Player));
 
-			GameModeIntroView.Show("TEAM BATTLE", icons, playerOrdering);
+			GameModeIntroView.Show("ANGELS VS DEVILS", icons, playerOrdering);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
