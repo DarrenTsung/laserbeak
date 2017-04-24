@@ -872,6 +872,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d212f342362c4de8bae265d511314ff, type: 2}
   - {fileID: 11400000, guid: 10e8e740af832432f9f8f61b097e1b26, type: 2}
   - {fileID: 11400000, guid: 3f5209ea347a9415e94ddeeef1360583, type: 2}
+  - {fileID: 11400000, guid: 9667342a67e2b49f3bc04da6a407b80e, type: 2}
+  - {fileID: 11400000, guid: beaafb16ed0044df8af571563052b152, type: 2}
+  - {fileID: 11400000, guid: 4aa12cde3cc7042c9a602e77810e73c3, type: 2}
+  - {fileID: 11400000, guid: 0bb59a7b94c4f41cdb2db5ade2e0fdc7, type: 2}
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
   PlayersToFill: 4
   gameModes_:
