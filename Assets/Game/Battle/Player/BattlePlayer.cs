@@ -21,6 +21,8 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Public Interface
+		public const float kBaseDrag = 6.0f;
+
 		public event Action OnSkinChanged = delegate {};
 
 		public void Init(IInputDelegate inputDelegate, BattlePlayerSkin skin) {
@@ -79,7 +81,7 @@ namespace DT.Game.Battle.Players {
 			activePlayers_.Add(this);
 			Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 			Rigidbody.velocity = Vector3.zero;
-			Rigidbody.drag = 6.0f;
+			Rigidbody.drag = kBaseDrag;
 		}
 
 
