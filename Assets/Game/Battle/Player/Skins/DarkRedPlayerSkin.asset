@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: DarkRedPlayerSkin
   m_EditorClassIdentifier: 
   ThumbnailSprite: {fileID: 21300000, guid: 55e723599d7bb413da30afe7a830479f, type: 3}
-  bodyColor_: {r: 0.8666667, g: 0.23529412, b: 0.23529412, a: 1}
-  laserColor_: {r: 0.8666667, g: 0.23529412, b: 0.23529412, a: 1}
+  bodyColor_: {r: 0.9338235, g: 0.3158521, b: 0.3158521, a: 1}
+  laserColor_: {r: 0.93333334, g: 0.31764707, b: 0.31764707, a: 1}
