@@ -55,7 +55,7 @@ namespace DT.Game.GameModes {
 			}
 			icons.RemoveLast();
 
-			BattlePlayerHealth.KnockbackMultiplier = 0.2f;
+			BattlePlayerHealth.KnockbackMultiplier = 0.0f;
 			BattlePlayerHealth.LaserDamage = 0;
 
 			GameModeIntroView.Show("EXPLOSIVE TAG", icons, onFinishedCallback: () => {

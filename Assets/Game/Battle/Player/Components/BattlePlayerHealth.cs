@@ -150,7 +150,7 @@ namespace DT.Game.Battle.Players {
 
 		private void Knockback(Vector3 forward) {
 			Vector3 endPosition = Player_.Rigidbody.position + (KnockbackMultiplier * kDamageKnockbackDistance * forward);
-			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration, EaseType.CubicEaseOut);
+			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration * KnockbackMultiplier, EaseType.CubicEaseOut);
 		}
 
 		private void SetInvulnerableFor(float time) {
