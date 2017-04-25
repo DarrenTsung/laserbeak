@@ -205,7 +205,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8682526435cee4eb89f88469de9ffd01, type: 2}
+  - {fileID: 2100000, guid: c955e315cf3ff4901882649a6e7eb9ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -359,7 +359,6 @@ MonoBehaviour:
   chargingParticleSystem_: {fileID: 198501177034926248}
   laserRenderer_: {fileID: 23174452395410766}
   humAudioSource_: {fileID: 82578416355007982}
-  frameLag_: 5
 --- !u!114 &114879109747830020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -428,7 +427,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 452146010
+  randomSeed: 1268733175
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3024,7 +3023,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8682526435cee4eb89f88469de9ffd01, type: 2}
+  - {fileID: 2100000, guid: c955e315cf3ff4901882649a6e7eb9ee, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -3056,7 +3055,7 @@ ParticleSystemRenderer:
   m_Pivot: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_VertexStreamMask: 27
-  m_Mesh: {fileID: 4300000, guid: 56470b628232bd84d8f7a514d0200865, type: 3}
+  m_Mesh: {fileID: 4300000, guid: fc986ebb1dd974a75a9641d87f8d5214, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
