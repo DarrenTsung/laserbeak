@@ -50,7 +50,13 @@ namespace DT.Game.Battle.Players {
 			}
 
 			// reflect laser back to original shooter
-			laser.transform.LookAt(laser.BattlePlayer.transform);
+			BattlePlayer laserSource = laser.BattlePlayer;
+			if (laserSource != null) {
+				laser.transform.LookAt(laserSource.transform);
+			} else {
+				// just reflect backwards
+				laser.transform.LookAt(laser.transform.position - laser.transform.forward);
+			}
 
 			laser.SpeedMultiplier *= 1.3f;
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.5f);

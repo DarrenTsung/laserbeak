@@ -133,7 +133,10 @@ namespace DT.Game.Battle.Players {
 
 			int damage = LaserDamage;
 			// laser only does damage if not on same team
-			if (BattlePlayerTeams.AreOnSameTeam(laser.BattlePlayer, Player_)) {
+			// HACK (darren): BattlePlayer needs to be refactored in things like Laser / Teams
+			// because BattlePlayer can be recycled it's not a good thing to keep track of
+			// should instead make a HashCode-like thing
+			if (laser.BattlePlayer != null && BattlePlayerTeams.AreOnSameTeam(laser.BattlePlayer, Player_)) {
 				damage = 0;
 			}
 

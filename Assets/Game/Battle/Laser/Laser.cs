@@ -20,15 +20,16 @@ namespace DT.Game.Battle.Lasers {
 		}
 
 		public BattlePlayer BattlePlayer {
-			get { return battlePlayerSources_.Last(); }
+			get { return battlePlayerSources_.LastOrDefault(); }
 		}
 
 		public void ChangeBattlePlayerSource(BattlePlayer battlePlayer) {
+			battlePlayer.GetComponent<RecyclablePrefab>().OnCleanup += HandleCleanup;
 			battlePlayerSources_.Add(battlePlayer);
 		}
 
 		public void Init(BattlePlayer battlePlayer) {
-			battlePlayerSources_.Add(battlePlayer);
+			ChangeBattlePlayerSource(battlePlayer);
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.33f);
 			BattleCamera.Shake(0.14f);
 
@@ -110,6 +111,13 @@ namespace DT.Game.Battle.Lasers {
 			float rotationSpeed = kRotationSpeed * rotationMultiplier * Time.fixedDeltaTime;
 			float rotationLerpPercentage = Mathf.Clamp(rotationSpeed / minDeltaAngle, 0.0f, 1.0f);
 			rigidbody_.MoveRotation(Quaternion.Lerp(this.transform.rotation, minRotation, rotationLerpPercentage));
+		}
+
+		private void HandleCleanup(RecyclablePrefab prefab) {
+			prefab.OnCleanup -= HandleCleanup;
+
+			BattlePlayer battlePlayer = prefab.GetComponent<BattlePlayer>();
+			battlePlayerSources_.Remove(battlePlayer);
 		}
 	}
 }
