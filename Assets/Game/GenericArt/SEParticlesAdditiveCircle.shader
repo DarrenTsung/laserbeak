@@ -67,7 +67,11 @@ Category {
 				return o;
 			}
 
+			#if SHADER_API_METAL
+			sampler2D_float _CameraDepthTexture;
+			#else
 			sampler2D _CameraDepthTexture;
+			#endif
 			float _InvFade;
 			float _DissolveFactor;
 			float _EmissionGain;
