@@ -9,12 +9,16 @@ using InControl;
 
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputDash : BattlePlayerInputComponent {
+		// PRAGMA MARK - Public Interface
+		public const float kDashDuration = 0.15f;
+
+		public event Action OnDash = delegate {};
+
+
 		// PRAGMA MARK - Internal
 		private const float kDashCooldown = 2.0f;
 
 		private const float kDashIntentThreshold = 0.3f;
-
-		private const float kDashDuration = 0.15f;
 		private const float kDashDistance = 4.0f;
 
 		[Header("Properties")]
@@ -45,6 +49,7 @@ namespace DT.Game.Battle.Players {
 			Vector3 endPosition = Player_.Rigidbody.position + (kDashDistance * Player_.WeightedRatio() * direction);
 			Controller_.MoveTo(Player_, endPosition, kDashDuration, EaseType.CubicEaseOut);
 			AudioConstants.Instance.Dash.PlaySFX();
+			OnDash.Invoke();
 		}
 	}
 }

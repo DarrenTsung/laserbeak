@@ -11,8 +11,12 @@ using InControl;
 using DT.Game.Audio;
 
 namespace DT.Game.Battle.Lasers {
-	public class Laser : MonoBehaviour {
+	public class Laser : MonoBehaviour, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Public Interface
+		public float SpeedMultiplier {
+			get; set;
+		}
+
 		public BattlePlayer BattlePlayer {
 			get { return battlePlayer_; }
 		}
@@ -28,10 +32,18 @@ namespace DT.Game.Battle.Lasers {
 			light_.color = laserColor;
 		}
 
-		public void HandleHit() {
+		public void HandleHit(bool destroy = true) {
 			LaserHit laserHit = ObjectPoolManager.Create<LaserHit>(laserHitParticlePrefab_, this.transform.position, this.transform.rotation, parent: BattleRecyclables.Instance);
 			laserHit.SetMaterial(laserRenderer_.material);
-			ObjectPoolManager.Recycle(this.gameObject);
+			if (destroy) {
+				ObjectPoolManager.Recycle(this.gameObject);
+			}
+		}
+
+
+		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
+		void IRecycleSetupSubscriber.OnRecycleSetup() {
+			SpeedMultiplier = 1.0f;
 		}
 
 
@@ -65,7 +77,7 @@ namespace DT.Game.Battle.Lasers {
 
 			CurveLaserTowardPlayers();
 
-			Vector3 deltaWorldPosition = this.transform.forward * kLaserSpeed * Time.fixedDeltaTime;
+			Vector3 deltaWorldPosition = this.transform.forward * kLaserSpeed * SpeedMultiplier * Time.fixedDeltaTime;
 			rigidbody_.MovePosition(rigidbody_.position + deltaWorldPosition);
 		}
 

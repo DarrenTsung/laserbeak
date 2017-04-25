@@ -71,7 +71,12 @@ namespace DT.Game.GameModes {
 				return;
 			}
 
-			ObjectPoolManager.Recycle(laserSourcePlayer.GetComponentInChildren<TagExplosive>());
+			TagExplosive tagExplosive = laserSourcePlayer.GetComponentInChildren<TagExplosive>();
+			if (tagExplosive != null) {
+				ObjectPoolManager.Recycle(tagExplosive);
+			} else {
+				Debug.LogError("Failed to get TagExplosive from It player, very weird!");
+			}
 			ItPlayer_ = playerHit;
 		}
 

@@ -74,8 +74,15 @@ namespace DT.Game.Battle.Players {
 			}
 		}
 
+		public bool HandleCollisions {
+			get { return handleCollisions_; }
+			set { handleCollisions_ = value; }
+		}
+
+
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
+			HandleCollisions = true;
 			health_ = kBaseHealth;
 		}
 
@@ -109,9 +116,16 @@ namespace DT.Game.Battle.Players {
 		[SerializeField, ReadOnly]
 		private bool invulnerable_;
 
+		[SerializeField, ReadOnly]
+		private bool handleCollisions_ = true;
+
 		private CoroutineWrapper invulnerableCoroutine_;
 
 		private void OnTriggerEnter(Collider collider) {
+			if (!HandleCollisions) {
+				return;
+			}
+
 			Laser laser = collider.gameObject.GetComponentInParent<Laser>();
 			if (laser == null) {
 				return;
