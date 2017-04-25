@@ -49,11 +49,13 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
+			// reflect laser back to original shooter
+			laser.transform.LookAt(laser.BattlePlayer.transform);
+
 			laser.SpeedMultiplier *= 1.3f;
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.5f);
 			laser.HandleHit(destroy: false);
-			// reflect laser back to original shooter
-			laser.transform.LookAt(laser.BattlePlayer.transform);
+			laser.ChangeBattlePlayerSource(Player_);
 		}
 
 		private void HandleDash() {

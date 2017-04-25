@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 using DT.Game.Battle.Players;
@@ -18,11 +20,15 @@ namespace DT.Game.Battle.Lasers {
 		}
 
 		public BattlePlayer BattlePlayer {
-			get { return battlePlayer_; }
+			get { return battlePlayerSources_.Last(); }
+		}
+
+		public void ChangeBattlePlayerSource(BattlePlayer battlePlayer) {
+			battlePlayerSources_.Add(battlePlayer);
 		}
 
 		public void Init(BattlePlayer battlePlayer) {
-			battlePlayer_ = battlePlayer;
+			battlePlayerSources_.Add(battlePlayer);
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.33f);
 			BattleCamera.Shake(0.14f);
 
@@ -44,6 +50,7 @@ namespace DT.Game.Battle.Lasers {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			SpeedMultiplier = 1.0f;
+			battlePlayerSources_.Clear();
 		}
 
 
@@ -64,7 +71,7 @@ namespace DT.Game.Battle.Lasers {
 		[SerializeField]
 		private Renderer laserRenderer_;
 
-		private BattlePlayer battlePlayer_;
+		private readonly List<BattlePlayer> battlePlayerSources_ = new List<BattlePlayer>();
 		private Rigidbody rigidbody_;
 
 		private void Awake() {
