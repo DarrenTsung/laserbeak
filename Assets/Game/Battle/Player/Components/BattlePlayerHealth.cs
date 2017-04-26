@@ -52,11 +52,14 @@ namespace DT.Game.Battle.Players {
 					rigidbody.AddExplosionForce(explosionForce * kExplosionForce, explosionPosition, kExplosionRadius, upwardsModifier: 1.0f);
 				}
 
-				foreach (Renderer renderer in playerParts.GetComponentsInChildren<Renderer>()) {
-					renderer.material.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
-				}
+				// Animate single material to batch
+				Material partMaterial = playerParts.GetComponentInChildren<Renderer>().material;
+				partMaterial.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
 
-				AnimateDamageEmissionFor(GetEmissiveMaterialsFor(playerParts));
+				SetEmissiveMaterialsFor(playerParts, partMaterial);
+
+				Material[] partMaterialArray = new Material[] { partMaterial };
+				AnimateDamageEmissionFor(partMaterialArray);
 				AudioConstants.Instance.PlayerDeath.PlaySFX();
 				BattleCamera.Shake(1.0f);
 
@@ -163,6 +166,12 @@ namespace DT.Game.Battle.Players {
 							.SelectMany(r => r.materials)
 							.Where(m => m.HasProperty("_EmissionColor"))
 							.ToArray();
+		}
+
+		private void SetEmissiveMaterialsFor(GameObject gameObject, Material material) {
+			foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>()) {
+				renderer.sharedMaterial = material;
+			}
 		}
 
 		private void Knockback(Vector3 forward) {
