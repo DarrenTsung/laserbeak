@@ -36,19 +36,36 @@ namespace DT.Game.GameModes {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
 
+			// sometimes teams will be imbalanced like 5 players being split into 3 teams
+			// let X = number of extra players which is 2 (5 % 3)
+			// we extract the X weakest players to shuffle separately at the back of the list
+			// being at the back of the list means they get divided to the imbalanced teams
+			int imbalancedCount = RegisteredPlayers.AllPlayers.Count % numberOfTeams_;
 			List<Player> players = RegisteredPlayers.AllPlayers.ToList();
+			players.Sort((playerA, playerB) => {
+				return PlayerScores.GetScoreFor(playerA).CompareTo(PlayerScores.GetScoreFor(playerB));
+			});
+
+			List<Player> imbalancedWeakestPlayers = players.Take(imbalancedCount).ToList();
+			imbalancedWeakestPlayers.Shuffle();
+
+			players.RemoveRange(0, imbalancedCount);
 			players.Shuffle();
 
-			int playersPerTeam = Mathf.CeilToInt(RegisteredPlayers.AllPlayers.Count / numberOfTeams_);
+			players.AddRange(imbalancedWeakestPlayers);
+			// end sorting list for imbalanced players
+
 			teams_ = new HashSet<Player>[numberOfTeams_];
 
-			for (int i = 0; i < players.Count; i++) {
-				int teamIndex = (int)(i / playersPerTeam);
+			int teamIndex = 0;
+			foreach (Player player in players) {
 				if (teams_[teamIndex] == null) {
 					teams_[teamIndex] = new HashSet<Player>();
 				}
 
-				teams_[teamIndex].Add(players[i]);
+				teams_[teamIndex].Add(player);
+
+				teamIndex = MathUtil.Wrap(teamIndex + 1, 0, numberOfTeams_);
 			}
 
 			// set override color for players
