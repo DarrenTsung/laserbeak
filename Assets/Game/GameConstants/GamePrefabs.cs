@@ -59,6 +59,9 @@ namespace DT.Game {
 		[Header("Tag")]
 		public GameObject TagExplosivePrefab;
 
+		[Header("Arena")]
+		public GameObject DisappearingPlatformPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

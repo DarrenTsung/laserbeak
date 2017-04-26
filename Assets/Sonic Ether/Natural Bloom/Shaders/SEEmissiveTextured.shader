@@ -93,7 +93,7 @@ void vert(inout appdata_full v, out Input o)
 void surf (Input IN, inout SurfaceOutputStandard o) {
 	fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
 	fixed4 c = tex * _DiffuseColor;
-	o.Albedo = c.rgb;
+	o.Albedo = c.rgb * c.a;
 	fixed3 emissTex = tex2D(_Illum, IN.uv_Illum).rgb;
 	float emissL = max(max(emissTex.r, emissTex.g), emissTex.b);
 	fixed3 emissN = emissTex / (emissL + 0.0001);
