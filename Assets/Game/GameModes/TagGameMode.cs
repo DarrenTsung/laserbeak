@@ -67,6 +67,10 @@ namespace DT.Game.GameModes {
 		}
 
 		private void HandleBattlePlayerHit(BattlePlayer playerHit, BattlePlayer laserSourcePlayer) {
+			if (laserSourcePlayer == playerHit) {
+				return;
+			}
+
 			if (laserSourcePlayer != ItPlayer_) {
 				return;
 			}
