@@ -40,7 +40,7 @@ namespace DT.Game.GameModes {
 			icons.RemoveLast();
 
 			BattlePlayerHealth.LaserDamage = 0;
-			GameModeIntroView.Show("SURVIVE - NO PHASER DAMAGE", icons);
+			GameModeIntroView.Show("SURVIVE!", icons);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
