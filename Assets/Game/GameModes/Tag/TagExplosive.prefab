@@ -122,6 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer_: {fileID: 23250319179426364}
   startPulseColor_: {r: 0.20784314, g: 0.23529412, b: 0.23137255, a: 1}
-  endPulseColor_: {r: 0.6156863, g: 0.8392157, b: 0.81960785, a: 1}
+  endPulseColor_: {r: 0.83823526, g: 0.49307957, b: 0.49307957, a: 1}
   timeLeft_: 0
   pulseTimer_: 0
