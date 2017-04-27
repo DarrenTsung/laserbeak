@@ -19,7 +19,7 @@ namespace DT.Game.Battle.Walls {
 				return;
 			}
 
-			laser.HandleHit();
+			laser.Ricochet(-this.transform.right);
 		}
 	}
 }

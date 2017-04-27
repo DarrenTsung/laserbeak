@@ -28,6 +28,11 @@ namespace DT.Game.Battle.Lasers {
 			battlePlayerSources_.Add(battlePlayer);
 		}
 
+		public void Ricochet(Vector3 normal) {
+			HandleHit(destroy: false);
+			this.transform.forward = Vector3.Reflect(this.transform.forward, normal);
+		}
+
 		public void Init(BattlePlayer battlePlayer) {
 			ChangeBattlePlayerSource(battlePlayer);
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.33f);
