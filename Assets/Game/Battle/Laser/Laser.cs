@@ -29,8 +29,13 @@ namespace DT.Game.Battle.Lasers {
 		}
 
 		public void Ricochet(Vector3 normal) {
-			HandleHit(destroy: false);
-			this.transform.forward = Vector3.Reflect(this.transform.forward, normal);
+			ricochetCount_++;
+			if (ricochetCount_ > kRicochetAmount) {
+				HandleHit(destroy: true);
+			} else {
+				HandleHit(destroy: false);
+				this.transform.forward = Vector3.Reflect(this.transform.forward, normal);
+			}
 		}
 
 		public void Init(BattlePlayer battlePlayer) {
@@ -57,10 +62,12 @@ namespace DT.Game.Battle.Lasers {
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			SpeedMultiplier = 1.0f;
 			battlePlayerSources_.Clear();
+			ricochetCount_ = 0;
 		}
 
 
 		// PRAGMA MARK - Internal
+		private const int kRicochetAmount = 2;
 		private const float kLaserSpeed = 25.0f;
 
 		// in degrees per second
@@ -77,6 +84,7 @@ namespace DT.Game.Battle.Lasers {
 		[SerializeField]
 		private Renderer laserRenderer_;
 
+		private int ricochetCount_ = 0;
 		private readonly List<BattlePlayer> battlePlayerSources_ = new List<BattlePlayer>();
 		private Rigidbody rigidbody_;
 
