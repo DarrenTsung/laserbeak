@@ -9,6 +9,10 @@ using InControl;
 
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputDash : BattlePlayerInputComponent {
+		// PRAGMA MARK - Static
+		public static event Action<BattlePlayer> OnPlayerDash = delegate {};
+
+
 		// PRAGMA MARK - Public Interface
 		public const float kDashDuration = 0.15f;
 
@@ -50,6 +54,7 @@ namespace DT.Game.Battle.Players {
 			Controller_.MoveTo(Player_, endPosition, kDashDuration, EaseType.CubicEaseOut);
 			AudioConstants.Instance.Dash.PlaySFX();
 			OnDash.Invoke();
+			OnPlayerDash.Invoke(Player_);
 		}
 	}
 }

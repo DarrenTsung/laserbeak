@@ -59,8 +59,8 @@ namespace DT.Game.Battle.Players {
 			get { return inputController_; }
 		}
 
-		public GameObject Body {
-			get { return body_; }
+		public Renderer[] BodyRenderers {
+			get { return bodyRenderers_; }
 		}
 
 		public GameObject AccessoriesContainer {
@@ -106,6 +106,7 @@ namespace DT.Game.Battle.Players {
 		[SerializeField]
 		private GameObject accessoriesContainer_;
 
+		private Renderer[] bodyRenderers_;
 		private BattlePlayerHealth health_;
 
 		private Rigidbody rigidbody_;
@@ -114,6 +115,7 @@ namespace DT.Game.Battle.Players {
 		private readonly Dictionary<object, float> weightModifications_ = new Dictionary<object, float>();
 
 		private void Awake() {
+			bodyRenderers_ = body_.GetComponentsInChildren<Renderer>();
 			health_ = this.GetRequiredComponentInChildren<BattlePlayerHealth>();
 			rigidbody_ = this.GetRequiredComponent<Rigidbody>();
 

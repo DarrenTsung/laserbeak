@@ -14,6 +14,10 @@ using DT.Game.Audio;
 
 namespace DT.Game.Battle.Lasers {
 	public class Laser : MonoBehaviour, IRecycleSetupSubscriber {
+		// PRAGMA MARK - Static
+		public static event Action<BattlePlayer> OnPlayerShoot = delegate {};
+
+
 		// PRAGMA MARK - Public Interface
 		public float SpeedMultiplier {
 			get; set;
@@ -21,6 +25,19 @@ namespace DT.Game.Battle.Lasers {
 
 		public BattlePlayer BattlePlayer {
 			get { return battlePlayerSources_.LastOrDefault(); }
+		}
+
+		public void Init(BattlePlayer battlePlayer) {
+			ChangeBattlePlayerSource(battlePlayer);
+			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.33f);
+			BattleCamera.Shake(0.14f);
+
+			Color laserColor = battlePlayer.Skin.LaserColor;
+			laserRenderer_.material.SetColor("_EmissionColor", laserColor);
+			laserRenderer_.material.SetColor("_DiffuseColor", laserColor);
+			light_.color = laserColor;
+
+			OnPlayerShoot.Invoke(battlePlayer);
 		}
 
 		public void ChangeBattlePlayerSource(BattlePlayer battlePlayer) {
@@ -36,17 +53,6 @@ namespace DT.Game.Battle.Lasers {
 				HandleHit(destroy: false);
 				this.transform.forward = Vector3.Reflect(this.transform.forward, normal);
 			}
-		}
-
-		public void Init(BattlePlayer battlePlayer) {
-			ChangeBattlePlayerSource(battlePlayer);
-			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.33f);
-			BattleCamera.Shake(0.14f);
-
-			Color laserColor = battlePlayer.Skin.LaserColor;
-			laserRenderer_.material.SetColor("_EmissionColor", laserColor);
-			laserRenderer_.material.SetColor("_DiffuseColor", laserColor);
-			light_.color = laserColor;
 		}
 
 		public void HandleHit(bool destroy = true) {

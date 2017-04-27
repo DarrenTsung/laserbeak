@@ -67,7 +67,7 @@ namespace DT.Game.Battle.Players {
 			} else {
 				float multiplier = 1.0f;
 				if (damage > 0) {
-					AnimateDamageEmissionFor(GetEmissiveMaterialsFor(Player_.Body));
+					AnimateDamageEmissionFor(Player_.BodyRenderers.Select(r => r.material));
 					multiplier = 0.5f;
 				}
 
@@ -151,7 +151,7 @@ namespace DT.Game.Battle.Players {
 			OnBattlePlayerHit.Invoke(Player_, laser.BattlePlayer);
 		}
 
-		private void AnimateDamageEmissionFor(Material[] materials) {
+		private void AnimateDamageEmissionFor(IEnumerable<Material> materials) {
 			CoroutineWrapper.DoEaseFor(kEmissionDuration, EaseType.QuadraticEaseOut, (float percentage) => {
 				float inversePercentage = 1.0f - percentage;
 				float whiteBalance = inversePercentage * kEmissionWhiteBalance;
@@ -159,13 +159,6 @@ namespace DT.Game.Battle.Players {
 					material.SetColor("_EmissionColor", new Color(whiteBalance, whiteBalance, whiteBalance));
 				}
 			});
-		}
-
-		private Material[] GetEmissiveMaterialsFor(GameObject gameObject) {
-			return gameObject.GetComponentsInChildren<Renderer>()
-							.SelectMany(r => r.materials)
-							.Where(m => m.HasProperty("_EmissionColor"))
-							.ToArray();
 		}
 
 		private void SetEmissiveMaterialsFor(GameObject gameObject, Material material) {
