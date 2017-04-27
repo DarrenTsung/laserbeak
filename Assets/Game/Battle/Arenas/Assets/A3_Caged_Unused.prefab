@@ -371,7 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4202545182985606}
   m_Layer: 0
-  m_Name: Arena3 (Caged, Unused)
+  m_Name: A3_Caged_Unused
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

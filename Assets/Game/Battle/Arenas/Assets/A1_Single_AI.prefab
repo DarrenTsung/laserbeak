@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4202545182985606}
   m_Layer: 0
-  m_Name: Arena1 (AISpawners)
+  m_Name: A1_Single_AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

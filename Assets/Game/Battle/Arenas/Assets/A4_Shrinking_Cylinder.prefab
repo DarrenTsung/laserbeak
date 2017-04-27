@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4202545182985606}
   m_Layer: 0
-  m_Name: SumoArena1
+  m_Name: A4_Shrinking_Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

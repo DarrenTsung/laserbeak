@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4202545182985606}
   m_Layer: 0
-  m_Name: DisappearingSurvivalArena
+  m_Name: A5_Disappearing_Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
