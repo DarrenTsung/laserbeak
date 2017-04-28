@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4230591106684794}
   - component: {fileID: 54962746923018616}
   - component: {fileID: 114138115882527300}
+  - component: {fileID: 114429382440063368}
   m_Layer: 8
   m_Name: WallSegment
   m_TagString: Untagged
@@ -385,3 +386,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24171d61a75d4466f8ab4c30bc058d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114429382440063368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258016260821346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e8785cf1b4849ccb9ab2f1ae8c7b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer_: {fileID: 23371216124663300}
+  emissionGainMin_: 0.3
+  emissionGainMax_: 0.38
+  speedMultiplier_: 5
+  time_: 737.5167
