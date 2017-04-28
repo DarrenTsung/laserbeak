@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 using DTAnimatorStateMachine;
 using DTEasings;
@@ -23,6 +24,9 @@ namespace DT.Game.GameModes.Ghost {
 			recycablePrefab_.OnCleanup += HandleCleanup;
 
 			SetAlpha(0.0f);
+			foreach (Renderer r in battlePlayer_.BodyRenderers) {
+				r.shadowCastingMode = ShadowCastingMode.Off;
+			}
 		}
 
 		public void Dispose() {
@@ -38,13 +42,17 @@ namespace DT.Game.GameModes.Ghost {
 
 
 		// PRAGMA MARK - Internal
+		private const float kBaseMetallic = 0.11f;
+
 		private BattlePlayer battlePlayer_;
 		private CoroutineWrapper animateCoroutine_;
 		private RecyclablePrefab recycablePrefab_;
 
 		private void SetAlpha(float alpha) {
+			float metallic = Mathf.Lerp(0.0f, kBaseMetallic, alpha);
 			foreach (Material material in battlePlayer_.BodyRenderers.Select(r => r.material)) {
 				material.SetColor("_DiffuseColor", battlePlayer_.Skin.BodyColor.WithAlpha(alpha));
+				material.SetFloat("_Metallic", metallic);
 			}
 
 			foreach (Renderer renderer in battlePlayer_.BodyRenderers) {
@@ -68,6 +76,9 @@ namespace DT.Game.GameModes.Ghost {
 
 			if (battlePlayer_ != null) {
 				SetAlpha(1.0f);
+				foreach (Renderer r in battlePlayer_.BodyRenderers) {
+					r.shadowCastingMode = ShadowCastingMode.On;
+				}
 				battlePlayer_ = null;
 			}
 
