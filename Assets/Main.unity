@@ -879,6 +879,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0bb59a7b94c4f41cdb2db5ade2e0fdc7, type: 2}
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
   PlayersToFill: 4
+  ColliderDisappearDelay: 0.2
   gameModes_:
   - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
   - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
@@ -929,7 +930,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arenas_:
+  - {fileID: 11400000, guid: d2b38beb731df489b9a423b6cb28fd3b, type: 2}
+  - {fileID: 11400000, guid: 73d7e3e4fdf83444db9febe3e293fc1a, type: 2}
   - {fileID: 11400000, guid: 6dbbe5841b4094208af64197dbb76982, type: 2}
+  - {fileID: 11400000, guid: 89598db54397a4306bb47cfe01ae37ac, type: 2}
 --- !u!1 &1950817757
 GameObject:
   m_ObjectHideFlags: 0

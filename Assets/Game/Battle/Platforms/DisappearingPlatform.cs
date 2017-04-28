@@ -21,7 +21,7 @@ namespace DT.Game.Battle {
 					Flicker();
 					this.DoAfterDelay(kThirdFlickerDelay, () => {
 						renderer_.enabled = false;
-						this.DoAfterDelay(kColliderDelay, () => {
+						this.DoAfterDelay(GameConstants.Instance.ColliderDisappearDelay, () => {
 							collider_.enabled = false;
 						});
 					});
@@ -51,8 +51,6 @@ namespace DT.Game.Battle {
 		private const float kFirstFlickerDelay = 0.5f;
 		private const float kSecondFlickerDelay = 0.3f;
 		private const float kThirdFlickerDelay = 0.2f;
-
-		private const float kColliderDelay = 0.20f;
 
 		[Header("Outlets")]
 		[SerializeField]

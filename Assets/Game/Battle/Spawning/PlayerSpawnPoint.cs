@@ -7,7 +7,9 @@ using DTObjectPoolManager;
 
 namespace DT.Game.Battle {
 	public class PlayerSpawnPoint : MonoBehaviour {
-		// empty monobehaviour to denote spawn point
-		// will likely add some logic later if needs visuals
+		// PRAGMA MARK - Internal
+		private void OnDrawGizmos() {
+			Gizmos.DrawWireCube(this.transform.position, size: Vector3.one);
+		}
 	}
 }

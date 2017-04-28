@@ -30,6 +30,8 @@ namespace DT.Game {
 
 		public int PlayersToFill = 4;
 
+		public float ColliderDisappearDelay = 0.2f;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]
