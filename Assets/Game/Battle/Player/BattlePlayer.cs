@@ -79,7 +79,7 @@ namespace DT.Game.Battle.Players {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			activePlayers_.Add(this);
-			Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+			Rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 			Rigidbody.velocity = Vector3.zero;
 			Rigidbody.drag = kBaseDrag;
 		}

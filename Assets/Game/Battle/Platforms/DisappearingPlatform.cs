@@ -33,7 +33,7 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			renderer_.enabled = true;
-			renderer_.material.SetColor("_DiffuseColor", originalColor_);
+			renderer_.material.SetColor("_Color", originalColor_);
 			collider_.enabled = true;
 		}
 
@@ -62,16 +62,16 @@ namespace DT.Game.Battle {
 		private Color originalColor_;
 
 		private void Awake() {
-			originalColor_ = this.renderer_.material.GetColor("_DiffuseColor");
+			originalColor_ = this.renderer_.material.GetColor("_Color");
 		}
 
 		private void Flicker() {
 			Color endPulseColor = originalColor_.WithAlpha(kFlickerAlpha);
 			this.DoEaseFor(kFlickerDuration / 2.0f, EaseType.QuadraticEaseOut, (float p) => {
-				renderer_.material.SetColor("_DiffuseColor", Color.Lerp(originalColor_, endPulseColor, p));
+				renderer_.material.SetColor("_Color", Color.Lerp(originalColor_, endPulseColor, p));
 			}, () => {
 				this.DoEaseFor(kFlickerDuration / 2.0f, EaseType.QuadraticEaseOut, (float p) => {
-					renderer_.material.SetColor("_DiffuseColor", Color.Lerp(originalColor_, endPulseColor, 1.0f - p));
+					renderer_.material.SetColor("_Color", Color.Lerp(originalColor_, endPulseColor, 1.0f - p));
 				});
 			});
 		}
