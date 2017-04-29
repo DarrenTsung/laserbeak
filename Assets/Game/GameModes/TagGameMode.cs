@@ -31,15 +31,20 @@ namespace DT.Game.GameModes {
 		private BattlePlayer itPlayer_ = null;
 		private BattlePlayer ItPlayer_ {
 			get { return itPlayer_; }
-			set {
-				if (itPlayer_ == value) {
-					return;
-				}
+		}
 
-				itPlayer_ = value;
-				if (itPlayer_ != null) {
-					var explosive = ObjectPoolManager.Create<TagExplosive>(GamePrefabs.Instance.TagExplosivePrefab, parent: itPlayer_.AccessoriesContainer);
+		private void SetItPlayer(BattlePlayer battlePlayer, float? timeLeft = null) {
+			if (itPlayer_ == battlePlayer) {
+				return;
+			}
+
+			itPlayer_ = battlePlayer;
+			if (itPlayer_ != null) {
+				var explosive = ObjectPoolManager.Create<TagExplosive>(GamePrefabs.Instance.TagExplosivePrefab, parent: itPlayer_.AccessoriesContainer);
+				if (timeLeft == null) {
 					explosive.Init(itPlayer_);
+				} else {
+					explosive.Init(itPlayer_, timeLeft.Value);
 				}
 			}
 		}
@@ -59,7 +64,7 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.LaserDamage = 0;
 
 			GameModeIntroView.Show("EXPLOSIVE TAG", icons, onFinishedCallback: () => {
-				ItPlayer_ = PlayerSpawner.AllSpawnedBattlePlayers.Random();
+				SetItPlayer(PlayerSpawner.AllSpawnedBattlePlayers.Random());
 			});
 
 			BattlePlayerHealth.OnBattlePlayerHit += HandleBattlePlayerHit;
@@ -76,19 +81,19 @@ namespace DT.Game.GameModes {
 			}
 
 			TagExplosive tagExplosive = laserSourcePlayer.GetComponentInChildren<TagExplosive>();
+			SetItPlayer(playerHit, tagExplosive.TimeLeft);
 			if (tagExplosive != null) {
 				ObjectPoolManager.Recycle(tagExplosive);
 			} else {
 				Debug.LogError("Failed to get TagExplosive from It player, very weird!");
 			}
-			ItPlayer_ = playerHit;
 		}
 
 		private void HandleSpawnedPlayerRemoved() {
 			if (PlayerSpawner.AllSpawnedPlayers.Count() > 1) {
 				// if ItPlayer_ is now dead - choose new itPlayer
 				if (!PlayerSpawner.AllSpawnedBattlePlayers.Contains(ItPlayer_)) {
-					ItPlayer_ = PlayerSpawner.AllSpawnedBattlePlayers.Random();
+					SetItPlayer(PlayerSpawner.AllSpawnedBattlePlayers.Random());
 				}
 				return;
 			}

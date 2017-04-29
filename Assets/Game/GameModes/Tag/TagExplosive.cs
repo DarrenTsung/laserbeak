@@ -17,11 +17,15 @@ using DT.Game.Scoring;
 namespace DT.Game.GameModes.Tag {
 	public class TagExplosive : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
-		public void Init(BattlePlayer player) {
+		public void Init(BattlePlayer player, float timeLeft = kExplosiveTime) {
 			player_ = player;
-			timeLeft_ = kExplosiveTime;
+			timeLeft_ = timeLeft;
 			ResetPulseTimer();
 			enabled_ = true;
+		}
+
+		public float TimeLeft {
+			get { return timeLeft_; }
 		}
 
 
@@ -32,7 +36,7 @@ namespace DT.Game.GameModes.Tag {
 
 
 		// PRAGMA MARK - Internal
-		private const float kExplosiveTime = 5.0f;
+		private const float kExplosiveTime = 7.0f;
 
 		private const float kPulseTime = 0.08f;
 		private const float kMaxPulseFrequency = 0.6f;
