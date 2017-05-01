@@ -13,13 +13,19 @@ using InControl;
 namespace DT.Game.Battle.Walls {
 	public class CollidesWithLaser : MonoBehaviour {
 		// PRAGMA MARK - Internal
+		private Rigidbody rigidbody_;
+
+		private void Awake() {
+			rigidbody_ = this.GetRequiredComponentInParent<Rigidbody>();
+		}
+
 		private void OnTriggerEnter(Collider collider) {
 			Laser laser = collider.gameObject.GetComponentInParent<Laser>();
 			if (laser == null) {
 				return;
 			}
 
-			laser.Ricochet(-this.transform.right);
+			laser.Ricochet(-this.transform.right, rigidbody_.velocity);
 		}
 	}
 }

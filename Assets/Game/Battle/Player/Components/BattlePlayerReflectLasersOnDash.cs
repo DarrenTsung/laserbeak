@@ -58,10 +58,10 @@ namespace DT.Game.Battle.Players {
 				laser.transform.LookAt(laser.transform.position - laser.transform.forward);
 			}
 
-			laser.SpeedMultiplier *= 1.3f;
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.5f);
 			laser.HandleHit(destroy: false);
 			laser.ChangeBattlePlayerSource(Player_);
+			laser.AddSpeedFromVelocity(Player_.Rigidbody.velocity);
 		}
 
 		private void HandleDash() {

@@ -19,16 +19,14 @@ namespace DT.Game.Battle.Lasers {
 
 
 		// PRAGMA MARK - Public Interface
-		public float SpeedMultiplier {
-			get; set;
-		}
-
 		public BattlePlayer BattlePlayer {
 			get { return battlePlayerSources_.LastOrDefault(); }
 		}
 
 		public void Init(BattlePlayer battlePlayer) {
 			ChangeBattlePlayerSource(battlePlayer);
+			AddSpeedFromVelocity(battlePlayer.Rigidbody.velocity);
+
 			AudioConstants.Instance.LaserShoot.PlaySFX(volumeScale: 0.33f);
 			BattleCamera.Shake(0.14f);
 
@@ -45,14 +43,30 @@ namespace DT.Game.Battle.Lasers {
 			battlePlayerSources_.Add(battlePlayer);
 		}
 
-		public void Ricochet(Vector3 normal) {
+		public void Ricochet(Vector3 normal, Vector3 velocity) {
 			ricochetCount_++;
 			if (ricochetCount_ > kRicochetAmount) {
 				HandleHit(destroy: true);
 			} else {
 				HandleHit(destroy: false);
 				this.transform.forward = Vector3.Reflect(this.transform.forward, normal);
+				AddSpeedFromVelocity(velocity);
 			}
+		}
+
+		public void AddSpeedFromVelocity(Vector3 velocity) {
+			// Dot product is negative if velocity is pointing in opposite
+			// direction as transform.forward
+			if (Vector3.Dot(velocity, this.transform.forward) < 0.0f) {
+				return;
+			}
+
+			// only the velocity along the forward direction of the laser contributes to speed
+			// for example: dashing perpendicular to the laser should not add any speed
+			// but dashing towards the laser should add a lot of speed to the reflected laser
+			Vector3 projectedNormalizedVelocity = Vector3.Project(velocity.normalized, this.transform.forward);
+			float multiplier = 1.0f + (projectedNormalizedVelocity.magnitude * kAddedVelocityScale);
+			SpeedMultiplier *= multiplier;
 		}
 
 		public void HandleHit(bool destroy = true) {
@@ -73,8 +87,10 @@ namespace DT.Game.Battle.Lasers {
 
 
 		// PRAGMA MARK - Internal
+		private const float kAddedVelocityScale = 0.3f;
+
 		private const int kRicochetAmount = 2;
-		private const float kLaserSpeed = 25.0f;
+		private const float kLaserSpeed = 22.0f;
 
 		// in degrees per second
 		private const float kRotationSpeed = 40.0f;
@@ -93,6 +109,10 @@ namespace DT.Game.Battle.Lasers {
 		private int ricochetCount_ = 0;
 		private readonly List<BattlePlayer> battlePlayerSources_ = new List<BattlePlayer>();
 		private Rigidbody rigidbody_;
+
+		private float SpeedMultiplier {
+			get; set;
+		}
 
 		private void Awake() {
 			rigidbody_ = this.GetRequiredComponent<Rigidbody>();
@@ -113,6 +133,7 @@ namespace DT.Game.Battle.Lasers {
 			float minDeltaAngle = float.MaxValue;
 			foreach (BattlePlayer player in BattlePlayer.ActivePlayers) {
 				Vector3 delta = (player.transform.position - this.transform.position).normalized;
+				delta = delta.SetY(0.0f);
 				if (delta.magnitude <= Mathf.Epsilon) {
 					continue;
 				}
