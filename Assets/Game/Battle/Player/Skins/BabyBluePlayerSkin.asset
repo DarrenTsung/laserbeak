@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: BabyBluePlayerSkin
   m_EditorClassIdentifier: 
   ThumbnailSprite: {fileID: 21300000, guid: cabc12fe2ced54a199248bdc3841ecef, type: 3}
-  bodyColor_: {r: 0.6627451, g: 0.93333334, b: 0.99607843, a: 1}
-  laserColor_: {r: 0.6627451, g: 0.93333334, b: 0.99607843, a: 1}
+  bodyColor_: {r: 0.5882353, g: 0.8747405, b: 0.9411765, a: 1}
+  laserColor_: {r: 0.5882353, g: 0.8745098, b: 0.9411765, a: 1}
