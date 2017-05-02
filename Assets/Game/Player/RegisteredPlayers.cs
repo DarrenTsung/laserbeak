@@ -15,6 +15,15 @@ namespace DT.Game.Players {
 		public static event Action OnPlayerAdded = delegate {};
 		public static event Action OnPlayerRemoved = delegate {};
 
+		static RegisteredPlayers() {
+			foreach (InputDevice inputDevice in InputManager.Devices) {
+				RegisterPlayerFor(inputDevice);
+			}
+
+			InputManager.OnDeviceAttached += HandleDeviceAttached;
+			InputManager.OnDeviceDetached += HandleDeviceDetached;
+		}
+
 		public static bool IsInputDeviceAlreadyRegistered(InputDevice inputDevice) {
 			// null inputDevice represents AI player
 			if (inputDevice == null) {
@@ -51,5 +60,32 @@ namespace DT.Game.Players {
 
 		// PRAGMA MARK - Static Internal
 		private static readonly List<Player> players_ = new List<Player>();
+
+		private static void RegisterPlayerFor(InputDevice inputDevice) {
+			if (IsInputDeviceAlreadyRegistered(inputDevice)) {
+				Debug.LogWarning("Attempting to register player for: " + inputDevice + " but already registered! Should not happen.");
+				return;
+			}
+
+			Player player = new Player(inputDevice);
+			player.Nickname = "";
+			player.Skin = RegisteredPlayersUtil.GetBestRandomSkin();
+
+			Add(player);
+		}
+
+		private static void HandleDeviceAttached(InputDevice inputDevice) {
+			RegisterPlayerFor(inputDevice);
+		}
+
+		private static void HandleDeviceDetached(InputDevice inputDevice) {
+			var player = players_.FirstOrDefault(p => p.InputDevice == inputDevice);
+			if (player == null) {
+				Debug.LogWarning("DeviceRemoved but not found in player list, unexpected.");
+				return;
+			}
+
+			Remove(player);
+		}
 	}
 }

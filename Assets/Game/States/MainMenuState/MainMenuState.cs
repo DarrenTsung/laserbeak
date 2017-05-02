@@ -26,7 +26,7 @@ namespace DT.Game.MainMenu {
 			PlayerSpawner.SpawnAllPlayers();
 
 			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
-			mainMenu_.SetPlayHandler(() => StateMachine_.StartBattle());
+			mainMenu_.SetPlayHandler(() => StateMachine_.Continue());
 		}
 
 		protected override void OnStateExited() {

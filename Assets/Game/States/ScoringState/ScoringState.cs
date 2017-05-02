@@ -37,7 +37,7 @@ namespace DT.Game.Scoring {
 				RegisteredPlayers.Clear();
 				StateMachine_.GoToMainMenu();
 			} else {
-				StateMachine_.StartBattle();
+				StateMachine_.Continue();
 			}
 		}
 	}

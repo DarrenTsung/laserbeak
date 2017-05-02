@@ -18,6 +18,12 @@ namespace DT.Game.PlayerCustomization {
 
 		protected override void OnStateEntered() {
 			PlayerCustomizationView.Show(Continue);
+
+			// in case where no players to customize - continue
+			if (RegisteredPlayers.AllPlayers.Count <= 0) {
+				Continue();
+				return;
+			}
 		}
 
 		protected override void OnStateExited() {
@@ -25,6 +31,11 @@ namespace DT.Game.PlayerCustomization {
 		}
 
 		private void Continue() {
+			// TODO (darren): do this is a different way later
+			// when we have actual AI selection (customization)
+			int missingPlayersCount = Math.Max(0, GameConstants.Instance.PlayersToFill - RegisteredPlayers.AllPlayers.Count);
+			RegisteredPlayersUtil.RegisterAIPlayers(missingPlayersCount);
+
 			// TODO (darren): handle players backing out of this delay?
 			CoroutineWrapper.DoAfterDelay(kMoveOnDelay, () => {
 				StateMachine_.Continue();

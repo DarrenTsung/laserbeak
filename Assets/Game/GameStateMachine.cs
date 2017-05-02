@@ -9,10 +9,6 @@ using DT.Game.Audio;
 namespace DT.Game {
 	[RequireComponent(typeof(Animator))]
 	public class GameStateMachine : MonoBehaviour {
-		public void StartBattle() {
-			animator_.SetTrigger("StartBattle");
-		}
-
 		public void GoToMainMenu() {
 			animator_.SetTrigger("GoToMainMenu");
 		}

@@ -878,7 +878,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4aa12cde3cc7042c9a602e77810e73c3, type: 2}
   - {fileID: 11400000, guid: 0bb59a7b94c4f41cdb2db5ade2e0fdc7, type: 2}
   EnemySkin: {fileID: 11400000, guid: 5bb69f5046b7c49d4b1f0eb837ee7564, type: 2}
-  PlayersToFill: 6
+  PlayersToFill: 4
   ColliderDisappearDelay: 0.2
   gameModes_:
   - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
