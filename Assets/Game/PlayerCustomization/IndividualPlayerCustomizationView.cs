@@ -19,13 +19,13 @@ namespace DT.Game.PlayerCustomization {
 			Skin = 0,
 			Nickname = 1,
 			Ready = 2,
+			Continue = 3,
 		}
 
 		// PRAGMA MARK - Public Interface
-		public event Action OnReady = delegate {};
-
-		public void Init(Player player) {
+		public void Init(Player player, Action continueCallback) {
 			player_ = player;
+			continueCallback_ = continueCallback;
 
 			var view = ObjectPoolManager.Create<InGamePlayerView>(GamePrefabs.Instance.InGamePlayerViewPrefab, parent: playerViewContainer_);
 			view.InitWith(player);
@@ -36,10 +36,6 @@ namespace DT.Game.PlayerCustomization {
 				state_ = (State)0;
 			}
 			HandleNewState();
-		}
-
-		public bool Ready {
-			get { return state_ == State.Ready; }
 		}
 
 
@@ -58,6 +54,7 @@ namespace DT.Game.PlayerCustomization {
 		private GameObject currentStateContainer_;
 
 		private Player player_;
+		private Action continueCallback_;
 		private State state_;
 		private IndividualPlayerCustomizationState stateHandler_;
 
@@ -105,7 +102,9 @@ namespace DT.Game.PlayerCustomization {
 					break;
 				case State.Ready:
 					stateHandler_ = new StateReady(player_, currentStateContainer_, MoveToNextState, MoveToPreviousState);
-					OnReady.Invoke();
+					break;
+				case State.Continue:
+					continueCallback_.Invoke();
 					break;
 			}
 		}

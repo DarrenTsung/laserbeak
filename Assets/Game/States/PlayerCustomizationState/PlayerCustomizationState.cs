@@ -17,14 +17,14 @@ namespace DT.Game.PlayerCustomization {
 		private const float kMoveOnDelay = 1.0f;
 
 		protected override void OnStateEntered() {
-			PlayerCustomizationView.Show(HandleAllPlayersReady);
+			PlayerCustomizationView.Show(Continue);
 		}
 
 		protected override void OnStateExited() {
 			PlayerCustomizationView.Hide();
 		}
 
-		private void HandleAllPlayersReady() {
+		private void Continue() {
 			// TODO (darren): handle players backing out of this delay?
 			CoroutineWrapper.DoAfterDelay(kMoveOnDelay, () => {
 				StateMachine_.Continue();

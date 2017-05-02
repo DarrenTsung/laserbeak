@@ -14,9 +14,9 @@ using InControl;
 namespace DT.Game.PlayerCustomization {
 	public class PlayerCustomizationView : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Static
-		public static void Show(Action allPlayersReadyCallback) {
+		public static void Show(Action continueCallback) {
 			view_ = ObjectPoolManager.CreateView<PlayerCustomizationView>(GamePrefabs.Instance.PlayerCustomizationViewPrefab);
-			view_.Init(allPlayersReadyCallback);
+			view_.Init(continueCallback);
 		}
 
 		public static void Hide() {
@@ -41,8 +41,7 @@ namespace DT.Game.PlayerCustomization {
 				} else {
 					playerAnchors[i].gameObject.SetActive(true);
 					var view = ObjectPoolManager.Create<IndividualPlayerCustomizationView>(GamePrefabs.Instance.IndividualPlayerCustomizationViewPrefab, parent: playerAnchors[i].gameObject);
-					view.Init(player);
-					view.OnReady += CheckAllPlayersReady;
+					view.Init(player, HandleContinuePressed);
 					views_.Add(view);
 				}
 			}
@@ -52,7 +51,6 @@ namespace DT.Game.PlayerCustomization {
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			foreach (var view in views_) {
-				view.OnReady -= CheckAllPlayersReady;
 				ObjectPoolManager.Recycle(view);
 			}
 			views_.Clear();
@@ -64,22 +62,22 @@ namespace DT.Game.PlayerCustomization {
 		[SerializeField]
 		private GameObject playerAnchorsContainer_;
 
-		private Action allPlayersReadyCallback_;
+		private Action continueCallback_;
 
 		private readonly List<IndividualPlayerCustomizationView> views_ = new List<IndividualPlayerCustomizationView>();
 
-		private void Init(Action allPlayersReadyCallback) {
-			if (allPlayersReadyCallback == null) {
-				Debug.LogError("allPlayersReadyCallback is null!");
+		private void Init(Action continueCallback) {
+			if (continueCallback == null) {
+				Debug.LogError("continueCallback is null!");
 			}
 
-			allPlayersReadyCallback_ = allPlayersReadyCallback;
-			CheckAllPlayersReady();
+			continueCallback_ = continueCallback;
 		}
 
-		private void CheckAllPlayersReady() {
-			if (views_.All(v => v.Ready)) {
-				allPlayersReadyCallback_.Invoke();
+		private void HandleContinuePressed() {
+			if (continueCallback_ != null) {
+				continueCallback_.Invoke();
+				continueCallback_ = null;
 			}
 		}
 	}
