@@ -68,13 +68,15 @@ namespace DT.Game.Players {
 			}
 
 			Player player = new Player(inputDevice);
-			player.Nickname = "";
+			player.Nickname = string.Format("P{0}", players_.Count + 1);
 			player.Skin = RegisteredPlayersUtil.GetBestRandomSkin();
 
 			Add(player);
 		}
 
 		private static void HandleDeviceAttached(InputDevice inputDevice) {
+			// TODO (darren): only allow these handlers during specific times (player customization?)
+			// right now players can join in middle of game.. which is bleh
 			RegisterPlayerFor(inputDevice);
 		}
 
