@@ -721,7 +721,7 @@ MonoBehaviour:
     type: 2}
   SelectorPrefab: {fileID: 1713116134444828, guid: 8b92283850deb439f99d770b8d65df23,
     type: 2}
-  PlayerCustomizationViewPrefab: {fileID: 1068083865735700, guid: 63425d685a8aa41e18c67f8d6b4babd4,
+  PlayerCustomizationViewPrefab: {fileID: 1721612105771920, guid: 63425d685a8aa41e18c67f8d6b4babd4,
     type: 2}
   IndividualPlayerCustomizationViewPrefab: {fileID: 1772066702783634, guid: c4ed3af11a6d944798d493ab781ccb8a,
     type: 2}

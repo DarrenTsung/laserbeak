@@ -23,10 +23,6 @@ namespace DT.Game.PlayerCustomization.States {
 			if (InputUtil.WasNegativePressedFor(Player_.InputDevice)) {
 				MoveToPreviousState();
 			}
-
-			if (InputUtil.WasPositivePressedFor(Player_.InputDevice)) {
-				MoveToNextState();
-			}
 		}
 
 		public override void Cleanup() {

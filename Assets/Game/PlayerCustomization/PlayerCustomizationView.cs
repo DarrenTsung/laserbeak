@@ -41,7 +41,8 @@ namespace DT.Game.PlayerCustomization {
 				} else {
 					playerAnchors[i].gameObject.SetActive(true);
 					var view = ObjectPoolManager.Create<IndividualPlayerCustomizationView>(GamePrefabs.Instance.IndividualPlayerCustomizationViewPrefab, parent: playerAnchors[i].gameObject);
-					view.Init(player, HandleContinuePressed);
+					view.OnStateChanged += RefreshReadyToFight;
+					view.Init(player);
 					views_.Add(view);
 				}
 			}
@@ -51,6 +52,7 @@ namespace DT.Game.PlayerCustomization {
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			foreach (var view in views_) {
+				view.OnStateChanged -= RefreshReadyToFight;
 				ObjectPoolManager.Recycle(view);
 			}
 			views_.Clear();
@@ -62,9 +64,16 @@ namespace DT.Game.PlayerCustomization {
 		[SerializeField]
 		private GameObject playerAnchorsContainer_;
 
+		[SerializeField]
+		private GameObject readyToFightContainer_;
+
 		private Action continueCallback_;
 
 		private readonly List<IndividualPlayerCustomizationView> views_ = new List<IndividualPlayerCustomizationView>();
+
+		private bool AtLeastOnePlayerReady {
+			get { return views_.Any(v => v.IsReady); }
+		}
 
 		private void Init(Action continueCallback) {
 			if (continueCallback == null) {
@@ -74,11 +83,27 @@ namespace DT.Game.PlayerCustomization {
 			continueCallback_ = continueCallback;
 		}
 
-		private void HandleContinuePressed() {
-			if (continueCallback_ != null) {
-				continueCallback_.Invoke();
-				continueCallback_ = null;
+		private void Update() {
+			if (!AtLeastOnePlayerReady) {
+				return;
 			}
+
+			if (continueCallback_ == null) {
+				return;
+			}
+
+			foreach (InputDevice inputDevice in InputManager.Devices) {
+				if (InputUtil.WasCommandPressedFor(inputDevice)) {
+					if (continueCallback_ != null) {
+						continueCallback_.Invoke();
+						continueCallback_ = null;
+					}
+				}
+			}
+		}
+
+		private void RefreshReadyToFight() {
+			readyToFightContainer_.SetActive(AtLeastOnePlayerReady);
 		}
 	}
 }

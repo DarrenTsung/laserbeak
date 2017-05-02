@@ -73,8 +73,8 @@ namespace DT.Game.Players {
 			}
 
 			Player player = new Player(inputDevice);
-			player.Nickname = string.Format("P{0}", players_.Count + 1);
-			player.Skin = RegisteredPlayersUtil.GetBestRandomSkin();
+			player.Nickname = "";
+			player.Skin = null;
 
 			Add(player);
 		}

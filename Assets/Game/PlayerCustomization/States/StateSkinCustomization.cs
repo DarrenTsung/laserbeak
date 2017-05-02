@@ -59,6 +59,8 @@ namespace DT.Game.PlayerCustomization.States {
 		private ElementSelectionView selectionView_;
 
 		protected override void Init() {
+			Player_.Skin = RegisteredPlayersUtil.GetBestRandomSkin();
+
 			GameObject skinSelectionContainer = GameObjectUtil.FindRequired("SkinSelectionContainer");
 			SkinSelectable currentSelectable = skinSelectionContainer.GetComponentsInChildren<SkinSelectable>().First(s => s.Skin == Player_.Skin);
 

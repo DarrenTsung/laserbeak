@@ -33,5 +33,9 @@ namespace DT.Game {
 		public static bool WasNegativePressedFor(InputDevice device) {
 			return device.GetControl(InputControlType.Action2).WasPressed;
 		}
+
+		public static bool WasCommandPressedFor(InputDevice device) {
+			return device.GetControl(InputControlType.Command).WasPressed;
+		}
 	}
 }
