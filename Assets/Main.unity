@@ -731,6 +731,8 @@ MonoBehaviour:
     type: 2}
   SkinSelectablePrefab: {fileID: 1331952161537844, guid: 59513831c41bb43529865fe07459f650,
     type: 2}
+  CanJoinViewPrefab: {fileID: 1094276740224224, guid: 5a7f0130b5ce9465d9fc8195b64211d6,
+    type: 2}
   WallSegmentPrefab: {fileID: 1258016260821346, guid: a60a2b4be91054664bd12de156cbcb1b,
     type: 2}
   TagExplosivePrefab: {fileID: 1251852763226904, guid: e61770b0d400c4c508a0f0fd568a1ee2,

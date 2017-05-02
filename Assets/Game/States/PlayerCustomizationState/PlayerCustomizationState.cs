@@ -17,6 +17,8 @@ namespace DT.Game.PlayerCustomization {
 		private const float kMoveOnDelay = 1.0f;
 
 		protected override void OnStateEntered() {
+			RegisteredPlayers.Clear();
+			RegisteredPlayers.BeginPlayerRegistration();
 			PlayerCustomizationView.Show(Continue);
 
 			// in case where no players to customize - continue
@@ -28,6 +30,7 @@ namespace DT.Game.PlayerCustomization {
 
 		protected override void OnStateExited() {
 			PlayerCustomizationView.Hide();
+			RegisteredPlayers.FinishPlayerRegistration();
 		}
 
 		private void Continue() {

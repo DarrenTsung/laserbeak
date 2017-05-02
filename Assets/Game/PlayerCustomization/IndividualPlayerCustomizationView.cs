@@ -16,10 +16,11 @@ using DT.Game.PlayerCustomization.States;
 namespace DT.Game.PlayerCustomization {
 	public class IndividualPlayerCustomizationView : MonoBehaviour, IRecycleCleanupSubscriber {
 		private enum State {
-			Skin = 0,
-			Nickname = 1,
-			Ready = 2,
-			Continue = 3,
+			CanJoin = 0,
+			Skin = 1,
+			Nickname = 2,
+			Ready = 3,
+			Continue = 4,
 		}
 
 		// PRAGMA MARK - Public Interface
@@ -94,6 +95,9 @@ namespace DT.Game.PlayerCustomization {
 			}
 
 			switch (state_) {
+				case State.CanJoin:
+					stateHandler_ = new StateCanJoin(player_, currentStateContainer_, MoveToNextState, MoveToPreviousState);
+					break;
 				case State.Skin:
 					stateHandler_ = new StateSkinCustomization(player_, currentStateContainer_, MoveToNextState, MoveToPreviousState);
 					break;

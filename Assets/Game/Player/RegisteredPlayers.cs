@@ -15,13 +15,18 @@ namespace DT.Game.Players {
 		public static event Action OnPlayerAdded = delegate {};
 		public static event Action OnPlayerRemoved = delegate {};
 
-		static RegisteredPlayers() {
+		public static void BeginPlayerRegistration() {
 			foreach (InputDevice inputDevice in InputManager.Devices) {
 				RegisterPlayerFor(inputDevice);
 			}
 
 			InputManager.OnDeviceAttached += HandleDeviceAttached;
 			InputManager.OnDeviceDetached += HandleDeviceDetached;
+		}
+
+		public static void FinishPlayerRegistration() {
+			InputManager.OnDeviceAttached -= HandleDeviceAttached;
+			InputManager.OnDeviceDetached -= HandleDeviceDetached;
 		}
 
 		public static bool IsInputDeviceAlreadyRegistered(InputDevice inputDevice) {

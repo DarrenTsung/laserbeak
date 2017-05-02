@@ -52,6 +52,7 @@ namespace DT.Game {
 		public GameObject PlayerReadyView;
 		public GameObject NicknameCustomizationViewPrefab;
 		public GameObject SkinSelectablePrefab;
+		public GameObject CanJoinViewPrefab;
 
 		[Header("Walls")]
 		public GameObject WallSegmentPrefab;
