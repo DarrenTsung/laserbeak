@@ -32,6 +32,9 @@ namespace DT.Game.PlayerCustomization.States {
 
 		// PRAGMA MARK - Internal
 		protected override void Init() {
+			Player_.Nickname = "";
+			Player_.Skin = null;
+
 			ObjectPoolManager.Create(GamePrefabs.Instance.CanJoinViewPrefab, parent: Container_);
 		}
 	}
