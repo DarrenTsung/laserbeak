@@ -1,4 +1,4 @@
-Shader "Sonic Ether/Emissive/Textured" {
+Shader "Sonic Ether/Emissive/TexturedTransparent" {
 Properties {
 	_EmissionColor ("Emission Color", Color) = (1,1,1,1)
 	_DiffuseColor ("Diffuse Color", Color) = (1, 1, 1, 1)
@@ -20,11 +20,11 @@ Properties {
 }
 
 SubShader {
-	Tags { "RenderType"="Opaque" }
+	Tags { "RenderType"="Transparent" "RenderQueue"="Transparent" }
 	LOD 200
 
 CGPROGRAM
-#pragma surface surf Standard vertex:vert
+#pragma surface surf Standard vertex:vert alpha
 #pragma target 3.0
 
 sampler2D _MainTex;

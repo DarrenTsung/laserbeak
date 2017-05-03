@@ -24,13 +24,17 @@ namespace DT.Game {
 		}
 
 		public int ScoreToWin = 5;
+		public int PlayersToFill = 4;
 
+		[Space]
+		public float ColliderDisappearDelay = 0.2f;
+
+		[Header("Player")]
 		public BattlePlayerSkin[] PlayerSkins;
 		public BattlePlayerSkin EnemySkin;
 
-		public int PlayersToFill = 4;
-
-		public float ColliderDisappearDelay = 0.2f;
+		public Material PlayerOpaqueMaterial;
+		public Material PlayerTransparentMaterial;
 
 
 		// PRAGMA MARK - Internal
