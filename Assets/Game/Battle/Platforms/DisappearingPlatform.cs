@@ -52,6 +52,8 @@ namespace DT.Game.Battle {
 		private const float kSecondFlickerDelay = 0.3f;
 		private const float kThirdFlickerDelay = 0.2f;
 
+		private static readonly Color kFlickerColor = ColorUtil.HexStringToColor("#34b8c4");
+
 		[Header("Outlets")]
 		[SerializeField]
 		private Collider collider_;
@@ -66,12 +68,11 @@ namespace DT.Game.Battle {
 		}
 
 		private void Flicker() {
-			Color endPulseColor = originalColor_.WithAlpha(kFlickerAlpha);
 			this.DoEaseFor(kFlickerDuration / 2.0f, EaseType.QuadraticEaseOut, (float p) => {
-				renderer_.material.SetColor("_Color", Color.Lerp(originalColor_, endPulseColor, p));
+				renderer_.material.SetColor("_Color", Color.Lerp(originalColor_, kFlickerColor, p));
 			}, () => {
 				this.DoEaseFor(kFlickerDuration / 2.0f, EaseType.QuadraticEaseOut, (float p) => {
-					renderer_.material.SetColor("_Color", Color.Lerp(originalColor_, endPulseColor, 1.0f - p));
+					renderer_.material.SetColor("_Color", Color.Lerp(originalColor_, kFlickerColor, 1.0f - p));
 				});
 			});
 		}
