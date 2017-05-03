@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: PinkPlayerSkin
   m_EditorClassIdentifier: 
   ThumbnailSprite: {fileID: 21300000, guid: 7f79d63aae52d43e8a3410132092ee38, type: 3}
-  bodyColor_: {r: 0.99264705, g: 0.525519, b: 0.767137, a: 1}
-  laserColor_: {r: 0.99215686, g: 0.5254902, b: 0.76862746, a: 1}
+  bodyColor_: {r: 0.86764705, g: 0.42744377, b: 0.65513515, a: 1}
+  laserColor_: {r: 0.8666667, g: 0.42745098, b: 0.654902, a: 1}

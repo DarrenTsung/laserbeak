@@ -887,7 +887,7 @@ MonoBehaviour:
   PlayerTransparentMaterial: {fileID: 2100000, guid: 4522569c25a6b46ef8d23aecf63a2238,
     type: 2}
   gameModes_:
-  - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
+  - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
   - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}

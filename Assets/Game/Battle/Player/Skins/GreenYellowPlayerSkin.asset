@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: GreenYellowPlayerSkin
   m_EditorClassIdentifier: 
   ThumbnailSprite: {fileID: 21300000, guid: 32446a12e3f5f4099a1a6279c67ed37b, type: 3}
-  bodyColor_: {r: 0.7372549, g: 0.9647059, b: 0.30588236, a: 1}
-  laserColor_: {r: 0.7372549, g: 0.9647059, b: 0.30588236, a: 1}
+  bodyColor_: {r: 0.6631324, g: 0.8455882, b: 0.31709558, a: 1}
+  laserColor_: {r: 0.6627451, g: 0.84705883, b: 0.31764707, a: 1}
