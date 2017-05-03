@@ -14,8 +14,6 @@ using InControl;
 namespace DT.Game.PlayerCustomization {
 	public class PlayerCustomizationState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
-		private const float kMoveOnDelay = 1.0f;
-
 		protected override void OnStateEntered() {
 			RegisteredPlayers.Clear();
 			RegisteredPlayers.BeginPlayerRegistration();
@@ -39,10 +37,7 @@ namespace DT.Game.PlayerCustomization {
 			int missingPlayersCount = Math.Max(0, GameConstants.Instance.PlayersToFill - RegisteredPlayers.AllPlayers.Count);
 			RegisteredPlayersUtil.RegisterAIPlayers(missingPlayersCount);
 
-			// TODO (darren): handle players backing out of this delay?
-			CoroutineWrapper.DoAfterDelay(kMoveOnDelay, () => {
-				StateMachine_.Continue();
-			});
+			StateMachine_.Continue();
 		}
 	}
 }
