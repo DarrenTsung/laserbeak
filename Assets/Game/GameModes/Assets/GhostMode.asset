@@ -11,3 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d533333152435456fa7d55b1a646bd87, type: 3}
   m_Name: GhostMode
   m_EditorClassIdentifier: 
+  arenaConfigs_:
+  - {fileID: 11400000, guid: d2b38beb731df489b9a423b6cb28fd3b, type: 2}
+  - {fileID: 11400000, guid: 73d7e3e4fdf83444db9febe3e293fc1a, type: 2}

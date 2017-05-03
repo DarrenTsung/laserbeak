@@ -34,9 +34,13 @@ namespace DT.Game.GameModes {
 
 		private readonly Dictionary<BattlePlayer, GhostModePlayerAddOn> ghostModeAddOns_ = new Dictionary<BattlePlayer, GhostModePlayerAddOn>();
 
+		[Header("Outlets")]
+		[SerializeField]
+		private ArenaConfig[] arenaConfigs_;
+
 		protected override void Activate() {
 			CleanupGhostModeAddOns();
-			ArenaManager.Instance.LoadRandomArena();
+			ArenaManager.Instance.LoadArena(arenaConfigs_.Random());
 			PlayerSpawner.SpawnAllPlayers();
 
 			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();

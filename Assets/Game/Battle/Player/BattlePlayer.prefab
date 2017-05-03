@@ -99,7 +99,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1389832879933662
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -284,9 +284,8 @@ Transform:
   - {fileID: 4656510706781098}
   - {fileID: 4486943034666612}
   - {fileID: 4449911647965564}
-  - {fileID: 4564048398220312}
   m_Father: {fileID: 4581339409554848}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4278106538346712
 Transform:
@@ -347,12 +346,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1389832879933662}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4125125527362084}
-  m_RootOrder: 3
+  m_Father: {fileID: 4581339409554848}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4581339409554848
 Transform:
@@ -365,6 +364,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4718544350302456}
+  - {fileID: 4564048398220312}
   - {fileID: 4125125527362084}
   - {fileID: 4780191843166834}
   - {fileID: 4873957787307474}
@@ -424,7 +424,7 @@ Transform:
   - {fileID: 4650929460296728}
   - {fileID: 4541650799955302}
   m_Father: {fileID: 4581339409554848}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4873957787307474
 Transform:
@@ -438,7 +438,7 @@ Transform:
   m_Children:
   - {fileID: 4006591605223786}
   m_Father: {fileID: 4581339409554848}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23114773245817948
 MeshRenderer:
@@ -737,6 +737,7 @@ MonoBehaviour:
   inputController_: {fileID: 114628784557723942}
   body_: {fileID: 1074212480659128}
   accessoriesContainer_: {fileID: 1703667539718068}
+  dustParticleSystem_: {fileID: 198743201416120474}
 --- !u!114 &114756151786186018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -829,7 +830,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1209713667
+  randomSeed: -502784655
   InitialModule:
     serializedVersion: 3
     enabled: 1

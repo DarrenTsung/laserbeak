@@ -63,6 +63,10 @@ namespace DT.Game.Battle.Players {
 			get { return bodyRenderers_; }
 		}
 
+		public ParticleSystem DustParticleSystem {
+			get { return dustParticleSystem_; }
+		}
+
 		public GameObject AccessoriesContainer {
 			get { return accessoriesContainer_; }
 		}
@@ -105,6 +109,9 @@ namespace DT.Game.Battle.Players {
 
 		[SerializeField]
 		private GameObject accessoriesContainer_;
+
+		[SerializeField]
+		private ParticleSystem dustParticleSystem_;
 
 		private Renderer[] bodyRenderers_;
 		private BattlePlayerHealth health_;

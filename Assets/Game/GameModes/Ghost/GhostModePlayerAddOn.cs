@@ -23,8 +23,12 @@ namespace DT.Game.GameModes.Ghost {
 			recycablePrefab_ = battlePlayer_.GetComponentInParent<RecyclablePrefab>();
 			recycablePrefab_.OnCleanup += HandleCleanup;
 
+			battlePlayer_.DustParticleSystem.gameObject.SetActive(false);
 			SetAlpha(0.0f);
 			foreach (Renderer r in battlePlayer_.BodyRenderers) {
+				Color diffuseColor = r.material.GetColor("_DiffuseColor");
+				r.material = GameConstants.Instance.PlayerTransparentMaterial;
+				r.material.SetColor("_DiffuseColor", diffuseColor);
 				r.shadowCastingMode = ShadowCastingMode.Off;
 			}
 		}
@@ -51,7 +55,8 @@ namespace DT.Game.GameModes.Ghost {
 		private void SetAlpha(float alpha) {
 			float metallic = Mathf.Lerp(0.0f, kBaseMetallic, alpha);
 			foreach (Material material in battlePlayer_.BodyRenderers.Select(r => r.material)) {
-				material.SetColor("_DiffuseColor", battlePlayer_.Skin.BodyColor.WithAlpha(alpha));
+				Color diffuseColor = material.GetColor("_DiffuseColor");
+				material.SetColor("_DiffuseColor", diffuseColor.WithAlpha(alpha));
 				material.SetFloat("_Metallic", metallic);
 			}
 
@@ -75,8 +80,13 @@ namespace DT.Game.GameModes.Ghost {
 			CancelAnimation();
 
 			if (battlePlayer_ != null) {
+				battlePlayer_.DustParticleSystem.gameObject.SetActive(true);
 				SetAlpha(1.0f);
 				foreach (Renderer r in battlePlayer_.BodyRenderers) {
+					Color diffuseColor = r.material.GetColor("_DiffuseColor");
+					r.material = GameConstants.Instance.PlayerOpaqueMaterial;
+					r.material.SetColor("_DiffuseColor", diffuseColor.WithAlpha(1.0f));
+					r.material.SetFloat("_Metallic", kBaseMetallic);
 					r.shadowCastingMode = ShadowCastingMode.On;
 				}
 				battlePlayer_ = null;
