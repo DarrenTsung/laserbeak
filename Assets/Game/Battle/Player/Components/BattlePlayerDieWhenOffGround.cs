@@ -60,12 +60,16 @@ namespace DT.Game.Battle.Players {
 			kLayerMask = LayerMask.GetMask("Platforms");
 		}
 
+		private void OnDrawGizmos() {
+			Gizmos.DrawWireSphere(GetRaycastPosition() + Vector3.up, 0.1f);
+		}
+
 		private void FixedUpdate() {
 			if (!enabled_) {
 				return;
 			}
 
-			int resultCount = Physics.RaycastNonAlloc(new Ray(this.transform.position, -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: kLayerMask);
+			int resultCount = Physics.RaycastNonAlloc(new Ray(GetRaycastPosition(), -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: kLayerMask);
 			if (checkDeath_ && resultCount <= 0) {
 				enabled_ = false;
 				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
@@ -76,6 +80,10 @@ namespace DT.Game.Battle.Players {
 					Player_.Health.Kill();
 				});
 			}
+		}
+
+		private Vector3 GetRaycastPosition() {
+			return this.transform.position - Vector3.ClampMagnitude(Player_.Rigidbody.velocity, 0.2f);
 		}
 	}
 }
