@@ -94,16 +94,25 @@ namespace DT.Game.PlayerCustomization {
 
 			foreach (InputDevice inputDevice in InputManager.Devices) {
 				if (InputUtil.WasCommandPressedFor(inputDevice)) {
-					if (continueCallback_ != null) {
-						continueCallback_.Invoke();
-						continueCallback_ = null;
-					}
+					LeavePlayerCustomization();
 				}
 			}
 		}
 
 		private void RefreshReadyToFight() {
 			readyToFightContainer_.SetActive(AtLeastOnePlayerReady);
+		}
+
+		private void LeavePlayerCustomization() {
+			// unregister all players who aren't ready
+			foreach (IndividualPlayerCustomizationView view in views_.Where(v => !v.IsReady)) {
+				RegisteredPlayers.Remove(view.Player);
+			}
+
+			if (continueCallback_ != null) {
+				continueCallback_.Invoke();
+				continueCallback_ = null;
+			}
 		}
 	}
 }

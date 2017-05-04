@@ -39,6 +39,10 @@ namespace DT.Game.PlayerCustomization {
 			HandleNewState();
 		}
 
+		public Player Player {
+			get { return player_; }
+		}
+
 		public bool IsReady {
 			get { return state_ == State.Ready; }
 		}
