@@ -26,6 +26,8 @@ namespace DT.Game {
 		private Animator animator_;
 
 		private void Awake() {
+			Cursor.visible = false;
+
 			animator_ = this.GetRequiredComponent<Animator>();
 			this.ConfigureAllStateBehaviours(animator_);
 
