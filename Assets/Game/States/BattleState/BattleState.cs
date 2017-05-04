@@ -7,6 +7,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Pausing;
 using DT.Game.Battle.Players;
 using DT.Game.GameModes;
 using DT.Game.Players;
@@ -16,6 +17,8 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - Internal
 		private GameMode previousGameMode_ = null;
 		private GameMode currentGameMode_ = null;
+
+		private PauseController pauseController_;
 
 		protected override void OnStateEntered() {
 			// cleanup in-case
@@ -33,11 +36,16 @@ namespace DT.Game.Battle {
 			currentGameMode_.Activate(HandleGameModeFinished);
 			previousGameMode_ = currentGameMode_;
 
+			GameModeIntroView.OnIntroFinished += HandleIntroFinished;
+
 			InGamePlayerCollectionView.Show();
 			InGamePlayerHUDEffect.CreateForAllPlayers();
 		}
 
 		protected override void OnStateExited() {
+			GameModeIntroView.OnIntroFinished -= HandleIntroFinished;
+
+			CleanupPauseController();
 			CleanupCurrentGameMode();
 
 			InGamePlayerCollectionView.Hide();
@@ -51,6 +59,22 @@ namespace DT.Game.Battle {
 			if (currentGameMode_ != null) {
 				currentGameMode_.Cleanup();
 				currentGameMode_ = null;
+			}
+		}
+
+		private void GoToTitleScreen() {
+			StateMachine_.GoToMainMenu();
+		}
+
+		private void HandleIntroFinished() {
+			CleanupPauseController();
+			pauseController_ = new PauseController(restartCallback: GoToTitleScreen);
+		}
+
+		private void CleanupPauseController() {
+			if (pauseController_ != null) {
+				pauseController_.Dispose();
+				pauseController_ = null;
 			}
 		}
 	}

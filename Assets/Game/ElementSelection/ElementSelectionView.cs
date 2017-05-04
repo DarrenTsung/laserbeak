@@ -99,9 +99,9 @@ namespace DT.Game.ElementSelection {
 			if (delay_ <= 0.0f && Mathf.Abs(player_.InputDevice.LeftStick.X) > kIntentThreshold) {
 				// placeholder
 				if (player_.InputDevice.LeftStick.X > 0) {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMax < other.xMin);
+					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMax <= other.xMin);
 				} else {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMin > other.xMax);
+					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMin >= other.xMax);
 				}
 
 				delay_ = kMoveDelay;
@@ -110,9 +110,9 @@ namespace DT.Game.ElementSelection {
 			if (delay_ <= 0.0f && Mathf.Abs(player_.InputDevice.LeftStick.Y) > kIntentThreshold) {
 				// placeholder
 				if (player_.InputDevice.LeftStick.Y > 0) {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMax < other.yMin);
+					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMax <= other.yMin);
 				} else {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMin > other.yMax);
+					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMin >= other.yMax);
 				}
 
 				delay_ = kMoveDelay;

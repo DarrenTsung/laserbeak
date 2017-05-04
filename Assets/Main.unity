@@ -717,6 +717,8 @@ MonoBehaviour:
     type: 2}
   InGameTimerPrefab: {fileID: 1369858089402618, guid: 809e2e19b9fec452093aebfe5b1f0366,
     type: 2}
+  InGamePauseViewPrefab: {fileID: 1363955355451658, guid: 32f5cb020c3d84bd0b80fe913fa729e3,
+    type: 2}
   ElementSelectionViewPrefab: {fileID: 1815719729863646, guid: 1d5ee5250919147fc9b3f94c23f28821,
     type: 2}
   SelectorPrefab: {fileID: 1713116134444828, guid: 8b92283850deb439f99d770b8d65df23,

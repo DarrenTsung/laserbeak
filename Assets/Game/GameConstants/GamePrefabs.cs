@@ -41,6 +41,7 @@ namespace DT.Game {
 		public GameObject GameModeIntroViewPrefab;
 		public GameObject InGamePlayerHUDEffect;
 		public GameObject InGameTimerPrefab;
+		public GameObject InGamePauseViewPrefab;
 
 		[Header("Element Selection")]
 		public GameObject ElementSelectionViewPrefab;

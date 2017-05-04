@@ -14,7 +14,8 @@ namespace DT.Game.Battle.Players {
 			Internal = 0,
 			Movement = 1,
 			OffGround = 10,
-			GameMode = 15,
+			Paused = 20,
+			GameMode = 21,
 		}
 
 		public void DisableInput(PriorityKey key) {
