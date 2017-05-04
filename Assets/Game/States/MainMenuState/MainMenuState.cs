@@ -8,6 +8,7 @@ using DTObjectPoolManager;
 using DT.Game.Battle;
 using DT.Game.Battle.Players;
 using DT.Game.Players;
+using DT.Game.Scoring;
 
 namespace DT.Game.MainMenu {
 	public class MainMenuState : DTStateMachineBehaviour<GameStateMachine> {
@@ -30,6 +31,7 @@ namespace DT.Game.MainMenu {
 		}
 
 		protected override void OnStateExited() {
+			PlayerScores.Clear();
 			RegisteredPlayers.Clear();
 			PlayerSpawner.ShouldRespawn = false;
 			PlayerSpawner.CleanupAllPlayers();
