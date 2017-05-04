@@ -15,7 +15,8 @@ using InControl;
 namespace DT.Game.Battle.Pausing {
 	public class PauseController : IDisposable {
 		// PRAGMA MARK - Public Interface
-		public PauseController(Action restartCallback) {
+		public PauseController(Action skipCallback, Action restartCallback) {
+			skipCallback_ = skipCallback;
 			restartCallback_ = restartCallback;
 
 			MonoBehaviourWrapper.OnUpdate += HandleUpdate;
@@ -30,7 +31,7 @@ namespace DT.Game.Battle.Pausing {
 
 
 		// PRAGMA MARK - Internal
-		private Action exitPauseCallback_;
+		private Action skipCallback_;
 		private Action restartCallback_;
 
 		private InGamePauseView view_;
@@ -52,7 +53,7 @@ namespace DT.Game.Battle.Pausing {
 			MonoBehaviourWrapper.OnUpdate -= HandleUpdate;
 
 			view_ = ObjectPoolManager.CreateView<InGamePauseView>(GamePrefabs.Instance.InGamePauseViewPrefab);
-			view_.Init(player, Resume, restartCallback_);
+			view_.Init(player, Resume, skipCallback_, restartCallback_);
 
 			foreach (BattlePlayer battlePlayer in UnityEngine.Object.FindObjectsOfType<BattlePlayer>()) {
 				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.Paused);

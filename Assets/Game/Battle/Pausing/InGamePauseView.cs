@@ -14,11 +14,10 @@ using InControl;
 namespace DT.Game.Battle.Pausing {
 	public class InGamePauseView : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
-		public void Init(Player player, Action exitPauseCallback, Action restartCallback) {
+		public void Init(Player player, Action exitPauseCallback, Action skipCallback, Action restartCallback) {
 			exitPauseCallback_ = exitPauseCallback;
+			skipCallback_ = skipCallback;
 			restartCallback_ = restartCallback;
-
-			text_.Text = string.Format("PAUSED\n<size=25>{0}", player.Nickname);
 
 			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
 			selectionView_.Init(player, this.gameObject);
@@ -42,6 +41,13 @@ namespace DT.Game.Battle.Pausing {
 			}
 		}
 
+		public void Skip() {
+			if (skipCallback_ != null) {
+				skipCallback_.Invoke();
+				skipCallback_ = null;
+			}
+		}
+
 		public void Restart() {
 			if (restartCallback_ != null) {
 				restartCallback_.Invoke();
@@ -51,13 +57,10 @@ namespace DT.Game.Battle.Pausing {
 
 
 		// PRAGMA MARK - Internal
-		[Header("Outlets")]
-		[SerializeField]
-		private TextOutlet text_;
-
 		private ElementSelectionView selectionView_;
 
 		private Action exitPauseCallback_;
+		private Action skipCallback_;
 		private Action restartCallback_;
 	}
 }

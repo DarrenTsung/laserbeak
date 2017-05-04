@@ -18,6 +18,11 @@ namespace DT.Game.Scoring {
 		private const float kShowDelay = 0.5f;
 
 		protected override void OnStateEntered() {
+			if (!PlayerScores.HasPendingScores) {
+				HandleScoringFinished();
+				return;
+			}
+
 			CoroutineWrapper.DoAfterDelay(kShowDelay, () => {
 				InGamePlayerScoringView.Show(HandleScoringFinished);
 			});

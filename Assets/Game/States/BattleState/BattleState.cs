@@ -33,7 +33,7 @@ namespace DT.Game.Battle {
 					currentGameMode_ = GameConstants.Instance.GameModes.Random();
 				}
 			} while (previousGameMode_ == currentGameMode_);
-			currentGameMode_.Activate(HandleGameModeFinished);
+			currentGameMode_.Activate(FinishBattle);
 			previousGameMode_ = currentGameMode_;
 
 			GameModeIntroView.OnIntroFinished += HandleIntroFinished;
@@ -51,7 +51,7 @@ namespace DT.Game.Battle {
 			InGamePlayerCollectionView.Hide();
 		}
 
-		private void HandleGameModeFinished() {
+		private void FinishBattle() {
 			StateMachine_.HandleBattleFinished();
 		}
 
@@ -68,7 +68,7 @@ namespace DT.Game.Battle {
 
 		private void HandleIntroFinished() {
 			CleanupPauseController();
-			pauseController_ = new PauseController(restartCallback: GoToTitleScreen);
+			pauseController_ = new PauseController(skipCallback: FinishBattle, restartCallback: GoToTitleScreen);
 		}
 
 		private void CleanupPauseController() {
