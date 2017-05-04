@@ -26,6 +26,15 @@ namespace DT.Game {
 			return false;
 		}
 
+		public static bool WasAnyCommandButtonPressed() {
+			// TODO (darren): do this better later
+			if (Input.GetKeyDown(KeyCode.Space)) {
+				return true;
+			}
+
+			return InputManager.Devices.Any(d => WasCommandPressedFor(d));
+		}
+
 		public static bool WasPositivePressedFor(InputDevice device) {
 			return device.GetControl(InputControlType.Action1).WasPressed;
 		}
