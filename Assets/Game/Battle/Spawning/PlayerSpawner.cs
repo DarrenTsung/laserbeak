@@ -42,6 +42,10 @@ namespace DT.Game.Battle {
 			get { return playerMap_.Values; }
 		}
 
+		public static Player GetPlayerFor(BattlePlayer battlePlayer) {
+			return AllSpawnedPlayers.FirstOrDefault(p => GetBattlePlayerFor(p) == battlePlayer);
+		}
+
 		public static BattlePlayer GetBattlePlayerFor(Player player) {
 			return playerMap_.GetValueOrDefault(player);
 		}

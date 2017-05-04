@@ -16,6 +16,8 @@ namespace DT.Game.Battle.Players {
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Static
 		public static event BattlePlayerHitDelegate OnBattlePlayerHit = delegate {};
+		public static event Action<BattlePlayer, int> OnBattlePlayerDamaged = delegate {};
+		public static event Action<BattlePlayer> OnBattlePlayerDied = delegate {};
 
 
 		// PRAGMA MARK - Public Interface
@@ -36,6 +38,7 @@ namespace DT.Game.Battle.Players {
 			forward = forward.normalized;
 
 			health_ -= damage;
+			OnBattlePlayerDamaged.Invoke(Player_, damage);
 			SetInvulnerableFor(kDamageInvulnerabilityTime);
 
 			if (health_ <= 0) {
@@ -62,6 +65,7 @@ namespace DT.Game.Battle.Players {
 				AnimateDamageEmissionFor(partMaterialArray);
 				AudioConstants.Instance.PlayerDeath.PlaySFX();
 				BattleCamera.Shake(1.0f);
+				OnBattlePlayerDied.Invoke(Player_);
 
 				ObjectPoolManager.Recycle(this);
 			} else {
