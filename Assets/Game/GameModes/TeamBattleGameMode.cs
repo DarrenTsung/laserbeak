@@ -17,6 +17,10 @@ namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "TeamBattleGameMode", menuName = "Game/Modes/TeamBattleGameMode")]
 	public class TeamBattleGameMode : GameMode {
 		// PRAGMA MARK - Public Interface
+		public override string DisplayTitle {
+			get { return "ANGELS VS DEMONS"; }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 		}
@@ -31,10 +35,6 @@ namespace DT.Game.GameModes {
 		private int numberOfTeams_ = 2;
 
 		private HashSet<Player>[] teams_;
-
-		protected override string DisplayTitle {
-			get { return "ANGELS VS DEMONS"; }
-		}
 
 		protected override void Activate() {
 			ArenaManager.Instance.LoadRandomArena();

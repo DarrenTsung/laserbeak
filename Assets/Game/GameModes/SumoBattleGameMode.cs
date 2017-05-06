@@ -17,6 +17,10 @@ namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "SumoBattleGameMode", menuName = "Game/Modes/SumoBattleGameMode")]
 	public class SumoBattleGameMode : GameMode {
 		// PRAGMA MARK - Public Interface
+		public override string DisplayTitle {
+			get { return "SUMO WRESTLERS"; }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
@@ -30,10 +34,6 @@ namespace DT.Game.GameModes {
 		[Header("Outlets")]
 		[SerializeField]
 		private ArenaConfig[] arenas_;
-
-		protected override string DisplayTitle {
-			get { return "SUMO WRESTLERS"; }
-		}
 
 		protected override void Activate() {
 			ArenaManager.Instance.LoadArena(arenas_.Random());

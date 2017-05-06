@@ -27,7 +27,8 @@ namespace DT.Game.MainMenu {
 			}
 
 			if (InputUtil.WasAnyCommandButtonPressed()) {
-				GameMode.ResetShowedInstructionsCache();
+				// TODO (darren): better place for this?
+				GameModeShowedInstructionsCache.ResetShowedInstructionsCache();
 			}
 		}
 

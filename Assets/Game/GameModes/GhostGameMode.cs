@@ -19,6 +19,10 @@ namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "GhostGameMode", menuName = "Game/Modes/GhostGameMode")]
 	public class GhostGameMode : GameMode {
 		// PRAGMA MARK - Public Interface
+		public override string DisplayTitle {
+			get { return "GHOST MODE"; }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerInputDash.OnPlayerDash -= HandlePlayerDash;
@@ -37,10 +41,6 @@ namespace DT.Game.GameModes {
 		[Header("Outlets")]
 		[SerializeField]
 		private ArenaConfig[] arenaConfigs_;
-
-		protected override string DisplayTitle {
-			get { return "GHOST MODE"; }
-		}
 
 		protected override void Activate() {
 			CleanupGhostModeAddOns();

@@ -17,16 +17,16 @@ namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "LastBirdStandingGameMode", menuName = "Game/Modes/LastBirdStandingGameMode")]
 	public class LastBirdStandingGameMode : GameMode {
 		// PRAGMA MARK - Public Interface
+		public override string DisplayTitle {
+			get { return "LAST BIRD STANDING"; }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 		}
 
 
 		// PRAGMA MARK - Internal
-		protected override string DisplayTitle {
-			get { return "LAST BIRD STANDING"; }
-		}
-
 		protected override void Activate() {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();

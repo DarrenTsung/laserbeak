@@ -17,6 +17,10 @@ namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "AISurvivalGameMode", menuName = "Game/Modes/AISurvivalGameMode")]
 	public class AISurvivalGameMode : GameMode {
 		// PRAGMA MARK - Public Interface
+		public override string DisplayTitle {
+			get { return "AI SURVIVAL"; }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			InGameTimer.CleanupAndHide();
@@ -30,10 +34,6 @@ namespace DT.Game.GameModes {
 		[Header("Outlets")]
 		[SerializeField]
 		private ArenaConfig[] arenas_;
-
-		protected override string DisplayTitle {
-			get { return "AI SURVIVAL"; }
-		}
 
 		protected override void Activate() {
 			ArenaManager.Instance.LoadArena(arenas_.Random());

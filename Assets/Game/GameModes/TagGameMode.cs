@@ -18,6 +18,10 @@ namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "TagGameMode", menuName = "Game/Modes/TagGameMode")]
 	public class TagGameMode : GameMode {
 		// PRAGMA MARK - Public Interface
+		public override string DisplayTitle {
+			get { return "HOT POTATO - WITH BOMBS"; }
+		}
+
 		public override void Cleanup() {
 			BattlePlayerHealth.OnBattlePlayerHit -= HandleBattlePlayerHit;
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
@@ -47,10 +51,6 @@ namespace DT.Game.GameModes {
 					explosive.Init(itPlayer_, timeLeft.Value);
 				}
 			}
-		}
-
-		protected override string DisplayTitle {
-			get { return "HOT POTATO - BOMB EDITION"; }
 		}
 
 		protected override void Activate() {

@@ -17,6 +17,10 @@ namespace DT.Game.GameModes {
 	[CreateAssetMenu(fileName = "TestingGameMode", menuName = "Game/Modes/TestingGameMode")]
 	public class TestingGameMode : GameMode {
 		// PRAGMA MARK - Public Interface
+		public override string DisplayTitle {
+			get { return "TESTING MODE"; }
+		}
+
 		public override void Cleanup() {
 			BattlePlayerHealth.LaserDamage = 1;
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
@@ -27,10 +31,6 @@ namespace DT.Game.GameModes {
 		// PRAGMA MARK - Internal
 		[SerializeField]
 		private ArenaConfig arenaConfig_;
-
-		protected override string DisplayTitle {
-			get { return "TESTING MODE"; }
-		}
 
 		protected override void Activate() {
 			ArenaManager.Instance.LoadArena(arenaConfig_);
