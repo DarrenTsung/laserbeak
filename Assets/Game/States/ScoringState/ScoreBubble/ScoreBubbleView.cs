@@ -37,6 +37,7 @@ namespace DT.Game.Scoring {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			this.StopAllCoroutines();
 			filled_ = false;
 			scaledObject_.transform.localScale = Vector3.zero;
 			image_.color = Color.white;
