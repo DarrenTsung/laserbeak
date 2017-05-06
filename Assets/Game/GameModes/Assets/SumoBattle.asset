@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150e60cf03cab45a78899316bbebfb11, type: 3}
   m_Name: SumoBattle
   m_EditorClassIdentifier: 
+  instructionDetailPrefab_: {fileID: 1766356456812992, guid: 5af5ce639813142cbb474f2f6fd7f6bd,
+    type: 2}
   arenas_:
   - {fileID: 11400000, guid: b069dd122b96942e4a7d5d8667304cfc, type: 2}
   - {fileID: 11400000, guid: 43074773f2cb14005b5a4341f783e233, type: 2}

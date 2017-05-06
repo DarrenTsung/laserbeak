@@ -11,3 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba8491343aaf41acbf62a77dd158ace, type: 3}
   m_Name: Tag
   m_EditorClassIdentifier: 
+  instructionDetailPrefab_: {fileID: 1766356456812992, guid: c4306ce8a599a428c8e2941e2b73976a,
+    type: 2}

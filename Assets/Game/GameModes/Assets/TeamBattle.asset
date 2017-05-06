@@ -11,7 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb365663f48f4773bed37360c28f3a0, type: 3}
   m_Name: TeamBattle
   m_EditorClassIdentifier: 
+  instructionDetailPrefab_: {fileID: 1766356456812992, guid: 6e3d4689e87054dfc8da6d85154700bc,
+    type: 2}
   accessoryPrefabs_:
   - {fileID: 1833489398879702, guid: c4d29bf091fd54dd09f956978a2978ab, type: 2}
   - {fileID: 1667062586762580, guid: f00fc0bf64c3449b88a9e01d3ca48bfb, type: 2}
-  playersPerTeam_: 2
+  numberOfTeams_: 2

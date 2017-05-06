@@ -11,3 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475c27e4397cf4be69bdc337a44f20cd, type: 3}
   m_Name: LastBirdStanding
   m_EditorClassIdentifier: 
+  instructionDetailPrefab_: {fileID: 1766356456812992, guid: f76087494558b4c8891f8e09804ad708,
+    type: 2}
