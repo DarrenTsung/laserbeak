@@ -76,6 +76,7 @@ namespace DT.Game.Scoring {
 			}
 
 			if (PlayerScores.HasWinner) {
+				GameNotifications.OnGameWon.Invoke();
 				hasWinnerContainer_.SetActive(true);
 				AudioConstants.Instance.Win.PlaySFX(randomPitchRange: 0.0f);
 				// wait for main button press

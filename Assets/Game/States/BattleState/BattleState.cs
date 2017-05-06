@@ -20,6 +20,13 @@ namespace DT.Game.Battle {
 
 		private PauseController pauseController_;
 
+		protected override void OnInitialized() {
+			GameNotifications.OnGameWon.AddListener(() => {
+				// reset previous game mode
+				previousGameMode_ = null;
+			});
+		}
+
 		protected override void OnStateEntered() {
 			// cleanup in-case
 			PlayerSpawner.CleanupAllPlayers();
