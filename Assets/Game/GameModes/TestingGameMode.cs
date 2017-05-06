@@ -28,6 +28,10 @@ namespace DT.Game.GameModes {
 		[SerializeField]
 		private ArenaConfig arenaConfig_;
 
+		protected override string DisplayTitle {
+			get { return "TESTING MODE"; }
+		}
+
 		protected override void Activate() {
 			ArenaManager.Instance.LoadArena(arenaConfig_);
 			PlayerSpawner.SpawnAllPlayers();
@@ -42,7 +46,7 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.LaserDamage = 0;
 			BattlePlayerHealth.KnockbackMultiplier = 0.1f;
 
-			GameModeIntroView.Show("TESTING MODE", icons);
+			GameModeIntroView.Show(DisplayTitle, icons);
 
 			foreach (Player player in RegisteredPlayers.AllPlayers.Where(p => p.IsAI)) {
 				BattlePlayer battlePlayer = PlayerSpawner.GetBattlePlayerFor(player);

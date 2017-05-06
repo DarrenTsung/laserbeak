@@ -31,6 +31,10 @@ namespace DT.Game.GameModes {
 		[SerializeField]
 		private ArenaConfig[] arenas_;
 
+		protected override string DisplayTitle {
+			get { return "SUMO WRESTLERS"; }
+		}
+
 		protected override void Activate() {
 			ArenaManager.Instance.LoadArena(arenas_.Random());
 			PlayerSpawner.SpawnAllPlayers();
@@ -47,7 +51,7 @@ namespace DT.Game.GameModes {
 
 			InGameConstants.AllowChargingLasers = false;
 
-			GameModeIntroView.Show("SUMO WRESTLERS", icons);
+			GameModeIntroView.Show(DisplayTitle, icons);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}

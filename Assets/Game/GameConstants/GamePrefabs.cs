@@ -65,6 +65,10 @@ namespace DT.Game {
 		[Header("Arena")]
 		public GameObject DisappearingPlatformPrefab;
 
+		[Header("Instruction Popups")]
+		public GameObject InstructionPopupPrefab;
+		public GameObject InstructionPlayerReadyViewPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

@@ -32,6 +32,10 @@ namespace DT.Game.GameModes {
 
 		private HashSet<Player>[] teams_;
 
+		protected override string DisplayTitle {
+			get { return "ANGELS VS DEMONS"; }
+		}
+
 		protected override void Activate() {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
@@ -92,7 +96,7 @@ namespace DT.Game.GameModes {
 			playerOrdering.AddRange(teams_[teams_.Length - 1].Select(p => RegisteredPlayers.AllPlayers.IndexOf(p)));
 			icons.AddRange(teams_[teams_.Length - 1].Select(p => GameModeIntroView.Icon.Player));
 
-			GameModeIntroView.Show("ANGELS VS DEMONS", icons, playerOrdering);
+			GameModeIntroView.Show(DisplayTitle, icons, playerOrdering);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}

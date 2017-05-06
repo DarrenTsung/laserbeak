@@ -31,6 +31,10 @@ namespace DT.Game.GameModes {
 		[SerializeField]
 		private ArenaConfig[] arenas_;
 
+		protected override string DisplayTitle {
+			get { return "AI SURVIVAL"; }
+		}
+
 		protected override void Activate() {
 			ArenaManager.Instance.LoadArena(arenas_.Random());
 
@@ -50,7 +54,7 @@ namespace DT.Game.GameModes {
 			icons.Add(GameModeIntroView.Icon.Skull);
 			icons.Add(GameModeIntroView.Icon.Skull);
 
-			GameModeIntroView.Show("AI SURVIVAL", icons);
+			GameModeIntroView.Show(DisplayTitle, icons);
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
 

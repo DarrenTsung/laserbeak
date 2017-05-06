@@ -38,6 +38,10 @@ namespace DT.Game.GameModes {
 		[SerializeField]
 		private ArenaConfig[] arenaConfigs_;
 
+		protected override string DisplayTitle {
+			get { return "GHOST MODE"; }
+		}
+
 		protected override void Activate() {
 			CleanupGhostModeAddOns();
 			ArenaManager.Instance.LoadArena(arenaConfigs_.Random());
@@ -50,7 +54,7 @@ namespace DT.Game.GameModes {
 			}
 			icons.RemoveLast();
 
-			GameModeIntroView.Show("GHOST MODE", icons);
+			GameModeIntroView.Show(DisplayTitle, icons);
 
 			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
 				ghostModeAddOns_[battlePlayer] = new GhostModePlayerAddOn(battlePlayer);

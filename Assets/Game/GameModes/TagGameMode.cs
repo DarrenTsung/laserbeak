@@ -49,6 +49,10 @@ namespace DT.Game.GameModes {
 			}
 		}
 
+		protected override string DisplayTitle {
+			get { return "HOT POTATO - BOMB EDITION"; }
+		}
+
 		protected override void Activate() {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
@@ -63,7 +67,7 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.KnockbackMultiplier = 0.0f;
 			BattlePlayerHealth.LaserDamage = 0;
 
-			GameModeIntroView.Show("EXPLOSIVE TAG", icons, onFinishedCallback: () => {
+			GameModeIntroView.Show(DisplayTitle, icons, onFinishedCallback: () => {
 				SetItPlayer(PlayerSpawner.AllSpawnedBattlePlayers.Random());
 			});
 

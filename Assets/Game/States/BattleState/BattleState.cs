@@ -40,13 +40,16 @@ namespace DT.Game.Battle {
 					currentGameMode_ = GameConstants.Instance.GameModes.Random();
 				}
 			} while (previousGameMode_ == currentGameMode_);
-			currentGameMode_.Activate(FinishBattle);
-			previousGameMode_ = currentGameMode_;
 
-			GameModeIntroView.OnIntroFinished += HandleIntroFinished;
+			currentGameMode_.ShowIntroductionIfNecessary(() => {
+				currentGameMode_.Activate(FinishBattle);
+				previousGameMode_ = currentGameMode_;
 
-			InGamePlayerCollectionView.Show();
-			InGamePlayerHUDEffect.CreateForAllPlayers();
+				GameModeIntroView.OnIntroFinished += HandleIntroFinished;
+
+				InGamePlayerCollectionView.Show();
+				InGamePlayerHUDEffect.CreateForAllPlayers();
+			});
 		}
 
 		protected override void OnStateExited() {

@@ -23,6 +23,10 @@ namespace DT.Game.GameModes {
 
 
 		// PRAGMA MARK - Internal
+		protected override string DisplayTitle {
+			get { return "LAST BIRD STANDING"; }
+		}
+
 		protected override void Activate() {
 			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
@@ -34,7 +38,7 @@ namespace DT.Game.GameModes {
 			}
 			icons.RemoveLast();
 
-			GameModeIntroView.Show("LAST BIRD STANDING", icons);
+			GameModeIntroView.Show(DisplayTitle, icons);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
