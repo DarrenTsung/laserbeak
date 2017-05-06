@@ -1092,11 +1092,10 @@ MonoBehaviour:
     type: 2}
   gameModes_:
   - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
-  - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
-  - {fileID: 11400000, guid: 5a9a4ae5dc7a64373866391cbb992926, type: 2}
   - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
   - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
+  - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
 --- !u!1 &1675223163
@@ -1143,7 +1142,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d2b38beb731df489b9a423b6cb28fd3b, type: 2}
   - {fileID: 11400000, guid: 73d7e3e4fdf83444db9febe3e293fc1a, type: 2}
   - {fileID: 11400000, guid: 6dbbe5841b4094208af64197dbb76982, type: 2}
-  - {fileID: 11400000, guid: 89598db54397a4306bb47cfe01ae37ac, type: 2}
 --- !u!1 &1950817757
 GameObject:
   m_ObjectHideFlags: 0
