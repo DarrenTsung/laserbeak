@@ -15,6 +15,9 @@ namespace DT.Game.Battle.Players {
 
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Static
+		public static float KnockbackMultiplier = 1.0f;
+		public static int LaserDamage = 1;
+
 		public static event BattlePlayerHitDelegate OnBattlePlayerHit = delegate {};
 		public static event Action<BattlePlayer, int> OnBattlePlayerDamaged = delegate {};
 		public static event Action<BattlePlayer> OnBattlePlayerDied = delegate {};
@@ -34,8 +37,6 @@ namespace DT.Game.Battle.Players {
 			if (invulnerable_) {
 				return;
 			}
-
-			forward = forward.normalized;
 
 			health_ -= damage;
 			OnBattlePlayerDamaged.Invoke(Player_, damage);
@@ -95,9 +96,6 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
-		public static float KnockbackMultiplier = 1.0f;
-		public static int LaserDamage = 1;
-
 		private const int kMaxDamage = 999;
 		private const int kBaseHealth = 2;
 

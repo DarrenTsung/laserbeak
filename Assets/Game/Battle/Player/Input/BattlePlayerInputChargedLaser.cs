@@ -78,7 +78,7 @@ namespace DT.Game.Battle.Players {
 
 			float previousPercentCharged = chargedTime_ / kChargeTime;
 
-			if (InputDelegate_.LaserPressed) {
+			if (InputDelegate_.LaserPressed && InGameConstants.AllowChargingLasers) {
 				chargedTime_ += Time.deltaTime * kChargeRate;
 			} else {
 				chargedTime_ -= Time.deltaTime * kDischargeRate;

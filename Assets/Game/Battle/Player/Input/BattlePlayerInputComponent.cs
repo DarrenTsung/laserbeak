@@ -18,6 +18,8 @@ namespace DT.Game.Battle.Players {
 			player_ = player;
 			controller_ = controller;
 			inputDelegate_ = inputDelegate;
+
+			Initialize();
 		}
 
 
@@ -41,6 +43,10 @@ namespace DT.Game.Battle.Players {
 
 		protected BattlePlayer Player_ {
 			get { return player_; }
+		}
+
+		protected virtual void Initialize() {
+			// stub
 		}
 
 		protected virtual void Cleanup() {

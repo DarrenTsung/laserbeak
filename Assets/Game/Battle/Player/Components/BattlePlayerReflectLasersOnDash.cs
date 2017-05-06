@@ -37,6 +37,7 @@ namespace DT.Game.Battle.Players {
 
 		private void Awake() {
 			dashInput_.OnDash += HandleDash;
+			dashInput_.OnDashCancelled += HandleDashCancelled;
 		}
 
 		private void OnTriggerEnter(Collider collider) {
@@ -69,6 +70,16 @@ namespace DT.Game.Battle.Players {
 			SetReflectiveFor(reflectTime);
 		}
 
+		private void HandleDashCancelled() {
+			CancelReflectCoroutine();
+			RemoveReflect();
+		}
+
+		private void RemoveReflect() {
+			reflect_ = false;
+			Player_.Health.HandleCollisions = true;
+		}
+
 		private void SetReflectiveFor(float time) {
 			CancelReflectCoroutine();
 
@@ -76,8 +87,7 @@ namespace DT.Game.Battle.Players {
 			Player_.Health.HandleCollisions = false;
 
 			reflectCoroutine_ = CoroutineWrapper.DoAfterDelay(time, () => {
-				reflect_ = false;
-				Player_.Health.HandleCollisions = true;
+				RemoveReflect();
 			});
 		}
 

@@ -21,6 +21,8 @@ namespace DT.Game.GameModes {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
 			BattlePlayerHealth.LaserDamage = 1;
+
+			InGameConstants.AllowChargingLasers = true;
 		}
 
 
@@ -40,8 +42,10 @@ namespace DT.Game.GameModes {
 			}
 			icons.RemoveLast();
 
-			BattlePlayerHealth.KnockbackMultiplier = 1.5f;
+			BattlePlayerHealth.KnockbackMultiplier = 1.42f;
 			BattlePlayerHealth.LaserDamage = 0;
+
+			InGameConstants.AllowChargingLasers = false;
 
 			GameModeIntroView.Show("SUMO WRESTLERS", icons);
 
