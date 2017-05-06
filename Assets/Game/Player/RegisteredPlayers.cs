@@ -68,7 +68,6 @@ namespace DT.Game.Players {
 
 		private static void RegisterPlayerFor(InputDevice inputDevice) {
 			if (IsInputDeviceAlreadyRegistered(inputDevice)) {
-				Debug.LogWarning("Attempting to register player for: " + inputDevice + " but already registered! Should not happen.");
 				return;
 			}
 
