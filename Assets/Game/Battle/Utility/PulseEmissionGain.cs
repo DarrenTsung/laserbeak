@@ -34,7 +34,7 @@ namespace DT.Game.Battle {
 
 			float amplitude = emissionGainMax_ - emissionGainMin_;
 			float emissionGain = emissionGainMin_ + (Mathf.Sin(time_) * amplitude);
-			renderer_.sharedMaterial.SetFloat("_EmissionGain", emissionGain);
+			renderer_.material.SetFloat("_EmissionGain", emissionGain);
 		}
 	}
 }
