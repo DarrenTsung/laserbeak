@@ -525,11 +525,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertexLocalPositions_:
-  - {x: -10.5, y: 0, z: 8.5}
-  - {x: 10.5, y: 0, z: 8.5}
-  - {x: 10.5, y: 0, z: -8.5}
-  - {x: -10.5, y: 0, z: -8.5}
-  - {x: -10.5, y: 0, z: 8.5}
+  - {x: -11, y: 0, z: 8.5}
+  - {x: 11, y: 0, z: 8.5}
+  - {x: 11, y: 0, z: -8.5}
+  - {x: -11, y: 0, z: -8.5}
+  - {x: -11, y: 0, z: 8.5}
   wallType_: 1
 --- !u!114 &114185198630644586
 MonoBehaviour:
