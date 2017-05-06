@@ -61,7 +61,9 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private void OnDrawGizmos() {
-			Gizmos.DrawWireSphere(GetRaycastPosition() + Vector3.up, 0.1f);
+			if (Application.isPlaying) {
+				Gizmos.DrawWireSphere(GetRaycastPosition() + Vector3.up, 0.1f);
+			}
 		}
 
 		private void FixedUpdate() {
