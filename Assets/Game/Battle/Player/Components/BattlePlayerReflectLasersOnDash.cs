@@ -35,6 +35,8 @@ namespace DT.Game.Battle.Players {
 		private CoroutineWrapper reflectCoroutine_;
 		private bool reflect_ = false;
 
+		private readonly HashSet<Laser> reflectedLasers_ = new HashSet<Laser>();
+
 		private void Awake() {
 			dashInput_.OnDash += HandleDash;
 			dashInput_.OnDashCancelled += HandleDashCancelled;
@@ -50,11 +52,19 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
+			if (reflectedLasers_.Contains(laser)) {
+				return;
+			}
+
+			reflectedLasers_.Add(laser);
+
 			// reflect laser back to original shooter
 			BattlePlayer laserSource = laser.BattlePlayer;
 			if (laserSource != null && laserSource != Player_) {
+				Debug.Log("laserSource.transform.position: " + laserSource.transform.position);
 				laser.transform.LookAt(laserSource.transform);
 			} else {
+				Debug.Log("reflect backwards");
 				// just reflect backwards
 				laser.transform.LookAt(laser.transform.position - laser.transform.forward);
 			}
@@ -66,6 +76,7 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private void HandleDash() {
+			reflectedLasers_.Clear();
 			float reflectTime = kDashPercentageReflect * BattlePlayerInputDash.kDashDuration;
 			SetReflectiveFor(reflectTime);
 		}
