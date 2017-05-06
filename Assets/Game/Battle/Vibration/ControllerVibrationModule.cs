@@ -21,12 +21,16 @@ namespace DT.Game.Battle.Vibration {
 		private const float kDeathVibrationAmount = 1.0f;
 		private const float kDeathVibrationDuration = 0.5f;
 
+		private const float kFullyChargedVibrationAmount = 0.6f;
+		private const float kFullyChargedVibrationDuration = 0.2f;
+
 		private static readonly Dictionary<InputDevice, CoroutineWrapper> vibrationCoroutineMap_ = new Dictionary<InputDevice, CoroutineWrapper>();
 
 		[RuntimeInitializeOnLoadMethod]
 		private static void Initialize() {
 			BattlePlayerHealth.OnBattlePlayerDamaged += HandleBattlePlayerDamaged;
 			BattlePlayerHealth.OnBattlePlayerDied += HandleBattlePlayerDied;
+			BattlePlayerInputChargedLaser.OnFullyCharged += HandleBattlePlayerFullyCharged;
 		}
 
 		private static void HandleBattlePlayerDamaged(BattlePlayer battlePlayer, int damage) {
@@ -45,6 +49,15 @@ namespace DT.Game.Battle.Vibration {
 			}
 
 			VibrateInputDevice(player.InputDevice, kDeathVibrationAmount, kDeathVibrationDuration);
+		}
+
+		private static void HandleBattlePlayerFullyCharged(BattlePlayer battlePlayer) {
+			Player player = PlayerSpawner.GetPlayerFor(battlePlayer);
+			if (player == null || player.InputDevice == null) {
+				return;
+			}
+
+			VibrateInputDevice(player.InputDevice, kFullyChargedVibrationAmount, kFullyChargedVibrationDuration);
 		}
 
 		private static void VibrateInputDevice(InputDevice inputDevice, float vibrationAmount, float duration) {

@@ -11,6 +11,8 @@ using InControl;
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputChargedLaser : BattlePlayerInputComponent {
 		// PRAGMA MARK - Public Interface
+		public static event Action<BattlePlayer> OnFullyCharged = delegate {};
+
 		public event Action OnFullCharge = delegate {};
 
 		public bool FullyCharged {
@@ -97,6 +99,7 @@ namespace DT.Game.Battle.Players {
 				if (previousPercentCharged != 1.0f && percentCharged == 1.0f) {
 					fullyChargedParticle_ = ObjectPoolManager.Create<FullyChargedParticle>(fullyChargedParticlePrefab_, parent: chargingLaserContainer_);
 					fullyChargedParticle_.SetColor(Player_.Skin.LaserColor);
+					OnFullyCharged.Invoke(Player_);
 
 					OnFullCharge.Invoke();
 				}
