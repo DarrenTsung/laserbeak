@@ -52,7 +52,7 @@ namespace DT.Game.PlayerCustomization.Skin {
 		private BattlePlayerSkin skin_;
 
 		private void RefreshSelected() {
-			float alpha = StateSkinCustomization.IsSkinSelected(skin_) ? 0.5f : 1.0f;
+			float alpha = StateSkinCustomization.IsSkinSelected(skin_) ? 0.23f : 1.0f;
 			thumbnailImage_.color = Color.white.WithAlpha(alpha);
 		}
 	}
