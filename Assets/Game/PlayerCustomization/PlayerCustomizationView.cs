@@ -77,6 +77,14 @@ namespace DT.Game.PlayerCustomization {
 			get { return views_.Any(v => v.IsReady); }
 		}
 
+		private bool AllPlayersDoneCustomizing {
+			get { return views_.All(v => !v.IsCustomizing); }
+		}
+
+		private bool ReadyToFight {
+			get { return AtLeastOnePlayerReady && AllPlayersDoneCustomizing; }
+		}
+
 		private void Init(Action continueCallback) {
 			if (continueCallback == null) {
 				Debug.LogError("continueCallback is null!");
@@ -86,7 +94,7 @@ namespace DT.Game.PlayerCustomization {
 		}
 
 		private void Update() {
-			if (!AtLeastOnePlayerReady) {
+			if (!ReadyToFight) {
 				return;
 			}
 
@@ -102,7 +110,7 @@ namespace DT.Game.PlayerCustomization {
 		}
 
 		private void RefreshReadyToFight() {
-			readyToFightContainer_.SetActive(AtLeastOnePlayerReady);
+			readyToFightContainer_.SetActive(ReadyToFight);
 		}
 
 		private void LeavePlayerCustomization() {

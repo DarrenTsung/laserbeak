@@ -48,6 +48,10 @@ namespace DT.Game.PlayerCustomization {
 			get { return state_ == State.Ready; }
 		}
 
+		public bool IsCustomizing {
+			get { return state_ != State.CanJoin && !IsReady; }
+		}
+
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
