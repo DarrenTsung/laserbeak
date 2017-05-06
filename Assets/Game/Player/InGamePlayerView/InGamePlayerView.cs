@@ -27,6 +27,7 @@ namespace DT.Game.Players {
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			if (player_ != null) {
 				player_.OnNicknameChanged -= HandleNicknameChanged;
+				player_.OnSkinChanged -= HandleSkinChanged;
 				player_ = null;
 			}
 		}
