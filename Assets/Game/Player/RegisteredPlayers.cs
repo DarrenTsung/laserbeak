@@ -15,6 +15,10 @@ namespace DT.Game.Players {
 		public static event Action OnPlayerAdded = delegate {};
 		public static event Action OnPlayerRemoved = delegate {};
 
+		public static string GetDefaultNicknameFor(Player player) {
+			return string.Format("P{0}", player.Index() + 1);
+		}
+
 		public static void BeginPlayerRegistration() {
 			foreach (InputDevice inputDevice in InputManager.Devices) {
 				RegisterPlayerFor(inputDevice);
