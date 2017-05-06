@@ -20,7 +20,7 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
-		private const float kDashCooldown = 2.0f;
+		private const float kDashCooldown = 1.0f;
 
 		private const float kDashIntentThreshold = 0.3f;
 		private const float kDashDistance = 4.0f;
