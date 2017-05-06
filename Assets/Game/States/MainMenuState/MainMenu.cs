@@ -8,6 +8,8 @@ using InControl;
 
 using DT.Game.Audio;
 
+using DT.Game.GameModes;
+
 namespace DT.Game.MainMenu {
 	public class MainMenu : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
@@ -22,6 +24,10 @@ namespace DT.Game.MainMenu {
 		private void Update() {
 			if (InputUtil.WasAnyMainButtonPressed()) {
 				HandlePlayPressed();
+			}
+
+			if (InputUtil.WasAnyCommandButtonPressed()) {
+				GameMode.ResetShowedInstructionsCache();
 			}
 		}
 
