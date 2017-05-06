@@ -85,6 +85,7 @@ namespace DT.Game.Battle.Players {
 			activePlayers_.Add(this);
 			Rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 			Rigidbody.velocity = Vector3.zero;
+			Rigidbody.angularVelocity = Vector3.zero;
 			Rigidbody.drag = kBaseDrag;
 		}
 

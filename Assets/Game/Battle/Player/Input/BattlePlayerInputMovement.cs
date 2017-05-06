@@ -20,6 +20,7 @@ namespace DT.Game.Battle.Players {
 			Vector3 speedWorldVector = speedVector.Vector3XZValue();
 
 			Player_.Rigidbody.velocity = speedWorldVector;
+			Player_.Rigidbody.angularVelocity = Vector3.zero;
 
 			// snap rotation if input is not (0, 0)
 			if (speedWorldVector.magnitude > Mathf.Epsilon) {
