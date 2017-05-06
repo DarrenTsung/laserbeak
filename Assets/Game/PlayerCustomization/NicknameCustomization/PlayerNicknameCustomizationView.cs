@@ -16,6 +16,14 @@ using TMPro;
 
 namespace DT.Game.PlayerCustomization.Nickname {
 	public class PlayerNicknameCustomizationView : MonoBehaviour, ISelectionViewDelegate, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Static
+		private static readonly Dictionary<Player, string> cachedNicknames_ = new Dictionary<Player, string>();
+
+		private static string GetDefaultNicknameFor(Player player) {
+			return string.Format("P{0}", player.Index() + 1);
+		}
+
+
 		// PRAGMA MARK - Public Interface
 		public void Init(Player player, Action onFinishCustomization) {
 			player_ = player;
@@ -26,7 +34,7 @@ namespace DT.Game.PlayerCustomization.Nickname {
 
 		public void HandleOkButtonPressed() {
 			if (string.IsNullOrEmpty(Nickname_)) {
-				player_.Nickname = string.Format("P{0}", player_.Index() + 1);
+				player_.Nickname = GetDefaultNicknameFor(player_);
 			} else {
 				player_.Nickname = Nickname_;
 			}
@@ -93,11 +101,11 @@ namespace DT.Game.PlayerCustomization.Nickname {
 		private float keypadDelay_ = 0.0f;
 
 		private string Nickname_ {
-			get { return PlayerPrefs.GetString(player_.Index() + "Nickname_", defaultValue: ""); }
+			get { return cachedNicknames_.GetValueOrDefault(player_, defaultValue: GetDefaultNicknameFor(player_)); }
 			set {
 				string newNickname = value.ToUpper();
 
-				PlayerPrefs.SetString(player_.Index() + "Nickname_", newNickname);
+				cachedNicknames_[player_] = newNickname;
 				RefreshNicknameText();
 			}
 		}
