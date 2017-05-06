@@ -95,6 +95,9 @@ namespace DT.Game.Battle {
 				battlePlayer.SetSkin(player.Skin);
 			}
 
+			// face battle player forward
+			battlePlayer.transform.localRotation = Quaternion.Euler(0, 180, 0);
+
 			RecyclablePrefab recyclablePrefab = battlePlayer.GetComponent<RecyclablePrefab>();
 			Action<RecyclablePrefab> onCleanupCallback = null;
 			onCleanupCallback = (RecyclablePrefab unused) => {
