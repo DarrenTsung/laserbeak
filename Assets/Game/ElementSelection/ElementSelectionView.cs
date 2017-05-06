@@ -33,6 +33,10 @@ namespace DT.Game.ElementSelection {
 
 			CoroutineWrapper.DoAtEndOfFrame(() => {
 				selectorTransform_ = ObjectPoolManager.CreateView(GamePrefabs.Instance.SelectorPrefab).GetComponent<RectTransform>();
+
+				// hacky way to get a color
+				selectorTransform_.GetComponentInChildren<Image>().color = GameConstants.Instance.PlayerSkins[player_.Index()].BodyColor;
+
 				if (startSelectable != null) {
 					CurrentSelectable_ = startSelectable;
 				} else {
