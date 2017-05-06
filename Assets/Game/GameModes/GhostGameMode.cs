@@ -28,7 +28,7 @@ namespace DT.Game.GameModes {
 
 
 		// PRAGMA MARK - Internal
-		private const float kAlphaLevel = 0.55f;
+		private const float kAlphaLevel = 0.65f;
 		private const float kAlphaDashDuration = 1.0f;
 		private const float kAlphaShootDuration = 1.5f;
 
