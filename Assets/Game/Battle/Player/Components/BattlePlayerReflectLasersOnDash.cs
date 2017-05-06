@@ -61,10 +61,8 @@ namespace DT.Game.Battle.Players {
 			// reflect laser back to original shooter
 			BattlePlayer laserSource = laser.BattlePlayer;
 			if (laserSource != null && laserSource != Player_) {
-				Debug.Log("laserSource.transform.position: " + laserSource.transform.position);
 				laser.transform.LookAt(laserSource.transform);
 			} else {
-				Debug.Log("reflect backwards");
 				// just reflect backwards
 				laser.transform.LookAt(laser.transform.position - laser.transform.forward);
 			}
