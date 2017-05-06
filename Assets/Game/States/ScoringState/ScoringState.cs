@@ -39,8 +39,7 @@ namespace DT.Game.Scoring {
 		private void HandleScoringFinished() {
 			if (PlayerScores.HasWinner) {
 				PlayerScores.Clear();
-				RegisteredPlayers.Clear();
-				StateMachine_.GoToMainMenu();
+				StateMachine_.GoToPlayerCustomization();
 			} else {
 				StateMachine_.Continue();
 			}

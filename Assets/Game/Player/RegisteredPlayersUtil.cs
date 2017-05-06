@@ -36,6 +36,14 @@ namespace DT.Game.Players {
 			}
 		}
 
+		public static void UnregisterAIPlayers() {
+			foreach (Player player in RegisteredPlayers.AllPlayers.ToList()) {
+				if (player.IsAI) {
+					RegisteredPlayers.Remove(player);
+				}
+			}
+		}
+
 
 		// PRAGMA MARK - Static Internal
 		private static bool SkinAlreadyInUse(BattlePlayerSkin skin) {

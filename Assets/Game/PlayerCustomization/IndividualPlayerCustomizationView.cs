@@ -22,6 +22,7 @@ namespace DT.Game.PlayerCustomization {
 			Ready = 3,
 		}
 
+
 		// PRAGMA MARK - Public Interface
 		public event Action OnStateChanged = delegate {};
 
@@ -31,7 +32,7 @@ namespace DT.Game.PlayerCustomization {
 			var view = ObjectPoolManager.Create<InGamePlayerView>(GamePrefabs.Instance.InGamePlayerViewPrefab, parent: playerViewContainer_);
 			view.InitWith(player);
 
-			if (player_.IsAI) {
+			if (player_.IsAI || player_.IsProperlyCustomized()) {
 				state_ = State.Ready;
 			} else {
 				state_ = (State)0;

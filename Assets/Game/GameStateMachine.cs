@@ -13,6 +13,10 @@ namespace DT.Game {
 			animator_.SetTrigger("GoToMainMenu");
 		}
 
+		public void GoToPlayerCustomization() {
+			animator_.SetTrigger("GoToPlayerCustomization");
+		}
+
 		public void HandleBattleFinished() {
 			animator_.SetTrigger("BattleFinished");
 		}

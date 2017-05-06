@@ -25,6 +25,7 @@ namespace DT.Game {
 
 		public int ScoreToWin = 5;
 		public int PlayersToFill = 4;
+		public bool FillWithAI = false;
 
 		[Space]
 		public float ColliderDisappearDelay = 0.2f;

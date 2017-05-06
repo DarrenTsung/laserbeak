@@ -46,6 +46,8 @@ namespace DT.Game.PlayerCustomization {
 					views_.Add(view);
 				}
 			}
+
+			RefreshReadyToFight();
 		}
 
 

@@ -1073,8 +1073,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToWin: 5
+  ScoreToWin: 1
   PlayersToFill: 4
+  FillWithAI: 1
   ColliderDisappearDelay: 0.2
   PlayerSkins:
   - {fileID: 11400000, guid: f4391fb4d7c594a7faab01e17f7c9b53, type: 2}

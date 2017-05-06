@@ -15,5 +15,17 @@ namespace DT.Game.Players {
 		public static int Index(this Player player) {
 			return RegisteredPlayers.AllPlayers.IndexOf(player);
 		}
+
+		public static bool IsProperlyCustomized(this Player player) {
+			if (player.Skin == null) {
+				return false;
+			}
+
+			if (string.IsNullOrEmpty(player.Nickname)) {
+				return false;
+			}
+
+			return true;
+		}
 	}
 }
