@@ -65,9 +65,9 @@ namespace DT.Game.GameAnalytics {
 				return;
 			}
 
-			Analytics.CustomEvent("GameMode", new Dictionary<string, object>
+			string typeName = mode.GetType().Name;
+			Analytics.CustomEvent("GameMode_" + typeName, new Dictionary<string, object>
 			{
-				{ "Type", mode.GetType().Name },
 				{ "GameTimeInSeconds", gameTimeInSeconds },
 			});
 		}
