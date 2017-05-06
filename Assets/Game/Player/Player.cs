@@ -58,6 +58,10 @@ namespace DT.Game.Players {
 			inputDevice_ = inputDevice;
 		}
 
+		public override string ToString() {
+			return string.Format("{0} - {1}", Nickname, IsAI ? "AI" : "Human");
+		}
+
 
 		// PRAGMA MARK - Internal
 		private BattlePlayerSkin skin_ = null;
