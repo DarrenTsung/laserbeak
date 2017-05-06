@@ -19,7 +19,7 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
-		private const float kChargeTime = 0.85f;
+		private const float kChargeTime = 0.55f;
 
 		private const float kRecoilDistance = 3.0f;
 		private const float kRecoilDuration = 0.4f;
