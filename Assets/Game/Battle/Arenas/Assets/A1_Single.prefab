@@ -27,6 +27,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1263147928192970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4850189482606466}
+  - component: {fileID: 114496503411246250}
+  m_Layer: 0
+  m_Name: Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1341242748420394
 GameObject:
   m_ObjectHideFlags: 1
@@ -195,7 +211,7 @@ Transform:
   m_GameObject: {fileID: 1946197052832550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -100, z: 0}
-  m_LocalScale: {x: 25, y: 200, z: 18}
+  m_LocalScale: {x: 21, y: 200, z: 17}
   m_Children: []
   m_Father: {fileID: 4202545182985606}
   m_RootOrder: 1
@@ -225,6 +241,7 @@ Transform:
   m_Children:
   - {fileID: 4411107565154524}
   - {fileID: 4019511935620820}
+  - {fileID: 4850189482606466}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,6 +317,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4411107565154524}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4850189482606466
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263147928192970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4202545182985606}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4874905267316722
 Transform:
@@ -445,6 +475,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324c7f987adbe49f4a4eeda87f6f1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114496503411246250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263147928192970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf6f2aafdf5a45938beebf71dc8f9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertexLocalPositions_:
+  - {x: -10.5, y: 0, z: 8.5}
+  - {x: 10.5, y: 0, z: 8.5}
+  - {x: 10.5, y: 0, z: -8.5}
+  - {x: -10.5, y: 0, z: -8.5}
+  - {x: -10.5, y: 0, z: 8.5}
+  wallType_: 1
 --- !u!114 &114589032101969734
 MonoBehaviour:
   m_ObjectHideFlags: 1

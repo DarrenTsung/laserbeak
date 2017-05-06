@@ -56,7 +56,8 @@ namespace DT.Game {
 		public GameObject CanJoinViewPrefab;
 
 		[Header("Walls")]
-		public GameObject WallSegmentPrefab;
+		public GameObject WallSegmentReflectPrefab;
+		public GameObject WallSegmentBarrierPrefab;
 
 		[Header("Tag")]
 		public GameObject TagExplosivePrefab;

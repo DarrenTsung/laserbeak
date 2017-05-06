@@ -573,7 +573,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PHASERBEAK <color=yellow>ALPHA</color> - v0.6f1
+  m_text: PHASERBEAK <color=yellow>ALPHA</color> - v0.7.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30985c2ab29a242688b03e19ccfeae68, type: 2}
   m_sharedMaterial: {fileID: 21307575556481456, guid: 30985c2ab29a242688b03e19ccfeae68,
@@ -644,7 +644,7 @@ MonoBehaviour:
     characterCount: 25
     spriteCount: 0
     spaceCount: 3
-    wordCount: 5
+    wordCount: 6
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -937,7 +937,9 @@ MonoBehaviour:
     type: 2}
   CanJoinViewPrefab: {fileID: 1094276740224224, guid: 5a7f0130b5ce9465d9fc8195b64211d6,
     type: 2}
-  WallSegmentPrefab: {fileID: 1258016260821346, guid: a60a2b4be91054664bd12de156cbcb1b,
+  WallSegmentReflectPrefab: {fileID: 1258016260821346, guid: a60a2b4be91054664bd12de156cbcb1b,
+    type: 2}
+  WallSegmentBarrierPrefab: {fileID: 1258016260821346, guid: 043c0feead60145d584b52449712a99f,
     type: 2}
   TagExplosivePrefab: {fileID: 1251852763226904, guid: e61770b0d400c4c508a0f0fd568a1ee2,
     type: 2}
@@ -1073,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToWin: 1
+  ScoreToWin: 4
   PlayersToFill: 4
   FillWithAI: 1
   ColliderDisappearDelay: 0.2
