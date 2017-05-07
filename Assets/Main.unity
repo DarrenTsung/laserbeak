@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSpeed_: 2
-  - {fileID: 0}
 --- !u!114 &61758706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,6 +1296,8 @@ MonoBehaviour:
   LaserShoot: {fileID: 8300000, guid: cc51abf5c40cb449faf2edd9c8d8c052, type: 3}
   Dash: {fileID: 8300000, guid: d238e8f9f7f77481ba45d31fadb7bb61, type: 3}
   ExplosiveTimerBeep: {fileID: 8300000, guid: ec4b477ecce66409cb5e57a3846f40d2, type: 3}
+  Cluck: {fileID: 8300000, guid: f5bf19a0ede1c46eaa67de76aaa4d362, type: 3}
+  CluckAlarm: {fileID: 8300000, guid: 2774cdf883dd1406f97778f086ec7853, type: 3}
   PlayerHurt: {fileID: 8300000, guid: 4f67300d689f04112ae530091e6632d9, type: 3}
   PlayerDeath: {fileID: 8300000, guid: 99bfea1c611064efe9ada81f7f8e1521, type: 3}
 --- !u!4 &2128445822

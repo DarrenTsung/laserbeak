@@ -24,6 +24,7 @@ namespace DT.Game.Scoring {
 			}
 
 			InGameConstants.AllowChargingLasers = false;
+			InGameConstants.EnableQuacking = true;
 			BattleCamera.Instance.SetSurvivingPlayersAsTransformsOfInterest();
 
 			CoroutineWrapper.DoAfterDelay(kShowDelay, () => {
@@ -39,6 +40,7 @@ namespace DT.Game.Scoring {
 			AISpawner.CleanupAllPlayers();
 
 			InGameConstants.AllowChargingLasers = true;
+			InGameConstants.EnableQuacking = false;
 			BattleCamera.Instance.ClearTransformsOfInterest();
 		}
 

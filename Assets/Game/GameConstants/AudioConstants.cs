@@ -27,6 +27,8 @@ namespace DT.Game {
 		public AudioClip LaserShoot;
 		public AudioClip Dash;
 		public AudioClip ExplosiveTimerBeep;
+		public AudioClip Cluck;
+		public AudioClip CluckAlarm;
 
 		[Header("Player")]
 		public AudioClip PlayerHurt;
@@ -34,13 +36,13 @@ namespace DT.Game {
 	}
 
 	public static class GameAudioClipExtensions {
-		public static void PlaySFX(this AudioClip clip, float volumeScale = 1.0f, float randomPitchRange = 0.05f) {
+		public static void PlaySFX(this AudioClip clip, float volumeScale = 1.0f, float randomPitchRange = 0.05f, float pitchOffset = 0.0f) {
 			if (clip == null) {
 				Debug.LogError("Failed to play SFX because null!");
 				return;
 			}
 
-			AudioManager.Instance.PlaySFX(clip, volumeScale, randomPitchRange);
+			AudioManager.Instance.PlaySFX(clip, volumeScale, randomPitchRange, pitchOffset);
 		}
 	}
 }

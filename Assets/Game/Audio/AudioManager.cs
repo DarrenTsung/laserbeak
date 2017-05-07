@@ -12,8 +12,8 @@ namespace DT.Game.Audio {
 			Muted
 		}
 
-		public void PlaySFX(AudioClip clip, float volumeScale = 1.0f, float randomPitchRange = 0.05f) {
-			sfxAudioSource_.pitch = UnityEngine.Random.Range(1.0f - randomPitchRange, 1.0f + randomPitchRange);
+		public void PlaySFX(AudioClip clip, float volumeScale = 1.0f, float randomPitchRange = 0.05f, float pitchOffset = 0.0f) {
+			sfxAudioSource_.pitch = UnityEngine.Random.Range(1.0f - randomPitchRange, 1.0f + randomPitchRange) + pitchOffset;
 			sfxAudioSource_.PlayOneShot(clip, volumeScale);
 		}
 
