@@ -27,11 +27,12 @@ namespace DT.Game.Battle {
 			get { return camera_; }
 		}
 
-		public void SetTransformsOfInterest(IEnumerable<Transform> transformsOfInterest) {
-			transformsOfInterest_ = transformsOfInterest;
+		public void SetSurvivingPlayersAsTransformsOfInterest() {
+			survivingPlayersAsInterest_ = true;
 		}
 
 		public void ClearTransformsOfInterest() {
+			survivingPlayersAsInterest_ = false;
 			transformsOfInterest_ = null;
 		}
 
@@ -55,6 +56,7 @@ namespace DT.Game.Battle {
 		private float cameraSpeed_ = 1.0f;
 
 		private IEnumerable<Transform> transformsOfInterest_;
+		private bool survivingPlayersAsInterest_ = false;
 
 		private Camera camera_;
 		private Vector3 initialPosition_;
@@ -65,6 +67,14 @@ namespace DT.Game.Battle {
 		}
 
 		private void LateUpdate() {
+			if (survivingPlayersAsInterest_) {
+				if (PlayerSpawner.AllSpawnedBattlePlayers.Count() > 0) {
+					transformsOfInterest_ = PlayerSpawner.AllSpawnedBattlePlayers.Select(bp => bp.transform);
+				} else {
+					transformsOfInterest_ = null;
+				}
+			}
+
 			Vector3 targetPosition = initialPosition_;
 			if (transformsOfInterest_ != null) {
 				targetPosition = GetTargetPositionToHighlightInterest();
