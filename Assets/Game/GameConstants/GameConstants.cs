@@ -23,9 +23,11 @@ namespace DT.Game {
 			ai.Init(player, substitutePlayerAIConfiguration_);
 		}
 
+		[Header("Basic")]
 		public int ScoreToWin = 5;
 		public int PlayersToFill = 4;
 		public bool FillWithAI = false;
+		public bool DemoMode = false;
 
 		[Space]
 		public float ColliderDisappearDelay = 0.2f;
