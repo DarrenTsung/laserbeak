@@ -75,6 +75,10 @@ namespace DT.Game.Battle.Players {
 			get { return health_; }
 		}
 
+		public Animator Animator {
+			get { return animator_; }
+		}
+
 		public void SetWeightModification(object key, float weightModification) {
 			weightModifications_[key] = weightModification;
 		}
@@ -113,6 +117,9 @@ namespace DT.Game.Battle.Players {
 
 		[SerializeField]
 		private ParticleSystem dustParticleSystem_;
+
+		[SerializeField]
+		private Animator animator_;
 
 		private Renderer[] bodyRenderers_;
 		private BattlePlayerHealth health_;

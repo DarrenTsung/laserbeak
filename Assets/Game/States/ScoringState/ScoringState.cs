@@ -23,6 +23,8 @@ namespace DT.Game.Scoring {
 				return;
 			}
 
+			InGameConstants.AllowChargingLasers = false;
+
 			CoroutineWrapper.DoAfterDelay(kShowDelay, () => {
 				InGamePlayerScoringView.Show(HandleScoringFinished);
 			});
@@ -34,6 +36,8 @@ namespace DT.Game.Scoring {
 			BattleRecyclables.Clear();
 			PlayerSpawner.CleanupAllPlayers();
 			AISpawner.CleanupAllPlayers();
+
+			InGameConstants.AllowChargingLasers = true;
 		}
 
 		private void HandleScoringFinished() {
