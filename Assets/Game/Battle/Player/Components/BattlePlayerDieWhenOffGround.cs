@@ -40,6 +40,9 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
+		private const float kCheckRadius = 0.33f;
+		private const int kCheckSampleCount = 5;
+
 		private const float kPenetrationLength = 0.3f;
 		private static int kLayerMask;
 
@@ -56,13 +59,36 @@ namespace DT.Game.Battle.Players {
 		private CoroutineWrapper coroutine_;
 		private bool checkDeath_ = true;
 
+		private Vector3[] cachedOffsets_;
+		private Vector3[] CachedOffsets_ {
+			get {
+				if (cachedOffsets_ == null) {
+					cachedOffsets_ = new Vector3[kCheckSampleCount];
+					for (int i = 0; i < kCheckSampleCount; i++) {
+						float p = i / (float)kCheckSampleCount;
+						Vector3 offset = Quaternion.Euler(0, 360.0f * p, 0) * Vector3.right * kCheckRadius;
+						cachedOffsets_[i] = offset;
+					}
+				}
+				return cachedOffsets_;
+			}
+		}
+
 		private void Awake() {
 			kLayerMask = LayerMask.GetMask("Platforms");
 		}
 
 		private void OnDrawGizmos() {
 			if (Application.isPlaying) {
-				Gizmos.DrawWireSphere(GetRaycastPosition() + Vector3.up, 0.1f);
+				Color oldColor = Gizmos.color;
+
+				foreach (Vector3 position in GetRaycastPositions()) {
+					bool collidesWithGround = CollisionsAtPosition(position) > 0;
+					Gizmos.color = collidesWithGround ? Color.green : Color.red;
+					Gizmos.DrawWireSphere(position + Vector3.up, 0.05f);
+				}
+
+				Gizmos.color = oldColor;
 			}
 		}
 
@@ -71,7 +97,7 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
-			int resultCount = Physics.RaycastNonAlloc(new Ray(GetRaycastPosition(), -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: kLayerMask);
+			int resultCount = GetRaycastPositions().Sum(pos => CollisionsAtPosition(pos));
 			if (checkDeath_ && resultCount <= 0) {
 				enabled_ = false;
 				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
@@ -84,8 +110,14 @@ namespace DT.Game.Battle.Players {
 			}
 		}
 
-		private Vector3 GetRaycastPosition() {
-			return this.transform.position - Vector3.ClampMagnitude(Player_.Rigidbody.velocity, 0.2f);
+		private int CollisionsAtPosition(Vector3 position) {
+			return Physics.RaycastNonAlloc(new Ray(position, -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: kLayerMask);
+		}
+
+		private IEnumerable<Vector3> GetRaycastPositions() {
+			foreach (Vector3 offset in CachedOffsets_) {
+				yield return this.transform.position + offset;
+			}
 		}
 	}
 }
