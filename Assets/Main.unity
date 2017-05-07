@@ -130,15 +130,16 @@ Transform:
 --- !u!114 &61758705
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114166343620669660, guid: 413310d7a6dc442478b820926b040d20,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 61758703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78115e3e66a504706b0b675575ec4662, type: 3}
+  m_Script: {fileID: 11500000, guid: d58e3700d08ec42118a4b3d10f056380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraSpeed_: 2
+  - {fileID: 0}
 --- !u!114 &61758706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1083,7 @@ MonoBehaviour:
   ScoreToWin: 4
   PlayersToFill: 4
   FillWithAI: 1
+  DemoMode: 0
   ColliderDisappearDelay: 0.2
   PlayerSkins:
   - {fileID: 11400000, guid: f4391fb4d7c594a7faab01e17f7c9b53, type: 2}

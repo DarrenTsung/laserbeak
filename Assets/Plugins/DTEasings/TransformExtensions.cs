@@ -7,14 +7,19 @@ using DT;
 
 namespace DTEasings {
 	public static class TransformExtensions {
-		public static void Shake(this Transform transform, float magnitude, float duration, EaseType easeType = EaseType.QuadraticEaseOut) {
+		public static void Shake(this Transform transform, float magnitude, float duration, EaseType easeType = EaseType.QuadraticEaseOut, bool returnToOriginalPosition = true) {
 			if (coroutineMap_.ContainsKey(transform)) {
 				coroutineMap_[transform].Cancel();
 				coroutineMap_.Remove(transform);
-				transform.position = originalPositionMap_[transform];
+				if (originalPositionMap_.ContainsKey(transform)) {
+					transform.position = originalPositionMap_[transform];
+					originalPositionMap_.Remove(transform);
+				}
 			}
 
-			originalPositionMap_[transform] = transform.position;
+			if (returnToOriginalPosition) {
+				originalPositionMap_[transform] = transform.position;
+			}
 			coroutineMap_[transform] = CoroutineWrapper.StartCoroutine(ShakeCoroutine(transform, magnitude, duration, easeType));
 		}
 
@@ -39,7 +44,10 @@ namespace DTEasings {
 			}
 
 			coroutineMap_.Remove(transform);
-			transform.position = originalPositionMap_[transform];
+			if (originalPositionMap_.ContainsKey(transform)) {
+				transform.position = originalPositionMap_[transform];
+				originalPositionMap_.Remove(transform);
+			}
 		}
 	}
 }

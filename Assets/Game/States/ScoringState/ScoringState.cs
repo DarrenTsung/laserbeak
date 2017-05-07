@@ -24,6 +24,7 @@ namespace DT.Game.Scoring {
 			}
 
 			InGameConstants.AllowChargingLasers = false;
+			BattleCamera.Instance.SetTransformsOfInterest(PlayerSpawner.AllSpawnedBattlePlayers.Select(bp => bp.transform));
 
 			CoroutineWrapper.DoAfterDelay(kShowDelay, () => {
 				InGamePlayerScoringView.Show(HandleScoringFinished);
@@ -38,6 +39,7 @@ namespace DT.Game.Scoring {
 			AISpawner.CleanupAllPlayers();
 
 			InGameConstants.AllowChargingLasers = true;
+			BattleCamera.Instance.ClearTransformsOfInterest();
 		}
 
 		private void HandleScoringFinished() {

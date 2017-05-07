@@ -142,7 +142,7 @@ Material:
       second: {r: 0.94482756, g: 1, b: 0, a: 1}
     - first:
         name: _DiffuseColor
-      second: {r: 0.9191176, g: 0.78600407, b: 0.2297794, a: 1}
+      second: {r: 0.8088235, g: 0.79283637, b: 0.21410036, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
