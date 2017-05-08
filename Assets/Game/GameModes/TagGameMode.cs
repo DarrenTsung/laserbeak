@@ -27,6 +27,15 @@ namespace DT.Game.GameModes {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerHealth.LaserDamage = 1;
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
+
+			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+				var explosive = battlePlayer.GetComponentInChildren<TagExplosive>();
+				if (explosive == null) {
+					continue;
+				}
+
+				ObjectPoolManager.Recycle(explosive);
+			}
 		}
 
 
@@ -43,13 +52,16 @@ namespace DT.Game.GameModes {
 			}
 
 			itPlayer_ = battlePlayer;
-			if (itPlayer_ != null) {
-				var explosive = ObjectPoolManager.Create<TagExplosive>(GamePrefabs.Instance.TagExplosivePrefab, parent: itPlayer_.AccessoriesContainer);
-				if (timeLeft == null) {
-					explosive.Init(itPlayer_);
-				} else {
-					explosive.Init(itPlayer_, timeLeft.Value);
-				}
+			if (itPlayer_ == null) {
+				Debug.LogWarning("ItPlayer is null - no explosive going to be set!");
+				return;
+			}
+
+			var explosive = ObjectPoolManager.Create<TagExplosive>(GamePrefabs.Instance.TagExplosivePrefab, parent: itPlayer_.AccessoriesContainer);
+			if (timeLeft == null) {
+				explosive.Init(itPlayer_);
+			} else {
+				explosive.Init(itPlayer_, timeLeft.Value);
 			}
 		}
 
