@@ -66,6 +66,10 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private void OnTriggerEnter(Collider collider) {
+			if (Player_ == null) {
+				return;
+			}
+
 			BattlePlayer battlePlayer = collider.gameObject.GetComponentInParent<BattlePlayer>();
 			if (battlePlayer == null) {
 				Debug.LogWarning("Dash collider colliding with unknown object: " + collider.gameObject.FullName());

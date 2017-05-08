@@ -31,24 +31,32 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
-			bool previouslyOpen = Player_.Animator.GetBool("BeakOpen");
 			if (!Enabled) {
-				Player_.Animator.SetBool("BeakOpen", false);
+				if (Player_ != null) {
+					Player_.Animator.SetBool("BeakOpen", false);
+				}
 				return;
 			}
 
+			bool previouslyOpen = Player_.Animator.GetBool("BeakOpen");
 			Player_.Animator.SetBool("BeakOpen", InputDelegate_.LaserPressed);
-			if (InGameConstants.EnableQuacking && InputDelegate_.LaserPressed && previouslyOpen == false) {
-				if (count_ % 2 == 1) {
-					AudioConstants.Instance.CluckAlarm.PlaySFX(volumeScale: 1.9f, randomPitchRange: 0.1f);
-					KeepBeakOpenFor(AudioConstants.Instance.CluckAlarm.length - 0.1f);
-				} else {
-					AudioConstants.Instance.Cluck.PlaySFX(volumeScale: 2.4f, randomPitchRange: 0.1f, pitchOffset: 0.03f - (soundOffset_ * 0.03f));
-					KeepBeakOpenFor(AudioConstants.Instance.Cluck.length - 0.1f);
-				}
-				soundOffset_ = Mathf.Min(soundOffset_ + 1, kMaxSoundOffset);
 
-				count_++;
+			if (InputDelegate_.LaserPressed && previouslyOpen == false) {
+				if (InGameConstants.EnableFlapping) {
+					Player_.Animator.SetTrigger("WingFlap");
+				}
+
+				if (InGameConstants.EnableQuacking) {
+					if (count_ % 2 == 1) {
+						AudioConstants.Instance.CluckAlarm.PlaySFX(volumeScale: 1.9f, randomPitchRange: 0.1f);
+						KeepBeakOpenFor(AudioConstants.Instance.CluckAlarm.length - 0.1f);
+					} else {
+						AudioConstants.Instance.Cluck.PlaySFX(volumeScale: 2.4f, randomPitchRange: 0.1f, pitchOffset: 0.03f - (soundOffset_ * 0.03f));
+						KeepBeakOpenFor(AudioConstants.Instance.Cluck.length - 0.1f);
+					}
+					soundOffset_ = Mathf.Min(soundOffset_ + 1, kMaxSoundOffset);
+					count_++;
+				}
 			}
 		}
 

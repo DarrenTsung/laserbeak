@@ -25,6 +25,7 @@ namespace DT.Game.Scoring {
 
 			InGameConstants.AllowChargingLasers = false;
 			InGameConstants.EnableQuacking = true;
+			InGameConstants.EnableFlapping = true;
 			BattleCamera.Instance.SetSurvivingPlayersAsTransformsOfInterest();
 
 			CoroutineWrapper.DoAfterDelay(kShowDelay, () => {
@@ -41,6 +42,7 @@ namespace DT.Game.Scoring {
 
 			InGameConstants.AllowChargingLasers = true;
 			InGameConstants.EnableQuacking = false;
+			InGameConstants.EnableFlapping = false;
 			BattleCamera.Instance.ClearTransformsOfInterest();
 		}
 

@@ -16,6 +16,8 @@ namespace DT.Game {
 		// PRAGMA MARK - Public Interface
 		public static bool AllowChargingLasers = true;
 		public static bool AllowBattlePlayerMovement = true;
+
 		public static bool EnableQuacking = false;
+		public static bool EnableFlapping = false;
 	}
 }

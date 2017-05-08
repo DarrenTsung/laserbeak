@@ -26,10 +26,12 @@ namespace DT.Game.Battle.Players {
 
 		// PRAGMA MARK - Internal
 		[SerializeField]
-		private Renderer bodyRenderer_;
+		private Renderer[] bodyRenderers_;
 
 		private void HandleSkinChanged() {
-			bodyRenderer_.material.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
+			foreach (var renderer in bodyRenderers_) {
+				renderer.material.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
+			}
 		}
 	}
 }
