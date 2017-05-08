@@ -1,0 +1,256 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 342976093, guid: 5eb872180e6624b46b2fa8b2229cc7ac, type: 3}
+  m_Name: PostProcessing-log
+  m_EditorClassIdentifier: 
+  ruleName: PostProcessing
+  rootDirectoryGUID: 8251aa3e5a284446c957d22654f885b6
+  rules:
+  - sourcePath: Assets/PostProcessing/Editor/PostProcessingBehaviourEditor.cs
+    sourceGUID: 0c12e797b02402246a52aa270c45059b
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PostProcessingBehaviourEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/PostProcessingFactory.cs
+    sourceGUID: 0dfcadb180d67014cb0a6e18d6b11f90
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PostProcessingFactory.cs
+  - sourcePath: Assets/PostProcessing/Editor/PostProcessingInspector.cs
+    sourceGUID: 27fa95984763d9d47bbad59e7fdb66fe
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PostProcessingInspector.cs
+  - sourcePath: Assets/PostProcessing/Editor/PostProcessingModelEditor.cs
+    sourceGUID: afe296d4ede60a0479734dc8c7df82c2
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PostProcessingModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/PostProcessingMonitor.cs
+    sourceGUID: 801186e9e649457469bcddd8ee391c71
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PostProcessingMonitor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Attributes/PostProcessingModelEditorAttribute.cs
+    sourceGUID: c21938aa988055347a2271f03a3e731e
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Attributes/PostProcessingModelEditorAttribute.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/AmbientOcclusionModelEditor.cs
+    sourceGUID: 9fcb710e23a5a0546a3b8b0ca28c1720
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/AmbientOcclusionModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/AntialiasingModelEditor.cs
+    sourceGUID: 2451939fe695c1a408ba688219837667
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/AntialiasingModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/BloomModelEditor.cs
+    sourceGUID: a95f3f10e7e437c49ade656f531b30d2
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/BloomModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/BuiltinDebugViewsEditor.cs
+    sourceGUID: 760ffebbef2ed644c87940a699eb7fe6
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/BuiltinDebugViewsEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/ChromaticAberrationEditor.cs
+    sourceGUID: 8a713f71a0169794a915a081f6242f60
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/ChromaticAberrationEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/ColorGradingModelEditor.cs
+    sourceGUID: c3e3bce1d5c900d4fa7aa0f2b21814cf
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/ColorGradingModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/DefaultPostFxModelEditor.cs
+    sourceGUID: c15016a7fef58974f91a6a4d6b132d94
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/DefaultPostFxModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/DepthOfFieldModelEditor.cs
+    sourceGUID: dc2f388440e9f8b4f8fc7bb43c01cc7d
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/DepthOfFieldModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/DitheringModelEditor.cs
+    sourceGUID: 87377c86d84f49a4e912d37d28353e7f
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/DitheringModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/EyeAdaptationModelEditor.cs
+    sourceGUID: 489b5c785ba0f614d90c322fa0827216
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/EyeAdaptationModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/FogModelEditor.cs
+    sourceGUID: 44a64b44ec891d24b96ed84d958c3d4f
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/FogModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/GrainModelEditor.cs
+    sourceGUID: 8330694e2c90c284f81153ac83b3cb4a
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/GrainModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/MotionBlurModelEditor.cs
+    sourceGUID: 870806eda355b5144879155e2ba37eb6
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/MotionBlurModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/ScreenSpaceReflectionModelEditor.cs
+    sourceGUID: 57bbe1f20eec7bb4d9bc90fc65ef381b
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/ScreenSpaceReflectionModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/UserLutModelEditor.cs
+    sourceGUID: b235eb1c486b38c4fa06470234bbfd32
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/UserLutModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Models/VignetteModelEditor.cs
+    sourceGUID: 745ad42620dabf04b94761acc86189ba
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Models/VignetteModelEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Monitors/HistogramMonitor.cs
+    sourceGUID: 4581c45ac4aa2264187087659a4cc252
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Monitors/HistogramMonitor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Monitors/ParadeMonitor.cs
+    sourceGUID: b1f878f3742072e40a280683573bd0ee
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Monitors/ParadeMonitor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Monitors/VectorscopeMonitor.cs
+    sourceGUID: 805119df0d94800418006c621cc99cc2
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Monitors/VectorscopeMonitor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Monitors/WaveformMonitor.cs
+    sourceGUID: 2d45bc7edb5916446b4fa1ae1b6f9065
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Monitors/WaveformMonitor.cs
+  - sourcePath: Assets/PostProcessing/Editor/PropertyDrawers/GetSetDrawer.cs
+    sourceGUID: e1a43b92f2bbd914ca2e6b4c6a5dba48
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PropertyDrawers/GetSetDrawer.cs
+  - sourcePath: Assets/PostProcessing/Editor/PropertyDrawers/MinDrawer.cs
+    sourceGUID: 8995f52f410f0fb4cb1bdaa71a16e04e
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PropertyDrawers/MinDrawer.cs
+  - sourcePath: Assets/PostProcessing/Editor/PropertyDrawers/TrackballGroupDrawer.cs
+    sourceGUID: a668d493c5ed56d448b53c19b2c3dfd2
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/PropertyDrawers/TrackballGroupDrawer.cs
+  - sourcePath: Assets/PostProcessing/Editor/Utils/CurveEditor.cs
+    sourceGUID: afb349ef0bffd144db2bdd25630f648e
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Utils/CurveEditor.cs
+  - sourcePath: Assets/PostProcessing/Editor/Utils/EditorGUIHelper.cs
+    sourceGUID: 7226e17fa48c86148a3d15584e21b4cb
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Utils/EditorGUIHelper.cs
+  - sourcePath: Assets/PostProcessing/Editor/Utils/EditorResources.cs
+    sourceGUID: a66d7b0165140a1439be89b5afc000fb
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Utils/EditorResources.cs
+  - sourcePath: Assets/PostProcessing/Editor/Utils/FxStyles.cs
+    sourceGUID: 8f31cf52f05e80c4ea48570d0c3c8f59
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Utils/FxStyles.cs
+  - sourcePath: Assets/PostProcessing/Editor/Utils/ReflectionUtils.cs
+    sourceGUID: 71f7e805a7fc35046afbcf5c2639d116
+    targetPath: Assets/Plugins/Editor/PostProcessing/Editor/Utils/ReflectionUtils.cs
+  - sourcePath: Assets/PostProcessing/Runtime/PostProcessingBehaviour.cs
+    sourceGUID: ff26db721962cdf4a8edcdfa9a767d2a
+    targetPath: Assets/Plugins/PostProcessing/Runtime/PostProcessingBehaviour.cs
+  - sourcePath: Assets/PostProcessing/Runtime/PostProcessingComponent.cs
+    sourceGUID: ef3277e9c14f78546a1ecaab0d293b77
+    targetPath: Assets/Plugins/PostProcessing/Runtime/PostProcessingComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/PostProcessingContext.cs
+    sourceGUID: 63da4b6536f11834fa026e327087bd7b
+    targetPath: Assets/Plugins/PostProcessing/Runtime/PostProcessingContext.cs
+  - sourcePath: Assets/PostProcessing/Runtime/PostProcessingModel.cs
+    sourceGUID: 28413153a26e53342baf1a7b2c3711c3
+    targetPath: Assets/Plugins/PostProcessing/Runtime/PostProcessingModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/PostProcessingProfile.cs
+    sourceGUID: 8a3bdb2cd68f901469e7cc149151eb49
+    targetPath: Assets/Plugins/PostProcessing/Runtime/PostProcessingProfile.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Attributes/GetSetAttribute.cs
+    sourceGUID: f17e8602928ea02419dae051ec79c5a2
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Attributes/GetSetAttribute.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Attributes/MinAttribute.cs
+    sourceGUID: 9af2f505033843c46a362e251937acb1
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Attributes/MinAttribute.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Attributes/TrackballAttribute.cs
+    sourceGUID: 65e30143f4e114f45b84a1d9cba8f469
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Attributes/TrackballAttribute.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Attributes/TrackballGroupAttribute.cs
+    sourceGUID: aa62a51ebe4821e4b89a64d267b30a27
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Attributes/TrackballGroupAttribute.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/AmbientOcclusionComponent.cs
+    sourceGUID: c6e33ce72d3776b408121f946283403d
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/AmbientOcclusionComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/BloomComponent.cs
+    sourceGUID: acd4204a794b09048b928b1e987500c5
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/BloomComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/BuiltinDebugViewsComponent.cs
+    sourceGUID: fd834b6165e82e64f9da2d4ed9f4e236
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/BuiltinDebugViewsComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/ChromaticAberrationComponent.cs
+    sourceGUID: b9c65642df654a84d84ded1b07448a4c
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/ChromaticAberrationComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/ColorGradingComponent.cs
+    sourceGUID: 9baf73db7c9fc1b478f4a0a1000c86f5
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/ColorGradingComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/DepthOfFieldComponent.cs
+    sourceGUID: d862c8701bf34c342b95cf9058d0b70c
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/DepthOfFieldComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/DitheringComponent.cs
+    sourceGUID: 35ceb4b3cfab56d43a3f0efeb9d68c43
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/DitheringComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/EyeAdaptationComponent.cs
+    sourceGUID: c227d71a4040d304c943c26e0914bdeb
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/EyeAdaptationComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/FogComponent.cs
+    sourceGUID: d0363c1cc7de62b4989190994103f5e2
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/FogComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/FxaaComponent.cs
+    sourceGUID: d4e1109c5030ca04e9a28243a35155ff
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/FxaaComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/GrainComponent.cs
+    sourceGUID: 6ff793ec42153c34799eed059982bac3
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/GrainComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/MotionBlurComponent.cs
+    sourceGUID: 9a9ae59cbb7c53e40851df7f32805098
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/MotionBlurComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/ScreenSpaceReflectionComponent.cs
+    sourceGUID: dd75f795d6a798f44a7801082f6a703f
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/ScreenSpaceReflectionComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/TaaComponent.cs
+    sourceGUID: f28703283e17be54180fd04a7c70e1d5
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/TaaComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/UserLutComponent.cs
+    sourceGUID: 63cb071fb8442a14f85c02e6ddba9b72
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/UserLutComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Components/VignetteComponent.cs
+    sourceGUID: 39074aa97f4be23438147346f081c7f3
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Components/VignetteComponent.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/AmbientOcclusionModel.cs
+    sourceGUID: 564228afc5cbd5f49beb80038b4b7af2
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/AmbientOcclusionModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/AntialiasingModel.cs
+    sourceGUID: cb9a239ec5f20ca4cb5d0391441588de
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/AntialiasingModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/BloomModel.cs
+    sourceGUID: e215a6ec29d100f489c186f289526f06
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/BloomModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/BuiltinDebugViewsModel.cs
+    sourceGUID: 33d6d1a4b7b3dec40819019a25605191
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/BuiltinDebugViewsModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/ChromaticAberrationModel.cs
+    sourceGUID: 8da01668697617e43879715e835a2367
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/ChromaticAberrationModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/ColorGradingModel.cs
+    sourceGUID: fe146bcdc1fb8ae4ab7dd803982d3489
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/ColorGradingModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/DepthOfFieldModel.cs
+    sourceGUID: 2626b17c595c71e43811d654eb28d30d
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/DepthOfFieldModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/DitheringModel.cs
+    sourceGUID: 41209882cdbcf31429d2a457a2164801
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/DitheringModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/EyeAdaptationModel.cs
+    sourceGUID: edf6d216ca4b60942a0c533c14f26d53
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/EyeAdaptationModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/FogModel.cs
+    sourceGUID: 1e20e66aa2deb7943993c444137d9acd
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/FogModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/GrainModel.cs
+    sourceGUID: f4fbcdb7f7a3c76489f32ffea74e6bb3
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/GrainModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/MotionBlurModel.cs
+    sourceGUID: bb4df227c906dd342bd34767914d292c
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/MotionBlurModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/ScreenSpaceReflectionModel.cs
+    sourceGUID: e841012229e57cd408a146561435e90d
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/ScreenSpaceReflectionModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/UserLutModel.cs
+    sourceGUID: 3a7afd753a89c4140b80c855e15f69d6
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/UserLutModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Models/VignetteModel.cs
+    sourceGUID: d7aa967ba692363448f1b25d0728b9bd
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Models/VignetteModel.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Utils/ColorGradingCurve.cs
+    sourceGUID: 1bb6f2275f7eff940b6f0d72681e7877
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Utils/ColorGradingCurve.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Utils/GraphicsUtils.cs
+    sourceGUID: f40f0a1acf6ce2f419f2b71c667e8973
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Utils/GraphicsUtils.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Utils/MaterialFactory.cs
+    sourceGUID: 594fad000c373f746864717c588e1815
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Utils/MaterialFactory.cs
+  - sourcePath: Assets/PostProcessing/Runtime/Utils/RenderTextureFactory.cs
+    sourceGUID: aec5694806c4d75449e231cfae69c329
+    targetPath: Assets/Plugins/PostProcessing/Runtime/Utils/RenderTextureFactory.cs
+  - sourcePath: Assets/PostProcessing/Utilities/CustomMotionTexture/ExampleWheelController.cs
+    sourceGUID: 840c928746809454cb5b9309b640dbd7
+    targetPath: Assets/Plugins/PostProcessing/Utilities/CustomMotionTexture/ExampleWheelController.cs
+  forRemoval: 0
+  forRemovalDeleteEmptyDirs: 0
+  persistent: 1

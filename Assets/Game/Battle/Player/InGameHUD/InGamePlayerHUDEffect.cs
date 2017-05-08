@@ -16,7 +16,7 @@ namespace DT.Game.Battle.Players {
 		// PRAGMA MARK - Static Public Interface
 		public static void CreateForAllPlayers() {
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
-				var effect = ObjectPoolManager.CreateView<InGamePlayerHUDEffect>(GamePrefabs.Instance.InGamePlayerHUDEffect);
+				var effect = ObjectPoolManager.CreateView<InGamePlayerHUDEffect>(GamePrefabs.Instance.InGamePlayerHUDEffect, viewManager: GameViewManagerLocator.Battle);
 				effect.Init(player);
 			}
 		}

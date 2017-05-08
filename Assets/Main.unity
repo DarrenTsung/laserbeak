@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 61758707}
   - component: {fileID: 61758706}
   - component: {fileID: 61758705}
+  - component: {fileID: 61758711}
   m_Layer: 8
   m_Name: BattleCamera
   m_TagString: MainCamera
@@ -369,6 +370,18 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!114 &61758711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 61758703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: d8f1550fe93204280b9a32252eb72871, type: 2}
 --- !u!1 &94952594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,7 +1329,7 @@ MonoBehaviour:
   PlayerTransparentMaterial: {fileID: 2100000, guid: 4522569c25a6b46ef8d23aecf63a2238,
     type: 2}
   gameModes_:
-  - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
+  - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
   - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
   - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
