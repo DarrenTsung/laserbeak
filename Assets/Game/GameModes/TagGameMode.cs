@@ -97,12 +97,13 @@ namespace DT.Game.GameModes {
 			}
 
 			TagExplosive tagExplosive = laserSourcePlayer.GetComponentInChildren<TagExplosive>();
-			SetItPlayer(playerHit, tagExplosive.TimeLeft);
-			if (tagExplosive != null) {
-				ObjectPoolManager.Recycle(tagExplosive);
-			} else {
+			if (tagExplosive == null) {
 				Debug.LogError("Failed to get TagExplosive from It player, very weird!");
+				return;
 			}
+
+			SetItPlayer(playerHit, tagExplosive.TimeLeft);
+			ObjectPoolManager.Recycle(tagExplosive);
 		}
 
 		private void HandleSpawnedPlayerRemoved() {
