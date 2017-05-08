@@ -134,7 +134,7 @@ namespace DT.Game.ElementSelection {
 		private Rect GetRectFor(ISelectable selectable) {
 			((RectTransform)((MonoBehaviour)selectable).transform).GetWorldCorners(corners_);
 
-			return new Rect(corners_[0].Vector2XZValue(), corners_[2].Vector2XZValue() - corners_[0].Vector2XZValue());
+			return new Rect((Vector2)corners_[0], (Vector2)corners_[2] - (Vector2)corners_[0]);
 		}
 
 		private void RefreshSelectorPosition() {
