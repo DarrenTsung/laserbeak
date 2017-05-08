@@ -11,18 +11,18 @@ using InControl;
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputBeakControl : BattlePlayerInputComponent {
 		// PRAGMA MARK - Internal
-		private const int kMaxSoundOffset = 5;
+		private const int kMaxSoundOffset = 3;
 		private int soundOffset_ = 0;
-		private bool canPlayAlarm_ = true;
-		private bool hasPlayedAlarm_ = false;
+
+		private int count_ = 0;
 
 		private bool keepBeakOpen_ = false;
 
 		protected override void Cleanup() {
 			soundOffset_ = 0;
-			canPlayAlarm_ = false;
-			hasPlayedAlarm_ = false;
 			keepBeakOpen_ = false;
+
+			count_ = 0;
 		}
 
 		private void Update() {
@@ -39,18 +39,16 @@ namespace DT.Game.Battle.Players {
 
 			Player_.Animator.SetBool("BeakOpen", InputDelegate_.LaserPressed);
 			if (InGameConstants.EnableQuacking && InputDelegate_.LaserPressed && previouslyOpen == false) {
-				if (canPlayAlarm_ && !hasPlayedAlarm_ && UnityEngine.Random.Range(0.0f, 1.0f) > 0.4f) {
-					AudioConstants.Instance.CluckAlarm.PlaySFX(volumeScale: 1.9f);
+				if (count_ % 2 == 1) {
+					AudioConstants.Instance.CluckAlarm.PlaySFX(volumeScale: 1.9f, randomPitchRange: 0.1f);
 					KeepBeakOpenFor(AudioConstants.Instance.CluckAlarm.length - 0.1f);
-					hasPlayedAlarm_ = true;
 				} else {
 					AudioConstants.Instance.Cluck.PlaySFX(volumeScale: 2.4f, randomPitchRange: 0.1f, pitchOffset: 0.03f - (soundOffset_ * 0.03f));
 					KeepBeakOpenFor(AudioConstants.Instance.Cluck.length - 0.1f);
 				}
 				soundOffset_ = Mathf.Min(soundOffset_ + 1, kMaxSoundOffset);
 
-				// allow playing alarm after non-alarm at least once
-				canPlayAlarm_ = true;
+				count_++;
 			}
 		}
 
