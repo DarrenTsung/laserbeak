@@ -9,6 +9,12 @@ using InControl;
 
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputController : MonoBehaviour, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Static
+		private static readonly HashSet<Type> kAlwaysOnInputTypes = new HashSet<Type>() {
+			typeof(BattlePlayerInputBeakControl),
+		};
+
+
 		// PRAGMA MARK - Public Interface
 		public enum PriorityKey {
 			Internal = 0,
@@ -71,9 +77,17 @@ namespace DT.Game.Battle.Players {
 		private CoroutineWrapper movementCoroutine_;
 		private BattlePlayerDieWhenOffGround dieWhenOffGround_;
 
+		private readonly HashSet<BattlePlayerInputComponent> componentsToKeepOn_ = new HashSet<BattlePlayerInputComponent>();
+
 		private void Awake() {
 			playerInputComponents_ = this.GetComponentsInChildren<BattlePlayerInputComponent>();
 			dieWhenOffGround_ = this.GetComponentInChildren<BattlePlayerDieWhenOffGround>();
+
+			foreach (var component in playerInputComponents_) {
+				if (kAlwaysOnInputTypes.Contains(component.GetType())) {
+					componentsToKeepOn_.Add(component);
+				}
+			}
 		}
 
 		[SerializeField]
@@ -92,7 +106,11 @@ namespace DT.Game.Battle.Players {
 		private void RefreshEnabledStatus() {
 			bool enabled = priorityKeyEnabledMap_.Max(kvp => kvp.Key).Value;
 			foreach (var component in playerInputComponents_) {
-				component.Enabled = enabled;
+				if (componentsToKeepOn_.Contains(component)) {
+					component.Enabled = true;
+				} else {
+					component.Enabled = enabled;
+				}
 			}
 		}
 	}
