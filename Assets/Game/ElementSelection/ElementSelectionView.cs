@@ -100,6 +100,7 @@ namespace DT.Game.ElementSelection {
 		private void UpdateMovement() {
 			delay_ -= Time.deltaTime;
 
+			bool resetDelay = false;
 			if (delay_ <= 0.0f && Mathf.Abs(player_.InputDevice.LeftStick.X) > kIntentThreshold) {
 				// placeholder
 				if (player_.InputDevice.LeftStick.X > 0) {
@@ -108,7 +109,7 @@ namespace DT.Game.ElementSelection {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMin >= other.xMax);
 				}
 
-				delay_ = kMoveDelay;
+				resetDelay = true;
 			}
 
 			if (delay_ <= 0.0f && Mathf.Abs(player_.InputDevice.LeftStick.Y) > kIntentThreshold) {
@@ -119,6 +120,10 @@ namespace DT.Game.ElementSelection {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMin >= other.yMax);
 				}
 
+				resetDelay = true;
+			}
+
+			if (resetDelay) {
 				delay_ = kMoveDelay;
 			}
 		}
