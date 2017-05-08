@@ -30,11 +30,16 @@ namespace DT.Game.GameModes {
 			var view = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
 			view.Init(text, icons, playerOrdering, onFinishedCallback);
 
-			foreach (BattlePlayer battlePlayer in AllBattlePlayers) {
-				battlePlayer.InputController.DisableInput(BattlePlayerInputController.PriorityKey.GameMode);
-			}
+			oldAllowBattlePlayerMovement_ = InGameConstants.AllowBattlePlayerMovement;
+			oldAllowChargingLasers_ = InGameConstants.AllowChargingLasers;
+
+			InGameConstants.AllowBattlePlayerMovement = false;
+			InGameConstants.AllowChargingLasers = false;
 			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Muted);
 		}
+
+		private static bool oldAllowBattlePlayerMovement_;
+		private static bool oldAllowChargingLasers_;
 
 		private static IEnumerable<BattlePlayer> AllBattlePlayers {
 			get { return PlayerSpawner.AllSpawnedBattlePlayers.Concat(AISpawner.AllSpawnedBattlePlayers); }
@@ -82,9 +87,9 @@ namespace DT.Game.GameModes {
 			}
 			ObjectPoolManager.Recycle(this);
 
-			foreach (BattlePlayer battlePlayer in AllBattlePlayers) {
-				battlePlayer.InputController.ClearInput(BattlePlayerInputController.PriorityKey.GameMode);
-			}
+			InGameConstants.AllowBattlePlayerMovement = oldAllowBattlePlayerMovement_;
+			InGameConstants.AllowChargingLasers = oldAllowChargingLasers_;
+
 			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Normal);
 			OnIntroFinished.Invoke();
 		}

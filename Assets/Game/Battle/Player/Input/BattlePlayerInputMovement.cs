@@ -19,7 +19,11 @@ namespace DT.Game.Battle.Players {
 			Vector2 speedVector = InputDelegate_.MovementVector * kPlayerSpeed * Player_.WeightedRatio();
 			Vector3 speedWorldVector = speedVector.Vector3XZValue();
 
-			Player_.Rigidbody.velocity = speedWorldVector;
+			if (InGameConstants.AllowBattlePlayerMovement) {
+				Player_.Rigidbody.velocity = speedWorldVector;
+			} else {
+				Player_.Rigidbody.velocity = Vector3.zero;
+			}
 			Player_.Rigidbody.angularVelocity = Vector3.zero;
 
 			// snap rotation if input is not (0, 0)

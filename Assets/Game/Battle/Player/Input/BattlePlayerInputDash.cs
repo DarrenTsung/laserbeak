@@ -56,7 +56,7 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
-			if (InputDelegate_.DashPressed) {
+			if (InputDelegate_.DashPressed && InGameConstants.AllowBattlePlayerMovement) {
 				Vector3 direction = InputDelegate_.MovementVector.Vector3XZValue().normalized;
 				if (direction.magnitude > kDashIntentThreshold) {
 					Dash(direction);

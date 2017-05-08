@@ -15,6 +15,7 @@ namespace DT.Game {
 	public static class InGameConstants {
 		// PRAGMA MARK - Public Interface
 		public static bool AllowChargingLasers = true;
+		public static bool AllowBattlePlayerMovement = true;
 		public static bool EnableQuacking = false;
 	}
 }
