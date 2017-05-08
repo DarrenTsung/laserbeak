@@ -293,6 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58e3700d08ec42118a4b3d10f056380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postProcessingProfile_: {fileID: 11400000, guid: d8f1550fe93204280b9a32252eb72871,
+    type: 2}
   cameraSpeed_: 2
 --- !u!114 &61758706
 MonoBehaviour:

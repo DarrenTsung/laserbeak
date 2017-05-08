@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 using DTAnimatorStateMachine;
 using DTEasings;
@@ -19,6 +20,7 @@ namespace DT.Game.Battle {
 			}
 
 			Instance.transform.Shake(kShakeMaxAmount * percentage, kShakeMaxDuration * percentage, returnToOriginalPosition: false);
+			Instance.AnimateChromaticAberration(intensity: Easings.QuarticEaseIn(percentage) * kAberrationMaxAmount, duration: kShakeMaxDuration * percentage);
 		}
 
 
@@ -41,6 +43,8 @@ namespace DT.Game.Battle {
 		private const float kShakeMaxAmount = 0.6f;
 		private const float kShakeMaxDuration = 0.7f;
 
+		private const float kAberrationMaxAmount = 0.4f;
+
 		private const float kXRotationMin = 45;
 		private const float kXRotationMax = 65;
 		// NOTE (darren): base focusVector magnitude is ~25
@@ -51,6 +55,10 @@ namespace DT.Game.Battle {
 		private static readonly Plane kFocusPlane = new Plane(Vector3.up, Vector3.zero);
 		private const float kFocusMinimum = 7.0f;
 
+		[Header("Outlets")]
+		[SerializeField]
+		private PostProcessingProfile postProcessingProfile_;
+
 		[Header("Properties")]
 		[SerializeField]
 		private float cameraSpeed_ = 1.0f;
@@ -60,6 +68,8 @@ namespace DT.Game.Battle {
 
 		private Camera camera_;
 		private Vector3 initialPosition_;
+
+		private CoroutineWrapper aberrationCoroutine_;
 
 		private void Awake() {
 			camera_ = this.GetRequiredComponent<Camera>();
@@ -120,6 +130,19 @@ namespace DT.Game.Battle {
 			}
 
 			return this.transform.position - currentFocusPoint;
+		}
+
+		private void AnimateChromaticAberration(float intensity, float duration) {
+			if (aberrationCoroutine_ != null) {
+				aberrationCoroutine_.Cancel();
+				aberrationCoroutine_ = null;
+			}
+
+			aberrationCoroutine_ = CoroutineWrapper.DoEaseFor(duration, EaseType.CubicEaseIn, (float p) => {
+				ChromaticAberrationModel.Settings settings = postProcessingProfile_.chromaticAberration.settings;
+				settings.intensity = Mathf.Lerp(intensity, 0.0f, p);
+				postProcessingProfile_.chromaticAberration.settings = settings;
+			});
 		}
 	}
 }
