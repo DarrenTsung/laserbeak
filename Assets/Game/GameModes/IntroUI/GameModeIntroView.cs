@@ -35,7 +35,6 @@ namespace DT.Game.GameModes {
 
 			InGameConstants.AllowBattlePlayerMovement = false;
 			InGameConstants.AllowChargingLasers = false;
-			InGameConstants.EnableFlapping = true;
 
 			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Muted);
 		}
@@ -91,7 +90,6 @@ namespace DT.Game.GameModes {
 
 			InGameConstants.AllowBattlePlayerMovement = oldAllowBattlePlayerMovement_;
 			InGameConstants.AllowChargingLasers = oldAllowChargingLasers_;
-			InGameConstants.EnableFlapping = false;
 
 			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Normal);
 			OnIntroFinished.Invoke();

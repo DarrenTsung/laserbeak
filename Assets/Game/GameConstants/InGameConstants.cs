@@ -18,6 +18,6 @@ namespace DT.Game {
 		public static bool AllowBattlePlayerMovement = true;
 
 		public static bool EnableQuacking = false;
-		public static bool EnableFlapping = false;
+		public static bool EnableFlapping = true;
 	}
 }
