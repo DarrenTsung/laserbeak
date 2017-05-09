@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224462651038566838}
   - component: {fileID: 114907535314304498}
+  - component: {fileID: 114801224545449970}
   m_Layer: 5
   m_Name: ScoreBubbleView
   m_TagString: Untagged
@@ -115,6 +116,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114801224545449970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1163178287772246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 40
+  m_PreferredHeight: 40
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
 --- !u!114 &114907535314304498
 MonoBehaviour:
   m_ObjectHideFlags: 1

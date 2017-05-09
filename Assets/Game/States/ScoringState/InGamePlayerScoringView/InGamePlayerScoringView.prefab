@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224996666700764716}
-  - component: {fileID: 114900926671719140}
+  - component: {fileID: 114786359153744942}
   m_Layer: 5
   m_Name: IndividualPlayerViewsContainer
   m_TagString: Untagged
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoringViewContainer_: {fileID: 1654646788874546}
   hasWinnerContainer_: {fileID: 1845513255646000}
---- !u!114 &114900926671719140
+--- !u!114 &114786359153744942
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -224,21 +224,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654646788874546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
+    m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 1
-  m_CellSize: {x: 370, y: 110}
-  m_Spacing: {x: 80, y: 20}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 1
 --- !u!222 &222698442369732264
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -270,7 +269,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1845513255646000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.004981865}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0024975399}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224148220653882010}
@@ -299,8 +298,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -200, y: -200}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: -100, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224786508281944772
 RectTransform:

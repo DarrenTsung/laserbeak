@@ -71,7 +71,8 @@ namespace DT.Game.Scoring {
 		private void RefreshScoreBubbles(bool animate) {
 			int playerScore = PlayerScores.GetScoreFor(player_);
 			for (int i = 0; i < GameConstants.Instance.ScoreToWin; i++) {
-				scoreBubbleViews_[i].SetFilled(i < playerScore, animate);
+				int flippedIndex = GameConstants.Instance.ScoreToWin - 1 - i;
+				scoreBubbleViews_[i].SetFilled(flippedIndex < playerScore, animate);
 			}
 		}
 
