@@ -26,7 +26,8 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.OnBattlePlayerHit -= HandleBattlePlayerHit;
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerHealth.LaserDamage = 1;
-			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
+			InGameConstants.AllowChargingLasers = true;
+			InGameConstants.AllowedChargingLasersWhitelist.Clear();
 
 			itPlayer_ = null;
 
@@ -49,16 +50,19 @@ namespace DT.Game.GameModes {
 		}
 
 		private void SetItPlayer(BattlePlayer battlePlayer, float? timeLeft = null) {
+			if (battlePlayer == null) {
+				Debug.LogWarning("Cannot set null battlePlayer as ItPlayer!");
+				return;
+			}
+
 			if (itPlayer_ == battlePlayer) {
 				Debug.LogWarning("Not setting ItPlayer since already is ItPlayer!");
 				return;
 			}
 
 			itPlayer_ = battlePlayer;
-			if (itPlayer_ == null) {
-				Debug.LogWarning("ItPlayer is null - no explosive going to be set!");
-				return;
-			}
+			InGameConstants.AllowedChargingLasersWhitelist.Clear();
+			InGameConstants.AllowedChargingLasersWhitelist.Add(itPlayer_);
 
 			var explosive = ObjectPoolManager.Create<TagExplosive>(GamePrefabs.Instance.TagExplosivePrefab, parent: itPlayer_.AccessoriesContainer);
 			if (timeLeft == null) {
@@ -79,8 +83,8 @@ namespace DT.Game.GameModes {
 			}
 			icons.RemoveLast();
 
-			BattlePlayerHealth.KnockbackMultiplier = 0.0f;
 			BattlePlayerHealth.LaserDamage = 0;
+			InGameConstants.AllowChargingLasers = false;
 
 			GameModeIntroView.Show(DisplayTitle, icons, onFinishedCallback: () => {
 				SetItPlayer(PlayerSpawner.AllSpawnedBattlePlayers.Random());

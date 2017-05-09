@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
@@ -19,5 +20,15 @@ namespace DT.Game {
 
 		public static bool EnableQuacking = false;
 		public static bool EnableFlapping = true;
+
+		public static readonly HashSet<BattlePlayer> AllowedChargingLasersWhitelist = new HashSet<BattlePlayer>();
+
+		public static bool IsAllowedToChargeLasers(BattlePlayer battlePlayer) {
+			if (AllowChargingLasers == false) {
+				return AllowedChargingLasersWhitelist.Contains(battlePlayer);
+			}
+
+			return true;
+		}
 	}
 }

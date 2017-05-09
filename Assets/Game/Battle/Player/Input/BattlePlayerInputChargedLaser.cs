@@ -21,7 +21,7 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
-		private const float kChargeTime = 0.55f;
+		private const float kChargeTime = 0.35f;
 
 		private const float kRecoilDistance = 3.0f;
 		private const float kRecoilDuration = 0.4f;
@@ -78,7 +78,7 @@ namespace DT.Game.Battle.Players {
 
 			float previousPercentCharged = chargedTime_ / kChargeTime;
 
-			if (InputDelegate_.LaserPressed && InGameConstants.AllowChargingLasers) {
+			if (InputDelegate_.LaserPressed && InGameConstants.IsAllowedToChargeLasers(Player_)) {
 				chargedTime_ += Time.deltaTime * kChargeRate;
 			} else {
 				chargedTime_ -= Time.deltaTime * kDischargeRate;
