@@ -28,6 +28,8 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.LaserDamage = 1;
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
 
+			itPlayer_ = null;
+
 			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
 				var explosive = battlePlayer.GetComponentInChildren<TagExplosive>();
 				if (explosive == null) {
@@ -48,6 +50,7 @@ namespace DT.Game.GameModes {
 
 		private void SetItPlayer(BattlePlayer battlePlayer, float? timeLeft = null) {
 			if (itPlayer_ == battlePlayer) {
+				Debug.LogWarning("Not setting ItPlayer since already is ItPlayer!");
 				return;
 			}
 
