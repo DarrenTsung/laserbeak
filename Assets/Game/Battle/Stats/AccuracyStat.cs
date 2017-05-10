@@ -66,7 +66,11 @@ namespace DT.Game.Battle.Stats {
 					return 0;
 				}
 
-				return recordedHits_ / (float)recordedShots_;
+				if (recordedHits_ > recordedShots_) {
+					Debug.LogWarning(string.Format("Hits ({0}) greater than shots ({1})! Investigate!", recordedHits_, recordedShots_));
+				}
+
+				return Mathf.Clamp(recordedHits_ / (float)recordedShots_, 0.0f, 1.0f);
 			}
 		}
 
