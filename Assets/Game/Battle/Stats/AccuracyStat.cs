@@ -20,7 +20,13 @@ namespace DT.Game.Battle.Stats {
 		}
 
 		public override string DisplayValue {
-			get { return string.Format("{0}%", (Accuracy * 100).ToString("0")); }
+			get {
+				if (recordedShots_ == 0) {
+					return "N/A";
+				}
+
+				return string.Format("{0}%", (Accuracy * 100).ToString("0"));
+			}
 		}
 
 		public AccuracyStat(Player player) : base(player) {
@@ -55,7 +61,13 @@ namespace DT.Game.Battle.Stats {
 		private int recordedHits_ = 0;
 
 		private float Accuracy {
-			get { return recordedHits_ / (float)recordedShots_; }
+			get {
+				if (recordedShots_ == 0) {
+					return 0;
+				}
+
+				return recordedHits_ / (float)recordedShots_;
+			}
 		}
 
 		private void HandleBattlePlayerShootLaser(BattlePlayer battlePlayer) {
