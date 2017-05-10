@@ -43,6 +43,11 @@ namespace DT.Game.Scoring {
 			get { return Winner != null; }
 		}
 
+		public static int GetRankFor(Player player) {
+			int playerScore = GetScoreFor(player);
+			return 1 + RegisteredPlayers.AllPlayers.Where(p => p != player && GetScoreFor(p) > playerScore).Count();
+		}
+
 		public static void StepConvertPendingScoresToScores() {
 			if (HasWinner) {
 				Debug.LogWarning("Shouldn't convert scores while HasWinner!");
