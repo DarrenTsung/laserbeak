@@ -14,7 +14,7 @@ using DT.Game.GameModes;
 using DT.Game.Players;
 
 namespace DT.Game.Scoring {
-	public class StatsContainer : MonoBehaviour {
+	public class StatsContainer : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void Init(Player player) {
 			List<StatAward> allAwards = StatsManager.GetStatsFor(player).SelectMany(s => s.GetQualifiedAwards()).ToList();
@@ -34,7 +34,18 @@ namespace DT.Game.Scoring {
 			foreach (Stat stat in StatsManager.GetStatsFor(player)) {
 				var view = ObjectPoolManager.Create<StatView>(GamePrefabs.Instance.StatView, parent: statViewContainer_);
 				view.Init(player, stat.DisplayName, stat.DisplayValue, showMarker: chosenAward.SourceStat == stat);
+
+				views_.Add(view);
 			}
+		}
+
+
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			foreach (var view in views_) {
+				ObjectPoolManager.Recycle(view);
+			}
+			views_.Clear();
 		}
 
 
@@ -48,5 +59,7 @@ namespace DT.Game.Scoring {
 
 		[SerializeField]
 		private Image separatorImage_;
+
+		private readonly List<StatView> views_ = new List<StatView>();
 	}
 }
