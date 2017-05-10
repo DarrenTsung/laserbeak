@@ -37,7 +37,6 @@ namespace DT.Game.Battle.Players {
 
 			health_ -= damage;
 			OnBattlePlayerDamaged.Invoke(Player_, damage);
-			SetInvulnerableFor(kDamageInvulnerabilityTime);
 
 			if (health_ <= 0) {
 				GameObject playerParts = ObjectPoolManager.Create(playerPartsPrefab_, this.transform.position, Quaternion.identity, parent: BattleRecyclables.Instance);
@@ -105,7 +104,7 @@ namespace DT.Game.Battle.Players {
 		private const float kDamageKnockbackDuration = 0.3f;
 		private const float kDamageKnockbackDistance = 2.5f;
 
-		private const float kDamageInvulnerabilityTime = 0.1f;
+		private const float kClearLaserHitTime = 0.1f;
 
 		[Header("Outlets")]
 		[SerializeField]
@@ -123,6 +122,8 @@ namespace DT.Game.Battle.Players {
 
 		private CoroutineWrapper invulnerableCoroutine_;
 
+		private readonly HashSet<Laser> lasersHit_ = new HashSet<Laser>();
+
 		private void OnTriggerEnter(Collider collider) {
 			if (!HandleCollisions) {
 				return;
@@ -133,6 +134,15 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
+			if (lasersHit_.Contains(laser)) {
+				return;
+			}
+
+			lasersHit_.Add(laser);
+			CoroutineWrapper.DoAfterDelay(kClearLaserHitTime, () => {
+				lasersHit_.Remove(laser);
+			});
+
 			int damage = LaserDamage;
 			// laser only does damage if not on same team
 			// HACK (darren): BattlePlayer needs to be refactored in things like Laser / Teams
@@ -142,12 +152,12 @@ namespace DT.Game.Battle.Players {
 				damage = 0;
 			}
 
+			GameNotifications.OnBattlePlayerLaserHit.Invoke(laser, Player_);
+
 			Vector3 forward = laser.transform.forward;
 
 			TakeDamage(damage, forward);
 			laser.HandleHit();
-
-			GameNotifications.OnBattlePlayerLaserHit.Invoke(Player_, laser.BattlePlayer);
 		}
 
 		private void AnimateDamageEmissionFor(IEnumerable<Material> materials) {

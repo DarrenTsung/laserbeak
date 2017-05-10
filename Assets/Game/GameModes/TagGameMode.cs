@@ -9,6 +9,7 @@ using DTObjectPoolManager;
 using InControl;
 
 using DT.Game.Battle;
+using DT.Game.Battle.Lasers;
 using DT.Game.Battle.Players;
 using DT.Game.GameModes.Tag;
 using DT.Game.Players;
@@ -94,7 +95,8 @@ namespace DT.Game.GameModes {
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
 
-		private void HandleBattlePlayerHit(BattlePlayer playerHit, BattlePlayer laserSourcePlayer) {
+		private void HandleBattlePlayerHit(Laser laser, BattlePlayer playerHit) {
+			BattlePlayer laserSourcePlayer = laser.BattlePlayer;
 			if (laserSourcePlayer == playerHit) {
 				return;
 			}

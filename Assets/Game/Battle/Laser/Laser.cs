@@ -22,6 +22,10 @@ namespace DT.Game.Battle.Lasers {
 			get { return battlePlayerSources_.LastOrDefault(); }
 		}
 
+		public IList<BattlePlayer> BattlePlayerSources {
+			get { return battlePlayerSources_; }
+		}
+
 		public void Init(BattlePlayer battlePlayer) {
 			ChangeBattlePlayerSource(battlePlayer);
 			AddSpeedFromVelocity(battlePlayer.Rigidbody.velocity);

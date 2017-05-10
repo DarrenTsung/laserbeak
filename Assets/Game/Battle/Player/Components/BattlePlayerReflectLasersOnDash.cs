@@ -58,6 +58,8 @@ namespace DT.Game.Battle.Players {
 
 			reflectedLasers_.Add(laser);
 
+			GameNotifications.OnBattlePlayerReflectLaser.Invoke(laser, Player_);
+
 			// reflect laser back to original shooter
 			BattlePlayer laserSource = laser.BattlePlayer;
 			if (laserSource != null && laserSource != Player_) {
