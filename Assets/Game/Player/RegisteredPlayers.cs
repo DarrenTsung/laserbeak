@@ -12,8 +12,8 @@ using InControl;
 namespace DT.Game.Players {
 	public static class RegisteredPlayers {
 		// PRAGMA MARK - Static Public Interface
-		public static event Action OnPlayerAdded = delegate {};
-		public static event Action OnPlayerRemoved = delegate {};
+		public static event Action<Player> OnPlayerAdded = delegate {};
+		public static event Action<Player> OnPlayerRemoved = delegate {};
 
 		public static string GetDefaultNicknameFor(Player player) {
 			return string.Format("P{0}", player.Index() + 1);
@@ -49,17 +49,22 @@ namespace DT.Game.Players {
 			}
 
 			players_.Add(player);
-			OnPlayerAdded.Invoke();
+			OnPlayerAdded.Invoke(player);
 		}
 
 		public static void Remove(Player player) {
 			players_.Remove(player);
-			OnPlayerRemoved.Invoke();
+			OnPlayerRemoved.Invoke(player);
 		}
 
 		public static void Clear() {
+			Player[] removedPlayers = players_.ToArray();
+
 			players_.Clear();
-			OnPlayerRemoved.Invoke();
+
+			foreach (Player player in removedPlayers) {
+				OnPlayerRemoved.Invoke(player);
+			}
 		}
 
 		public static IList<Player> AllPlayers {

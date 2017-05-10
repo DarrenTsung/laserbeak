@@ -23,7 +23,7 @@ namespace DT.Game.GameModes {
 		}
 
 		public override void Cleanup() {
-			BattlePlayerHealth.OnBattlePlayerHit -= HandleBattlePlayerHit;
+			GameNotifications.OnBattlePlayerLaserHit.RemoveListener(HandleBattlePlayerHit);
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerHealth.LaserDamage = 1;
 			InGameConstants.AllowChargingLasers = true;
@@ -90,7 +90,7 @@ namespace DT.Game.GameModes {
 				SetItPlayer(PlayerSpawner.AllSpawnedBattlePlayers.Random());
 			});
 
-			BattlePlayerHealth.OnBattlePlayerHit += HandleBattlePlayerHit;
+			GameNotifications.OnBattlePlayerLaserHit.AddListener(HandleBattlePlayerHit);
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 		}
 

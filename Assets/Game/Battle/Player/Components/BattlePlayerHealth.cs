@@ -11,14 +11,11 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.Players {
-	public delegate void BattlePlayerHitDelegate(BattlePlayer playerHit, BattlePlayer laserSourcePlayer);
-
 	public class BattlePlayerHealth : BattlePlayerComponent, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Static
 		public static float KnockbackMultiplier = 1.0f;
 		public static int LaserDamage = 1;
 
-		public static event BattlePlayerHitDelegate OnBattlePlayerHit = delegate {};
 		public static event Action<BattlePlayer, int> OnBattlePlayerDamaged = delegate {};
 		public static event Action<BattlePlayer> OnBattlePlayerDied = delegate {};
 
@@ -150,7 +147,7 @@ namespace DT.Game.Battle.Players {
 			TakeDamage(damage, forward);
 			laser.HandleHit();
 
-			OnBattlePlayerHit.Invoke(Player_, laser.BattlePlayer);
+			GameNotifications.OnBattlePlayerLaserHit.Invoke(Player_, laser.BattlePlayer);
 		}
 
 		private void AnimateDamageEmissionFor(IEnumerable<Material> materials) {

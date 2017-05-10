@@ -69,6 +69,9 @@ namespace DT.Game {
 		public GameObject InstructionPopupPrefab;
 		public GameObject InstructionPlayerReadyViewPrefab;
 
+		[Header("Scoring")]
+		public GameObject StatView;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

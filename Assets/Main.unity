@@ -1287,6 +1287,7 @@ MonoBehaviour:
     type: 2}
   InstructionPlayerReadyViewPrefab: {fileID: 1364895875076536, guid: 5d8763793714d4d40a3a3feb5f265435,
     type: 2}
+  StatView: {fileID: 1418376473286452, guid: 29337950e21d44aa082f706217cdc892, type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}
@@ -1417,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToWin: 4
+  ScoreToWin: 1
   PlayersToFill: 4
   FillWithAI: 1
   DemoMode: 0
@@ -1437,7 +1438,7 @@ MonoBehaviour:
   PlayerTransparentMaterial: {fileID: 2100000, guid: 4522569c25a6b46ef8d23aecf63a2238,
     type: 2}
   gameModes_:
-  - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
+  - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
   - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
   - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}

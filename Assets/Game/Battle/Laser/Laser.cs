@@ -15,7 +15,6 @@ using DT.Game.Audio;
 namespace DT.Game.Battle.Lasers {
 	public class Laser : MonoBehaviour, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Static
-		public static event Action<BattlePlayer> OnPlayerShoot = delegate {};
 
 
 		// PRAGMA MARK - Public Interface
@@ -35,7 +34,7 @@ namespace DT.Game.Battle.Lasers {
 			laserRenderer_.material.SetColor("_DiffuseColor", laserColor);
 			light_.color = laserColor;
 
-			OnPlayerShoot.Invoke(battlePlayer);
+			GameNotifications.OnBattlePlayerShootLaser.Invoke(battlePlayer);
 		}
 
 		public void ChangeBattlePlayerSource(BattlePlayer battlePlayer) {

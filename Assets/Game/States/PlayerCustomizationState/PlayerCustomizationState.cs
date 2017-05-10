@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-using DT.Game.Battle.Players;
-using DT.Game.Players;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
+
+using DT.Game.Battle.Players;
+using DT.Game.Battle.Stats;
+using DT.Game.Players;
 
 namespace DT.Game.PlayerCustomization {
 	public class PlayerCustomizationState : DTStateMachineBehaviour<GameStateMachine> {
@@ -29,6 +31,7 @@ namespace DT.Game.PlayerCustomization {
 		protected override void OnStateExited() {
 			PlayerCustomizationView.Hide();
 			RegisteredPlayers.FinishPlayerRegistration();
+			StatsManager.ClearAllStats();
 		}
 
 		private void Continue() {

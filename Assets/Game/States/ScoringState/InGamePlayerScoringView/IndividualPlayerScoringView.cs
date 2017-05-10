@@ -35,6 +35,9 @@ namespace DT.Game.Scoring {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			wonContainer_.SetActive(false);
+			statsContainer_.gameObject.SetActive(false);
+
+			scoresContainer_.gameObject.SetActive(true);
 		}
 
 
@@ -61,6 +64,9 @@ namespace DT.Game.Scoring {
 		[SerializeField]
 		private GameObject wonContainer_;
 
+		[SerializeField]
+		private StatsContainer statsContainer_;
+
 		private Player player_;
 		private ScoreBubbleView[] scoreBubbleViews_;
 
@@ -77,6 +83,10 @@ namespace DT.Game.Scoring {
 		}
 
 		private void HandlePlayerWon() {
+			statsContainer_.Init(player_);
+			statsContainer_.gameObject.SetActive(true);
+			scoresContainer_.gameObject.SetActive(false);
+
 			if (PlayerScores.Winner != player_) {
 				return;
 			}
