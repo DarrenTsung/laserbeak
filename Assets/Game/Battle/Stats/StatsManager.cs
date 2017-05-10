@@ -42,6 +42,7 @@ namespace DT.Game.Battle.Stats {
 			statsMap_[player] = new Dictionary<Type, Stat>() {
 				{ typeof(ShotsFiredStat), new ShotsFiredStat(player) },
 				{ typeof(AccuracyStat), new AccuracyStat(player) },
+				{ typeof(DashHitsStat), new DashHitsStat(player) },
 			};
 		}
 	}

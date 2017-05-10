@@ -85,6 +85,8 @@ namespace DT.Game.Battle.Players {
 			battlePlayer.Health.TakeDamage(DashDamage, forward);
 			Player_.Health.TakeDamage(0, -forward);
 
+			GameNotifications.OnBattlePlayerDashHit.Invoke(battlePlayer, Player_);
+
 			dashCollider_.enabled = false;
 			OnDashCancelled.Invoke();
 		}

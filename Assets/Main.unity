@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToWin: 1
+  ScoreToWin: 4
   PlayersToFill: 4
   FillWithAI: 1
   DemoMode: 0
