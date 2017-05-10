@@ -43,6 +43,7 @@ namespace DT.Game.Battle.Stats {
 				{ typeof(ShotsFiredStat), new ShotsFiredStat(player) },
 				{ typeof(AccuracyStat), new AccuracyStat(player) },
 				{ typeof(DashHitsStat), new DashHitsStat(player) },
+				{ typeof(ReflectsStat), new ReflectsStat(player) },
 			};
 		}
 	}
