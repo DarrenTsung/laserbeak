@@ -22,7 +22,7 @@ namespace DT.Game.Scoring {
 			if (allAwards.Count > 0) {
 				chosenAward = allAwards.Random();
 			} else {
-				chosenAward = new StatAward(sourceStat: null, awardText: "BEST AT: PARTICIPATING");
+				chosenAward = new StatAward(sourceStat: null, awardText: "BEST AT: <b>PARTICIPATING</b>");
 			}
 
 			awardText_.Text = chosenAward.AwardText;

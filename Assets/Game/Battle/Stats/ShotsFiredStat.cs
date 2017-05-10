@@ -31,11 +31,11 @@ namespace DT.Game.Battle.Stats {
 
 			IEnumerable<Player> otherPlayers = RegisteredPlayers.AllPlayers.Where(p => p != Player_);
 			if (otherPlayers.All(p => StatsManager.GetStatFor<ShotsFiredStat>(p).recordedShots_ < recordedShots_)) {
-				awards.Add(new StatAward(this, "TRIGGER HAPPY"));
+				awards.Add(new StatAward(this, "MOST <b>TRIGGER HAPPY</b>"));
 			}
 
 			if (otherPlayers.All(p => StatsManager.GetStatFor<ShotsFiredStat>(p).recordedShots_ > recordedShots_)) {
-				awards.Add(new StatAward(this, "PACIFIST"));
+				awards.Add(new StatAward(this, "<b>PACIFIST</b>"));
 			}
 
 			return awards;
