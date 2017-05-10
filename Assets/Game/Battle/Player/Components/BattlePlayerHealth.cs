@@ -21,12 +21,16 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Public Interface
+		public object KnockbackDamageSource {
+			get { return knockbackDamageSource_; }
+		}
+
 		public void Kill() {
 			invulnerable_ = false;
 			TakeDamage(kMaxDamage, forward: Vector3.zero);
 		}
 
-		public void TakeDamage(int damage, Vector3 forward) {
+		public void TakeDamage(int damage, Vector3 forward, object damageSource = null) {
 			if (health_ <= 0) {
 				return;
 			}
@@ -63,6 +67,9 @@ namespace DT.Game.Battle.Players {
 				AudioConstants.Instance.PlayerDeath.PlaySFX();
 				BattleCamera.Shake(1.0f);
 				OnBattlePlayerDied.Invoke(Player_);
+				if (damageSource != null) {
+					GameNotifications.OnBattlePlayerDiedWithSource.Invoke(Player_, damageSource);
+				}
 
 				ObjectPoolManager.Recycle(this);
 			} else {
@@ -72,7 +79,7 @@ namespace DT.Game.Battle.Players {
 					multiplier = 0.5f;
 				}
 
-				Knockback(forward);
+				Knockback(forward, damageSource);
 				AudioConstants.Instance.PlayerHurt.PlaySFX(volumeScale: multiplier);
 				BattleCamera.Shake(0.55f * multiplier);
 			}
@@ -121,6 +128,8 @@ namespace DT.Game.Battle.Players {
 		private bool handleCollisions_ = true;
 
 		private CoroutineWrapper invulnerableCoroutine_;
+		private CoroutineWrapper knockbackClearCoroutine_;
+		private object knockbackDamageSource_;
 
 		private readonly HashSet<Laser> lasersHit_ = new HashSet<Laser>();
 
@@ -156,7 +165,7 @@ namespace DT.Game.Battle.Players {
 
 			Vector3 forward = laser.transform.forward;
 
-			TakeDamage(damage, forward);
+			TakeDamage(damage, forward, damageSource: laser);
 			laser.HandleHit();
 		}
 
@@ -176,9 +185,21 @@ namespace DT.Game.Battle.Players {
 			}
 		}
 
-		private void Knockback(Vector3 forward) {
+		private void Knockback(Vector3 forward, object damageSource = null) {
+			if (knockbackClearCoroutine_ != null) {
+				knockbackClearCoroutine_.Cancel();
+				knockbackClearCoroutine_ = null;
+			}
+
+			knockbackDamageSource_ = damageSource;
 			Vector3 endPosition = Player_.Rigidbody.position + (KnockbackMultiplier * kDamageKnockbackDistance * forward);
-			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration * KnockbackMultiplier, EaseType.CubicEaseOut);
+			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration * KnockbackMultiplier, EaseType.CubicEaseOut, onFinishedCallback: () => {
+				// why do we have another delay? Because dashing pauses checking if off ground,
+				// we need to persist the source of knockback for a little bit
+				knockbackClearCoroutine_ = CoroutineWrapper.DoAfterDelay(0.1f, () => {
+					knockbackDamageSource_ = null;
+				});
+			});
 		}
 
 		private void SetInvulnerableFor(float time) {

@@ -10,6 +10,7 @@ using DT.Game.Battle.Players;
 namespace DT.Game {
 	public class BattlePlayerLaserEvent : UnityEvent<Laser, BattlePlayer> {}
 	public class BattlePlayerEvent : UnityEvent<BattlePlayer> {}
+	public class BattlePlayerObjectEvent : UnityEvent<BattlePlayer, Object> {}
 
 	// first is battle player was hit, second was battle player that hit the other player
 	public class BattlePlayerDashHitEvent : UnityEvent<BattlePlayer, BattlePlayer> {}
@@ -21,5 +22,7 @@ namespace DT.Game {
 		public static BattlePlayerLaserEvent OnBattlePlayerLaserHit = new BattlePlayerLaserEvent();
 		public static BattlePlayerEvent OnBattlePlayerShootLaser = new BattlePlayerEvent();
 		public static BattlePlayerDashHitEvent OnBattlePlayerDashHit = new BattlePlayerDashHitEvent();
+		public static BattlePlayerObjectEvent OnBattlePlayerDiedWithSource = new BattlePlayerObjectEvent();
+		public static BattlePlayerEvent OnBattlePlayerFellOffGround = new BattlePlayerEvent();
 	}
 }

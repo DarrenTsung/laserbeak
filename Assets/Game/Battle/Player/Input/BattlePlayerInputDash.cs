@@ -82,7 +82,7 @@ namespace DT.Game.Battle.Players {
 
 			Vector3 forward = Player_.Rigidbody.velocity;
 			forward = forward.normalized;
-			battlePlayer.Health.TakeDamage(DashDamage, forward);
+			battlePlayer.Health.TakeDamage(DashDamage, forward, damageSource: Player_);
 			Player_.Health.TakeDamage(0, -forward);
 
 			GameNotifications.OnBattlePlayerDashHit.Invoke(battlePlayer, Player_);

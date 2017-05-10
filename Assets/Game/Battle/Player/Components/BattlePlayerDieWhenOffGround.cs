@@ -100,6 +100,9 @@ namespace DT.Game.Battle.Players {
 			int resultCount = GetRaycastPositions().Sum(pos => CollisionsAtPosition(pos));
 			if (checkDeath_ && resultCount <= 0) {
 				enabled_ = false;
+
+				GameNotifications.OnBattlePlayerFellOffGround.Invoke(Player_);
+
 				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
 				Player_.Rigidbody.constraints = RigidbodyConstraints.None;
 				Player_.Rigidbody.drag = 0.0f;

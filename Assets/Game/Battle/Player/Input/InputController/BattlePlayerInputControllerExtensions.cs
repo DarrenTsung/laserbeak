@@ -10,7 +10,7 @@ using InControl;
 namespace DT.Game.Battle.Players {
 	 public static class BattlePlayerInputControllerExtensions {
 		// PRAGMA MARK - Public Interface
-		public static void MoveTo(this BattlePlayerInputController controller, BattlePlayer player, Vector3 endPosition, float duration, EaseType easeType) {
+		public static void MoveTo(this BattlePlayerInputController controller, BattlePlayer player, Vector3 endPosition, float duration, EaseType easeType, Action onFinishedCallback = null) {
 			Vector3 startPosition = player.Rigidbody.position;
 			float oldDrag = player.Rigidbody.drag;
 
@@ -21,6 +21,9 @@ namespace DT.Game.Battle.Players {
 				player.Rigidbody.drag = oldDrag;
 				controller.EnableInput(BattlePlayerInputController.PriorityKey.Movement);
 				controller.CancelAnyAnimatedMovements();
+				if (onFinishedCallback != null) {
+					onFinishedCallback.Invoke();
+				}
 			});
 			controller.RegisterAnimatedMovement(coroutine);
 		}
