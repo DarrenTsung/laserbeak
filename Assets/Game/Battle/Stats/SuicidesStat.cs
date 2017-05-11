@@ -66,8 +66,6 @@ namespace DT.Game.Battle.Stats {
 				return;
 			}
 
-			Debug.Log("BATTLE PLAYER FELL OFF THE GROUND!");
-			Debug.Log("battlePlayer.Health.KnockbackDamageSource: " + battlePlayer.Health.KnockbackDamageSource);
 			if (battlePlayer.Health.KnockbackDamageSource != null) {
 				// need to check for my own laser hitting me + pushing me off the edge
 				if (battlePlayer.Health.KnockbackDamageSource is Laser) {
