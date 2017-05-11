@@ -70,7 +70,6 @@ namespace DT.Game.Battle.Stats {
 				// need to check for my own laser hitting me + pushing me off the edge
 				if (battlePlayer.Health.KnockbackDamageSource is Laser) {
 					Laser knockbackLaser = battlePlayer.Health.KnockbackDamageSource as Laser;
-					Debug.Log("LASER PUSHED");
 
 					// if laser source is not self - then someone else pushed me off the edge
 					if (knockbackLaser.BattlePlayer != battlePlayer) {
@@ -78,7 +77,6 @@ namespace DT.Game.Battle.Stats {
 					}
 				} else if (battlePlayer.Health.KnockbackDamageSource is BattlePlayer) {
 					BattlePlayer knockbackPlayer = battlePlayer.Health.KnockbackDamageSource as BattlePlayer;
-					Debug.Log("PLAYER PUSHED");
 
 					if (knockbackPlayer == battlePlayer) {
 						Debug.LogWarning("How did battlePlayer knockback themselves?? Investigate please.");
