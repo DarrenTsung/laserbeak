@@ -76,6 +76,8 @@ namespace DT.Game {
 		public GameObject LevelEditorPrefab;
 		public GameObject LevelEditorCursorPrefab;
 
+		public GameObject[] LevelEditorObjects;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

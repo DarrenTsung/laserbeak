@@ -7,12 +7,16 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle;
+
 namespace DT.Game.LevelEditor {
 	public class LevelEditorState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
 		private LevelEditor levelEditor_;
 
 		protected override void OnStateEntered() {
+			ArenaManager.Instance.CleanupLoadedArena();
+
 			InputDevice inputDevice = InputManager.Devices.First();
 
 			levelEditor_ = ObjectPoolManager.Create<LevelEditor>(GamePrefabs.Instance.LevelEditorPrefab);

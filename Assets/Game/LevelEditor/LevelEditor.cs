@@ -12,19 +12,25 @@ namespace DT.Game.LevelEditor {
 		public void Init(InputDevice inputDevice) {
 			cursor_ = ObjectPoolManager.Create<LevelEditorCursor>(GamePrefabs.Instance.LevelEditorCursorPrefab, parent: this.gameObject);
 			cursor_.Init(inputDevice);
+
+			GameObject previewObject = new GameObject("ObjectPreview");
+			previewObject.transform.SetParent(this.transform);
+			objectPreview_ = previewObject.AddComponent<ObjectPreview>();
+			objectPreview_.Init(cursor_);
+			objectPreview_.SetPreviewObject(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
 		}
 
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			if (cursor_ != null) {
-				ObjectPoolManager.Recycle(cursor_);
-				cursor_ = null;
-			}
+			this.gameObject.RecycleAllChildren();
+			cursor_ = null;
+			objectPreview_ = null;
 		}
 
 
 		// PRAGMA MARK - Internal
 		private LevelEditorCursor cursor_;
+		private ObjectPreview objectPreview_;
 	}
 }

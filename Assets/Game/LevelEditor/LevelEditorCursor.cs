@@ -9,6 +9,9 @@ using InControl;
 
 namespace DT.Game.LevelEditor {
 	public class LevelEditorCursor : MonoBehaviour, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Public Interface
+		public event Action OnMoved = delegate {};
+
 		public void Init(InputDevice inputDevice) {
 			inputDevice_ = inputDevice;
 		}
@@ -34,7 +37,11 @@ namespace DT.Game.LevelEditor {
 			newPosition = newPosition.SetX(Mathf.Clamp(newPosition.x, -LevelEditorConstants.kArenaHalfWidth, LevelEditorConstants.kArenaHalfWidth));
 			newPosition = newPosition.SetZ(Mathf.Clamp(newPosition.z, -LevelEditorConstants.kArenaHalfLength, LevelEditorConstants.kArenaHalfLength));
 
+			Vector3 oldPosition = this.transform.position;
 			this.transform.position = newPosition;
+			if (oldPosition != this.transform.position) {
+				OnMoved.Invoke();
+			}
 		}
 	}
 }

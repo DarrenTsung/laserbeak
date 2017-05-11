@@ -10,6 +10,10 @@ using InControl;
 namespace DT.Game.Battle {
 	public class ArenaManager : Singleton<ArenaManager> {
 		// PRAGMA MARK - Public Interface
+		public Arena LoadedArena {
+			get { return loadedArena_; }
+		}
+
 		public void LoadRandomArena() {
 			ArenaConfig config = arenas_.Random();
 			LoadArena(config);
@@ -20,8 +24,12 @@ namespace DT.Game.Battle {
 			loadedArena_ = new Arena(ObjectPoolManager.Create(arenaConfig.Prefab, parent: this.gameObject));
 		}
 
-		public Arena LoadedArena {
-			get { return loadedArena_; }
+		public void CleanupLoadedArena() {
+			if (loadedArena_ != null) {
+				ObjectPoolManager.Recycle(loadedArena_.GameObject);
+				loadedArena_.Dispose();
+				loadedArena_ = null;
+			}
 		}
 
 
@@ -30,13 +38,5 @@ namespace DT.Game.Battle {
 		private ArenaConfig[] arenas_;
 
 		private Arena loadedArena_;
-
-		private void CleanupLoadedArena() {
-			if (loadedArena_ != null) {
-				ObjectPoolManager.Recycle(loadedArena_.GameObject);
-				loadedArena_.Dispose();
-				loadedArena_ = null;
-			}
-		}
 	}
 }
