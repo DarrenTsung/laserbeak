@@ -17,6 +17,10 @@ namespace DT.Game {
 			animator_.SetTrigger("GoToPlayerCustomization");
 		}
 
+		public void GoToLevelEditor() {
+			animator_.SetTrigger("GoToLevelEditor");
+		}
+
 		public void HandleBattleFinished() {
 			animator_.SetTrigger("BattleFinished");
 		}

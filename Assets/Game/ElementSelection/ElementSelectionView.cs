@@ -21,33 +21,15 @@ namespace DT.Game.ElementSelection {
 
 		public void Init(Player player, GameObject elementsContainer, ISelectable startSelectable = null) {
 			player_ = player;
+			inputDevices_ = new List<InputDevice>() { player_.InputDevice };
 
-			foreach (var del in elementsContainer.GetComponentsInChildren<ISelectionViewDelegate>()) {
-				del.HandleSelectionView(this);
-			}
+			Init(elementsContainer, startSelectable);
+		}
 
-			selectables_ = elementsContainer.GetComponentsInChildren<ISelectable>();
-			if (selectables_.Length <= 0) {
-				Debug.LogError("ElementSelectionView - needs selectables??");
-			}
+		public void Init(IEnumerable<InputDevice> inputDevices, GameObject elementsContainer, ISelectable startSelectable = null) {
+			inputDevices_ = inputDevices;
 
-			CoroutineWrapper.DoAtEndOfFrame(() => {
-				selectorTransform_ = ObjectPoolManager.CreateView(GamePrefabs.Instance.SelectorPrefab).GetComponent<RectTransform>();
-
-				// hacky way to get a color
-				selectorTransform_.GetComponentInChildren<Image>().color = GameConstants.Instance.PlayerSkins[player_.Index()].BodyColor;
-
-				if (startSelectable != null) {
-					CurrentSelectable_ = startSelectable;
-				} else {
-					DefaultSelectableMarker defaultSelectableMarker = elementsContainer.GetComponentInChildren<DefaultSelectableMarker>();
-					if (defaultSelectableMarker != null) {
-						CurrentSelectable_ = defaultSelectableMarker.GetComponent<ISelectable>();
-					} else {
-						CurrentSelectable_ = selectables_[0];
-					}
-				}
-			});
+			Init(elementsContainer, startSelectable);
 		}
 
 
@@ -57,6 +39,9 @@ namespace DT.Game.ElementSelection {
 				ObjectPoolManager.Recycle(selectorTransform_.gameObject);
 				selectorTransform_ = null;
 			}
+
+			player_ = null;
+			inputDevices_ = null;
 		}
 
 
@@ -68,6 +53,8 @@ namespace DT.Game.ElementSelection {
 
 		private RectTransform selectorTransform_;
 		private Player player_;
+
+		private IEnumerable<InputDevice> inputDevices_ = null;
 
 		private float delay_ = 0.0f;
 
@@ -88,22 +75,59 @@ namespace DT.Game.ElementSelection {
 			}
 		}
 
+		private void Init(GameObject elementsContainer, ISelectable startSelectable) {
+			foreach (var del in elementsContainer.GetComponentsInChildren<ISelectionViewDelegate>()) {
+				del.HandleSelectionView(this);
+			}
+
+			selectables_ = elementsContainer.GetComponentsInChildren<ISelectable>();
+			if (selectables_.Length <= 0) {
+				Debug.LogError("ElementSelectionView - needs selectables??");
+			}
+
+			CoroutineWrapper.DoAtEndOfFrame(() => {
+				selectorTransform_ = ObjectPoolManager.CreateView(GamePrefabs.Instance.SelectorPrefab).GetComponent<RectTransform>();
+
+				if (player_ != null) {
+					// hacky way to get a color
+					selectorTransform_.GetComponentInChildren<Image>().color = GameConstants.Instance.PlayerSkins[player_.Index()].BodyColor;
+				}
+
+				if (startSelectable != null) {
+					CurrentSelectable_ = startSelectable;
+				} else {
+					DefaultSelectableMarker defaultSelectableMarker = elementsContainer.GetComponentInChildren<DefaultSelectableMarker>();
+					if (defaultSelectableMarker != null) {
+						CurrentSelectable_ = defaultSelectableMarker.GetComponent<ISelectable>();
+					} else {
+						CurrentSelectable_ = selectables_[0];
+					}
+				}
+			});
+		}
+
 		private void Update() {
-			if (InputUtil.WasPositivePressedFor(player_.InputDevice)) {
+			if (inputDevices_ == null) {
+				return;
+			}
+
+			if (inputDevices_.Any(i => InputUtil.WasPositivePressedFor(i))) {
 				OnSelectableSelected.Invoke(currentSelectable_);
 				currentSelectable_.HandleSelected();
 			}
 
-			UpdateMovement();
+			foreach (InputDevice inputDevice in inputDevices_) {
+				UpdateMovement(inputDevice);
+			}
 		}
 
-		private void UpdateMovement() {
+		private void UpdateMovement(InputDevice inputDevice) {
 			delay_ -= Time.deltaTime;
 
 			bool resetDelay = false;
-			if (delay_ <= 0.0f && Mathf.Abs(player_.InputDevice.LeftStick.X) > kIntentThreshold) {
+			if (delay_ <= 0.0f && Mathf.Abs(inputDevice.LeftStick.X) > kIntentThreshold) {
 				// placeholder
-				if (player_.InputDevice.LeftStick.X > 0) {
+				if (inputDevice.LeftStick.X > 0) {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMax <= other.xMin);
 				} else {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMin >= other.xMax);
@@ -112,9 +136,9 @@ namespace DT.Game.ElementSelection {
 				resetDelay = true;
 			}
 
-			if (delay_ <= 0.0f && Mathf.Abs(player_.InputDevice.LeftStick.Y) > kIntentThreshold) {
+			if (delay_ <= 0.0f && Mathf.Abs(inputDevice.LeftStick.Y) > kIntentThreshold) {
 				// placeholder
-				if (player_.InputDevice.LeftStick.Y > 0) {
+				if (inputDevice.LeftStick.Y > 0) {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMax <= other.yMin);
 				} else {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMin >= other.yMax);
