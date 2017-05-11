@@ -14,6 +14,10 @@ namespace DTObjectPoolManager {
 				renderer.enabled = true;
 			}
 
+			foreach (Collider collider in colliders_) {
+				collider.enabled = true;
+			}
+
 			foreach (Behaviour behaviour in behavioursToModify_) {
 				behaviour.enabled = true;
 			}
@@ -28,6 +32,10 @@ namespace DTObjectPoolManager {
 
 			foreach (Renderer renderer in renderers_) {
 				renderer.enabled = false;
+			}
+
+			foreach (Collider collider in colliders_) {
+				collider.enabled = false;
 			}
 
 			foreach (Behaviour behaviour in behavioursToModify_) {
@@ -66,6 +74,7 @@ namespace DTObjectPoolManager {
 
 		// NOTE (darren): renderer is not a behaviour
 		private Renderer[] renderers_;
+		private Collider[] colliders_;
 		private Behaviour[] behavioursToModify_;
 
 		private void Awake() {
@@ -73,13 +82,13 @@ namespace DTObjectPoolManager {
 			cleanupSubscribers_ = this.GetDepthSortedComponentsInChildren<IRecycleCleanupSubscriber>(greatestDepthFirst: true);
 
 			renderers_ = GetComponentsInChildren<Renderer>();
+			colliders_ = GetComponentsInChildren<Collider>();
 
 			List<Behaviour> behaviours = new List<Behaviour>();
 			behaviours.AddRange(GetComponentsInChildren<Canvas>());
 			behaviours.AddRange(GetComponentsInChildren<Collider2D>());
 			behaviours.AddRange(GetComponentsInChildren<Light>());
 			behaviours.AddRange(GetComponentsInChildren<Animator>());
-
 			behavioursToModify_ = behaviours.ToArray();
 		}
 

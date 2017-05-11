@@ -30,6 +30,7 @@ namespace DT.Game.LevelEditor {
 			foreach (var collider in previewObject_.GetComponentsInChildren<Collider>()) {
 				collider.enabled = false;
 			}
+
 			RefreshPreviewObjectValidity();
 		}
 
