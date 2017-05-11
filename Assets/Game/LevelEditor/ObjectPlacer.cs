@@ -8,7 +8,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.LevelEditor {
-	public class ObjectPreview : MonoBehaviour, IRecycleCleanupSubscriber {
+	public class ObjectPlacer : MonoBehaviour, IRecycleCleanupSubscriber {
 		public void Init(DynamicArenaData dynamicArenaData, InputDevice inputDevice, LevelEditorCursor cursor) {
 			dynamicArenaData_ = dynamicArenaData;
 			inputDevice_ = inputDevice;
@@ -19,7 +19,7 @@ namespace DT.Game.LevelEditor {
 			RefreshPosition();
 		}
 
-		public void SetPreviewObject(GameObject prefab) {
+		public void SetObjectToPlace(GameObject prefab) {
 			if (prefab == null) {
 				Debug.LogWarning("Cannot set preview object of null object!");
 				return;

@@ -15,11 +15,11 @@ namespace DT.Game.LevelEditor {
 			cursor_ = ObjectPoolManager.Create<LevelEditorCursor>(GamePrefabs.Instance.LevelEditorCursorPrefab, parent: this.gameObject);
 			cursor_.Init(inputDevice);
 
-			GameObject previewObject = new GameObject("ObjectPreview");
+			GameObject previewObject = new GameObject("ObjectPlacer");
 			previewObject.transform.SetParent(this.transform);
-			objectPreview_ = previewObject.AddComponent<ObjectPreview>();
+			objectPreview_ = previewObject.AddComponent<ObjectPlacer>();
 			objectPreview_.Init(dynamicArenaData_, inputDevice, cursor_);
-			objectPreview_.SetPreviewObject(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
+			objectPreview_.SetObjectToPlace(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
 		}
 
 
@@ -43,7 +43,7 @@ namespace DT.Game.LevelEditor {
 		private DynamicArenaView dynamicArenaView_;
 
 		private LevelEditorCursor cursor_;
-		private ObjectPreview objectPreview_;
+		private ObjectPlacer objectPreview_;
 
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
 	}
