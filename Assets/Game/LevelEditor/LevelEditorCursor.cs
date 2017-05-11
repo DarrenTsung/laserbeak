@@ -24,7 +24,7 @@ namespace DT.Game.LevelEditor {
 
 
 		// PRAGMA MARK - Internal
-		private const float kCameraSpeed = 0.6f;
+		private const float kCursorSpeed = 0.3f;
 
 		private InputDevice inputDevice_;
 
@@ -33,7 +33,7 @@ namespace DT.Game.LevelEditor {
 				return;
 			}
 
-			Vector3 newPosition = this.transform.position + (inputDevice_.LeftStick.Value.Vector3XZValue() * kCameraSpeed);
+			Vector3 newPosition = this.transform.position + (inputDevice_.LeftStick.Value.Vector3XZValue() * kCursorSpeed);
 			newPosition = newPosition.SetX(Mathf.Clamp(newPosition.x, -LevelEditorConstants.kArenaHalfWidth, LevelEditorConstants.kArenaHalfWidth));
 			newPosition = newPosition.SetZ(Mathf.Clamp(newPosition.z, -LevelEditorConstants.kArenaHalfHeight, LevelEditorConstants.kArenaHalfHeight));
 

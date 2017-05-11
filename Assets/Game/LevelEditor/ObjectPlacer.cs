@@ -50,8 +50,6 @@ namespace DT.Game.LevelEditor {
 
 
 		// PRAGMA MARK - Internal
-		private const float kPressedLengthToScale = 0.2f;
-
 		private DynamicArenaData dynamicArenaData_;
 		private InputDevice inputDevice_;
 		private LevelEditorCursor cursor_;
