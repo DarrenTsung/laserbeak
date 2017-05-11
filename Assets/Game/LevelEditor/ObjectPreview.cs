@@ -9,9 +9,13 @@ using InControl;
 
 namespace DT.Game.LevelEditor {
 	public class ObjectPreview : MonoBehaviour, IRecycleCleanupSubscriber {
-		public void Init(LevelEditorCursor cursor) {
+		public void Init(DynamicArenaData dynamicArenaData, InputDevice inputDevice, LevelEditorCursor cursor) {
+			dynamicArenaData_ = dynamicArenaData;
+			inputDevice_ = inputDevice;
+
 			cursor_ = cursor;
 			cursor_.OnMoved += RefreshPosition;
+
 			RefreshPosition();
 		}
 
@@ -21,6 +25,7 @@ namespace DT.Game.LevelEditor {
 				return;
 			}
 
+			placablePrefab_ = prefab;
 			ObjectPoolManager.Create(prefab, parent: this.gameObject);
 		}
 
@@ -37,7 +42,20 @@ namespace DT.Game.LevelEditor {
 
 
 		// PRAGMA MARK - Internal
+		private DynamicArenaData dynamicArenaData_;
+		private InputDevice inputDevice_;
 		private LevelEditorCursor cursor_;
+		private GameObject placablePrefab_;
+
+		private void Update() {
+			if (placablePrefab_ == null) {
+				return;
+			}
+
+			if (inputDevice_.Action3.WasReleased) {
+				dynamicArenaData_.SerializeObject(placablePrefab_, this.transform.position, Quaternion.identity, this.transform.localScale);
+			}
+		}
 
 		private void RefreshPosition() {
 			// snap onto grid - assume preview object is 1x1 for now
