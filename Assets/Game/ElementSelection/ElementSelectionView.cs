@@ -111,13 +111,13 @@ namespace DT.Game.ElementSelection {
 				return;
 			}
 
+			foreach (InputDevice inputDevice in inputDevices_) {
+				UpdateMovement(inputDevice);
+			}
+
 			if (inputDevices_.Any(i => InputUtil.WasPositivePressedFor(i))) {
 				OnSelectableSelected.Invoke(currentSelectable_);
 				currentSelectable_.HandleSelected();
-			}
-
-			foreach (InputDevice inputDevice in inputDevices_) {
-				UpdateMovement(inputDevice);
 			}
 		}
 

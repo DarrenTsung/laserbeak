@@ -96,11 +96,11 @@ namespace DT.Game.Battle.Players {
 
 			if (chargingLaser_ != null) {
 				chargingLaser_.UpdateWithPercentage(percentCharged);
-				if (previousPercentCharged != 1.0f && percentCharged == 1.0f) {
+				if (!Mathf.Approximately(previousPercentCharged, 1.0f) && Mathf.Approximately(percentCharged, 1.0f)) {
 					fullyChargedParticle_ = ObjectPoolManager.Create<FullyChargedParticle>(fullyChargedParticlePrefab_, parent: chargingLaserContainer_);
 					fullyChargedParticle_.SetColor(Player_.Skin.LaserColor);
-					OnFullyCharged.Invoke(Player_);
 
+					OnFullyCharged.Invoke(Player_);
 					OnFullCharge.Invoke();
 				}
 			}

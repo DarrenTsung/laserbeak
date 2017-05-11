@@ -1,4 +1,6 @@
-﻿Shader "Hidden/SENaturalBloomAndDirtyLens" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Hidden/SENaturalBloomAndDirtyLens" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_Bloom0 ("Bloom0 (RGB)", 2D) = "black" {}
@@ -44,7 +46,7 @@
 		{
 			v2f_simple o;
 			
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
         	o.uv = float4(v.texcoord.xy, 1, 1);		
         	
         	#if UNITY_UV_STARTS_AT_TOP
@@ -116,7 +118,7 @@
 		{
 			v2f_tap o;
 
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
         	o.uv20 = half4(v.texcoord.xy + _MainTex_TexelSize.xy, 0.0, 0.0);				
 			o.uv21 = half4(v.texcoord.xy + _MainTex_TexelSize.xy * half2(-0.5h,-0.5h), 0.0, 0.0);	
 			o.uv22 = half4(v.texcoord.xy + _MainTex_TexelSize.xy * half2(0.5h,-0.5h), 0.0, 0.0);		
@@ -155,7 +157,7 @@
 		v2f_withBlurCoords8 vertBlurHorizontal (appdata_img v)
 		{
 			v2f_withBlurCoords8 o;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			
 			o.uv = half4(v.texcoord.xy,1,1);
 			o.offs = half4(_MainTex_TexelSize.xy * half2(1.0, 0.0) * _BlurSize,1,1);
@@ -166,7 +168,7 @@
 		v2f_withBlurCoords8 vertBlurVertical (appdata_img v)
 		{
 			v2f_withBlurCoords8 o;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			
 			o.uv = half4(v.texcoord.xy,1,1);
 			o.offs = half4(_MainTex_TexelSize.xy * half2(0.0, 1.0) * _BlurSize,1,1);
