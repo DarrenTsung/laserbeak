@@ -72,6 +72,9 @@ namespace DT.Game {
 		[Header("Scoring")]
 		public GameObject StatView;
 
+		[Header("Level Editors")]
+		public GameObject LevelEditorPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]
