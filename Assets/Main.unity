@@ -1290,6 +1290,8 @@ MonoBehaviour:
   StatView: {fileID: 1418376473286452, guid: 29337950e21d44aa082f706217cdc892, type: 2}
   LevelEditorPrefab: {fileID: 1313660554984734, guid: 09c753f399e434b10b2264e0bd86cc22,
     type: 2}
+  LevelEditorCursorPrefab: {fileID: 1032272098610160, guid: d6fa58ee5f2474569a67a6c059d05f58,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}

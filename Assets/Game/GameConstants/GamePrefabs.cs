@@ -74,6 +74,7 @@ namespace DT.Game {
 
 		[Header("Level Editors")]
 		public GameObject LevelEditorPrefab;
+		public GameObject LevelEditorCursorPrefab;
 
 
 		// PRAGMA MARK - Internal

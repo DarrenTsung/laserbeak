@@ -1,0 +1,40 @@
+using System;
+using System.Collections;
+using System.Linq;
+using UnityEngine;
+
+using DTAnimatorStateMachine;
+using DTObjectPoolManager;
+using InControl;
+
+namespace DT.Game.LevelEditor {
+	public class LevelEditorCursor : MonoBehaviour, IRecycleCleanupSubscriber {
+		public void Init(InputDevice inputDevice) {
+			inputDevice_ = inputDevice;
+		}
+
+
+		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
+		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			inputDevice_ = null;
+		}
+
+
+		// PRAGMA MARK - Internal
+		private const float kCameraSpeed = 0.6f;
+
+		private InputDevice inputDevice_;
+
+		private void Update() {
+			if (inputDevice_ == null) {
+				return;
+			}
+
+			Vector3 newPosition = this.transform.position + (inputDevice_.LeftStick.Value.Vector3XZValue() * kCameraSpeed);
+			newPosition = newPosition.SetX(Mathf.Clamp(newPosition.x, -LevelEditorConstants.kArenaHalfWidth, LevelEditorConstants.kArenaHalfWidth));
+			newPosition = newPosition.SetZ(Mathf.Clamp(newPosition.z, -LevelEditorConstants.kArenaHalfLength, LevelEditorConstants.kArenaHalfLength));
+
+			this.transform.position = newPosition;
+		}
+	}
+}
