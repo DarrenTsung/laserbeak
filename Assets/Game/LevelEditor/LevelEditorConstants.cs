@@ -13,7 +13,7 @@ namespace DT.Game.LevelEditor {
 		public const float kArenaLength = 20.0f;
 
 		public const float kArenaHalfWidth = kArenaWidth / 2.0f;
-		public const float kArenaHalfLength = kArenaLength / 2.0f;
+		public const float kArenaHalfHeight = kArenaLength / 2.0f;
 
 		public const float kGridSize = 1.0f;
 		public const float kHalfGridSize = kGridSize / 2.0f;

@@ -44,7 +44,6 @@ namespace DT.Game.Battle.Players {
 		private const int kCheckSampleCount = 5;
 
 		private const float kPenetrationLength = 0.3f;
-		private static int kLayerMask;
 
 		private const float kDeathDelay = 1.5f;
 
@@ -72,10 +71,6 @@ namespace DT.Game.Battle.Players {
 				}
 				return cachedOffsets_;
 			}
-		}
-
-		private void Awake() {
-			kLayerMask = LayerMask.GetMask("Platforms");
 		}
 
 		private void OnDrawGizmos() {
@@ -114,7 +109,7 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private int CollisionsAtPosition(Vector3 position) {
-			return Physics.RaycastNonAlloc(new Ray(position, -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: kLayerMask);
+			return Physics.RaycastNonAlloc(new Ray(position, -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: InGameConstants.PlatformsLayerMask);
 		}
 
 		private IEnumerable<Vector3> GetRaycastPositions() {

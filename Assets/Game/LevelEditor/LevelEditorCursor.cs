@@ -35,7 +35,7 @@ namespace DT.Game.LevelEditor {
 
 			Vector3 newPosition = this.transform.position + (inputDevice_.LeftStick.Value.Vector3XZValue() * kCameraSpeed);
 			newPosition = newPosition.SetX(Mathf.Clamp(newPosition.x, -LevelEditorConstants.kArenaHalfWidth, LevelEditorConstants.kArenaHalfWidth));
-			newPosition = newPosition.SetZ(Mathf.Clamp(newPosition.z, -LevelEditorConstants.kArenaHalfLength, LevelEditorConstants.kArenaHalfLength));
+			newPosition = newPosition.SetZ(Mathf.Clamp(newPosition.z, -LevelEditorConstants.kArenaHalfHeight, LevelEditorConstants.kArenaHalfHeight));
 
 			Vector3 oldPosition = this.transform.position;
 			this.transform.position = newPosition;

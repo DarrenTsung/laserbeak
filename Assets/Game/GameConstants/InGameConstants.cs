@@ -23,6 +23,16 @@ namespace DT.Game {
 
 		public static readonly HashSet<BattlePlayer> AllowedChargingLasersWhitelist = new HashSet<BattlePlayer>();
 
+		private static int? platformsLayerMask_;
+		public static int PlatformsLayerMask {
+			get {
+				if (platformsLayerMask_ == null) {
+					platformsLayerMask_ = LayerMask.GetMask("Platforms");
+				}
+				return platformsLayerMask_.Value;
+			}
+		}
+
 		public static bool IsAllowedToChargeLasers(BattlePlayer battlePlayer) {
 			if (AllowChargingLasers == false) {
 				return AllowedChargingLasersWhitelist.Contains(battlePlayer);
