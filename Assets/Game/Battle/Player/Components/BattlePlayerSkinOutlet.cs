@@ -28,9 +28,23 @@ namespace DT.Game.Battle.Players {
 		[SerializeField]
 		private Renderer[] bodyRenderers_;
 
+		[SerializeField]
+		private Renderer[] eyeRenderers_;
+
+		[SerializeField]
+		private Renderer[] beakRenderers_;
+
 		private void HandleSkinChanged() {
 			foreach (var renderer in bodyRenderers_) {
-				renderer.material.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
+				renderer.sharedMaterial = Player_.Skin.OpaqueBodyMaterial;
+			}
+
+			foreach (var renderer in eyeRenderers_) {
+				renderer.sharedMaterial = Player_.Skin.EyeMaterial;
+			}
+
+			foreach (var renderer in beakRenderers_) {
+				renderer.sharedMaterial = Player_.Skin.BeakMaterial;
 			}
 		}
 	}

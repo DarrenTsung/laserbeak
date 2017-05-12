@@ -91,7 +91,7 @@ namespace DT.Game.Battle.Players {
 				chargingLaser_ = null;
 			} else if (percentCharged > 0.0f && chargingLaser_ == null) {
 				chargingLaser_ = ObjectPoolManager.Create<ChargingLaser>(chargingLaserPrefab_, parent: chargingLaserContainer_);
-				chargingLaser_.SetColor(Player_.Skin.LaserColor);
+				chargingLaser_.SetColor(Player_.Skin.LaserColor, Player_.Skin.LaserMaterial);
 			}
 
 			if (chargingLaser_ != null) {

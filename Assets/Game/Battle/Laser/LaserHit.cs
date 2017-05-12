@@ -16,7 +16,7 @@ namespace DT.Game.Battle.Lasers {
 
 			light_.color = color;
 			mistParticleSystem_.SetStartColor(color);
-			particleSystemRenderer_.material.SetColor("_EmissionColor", color);
+			particleSystemRenderer_.sharedMaterial = laserMaterial;
 		}
 
 

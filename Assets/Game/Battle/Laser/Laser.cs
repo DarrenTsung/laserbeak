@@ -34,8 +34,7 @@ namespace DT.Game.Battle.Lasers {
 			BattleCamera.Shake(0.14f);
 
 			Color laserColor = battlePlayer.Skin.LaserColor;
-			laserRenderer_.material.SetColor("_EmissionColor", laserColor);
-			laserRenderer_.material.SetColor("_DiffuseColor", laserColor);
+			laserRenderer_.sharedMaterial = battlePlayer.Skin.LaserMaterial;
 			light_.color = laserColor;
 
 			GameNotifications.OnBattlePlayerShootLaser.Invoke(battlePlayer);

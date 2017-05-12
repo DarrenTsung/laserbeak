@@ -36,8 +36,14 @@ namespace DT.Game {
 		public BattlePlayerSkin[] PlayerSkins;
 		public BattlePlayerSkin EnemySkin;
 
+		[Header("Materials")]
 		public Material PlayerOpaqueMaterial;
 		public Material PlayerTransparentMaterial;
+
+		public Material EyeMaterial;
+		public Material BeakMaterial;
+
+		public Material LaserMaterial;
 
 
 		// PRAGMA MARK - Internal

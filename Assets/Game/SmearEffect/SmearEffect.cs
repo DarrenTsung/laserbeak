@@ -36,8 +36,8 @@ namespace DT.Game {
 
 		public Material SmearMaterial_ {
 			get {
-				if (smearMaterial_ == null || smearMaterial_ != renderer_.material) {
-					smearMaterial_ = renderer_.material;
+				if (smearMaterial_ == null || smearMaterial_ != renderer_.sharedMaterial) {
+					smearMaterial_ = renderer_.sharedMaterial;
 				}
 
 				return smearMaterial_;

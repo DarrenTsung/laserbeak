@@ -22,15 +22,12 @@ namespace DT.Game.Battle.Lasers {
 			humAudioSource_.volume = Easings.CubicEaseOut(percentage) * kHumMaxVolume;
 		}
 
-		public void SetColor(Color laserColor) {
-			laserRenderer_.material.SetColor("_EmissionColor", laserColor);
-			laserRenderer_.material.SetColor("_DiffuseColor", laserColor);
+		public void SetColor(Color laserColor, Material laserMaterial) {
+			var particleSystemRenderer = chargingParticleSystem_.GetComponent<ParticleSystemRenderer>();
+			particleSystemRenderer.sharedMaterial = laserMaterial;
+			laserRenderer_.sharedMaterial = laserMaterial;
 
 			pointLight_.color = laserColor;
-
-			Material particleSystemMaterial = chargingParticleSystem_.GetComponent<ParticleSystemRenderer>().material;
-			particleSystemMaterial.SetColor("_EmissionColor", laserColor);
-			particleSystemMaterial.SetColor("_DiffuseColor", laserColor);
 		}
 
 

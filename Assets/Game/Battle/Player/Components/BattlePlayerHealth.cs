@@ -57,12 +57,9 @@ namespace DT.Game.Battle.Players {
 				}
 
 				// Animate single material to batch
-				Material partMaterial = playerParts.GetComponentInChildren<Renderer>().material;
-				partMaterial.SetColor("_DiffuseColor", Player_.Skin.BodyColor);
+				SetEmissiveMaterialsFor(playerParts, Player_.Skin.OpaqueBodyMaterial);
 
-				SetEmissiveMaterialsFor(playerParts, partMaterial);
-
-				Material[] partMaterialArray = new Material[] { partMaterial };
+				Material[] partMaterialArray = new Material[] { Player_.Skin.OpaqueBodyMaterial };
 				AnimateDamageEmissionFor(partMaterialArray);
 				AudioConstants.Instance.PlayerDeath.PlaySFX();
 				BattleCamera.Shake(1.0f);
@@ -75,7 +72,7 @@ namespace DT.Game.Battle.Players {
 			} else {
 				float multiplier = 1.0f;
 				if (damage > 0) {
-					AnimateDamageEmissionFor(Player_.BodyRenderers.Select(r => r.material));
+					AnimateDamageEmissionFor(Player_.BodyRenderers.Select(r => r.sharedMaterial));
 					multiplier = 0.5f;
 				}
 

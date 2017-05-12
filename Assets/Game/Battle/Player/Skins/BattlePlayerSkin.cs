@@ -20,6 +20,26 @@ namespace DT.Game.Battle.Players {
 			get { return laserColor_; }
 		}
 
+		public Material OpaqueBodyMaterial {
+			get { return cachedOpaqueBodyMaterial_ ?? (cachedOpaqueBodyMaterial_ = CreateCachedMaterial(GameConstants.Instance.PlayerOpaqueMaterial, BodyColor)); }
+		}
+
+		public Material TransparentBodyMaterial {
+			get { return cachedTransparentBodyMaterial_ ?? (cachedTransparentBodyMaterial_ = CreateCachedMaterial(GameConstants.Instance.PlayerOpaqueMaterial, BodyColor)); }
+		}
+
+		public Material BeakMaterial {
+			get { return cachedBeakMaterial_ ?? (cachedBeakMaterial_ = CreateCachedMaterial(GameConstants.Instance.BeakMaterial)); }
+		}
+
+		public Material EyeMaterial {
+			get { return cachedEyeMaterial_ ?? (cachedEyeMaterial_ = CreateCachedMaterial(GameConstants.Instance.EyeMaterial)); }
+		}
+
+		public Material LaserMaterial {
+			get { return cachedLaserMaterial_ ?? (cachedLaserMaterial_ = CreateCachedMaterial(GameConstants.Instance.LaserMaterial, LaserColor, LaserColor)); }
+		}
+
 		public Sprite ThumbnailSprite;
 
 
@@ -28,5 +48,29 @@ namespace DT.Game.Battle.Players {
 		private Color bodyColor_;
 		[SerializeField]
 		private Color laserColor_;
+
+		[NonSerialized]
+		private Material cachedOpaqueBodyMaterial_ = null;
+		[NonSerialized]
+		private Material cachedTransparentBodyMaterial_ = null;
+		[NonSerialized]
+		private Material cachedBeakMaterial_ = null;
+		[NonSerialized]
+		private Material cachedEyeMaterial_ = null;
+		[NonSerialized]
+		private Material cachedLaserMaterial_ = null;
+
+		private Material CreateCachedMaterial(Material material, Color? diffuseColor = null, Color? emissionColor = null) {
+			var cachedMaterial = new Material(material);
+			cachedMaterial.name = material.name + "(cached)";
+			cachedMaterial.enableInstancing = true;
+			if (diffuseColor != null) {
+				cachedMaterial.SetColor("_DiffuseColor", diffuseColor.Value);
+			}
+			if (emissionColor != null) {
+				cachedMaterial.SetColor("_EmissionColor", emissionColor.Value);
+			}
+			return cachedMaterial;
+		}
 	}
 }
