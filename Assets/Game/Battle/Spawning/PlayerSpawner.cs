@@ -87,6 +87,7 @@ namespace DT.Game.Battle {
 			}
 
 			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GamePrefabs.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity, parent: ArenaManager.Instance.LoadedArena.GameObject);
+			battlePlayer.gameObject.name = string.Format("BattlePlayer ({0})", player);
 			if (player.InputDevice != null) {
 				battlePlayer.Init(new InputDeviceDelegate(player.InputDevice), player.Skin);
 			} else {
