@@ -12,11 +12,20 @@ namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputBeakControl : BattlePlayerInputComponent {
 		// PRAGMA MARK - Internal
 		private const int kMaxSoundOffset = 3;
+		private const float kFlapDuration = 0.28f;
+
+		[Header("Outlets")]
+		[SerializeField]
+		private Transform leftWingTransform_;
+		[SerializeField]
+		private Transform rightWingTransform_;
+
 		private int soundOffset_ = 0;
-
 		private int count_ = 0;
-
 		private bool keepBeakOpen_ = false;
+
+		private Coroutine wingFlapCoroutine_;
+		private bool chainedWingFlap_ = false;
 
 		protected override void Cleanup() {
 			soundOffset_ = 0;
@@ -43,7 +52,7 @@ namespace DT.Game.Battle.Players {
 
 			if (InputDelegate_.LaserPressed && previouslyOpen == false) {
 				if (InGameConstants.EnableFlapping) {
-					Player_.Animator.SetTrigger("WingFlap");
+					WingFlap();
 				}
 
 				if (InGameConstants.EnableQuacking) {
@@ -64,6 +73,29 @@ namespace DT.Game.Battle.Players {
 			keepBeakOpen_ = true;
 			CoroutineWrapper.DoAfterDelay(duration, () => {
 				keepBeakOpen_ = false;
+			});
+		}
+
+		private void WingFlap() {
+			if (wingFlapCoroutine_ != null) {
+				chainedWingFlap_ = true;
+				return;
+			}
+
+			wingFlapCoroutine_ = this.DoEaseFor(kFlapDuration / 2.0f, EaseType.QuadraticEaseOut, (float p) => {
+				leftWingTransform_.localRotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Lerp(0.0f, -30.0f, p));
+				rightWingTransform_.localRotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Lerp(0.0f, 30.0f, p));
+			}, () => {
+				this.DoEaseFor(kFlapDuration / 2.0f, EaseType.QuadraticEaseIn, (float p) => {
+					leftWingTransform_.localRotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Lerp(-30.0f, 0.0f, p));
+					rightWingTransform_.localRotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Lerp(30.0f, 0.0f, p));
+				}, () => {
+					wingFlapCoroutine_ = null;
+					if (chainedWingFlap_) {
+						chainedWingFlap_ = false;
+						WingFlap();
+					}
+				});
 			});
 		}
 	}
