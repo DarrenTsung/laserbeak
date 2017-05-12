@@ -52,6 +52,8 @@ namespace DT.Game {
 			if (recentPositions_.Count > frameLag_) {
 				Vector3 previousPosition = recentPositions_.Dequeue();
 				SmearMaterial_.SetVector("_PrevPosition", previousPosition);
+			} else {
+				SmearMaterial_.SetVector("_PrevPosition", this.transform.position);
 			}
 
 			SmearMaterial_.SetVector("_Position", this.transform.position);
