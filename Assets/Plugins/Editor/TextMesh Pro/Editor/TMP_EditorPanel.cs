@@ -3,9 +3,9 @@
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
 
-using UnityEngine;
-using UnityEditor;
 using System.Collections;
+using UnityEditor;
+using UnityEngine;
 
 
 namespace TMPro.EditorUtilities
@@ -224,7 +224,7 @@ namespace TMPro.EditorUtilities
 
             // Get the UI Skin and Styles for the various Editors
             TMP_UIStyleManager.GetUIStyles();
-            
+
             m_textComponent = target as TextMeshPro;
             m_rectTransform = m_textComponent.rectTransform;
             m_targetMaterial = m_textComponent.fontSharedMaterial;
@@ -474,7 +474,7 @@ namespace TMPro.EditorUtilities
 
                 // Show auto sizing options
                 if (autoSizing_prop.boolValue)
-                {    
+                {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("Auto Size Options");
                     EditorGUIUtility.labelWidth = 24;
@@ -570,7 +570,7 @@ namespace TMPro.EditorUtilities
 
                 // TEXT WRAPPING & OVERFLOW
                 EditorGUI.BeginChangeCheck();
-               
+
                 rect = EditorGUILayout.GetControlRect(false);
                 EditorGUI.PrefixLabel(new Rect(rect.x, rect.y, 130, rect.height), new GUIContent("Wrapping & Overflow"));
                 rect.width = (rect.width - 130) / 2f;
@@ -719,7 +719,7 @@ namespace TMPro.EditorUtilities
                 float old_LabelWidth = EditorGUIUtility.labelWidth;
                 float old_fieldWidth = EditorGUIUtility.fieldWidth;
 
-                
+
                 // SORTING LAYERS
                 var sortingLayerNames = SortingLayerHelper.sortingLayerNames;
 
@@ -728,7 +728,7 @@ namespace TMPro.EditorUtilities
 
                 // Use the name to look up our array index into the names list
                 int oldLayerIndex = System.Array.IndexOf(sortingLayerNames, oldName);
-              
+
                 // Show the pop-up for the names
                 EditorGUIUtility.fieldWidth = 0f;
                 int newLayerIndex = EditorGUILayout.Popup(string.Empty, oldLayerIndex, sortingLayerNames, GUILayout.MinWidth(80f));
@@ -815,9 +815,9 @@ namespace TMPro.EditorUtilities
             */
 
             if (havePropertiesChanged)
-            {             
+            {
                 havePropertiesChanged_prop.boolValue = true;
-                havePropertiesChanged = false;              
+                havePropertiesChanged = false;
                 //m_updateManager.ScheduleObjectForUpdate(m_textMeshProScript);
             }
 
@@ -865,7 +865,7 @@ namespace TMPro.EditorUtilities
 
             // LEFT HANDLE
             Vector3 old_left = (handlePoints[0] + handlePoints[1]) * 0.5f;
-            Vector3 new_left = Handles.FreeMoveHandle(old_left, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_left = Handles.FreeMoveHandle(old_left, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             bool hasChanged = false;
             if (old_left != new_left)
             {
@@ -877,18 +877,18 @@ namespace TMPro.EditorUtilities
 
             // TOP HANDLE
             Vector3 old_top = (handlePoints[1] + handlePoints[2]) * 0.5f;
-            Vector3 new_top = Handles.FreeMoveHandle(old_top, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_top = Handles.FreeMoveHandle(old_top, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             if (old_top != new_top)
             {
                 float delta = old_top.y - new_top.y;
                 marginOffset.y += delta / lossyScale.y;
-                //Debug.Log("Top Margin H1:" + handlePoints[1] + "  H2:" + handlePoints[2]);   
+                //Debug.Log("Top Margin H1:" + handlePoints[1] + "  H2:" + handlePoints[2]);
                 hasChanged = true;
             }
 
             // RIGHT HANDLE
             Vector3 old_right = (handlePoints[2] + handlePoints[3]) * 0.5f;
-            Vector3 new_right = Handles.FreeMoveHandle(old_right, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_right = Handles.FreeMoveHandle(old_right, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             if (old_right != new_right)
             {
                 float delta = old_right.x - new_right.x;
@@ -899,7 +899,7 @@ namespace TMPro.EditorUtilities
 
             // BOTTOM HANDLE
             Vector3 old_bottom = (handlePoints[3] + handlePoints[0]) * 0.5f;
-            Vector3 new_bottom = Handles.FreeMoveHandle(old_bottom, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_bottom = Handles.FreeMoveHandle(old_bottom, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             if (old_bottom != new_bottom)
             {
                 float delta = old_bottom.y - new_bottom.y;
@@ -1103,7 +1103,7 @@ namespace TMPro.EditorUtilities
                 if (i == 0)
                 {
                     EditorGUIUtility.labelWidth = 20;
-                    GUI.enabled = properties[i] == fontSize_prop && autoSizing_prop.boolValue ? GUI.enabled = false : GUI.enabled = true; 
+                    GUI.enabled = properties[i] == fontSize_prop && autoSizing_prop.boolValue ? GUI.enabled = false : GUI.enabled = true;
                     EditorGUI.PropertyField(new Rect(rect.x - 20, rect.y, 80, rect.height), properties[i], new GUIContent("  "));
                     rect.x += rect.width;
                     GUI.enabled = true;
@@ -1143,7 +1143,7 @@ namespace TMPro.EditorUtilities
     private UndoPropertyModification[] OnUndoRedoEvent(UndoPropertyModification[] modifications)
     {
         int eventID = Undo.GetCurrentGroup();
-        PropertyModification modifiedProp = modifications[0].propertyModification;      
+        PropertyModification modifiedProp = modifications[0].propertyModification;
         System.Type targetType = modifiedProp.target.GetType();
 
         if (targetType == typeof(Material))
@@ -1151,10 +1151,10 @@ namespace TMPro.EditorUtilities
             //Debug.Log("Undo / Redo Event Registered in Editor Panel on Target: " + targetObject);
 
             //TMPro_EventManager.ON_MATERIAL_PROPERTY_CHANGED(true, targetObject as Material);
-            //EditorUtility.SetDirty(targetObject);        
+            //EditorUtility.SetDirty(targetObject);
         }
 
-        //string propertyPath = modifications[0].propertyModification.propertyPath;  
+        //string propertyPath = modifications[0].propertyModification.propertyPath;
         //if (propertyPath == "m_fontAsset")
         //{
             //int currentEvent = Undo.GetCurrentGroup();

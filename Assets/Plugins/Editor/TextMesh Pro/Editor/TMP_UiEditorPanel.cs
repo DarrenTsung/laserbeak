@@ -3,10 +3,10 @@
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
 
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
-using System.Collections;
 
 
 namespace TMPro.EditorUtilities
@@ -206,7 +206,7 @@ namespace TMPro.EditorUtilities
             raycastTarget_prop = serializedObject.FindProperty("m_RaycastTarget");
 
             margin_prop = serializedObject.FindProperty("m_margin");
-            
+
             //isMaskUpdateRequired_prop = serializedObject.FindProperty("isMaskUpdateRequired");
             //mask_prop = serializedObject.FindProperty("m_mask");
             //maskOffset_prop= serializedObject.FindProperty("m_maskOffset");
@@ -243,15 +243,15 @@ namespace TMPro.EditorUtilities
         {
             //Debug.Log("OnDisable() for GUIEditor Panel called.");
             Undo.undoRedoPerformed -= OnUndoRedo;
-            
+
             // Destroy material editor if one exists
             if (m_materialEditor != null)
             {
                 //Debug.Log("Destroying Inline Material Editor.");
                 DestroyImmediate(m_materialEditor);
             }
-            
-            //Undo.postprocessModifications -= OnUndoRedoEvent;  
+
+            //Undo.postprocessModifications -= OnUndoRedoEvent;
         }
 
 
@@ -481,7 +481,7 @@ namespace TMPro.EditorUtilities
 
                 // Show auto sizing options
                 if (autoSizing_prop.boolValue)
-                {    
+                {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PrefixLabel("Auto Size Options");
                     EditorGUIUtility.labelWidth = 24;
@@ -577,7 +577,7 @@ namespace TMPro.EditorUtilities
 
                 // TEXT WRAPPING & OVERFLOW
                 EditorGUI.BeginChangeCheck();
-               
+
                 rect = EditorGUILayout.GetControlRect(false);
                 EditorGUI.PrefixLabel(new Rect(rect.x, rect.y, 130, rect.height), new GUIContent("Wrapping & Overflow"));
                 rect.width = (rect.width - 130) / 2f;
@@ -748,7 +748,7 @@ namespace TMPro.EditorUtilities
                 EditorGUILayout.PropertyField(enableEscapeCharacterParsing_prop, new GUIContent("Parse Escape Characters"));
                 EditorGUILayout.PropertyField(useMaxVisibleDescender_prop, new GUIContent("Use Visible Descender"));
                 EditorGUILayout.EndHorizontal();
-                
+
                 EditorGUILayout.PropertyField(spriteAsset_prop, new GUIContent("Sprite Asset", "The Sprite Asset used when NOT specifically referencing one using <sprite=\"Sprite Asset Name\"."), true);
 
                 if (EditorGUI.EndChangeCheck())
@@ -774,14 +774,14 @@ namespace TMPro.EditorUtilities
 
             EditorGUILayout.Space();
 
-       
+
             // If a Custom Material Editor exists, we use it.
             if (m_targetMaterial != null) // m_canvasRenderer != null && m_canvasRenderer.GetMaterial() != null)
             {
                 Material mat = m_textComponent.fontSharedMaterial; // m_canvasRenderer.GetMaterial();
 
                 //Debug.Log(mat + "  " + m_targetMaterial);
-                
+
                 if (mat != m_targetMaterial)
                 {
                     // Destroy previous Material Instance
@@ -815,13 +815,13 @@ namespace TMPro.EditorUtilities
         }
 
 
-         
+
         private void DragAndDropGUI()
         {
             //Event evt = Event.current;
 
             //Rect dropArea = new Rect(m_inspectorStartRegion.x, m_inspectorStartRegion.y, m_inspectorEndRegion.width, m_inspectorEndRegion.y - m_inspectorStartRegion.y);
-           
+
             //switch (evt.type)
             //{
             //    case EventType.dragUpdated:
@@ -838,7 +838,7 @@ namespace TMPro.EditorUtilities
             //            // Do something
             //            Material mat = DragAndDrop.objectReferences[0] as Material;
             //            //Debug.Log("Drag-n-Drop Material is " + mat + ". Target Material is " + m_targetMaterial + ".  Canvas Material is " + m_uiRenderer.GetMaterial()  );
-                        
+
             //            // Check to make sure we have a valid material and that the font atlases match.
             //            if (!mat || mat == m_canvasRenderer.GetMaterial() || mat.GetTexture(ShaderUtilities.ID_MainTex).GetInstanceID() != m_textComponent.font.atlas.GetInstanceID())
             //            {
@@ -950,7 +950,7 @@ namespace TMPro.EditorUtilities
             m_rectTransform.GetWorldCorners(m_rectCorners);
             Vector4 marginOffset = m_textComponent.margin;
             Vector3 lossyScale = m_rectTransform.lossyScale;
-            
+
             handlePoints[0] = m_rectCorners[0] + m_rectTransform.TransformDirection(new Vector3(marginOffset.x * lossyScale.x, marginOffset.w * lossyScale.y, 0));
             handlePoints[1] = m_rectCorners[1] + m_rectTransform.TransformDirection(new Vector3(marginOffset.x * lossyScale.x, -marginOffset.y * lossyScale.y, 0));
             handlePoints[2] = m_rectCorners[2] + m_rectTransform.TransformDirection(new Vector3(-marginOffset.z * lossyScale.x, -marginOffset.y * lossyScale.y, 0));
@@ -964,7 +964,7 @@ namespace TMPro.EditorUtilities
 
             // LEFT HANDLE
             Vector3 old_left = (handlePoints[0] + handlePoints[1]) * 0.5f;
-            Vector3 new_left = Handles.FreeMoveHandle(old_left, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_left = Handles.FreeMoveHandle(old_left, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             bool hasChanged = false;
             if (old_left != new_left)
             {
@@ -976,18 +976,18 @@ namespace TMPro.EditorUtilities
 
             // TOP HANDLE
             Vector3 old_top = (handlePoints[1] + handlePoints[2]) * 0.5f;
-            Vector3 new_top = Handles.FreeMoveHandle(old_top, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_top = Handles.FreeMoveHandle(old_top, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             if (old_top != new_top)
             {
                 float delta = old_top.y - new_top.y;
                 marginOffset.y += delta / lossyScale.y;
-                //Debug.Log("Top Margin H1:" + handlePoints[1] + "  H2:" + handlePoints[2]);   
+                //Debug.Log("Top Margin H1:" + handlePoints[1] + "  H2:" + handlePoints[2]);
                 hasChanged = true;
             }
 
             // RIGHT HANDLE
             Vector3 old_right = (handlePoints[2] + handlePoints[3]) * 0.5f;
-            Vector3 new_right = Handles.FreeMoveHandle(old_right, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_right = Handles.FreeMoveHandle(old_right, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             if (old_right != new_right)
             {
                 float delta = old_right.x - new_right.x;
@@ -998,7 +998,7 @@ namespace TMPro.EditorUtilities
 
             // BOTTOM HANDLE
             Vector3 old_bottom = (handlePoints[3] + handlePoints[0]) * 0.5f;
-            Vector3 new_bottom = Handles.FreeMoveHandle(old_bottom, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotCap);
+            Vector3 new_bottom = Handles.FreeMoveHandle(old_bottom, Quaternion.identity, HandleUtility.GetHandleSize(m_rectTransform.position) * 0.05f, Vector3.zero, Handles.DotHandleCap);
             if (old_bottom != new_bottom)
             {
                 float delta = old_bottom.y - new_bottom.y;
@@ -1145,25 +1145,25 @@ namespace TMPro.EditorUtilities
         private UndoPropertyModification[] OnUndoRedoEvent(UndoPropertyModification[] modifications)
         {
             int eventID = Undo.GetCurrentGroup();
-            PropertyModification modifiedProp = modifications[0].propertyModification;      
+            PropertyModification modifiedProp = modifications[0].propertyModification;
             System.Type targetType = modifiedProp.target.GetType();
-              
+
             if (targetType == typeof(Material))
             {
                 //Debug.Log("Undo / Redo Event Registered in Editor Panel on Target: " + targetObject);
-           
+
                 //TMPro_EventManager.ON_MATERIAL_PROPERTY_CHANGED(true, targetObject as Material);
-                //EditorUtility.SetDirty(targetObject);        
+                //EditorUtility.SetDirty(targetObject);
             }
-  
-            //string propertyPath = modifications[0].propertyModification.propertyPath;  
+
+            //string propertyPath = modifications[0].propertyModification.propertyPath;
             //if (propertyPath == "m_fontAsset")
             //{
                 //int currentEvent = Undo.GetCurrentGroup();
                 //Undo.RecordObject(Selection.activeGameObject.renderer.sharedMaterial, "Font Asset Changed");
                 //Undo.CollapseUndoOperations(currentEvent);
                 //Debug.Log("Undo / Redo Event: Font Asset changed. Event ID:" + Undo.GetCurrentGroup());
-            
+
             //}
 
             //Debug.Log("Undo / Redo Event Registered in Editor Panel on Target: " + modifiedProp.propertyPath + "  Undo Event ID:" + eventID + "  Stored ID:" + TMPro_EditorUtility.UndoEventID);
