@@ -14,6 +14,13 @@ namespace DT.Game.Battle.Lasers {
 	public class ChargingLaser : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void UpdateWithPercentage(float percentage) {
+			// force beginning percentage to have no effects
+			if (percentage < kEffectPercentageStart) {
+				percentage = 0.0f;
+			} else {
+				percentage = (percentage - kEffectPercentageStart) / (1.0f - kEffectPercentageStart);
+			}
+
 			this.transform.localScale = new Vector3(percentage, percentage, percentage);
 			pointLight_.range = percentage * kLightRange;
 
@@ -49,6 +56,8 @@ namespace DT.Game.Battle.Lasers {
 
 
 		// PRAGMA MARK - Internal
+		private const float kEffectPercentageStart = 0.4f;
+
 		private const float kMaxParticleRateOverTime = 35.0f;
 		private const float kLightRange = 4.0f;
 
