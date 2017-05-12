@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 4035874682567088}
   - component: {fileID: 33362210111792640}
   - component: {fileID: 23594351018103230}
-  - component: {fileID: 114760534745764950}
   m_Layer: 9
   m_Name: Wing
   m_TagString: Untagged
@@ -108,7 +107,6 @@ GameObject:
   - component: {fileID: 4656510706781098}
   - component: {fileID: 33494712967061688}
   - component: {fileID: 23114773245817948}
-  - component: {fileID: 114534996994193850}
   m_Layer: 9
   m_Name: RightEye
   m_TagString: Untagged
@@ -255,7 +253,6 @@ GameObject:
   - component: {fileID: 4586036004169854}
   - component: {fileID: 33544352930573654}
   - component: {fileID: 23116548588411846}
-  - component: {fileID: 114389822822339552}
   m_Layer: 9
   m_Name: Wing
   m_TagString: Untagged
@@ -305,7 +302,6 @@ GameObject:
   - component: {fileID: 4486943034666612}
   - component: {fileID: 33260757553201188}
   - component: {fileID: 23607737029288758}
-  - component: {fileID: 114377805960980924}
   m_Layer: 9
   m_Name: Beak
   m_TagString: Untagged
@@ -1290,32 +1286,6 @@ MonoBehaviour:
     type: 2}
   chargingLaserContainer_: {fileID: 1434085983608032}
   chargedTime_: 0
---- !u!114 &114377805960980924
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1464095493266084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979a4b9c7b8a842c886915c3eee9166e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frameLag_: 1
-  renderer_: {fileID: 23607737029288758}
---- !u!114 &114389822822339552
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1384589803153310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979a4b9c7b8a842c886915c3eee9166e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frameLag_: 1
-  renderer_: {fileID: 23116548588411846}
 --- !u!114 &114480457925889696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1339,19 +1309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8727aa08245245f990783000359b0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114534996994193850
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1156603236783960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979a4b9c7b8a842c886915c3eee9166e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frameLag_: 1
-  renderer_: {fileID: 23114773245817948}
 --- !u!114 &114546773289834770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1430,19 +1387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashCollider_: {fileID: 65517162397241436}
   cooldownTimer_: 0
---- !u!114 &114760534745764950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1077022800164530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979a4b9c7b8a842c886915c3eee9166e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frameLag_: 1
-  renderer_: {fileID: 23594351018103230}
 --- !u!114 &114805160942632042
 MonoBehaviour:
   m_ObjectHideFlags: 1

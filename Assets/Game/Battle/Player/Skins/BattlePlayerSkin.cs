@@ -20,6 +20,10 @@ namespace DT.Game.Battle.Players {
 			get { return laserColor_; }
 		}
 
+		public Material BodyPartMaterial {
+			get { return cachedBodyPartMaterial_ ?? (cachedBodyPartMaterial_ = CreateCachedMaterial(GameConstants.Instance.PlayerOpaqueMaterial, BodyColor)); }
+		}
+
 		public Material OpaqueBodyMaterial {
 			get { return cachedOpaqueBodyMaterial_ ?? (cachedOpaqueBodyMaterial_ = CreateCachedMaterial(GameConstants.Instance.PlayerOpaqueMaterial, BodyColor)); }
 		}
@@ -36,6 +40,10 @@ namespace DT.Game.Battle.Players {
 			get { return cachedEyeMaterial_ ?? (cachedEyeMaterial_ = CreateCachedMaterial(GameConstants.Instance.EyeMaterial)); }
 		}
 
+		public Material SmearedLaserMaterial {
+			get { return cachedSmearedLaserMaterial_ ?? (cachedSmearedLaserMaterial_ = CreateCachedMaterial(GameConstants.Instance.LaserMaterial, LaserColor, LaserColor)); }
+		}
+
 		public Material LaserMaterial {
 			get { return cachedLaserMaterial_ ?? (cachedLaserMaterial_ = CreateCachedMaterial(GameConstants.Instance.LaserMaterial, LaserColor, LaserColor)); }
 		}
@@ -50,6 +58,8 @@ namespace DT.Game.Battle.Players {
 		private Color laserColor_;
 
 		[NonSerialized]
+		private Material cachedBodyPartMaterial_ = null;
+		[NonSerialized]
 		private Material cachedOpaqueBodyMaterial_ = null;
 		[NonSerialized]
 		private Material cachedTransparentBodyMaterial_ = null;
@@ -57,6 +67,8 @@ namespace DT.Game.Battle.Players {
 		private Material cachedBeakMaterial_ = null;
 		[NonSerialized]
 		private Material cachedEyeMaterial_ = null;
+		[NonSerialized]
+		private Material cachedSmearedLaserMaterial_ = null;
 		[NonSerialized]
 		private Material cachedLaserMaterial_ = null;
 

@@ -34,8 +34,9 @@ namespace DT.Game.Battle.Lasers {
 			BattleCamera.Shake(0.14f);
 
 			Color laserColor = battlePlayer.Skin.LaserColor;
-			laserRenderer_.sharedMaterial = battlePlayer.Skin.LaserMaterial;
+			laserRenderer_.sharedMaterial = battlePlayer.Skin.SmearedLaserMaterial;
 			light_.color = laserColor;
+			laserHitMaterial_ = battlePlayer.Skin.LaserMaterial;
 
 			GameNotifications.OnBattlePlayerShootLaser.Invoke(battlePlayer);
 		}
@@ -73,7 +74,7 @@ namespace DT.Game.Battle.Lasers {
 
 		public void HandleHit(bool destroy = true) {
 			LaserHit laserHit = ObjectPoolManager.Create<LaserHit>(laserHitParticlePrefab_, this.transform.position, this.transform.rotation, parent: BattleRecyclables.Instance);
-			laserHit.SetMaterial(laserRenderer_.material);
+			laserHit.SetMaterial(laserHitMaterial_);
 			if (destroy) {
 				ObjectPoolManager.Recycle(this.gameObject);
 			}
@@ -111,6 +112,8 @@ namespace DT.Game.Battle.Lasers {
 		private int ricochetCount_ = 0;
 		private readonly List<BattlePlayer> battlePlayerSources_ = new List<BattlePlayer>();
 		private Rigidbody rigidbody_;
+
+		private Material laserHitMaterial_;
 
 		private float SpeedMultiplier {
 			get; set;

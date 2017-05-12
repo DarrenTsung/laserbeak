@@ -57,9 +57,9 @@ namespace DT.Game.Battle.Players {
 				}
 
 				// Animate single material to batch
-				SetEmissiveMaterialsFor(playerParts, Player_.Skin.OpaqueBodyMaterial);
+				SetEmissiveMaterialsFor(playerParts, Player_.Skin.BodyPartMaterial);
 
-				Material[] partMaterialArray = new Material[] { Player_.Skin.OpaqueBodyMaterial };
+				Material[] partMaterialArray = new Material[] { Player_.Skin.BodyPartMaterial };
 				AnimateDamageEmissionFor(partMaterialArray);
 				AudioConstants.Instance.PlayerDeath.PlaySFX();
 				BattleCamera.Shake(1.0f);
