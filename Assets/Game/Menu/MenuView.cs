@@ -16,6 +16,10 @@ namespace DT.Game {
 		// PRAGMA MARK - Static
 		private static MenuView menuView_;
 
+		public static bool Showing {
+			get { return menuView_ != null; }
+		}
+
 		public static void Show(InputDevice inputDevice, string title, Dictionary<string, Action> menuItemMap) {
 			menuView_ = ObjectPoolManager.CreateView<MenuView>(GamePrefabs.Instance.MenuViewPrefab);
 			menuView_.Init(inputDevice, title, menuItemMap);

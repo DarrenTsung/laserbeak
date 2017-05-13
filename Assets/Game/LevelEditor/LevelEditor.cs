@@ -18,7 +18,7 @@ namespace DT.Game.LevelEditor {
 
 		public void Init(InputDevice inputDevice, Action exitCallback) {
 			cursorContextMenu_ = new CursorContextMenu(inputDevice, this);
-			levelEditorMenu_ = new LevelEditorMenu(inputDevice, exitCallback, SaveDataToEditor);
+			levelEditorMenu_ = new LevelEditorMenu(inputDevice, this, exitCallback, SaveDataToEditor);
 
 			dynamicArenaData_ = new DynamicArenaData();
 			undoHistory_ = new UndoHistory(dynamicArenaData_, inputDevice);
