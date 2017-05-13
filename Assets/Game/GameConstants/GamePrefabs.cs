@@ -80,6 +80,10 @@ namespace DT.Game {
 		public GameObject[] LevelEditorObjects;
 		public GameObject DynamicArenaObjectContainer;
 
+		[Header("Generic Menu")]
+		public GameObject MenuViewPrefab;
+		public GameObject MenuItemPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

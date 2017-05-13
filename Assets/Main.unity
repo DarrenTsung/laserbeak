@@ -1319,6 +1319,10 @@ MonoBehaviour:
   - {fileID: 1469350141857788, guid: 98e3f9daf94254bbf936533718eb3a9b, type: 2}
   DynamicArenaObjectContainer: {fileID: 1640466625818348, guid: 3c8716af44356488ea27342d7a54af9e,
     type: 2}
+  MenuViewPrefab: {fileID: 1363955355451658, guid: 51bf3459f7bfd425aa76450e6b763cb5,
+    type: 2}
+  MenuItemPrefab: {fileID: 1037448291318248, guid: 6015b764bd5df4a8880e1ea86d684b91,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}

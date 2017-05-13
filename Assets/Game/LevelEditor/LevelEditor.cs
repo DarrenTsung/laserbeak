@@ -10,7 +10,9 @@ using InControl;
 
 namespace DT.Game.LevelEditor {
 	public class LevelEditor : MonoBehaviour, IRecycleCleanupSubscriber {
-		public void Init(InputDevice inputDevice) {
+		public void Init(InputDevice inputDevice, Action exitCallback) {
+			levelEditorMenu_ = new LevelEditorMenu(inputDevice, exitCallback, SaveDataToEditor);
+
 			dynamicArenaData_ = new DynamicArenaData();
 			undoHistory_ = new UndoHistory(dynamicArenaData_, inputDevice);
 
@@ -41,6 +43,11 @@ namespace DT.Game.LevelEditor {
 				undoHistory_.Dispose();
 				undoHistory_ = null;
 			}
+
+			if (levelEditorMenu_ != null) {
+				levelEditorMenu_.Dispose();
+				levelEditorMenu_ = null;
+			}
 		}
 
 
@@ -52,7 +59,12 @@ namespace DT.Game.LevelEditor {
 		private LevelEditorCursor cursor_;
 		private ObjectPlacer objectPlacer_;
 		private UndoHistory undoHistory_;
+		private LevelEditorMenu levelEditorMenu_;
 
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
+
+		private void SaveDataToEditor() {
+			// TODO (darren): do this
+		}
 	}
 }

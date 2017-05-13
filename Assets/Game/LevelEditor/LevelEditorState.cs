@@ -20,7 +20,7 @@ namespace DT.Game.LevelEditor {
 			InputDevice inputDevice = InputManager.Devices.First();
 
 			levelEditor_ = ObjectPoolManager.Create<LevelEditor>(GamePrefabs.Instance.LevelEditorPrefab);
-			levelEditor_.Init(inputDevice);
+			levelEditor_.Init(inputDevice, ExitToMainMenu);
 		}
 
 		protected override void OnStateExited() {
@@ -28,6 +28,10 @@ namespace DT.Game.LevelEditor {
 				ObjectPoolManager.Recycle(levelEditor_);
 				levelEditor_ = null;
 			}
+		}
+
+		private void ExitToMainMenu() {
+			StateMachine_.GoToMainMenu();
 		}
 	}
 }
