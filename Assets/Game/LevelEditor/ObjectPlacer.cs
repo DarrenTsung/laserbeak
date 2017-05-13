@@ -52,6 +52,16 @@ namespace DT.Game.LevelEditor {
 
 
 		// PRAGMA MARK - Internal
+		[Header("Line Renderers")]
+		[SerializeField]
+		private LineRenderer topRightLineRenderer_;
+		[SerializeField]
+		private LineRenderer bottomRightLineRenderer_;
+		[SerializeField]
+		private LineRenderer bottomLeftLineRenderer_;
+		[SerializeField]
+		private LineRenderer topLeftLineRenderer_;
+
 		private DynamicArenaData dynamicArenaData_;
 		private UndoHistory undoHistory_;
 		private InputDevice inputDevice_;
@@ -113,6 +123,7 @@ namespace DT.Game.LevelEditor {
 			}
 
 			RefreshPreviewObjectValidity();
+			RefreshGuideLines();
 		}
 
 		private void RefreshPreviewObjectValidity() {
@@ -165,6 +176,40 @@ namespace DT.Game.LevelEditor {
 				snapped = snapped.SetZ(hintVector.z > 0.0f ? Mathf.Ceil(snapped.z) : Mathf.Floor(snapped.z));
 			}
 			return snapped;
+		}
+
+		private void RefreshGuideLines() {
+			// assumption is 1x1 block still
+			Vector3 minPoint = this.transform.position - (this.transform.localScale / 2.0f);
+			Vector3 maxPoint = this.transform.position + (this.transform.localScale / 2.0f);
+
+			minPoint = minPoint.SetY(0.0f);
+			maxPoint = maxPoint.SetY(0.0f);
+
+			Vector3 topRightPoint = maxPoint;
+			Vector3 topLeftPoint = maxPoint.SetX(minPoint.x);
+			Vector3 bottomLeftPoint = minPoint;
+			Vector3 bottomRightPoint = minPoint.SetX(maxPoint.x);
+
+			Vector3 gridTopRightPoint = topRightPoint.SetZ(LevelEditorConstants.kArenaHalfHeight);
+			Vector3 gridRightTopPoint = topRightPoint.SetX(LevelEditorConstants.kArenaHalfWidth);
+			topRightLineRenderer_.positionCount = 4;
+			topRightLineRenderer_.SetPositions(new Vector3[] { topRightPoint, gridTopRightPoint, topRightPoint, gridRightTopPoint });
+
+			Vector3 gridTopLeftPoint = topLeftPoint.SetZ(LevelEditorConstants.kArenaHalfHeight);
+			Vector3 gridLeftTopPoint = topLeftPoint.SetX(-LevelEditorConstants.kArenaHalfWidth);
+			topLeftLineRenderer_.positionCount = 4;
+			topLeftLineRenderer_.SetPositions(new Vector3[] { topLeftPoint, gridTopLeftPoint, topLeftPoint, gridLeftTopPoint });
+
+			Vector3 gridBottomRightPoint = bottomRightPoint.SetZ(-LevelEditorConstants.kArenaHalfHeight);
+			Vector3 gridRightBottomPoint = bottomRightPoint.SetX(LevelEditorConstants.kArenaHalfWidth);
+			bottomRightLineRenderer_.positionCount = 4;
+			bottomRightLineRenderer_.SetPositions(new Vector3[] { bottomRightPoint, gridBottomRightPoint, bottomRightPoint, gridRightBottomPoint });
+
+			Vector3 gridBottomLeftPoint = bottomLeftPoint.SetZ(-LevelEditorConstants.kArenaHalfHeight);
+			Vector3 gridLeftBottomPoint = bottomLeftPoint.SetX(-LevelEditorConstants.kArenaHalfWidth);
+			bottomLeftLineRenderer_.positionCount = 4;
+			bottomLeftLineRenderer_.SetPositions(new Vector3[] { bottomLeftPoint, gridBottomLeftPoint, bottomLeftPoint, gridLeftBottomPoint });
 		}
 	}
 }

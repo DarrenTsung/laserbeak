@@ -19,9 +19,7 @@ namespace DT.Game.LevelEditor {
 			cursor_ = ObjectPoolManager.Create<LevelEditorCursor>(GamePrefabs.Instance.LevelEditorCursorPrefab, parent: this.gameObject);
 			cursor_.Init(inputDevice);
 
-			GameObject placerObject = new GameObject("ObjectPlacer");
-			placerObject.transform.SetParent(this.transform);
-			objectPlacer_ = placerObject.AddComponent<ObjectPlacer>();
+			objectPlacer_ = ObjectPoolManager.Create<ObjectPlacer>(GamePrefabs.Instance.ObjectPlacerPrefab, parent: this.gameObject);
 			objectPlacer_.Init(dynamicArenaData_, undoHistory_, inputDevice, cursor_);
 			objectPlacer_.SetObjectToPlace(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
 		}
@@ -35,7 +33,7 @@ namespace DT.Game.LevelEditor {
 			}
 
 			if (objectPlacer_ != null) {
-				GameObject.Destroy(objectPlacer_);
+				ObjectPoolManager.Recycle(objectPlacer_);
 				objectPlacer_ = null;
 			}
 
