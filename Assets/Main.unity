@@ -1323,6 +1323,10 @@ MonoBehaviour:
     type: 2}
   MenuItemPrefab: {fileID: 1037448291318248, guid: 6015b764bd5df4a8880e1ea86d684b91,
     type: 2}
+  ScrollableMenuPopupPrefab: {fileID: 1968367838565832, guid: 99c7a9960154f411baa5cc0843085c90,
+    type: 2}
+  ScrollableMenuItemViewPrefab: {fileID: 1114619707275828, guid: 08a1daf442cb64c6db6a85a655cb7880,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}

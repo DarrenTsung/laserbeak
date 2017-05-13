@@ -16,6 +16,10 @@ namespace DT.Game.LevelEditor {
 			inputDevice_ = inputDevice;
 		}
 
+		public void SetLockedInPlace(bool lockedInPlace) {
+			locked_ = lockedInPlace;
+		}
+
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
@@ -27,9 +31,14 @@ namespace DT.Game.LevelEditor {
 		private const float kCursorSpeed = 0.3f;
 
 		private InputDevice inputDevice_;
+		private bool locked_ = false;
 
 		private void Update() {
 			if (inputDevice_ == null) {
+				return;
+			}
+
+			if (locked_) {
 				return;
 			}
 

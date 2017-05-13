@@ -11,7 +11,13 @@ using InControl;
 
 namespace DT.Game.LevelEditor {
 	public class LevelEditor : MonoBehaviour, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - Public Interface
+		public LevelEditorCursor Cursor {
+			get { return cursor_; }
+		}
+
 		public void Init(InputDevice inputDevice, Action exitCallback) {
+			cursorContextMenu_ = new CursorContextMenu(inputDevice, this);
 			levelEditorMenu_ = new LevelEditorMenu(inputDevice, exitCallback, SaveDataToEditor);
 
 			dynamicArenaData_ = new DynamicArenaData();
@@ -49,6 +55,11 @@ namespace DT.Game.LevelEditor {
 				levelEditorMenu_.Dispose();
 				levelEditorMenu_ = null;
 			}
+
+			if (cursorContextMenu_ != null) {
+				cursorContextMenu_.Dispose();
+				cursorContextMenu_ = null;
+			}
 		}
 
 
@@ -61,6 +72,7 @@ namespace DT.Game.LevelEditor {
 		private ObjectPlacer objectPlacer_;
 		private UndoHistory undoHistory_;
 		private LevelEditorMenu levelEditorMenu_;
+		private CursorContextMenu cursorContextMenu_;
 
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
 

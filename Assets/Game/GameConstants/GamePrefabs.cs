@@ -84,6 +84,10 @@ namespace DT.Game {
 		public GameObject MenuViewPrefab;
 		public GameObject MenuItemPrefab;
 
+		[Header("Scrollable Menu Popup")]
+		public GameObject ScrollableMenuPopupPrefab;
+		public GameObject ScrollableMenuItemViewPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]
