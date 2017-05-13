@@ -9,8 +9,11 @@ namespace DT.Game {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		public void OnRecycleSetup() {
 			recentPositions_.Clear();
-			SmearMaterial_.SetVector("_PrevPosition", this.transform.position);
-			SmearMaterial_.SetVector("_Position", this.transform.position);
+
+			if (CheckMaterialHasBeenSet()) {
+				smearMaterial_.SetVector("_PrevPosition", this.transform.position);
+				smearMaterial_.SetVector("_Position", this.transform.position);
+			}
 
 			enabled_ = true;
 		}
@@ -33,15 +36,19 @@ namespace DT.Game {
 
 		Material smearMaterial_ = null;
 		private bool enabled_;
+		private bool materialHasBeenSet_ = false;
 
-		public Material SmearMaterial_ {
-			get {
-				if (smearMaterial_ == null || smearMaterial_ != renderer_.sharedMaterial) {
-					smearMaterial_ = renderer_.sharedMaterial;
-				}
+		private void Awake() {
+			smearMaterial_ = renderer_.sharedMaterial;
+		}
 
-				return smearMaterial_;
+		private bool CheckMaterialHasBeenSet() {
+			if (smearMaterial_ != renderer_.sharedMaterial) {
+				smearMaterial_ = renderer_.sharedMaterial;
+				materialHasBeenSet_ = true;
 			}
+
+			return materialHasBeenSet_;
 		}
 
 		private void LateUpdate() {
@@ -49,14 +56,18 @@ namespace DT.Game {
 				return;
 			}
 
-			if (recentPositions_.Count > frameLag_) {
-				Vector3 previousPosition = recentPositions_.Dequeue();
-				SmearMaterial_.SetVector("_PrevPosition", previousPosition);
-			} else {
-				SmearMaterial_.SetVector("_PrevPosition", this.transform.position);
+			if (!CheckMaterialHasBeenSet()) {
+				return;
 			}
 
-			SmearMaterial_.SetVector("_Position", this.transform.position);
+			if (recentPositions_.Count > frameLag_) {
+				Vector3 previousPosition = recentPositions_.Dequeue();
+				smearMaterial_.SetVector("_PrevPosition", previousPosition);
+			} else {
+				smearMaterial_.SetVector("_PrevPosition", this.transform.position);
+			}
+
+			smearMaterial_.SetVector("_Position", this.transform.position);
 			recentPositions_.Enqueue(this.transform.position);
 		}
 	}
