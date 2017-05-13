@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -64,7 +65,19 @@ namespace DT.Game.LevelEditor {
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
 
 		private void SaveDataToEditor() {
-			// TODO (darren): do this
+			string directoryPath = Path.Combine(Application.dataPath, "CustomLevels");
+			Directory.CreateDirectory(directoryPath);
+
+			string[] filenames = Directory.GetFiles(directoryPath);
+			int index = 1;
+
+			string filename = "";
+			do {
+				filename = string.Format("CustomLevel{0}.txt", index);
+				index++;
+			} while (filenames.Any(f => f == filename));
+
+			File.WriteAllText(Path.Combine(directoryPath, filename), dynamicArenaData_.Serialize());
 		}
 	}
 }
