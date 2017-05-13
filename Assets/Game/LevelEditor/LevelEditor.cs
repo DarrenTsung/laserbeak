@@ -91,7 +91,7 @@ namespace DT.Game.LevelEditor {
 			do {
 				filename = string.Format("CustomLevel{0}.txt", index);
 				index++;
-			} while (filenames.Any(f => f == filename));
+			} while (filenames.Any(f => f.Contains(filename)));
 
 			File.WriteAllText(Path.Combine(directoryPath, filename), dynamicArenaData_.Serialize());
 		}
