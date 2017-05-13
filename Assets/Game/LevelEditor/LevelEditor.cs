@@ -16,6 +16,10 @@ namespace DT.Game.LevelEditor {
 			get { return cursor_; }
 		}
 
+		public ObjectPlacer ObjectPlacer {
+			get { return objectPlacer_; }
+		}
+
 		public void Init(InputDevice inputDevice, Action exitCallback) {
 			cursorContextMenu_ = new CursorContextMenu(inputDevice, this);
 			levelEditorMenu_ = new LevelEditorMenu(inputDevice, this, exitCallback, SaveDataToEditor);

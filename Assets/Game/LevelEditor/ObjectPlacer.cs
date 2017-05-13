@@ -27,6 +27,8 @@ namespace DT.Game.LevelEditor {
 				return;
 			}
 
+			CleanupCurrentPlacable();
+
 			placablePrefab_ = prefab;
 			previewObject_ = ObjectPoolManager.Create(prefab, parent: this.gameObject);
 			foreach (var collider in previewObject_.GetComponentsInChildren<Collider>()) {
@@ -39,10 +41,7 @@ namespace DT.Game.LevelEditor {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			if (previewObject_ != null) {
-				GameObject.Destroy(previewObject_);
-				previewObject_ = null;
-			}
+			CleanupCurrentPlacable();
 
 			if (cursor_ != null) {
 				cursor_.OnMoved -= RefreshPositionAndScale;
@@ -210,6 +209,14 @@ namespace DT.Game.LevelEditor {
 			Vector3 gridLeftBottomPoint = bottomLeftPoint.SetX(-LevelEditorConstants.kArenaHalfWidth);
 			bottomLeftLineRenderer_.positionCount = 4;
 			bottomLeftLineRenderer_.SetPositions(new Vector3[] { bottomLeftPoint, gridBottomLeftPoint, bottomLeftPoint, gridLeftBottomPoint });
+		}
+
+		private void CleanupCurrentPlacable() {
+			placablePrefab_ = null;
+			if (previewObject_ != null) {
+				GameObject.Destroy(previewObject_);
+				previewObject_ = null;
+			}
 		}
 	}
 }

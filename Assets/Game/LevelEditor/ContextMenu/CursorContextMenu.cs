@@ -17,6 +17,10 @@ namespace DT.Game.LevelEditor {
 			inputDevice_ = inputDevice;
 			levelEditor_ = levelEditor;
 
+			populators_ = new IScrollableMenuPopulator[] {
+				new LevelObjectContextPopulator(levelEditor_),
+			};
+
 			MonoBehaviourWrapper.OnUpdate += HandleUpdate;
 		}
 
@@ -32,25 +36,15 @@ namespace DT.Game.LevelEditor {
 
 		private ScrollableMenuPopup contextMenu_;
 
+		// no selected item populators
+		private IScrollableMenuPopulator[] populators_;
+
 		private void HandleUpdate() {
 			if (inputDevice_.Action4.WasPressed) {
 				if (contextMenu_ != null) {
 					HideContextMenu(recycle: true);
 				} else {
-					contextMenu_ = ScrollableMenuPopup.Create(inputDevice_, new List<ScrollableMenuItem>() {
-						new ScrollableMenuItem(thumbnail: null, name: "Test1", callback: () => {
-							Debug.Log("Test 1!");
-						}),
-						new ScrollableMenuItem(thumbnail: null, name: "Basic Platform", callback: () => {
-							Debug.Log("Basic Platform!");
-						}),
-						new ScrollableMenuItem(thumbnail: null, name: "Wall", callback: () => {
-							Debug.Log("Wall!");
-						}),
-						new ScrollableMenuItem(thumbnail: null, name: "Complex Platform", callback: () => {
-							Debug.Log("Complex Platform!");
-						}),
-					});
+					contextMenu_ = ScrollableMenuPopup.Create(inputDevice_, populators_.SelectMany(p => p.GetItems()));
 					contextMenu_.OnHidden += HandleContextMenuHidden;
 					levelEditor_.Cursor.SetLockedInPlace(true);
 				}

@@ -1317,6 +1317,7 @@ MonoBehaviour:
     type: 2}
   LevelEditorObjects:
   - {fileID: 1469350141857788, guid: 98e3f9daf94254bbf936533718eb3a9b, type: 2}
+  - {fileID: 1469350141857788, guid: 96a0e4ee7203c4a5eb7a611c1a630ee0, type: 2}
   DynamicArenaObjectContainer: {fileID: 1640466625818348, guid: 3c8716af44356488ea27342d7a54af9e,
     type: 2}
   MenuViewPrefab: {fileID: 1363955355451658, guid: 51bf3459f7bfd425aa76450e6b763cb5,
