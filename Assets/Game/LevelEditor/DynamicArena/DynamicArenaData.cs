@@ -25,12 +25,22 @@ namespace DT.Game.LevelEditor {
 			OnDataDirty.Invoke();
 		}
 
+		public void ReloadFromSerialized(string serialized) {
+			JsonUtility.FromJsonOverwrite(serialized, this);
+			OnDataDirty.Invoke();
+		}
+
+		public string Serialize() {
+			return JsonUtility.ToJson(this);
+		}
+
 
 		// PRAGMA MARK - Internal
+		[SerializeField]
 		private List<DynamicArenaObjectData> objects_ = new List<DynamicArenaObjectData>();
 	}
 
-	[SerializeField]
+	[Serializable]
 	public class DynamicArenaObjectData {
 		public string PrefabName;
 		public Vector3 Position;

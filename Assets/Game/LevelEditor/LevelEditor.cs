@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,16 +11,19 @@ using InControl;
 namespace DT.Game.LevelEditor {
 	public class LevelEditor : MonoBehaviour, IRecycleCleanupSubscriber {
 		public void Init(InputDevice inputDevice) {
+			dynamicArenaData_ = new DynamicArenaData();
+			undoHistory_ = new UndoHistory(dynamicArenaData_, inputDevice);
+
 			dynamicArenaView_.Init(dynamicArenaData_);
 
 			cursor_ = ObjectPoolManager.Create<LevelEditorCursor>(GamePrefabs.Instance.LevelEditorCursorPrefab, parent: this.gameObject);
 			cursor_.Init(inputDevice);
 
-			GameObject previewObject = new GameObject("ObjectPlacer");
-			previewObject.transform.SetParent(this.transform);
-			objectPreview_ = previewObject.AddComponent<ObjectPlacer>();
-			objectPreview_.Init(dynamicArenaData_, inputDevice, cursor_);
-			objectPreview_.SetObjectToPlace(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
+			GameObject placerObject = new GameObject("ObjectPlacer");
+			placerObject.transform.SetParent(this.transform);
+			objectPlacer_ = placerObject.AddComponent<ObjectPlacer>();
+			objectPlacer_.Init(dynamicArenaData_, undoHistory_, inputDevice, cursor_);
+			objectPlacer_.SetObjectToPlace(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
 		}
 
 
@@ -30,9 +34,14 @@ namespace DT.Game.LevelEditor {
 				cursor_ = null;
 			}
 
-			if (objectPreview_ != null) {
-				GameObject.Destroy(objectPreview_);
-				objectPreview_ = null;
+			if (objectPlacer_ != null) {
+				GameObject.Destroy(objectPlacer_);
+				objectPlacer_ = null;
+			}
+
+			if (undoHistory_ != null) {
+				undoHistory_.Dispose();
+				undoHistory_ = null;
 			}
 		}
 
@@ -43,7 +52,8 @@ namespace DT.Game.LevelEditor {
 		private DynamicArenaView dynamicArenaView_;
 
 		private LevelEditorCursor cursor_;
-		private ObjectPlacer objectPreview_;
+		private ObjectPlacer objectPlacer_;
+		private UndoHistory undoHistory_;
 
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
 	}

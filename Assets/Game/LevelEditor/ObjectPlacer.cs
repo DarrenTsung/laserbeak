@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,8 +10,9 @@ using InControl;
 
 namespace DT.Game.LevelEditor {
 	public class ObjectPlacer : MonoBehaviour, IRecycleCleanupSubscriber {
-		public void Init(DynamicArenaData dynamicArenaData, InputDevice inputDevice, LevelEditorCursor cursor) {
+		public void Init(DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditorCursor cursor) {
 			dynamicArenaData_ = dynamicArenaData;
+			undoHistory_ = undoHistory;
 			inputDevice_ = inputDevice;
 
 			cursor_ = cursor;
@@ -51,6 +53,7 @@ namespace DT.Game.LevelEditor {
 
 		// PRAGMA MARK - Internal
 		private DynamicArenaData dynamicArenaData_;
+		private UndoHistory undoHistory_;
 		private InputDevice inputDevice_;
 		private LevelEditorCursor cursor_;
 		private GameObject placablePrefab_;
@@ -73,6 +76,7 @@ namespace DT.Game.LevelEditor {
 
 			if (inputDevice_.Action3.WasReleased) {
 				dynamicArenaData_.SerializeObject(placablePrefab_, this.transform.position, Quaternion.identity, this.transform.localScale);
+				undoHistory_.RecordState();
 				this.transform.localScale = Vector3.one;
 				RefreshPositionAndScale();
 			}
