@@ -33,6 +33,7 @@ namespace DT.Game.LevelEditor {
 			}
 
 			HandlePreviewObjectCreated();
+			Initialize();
 		}
 
 
@@ -46,6 +47,8 @@ namespace DT.Game.LevelEditor {
 				}
 				levelEditor_ = null;
 			}
+
+			Cleanup();
 		}
 
 
@@ -71,6 +74,14 @@ namespace DT.Game.LevelEditor {
 		}
 
 		protected virtual void HandlePreviewObjectCreated() {
+			// stub
+		}
+
+		protected virtual void Initialize() {
+			// stub
+		}
+
+		protected virtual void Cleanup() {
 			// stub
 		}
 

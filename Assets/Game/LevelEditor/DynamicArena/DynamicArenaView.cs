@@ -5,6 +5,8 @@ using UnityEngine;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 
+using DT.Game.Battle.Walls;
+
 namespace DT.Game.LevelEditor {
 	public class DynamicArenaView : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
@@ -31,9 +33,8 @@ namespace DT.Game.LevelEditor {
 			this.gameObject.RecycleAllChildren();
 
 			foreach (var objectData in dynamicArenaData_.Objects) {
-				GameObject prefab = GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault(p => p.name == objectData.PrefabName);
+				GameObject prefab = FindRequiredPrefabFor(objectData.PrefabName);
 				if (prefab == null) {
-					Debug.LogWarning("Prefab named: " + objectData.PrefabName + " not found in the LevelEditorObjects - corrupted dynamic arena data?");
 					continue;
 				}
 
@@ -41,6 +42,25 @@ namespace DT.Game.LevelEditor {
 				container.transform.localScale = objectData.LocalScale;
 				container.Init(prefab);
 			}
+
+			foreach (var wallData in dynamicArenaData_.Walls) {
+				GameObject prefab = FindRequiredPrefabFor(wallData.PrefabName);
+				if (prefab == null) {
+					continue;
+				}
+
+				var wall = ObjectPoolManager.Create<Wall>(prefab, position: wallData.Position, rotation: Quaternion.identity, parent: this.gameObject);
+				wall.SetVertexLocalPositions(wallData.VertexLocalPositions);
+			}
+		}
+
+		private GameObject FindRequiredPrefabFor(string prefabName) {
+			GameObject prefab = GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault(p => p.name == prefabName);
+			if (prefab == null) {
+				Debug.LogWarning("Prefab named: " + prefabName + " not found in the LevelEditorObjects - corrupted dynamic arena data?");
+			}
+
+			return prefab;
 		}
 	}
 }

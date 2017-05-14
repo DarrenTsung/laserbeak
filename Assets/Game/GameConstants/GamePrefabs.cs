@@ -80,6 +80,7 @@ namespace DT.Game {
 		public GameObject DynamicArenaObjectContainer;
 
 		[Space]
+		public GameObject WallPlacerPrefab;
 		public GameObject PlatformPlacerPrefab;
 
 		[Header("Generic Menu")]

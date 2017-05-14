@@ -19,8 +19,10 @@ namespace DT.Game.LevelEditor {
 		}
 
 		public void SetObjectToPlace(GameObject prefab) {
+			CleanupPlacer();
+
 			if (prefab.GetComponent<Wall>() != null) {
-				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.PlatformPlacerPrefab, parent: this.gameObject);
+				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.WallPlacerPrefab, parent: this.gameObject);
 			} else {
 				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.PlatformPlacerPrefab, parent: this.gameObject);
 			}
@@ -53,10 +55,7 @@ namespace DT.Game.LevelEditor {
 				cursor_ = null;
 			}
 
-			if (placerObject_ != null) {
-				ObjectPoolManager.Recycle(placerObject_);
-				placerObject_ = null;
-			}
+			CleanupPlacer();
 
 			if (undoHistory_ != null) {
 				undoHistory_.Dispose();
@@ -103,6 +102,13 @@ namespace DT.Game.LevelEditor {
 			} while (filenames.Any(f => f.Contains(filename)));
 
 			File.WriteAllText(Path.Combine(directoryPath, filename), dynamicArenaData_.Serialize());
+		}
+
+		private void CleanupPlacer() {
+			if (placerObject_ != null) {
+				ObjectPoolManager.Recycle(placerObject_);
+				placerObject_ = null;
+			}
 		}
 	}
 }

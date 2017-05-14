@@ -17,8 +17,13 @@ namespace DT.Game.Battle.Walls {
 			Barrier,
 		}
 
-		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
-		void IRecycleSetupSubscriber.OnRecycleSetup() {
+		public Vector3[] VertexLocalPositions {
+			get { return vertexLocalPositions_; }
+		}
+
+		public void SetVertexLocalPositions(Vector3[] vertexLocalPositions) {
+			this.gameObject.RecycleAllChildren();
+
 			GameObject prefab = null;
 			switch (wallType_) {
 				case WallType.Reflect:
@@ -30,21 +35,26 @@ namespace DT.Game.Battle.Walls {
 					break;
 			}
 
-			for (int i = 0; i < vertexLocalPositions_.Length - 1; i++) {
-				Vector3 aPoint = vertexLocalPositions_[i] + this.transform.position;
-				Vector3 bPoint = vertexLocalPositions_[i + 1] + this.transform.position;
-
+			for (int i = 0; i < vertexLocalPositions.Length - 1; i++) {
+				Vector3 aPoint = vertexLocalPositions[i];
+				Vector3 bPoint = vertexLocalPositions[i + 1];
 				if (aPoint == bPoint) {
-					Debug.LogWarning("Should not have contiguous wall segments at same position :<");
-					continue;
+					bPoint = aPoint + (Vector3.right * 0.05f);
 				}
 
 				Vector3 vector = bPoint - aPoint;
-
 				Quaternion rotation = Quaternion.LookRotation(vector);
+
 				GameObject wallSegment = ObjectPoolManager.Create(prefab, aPoint, rotation, parent: this.gameObject);
 				wallSegment.transform.localScale = new Vector3(1.0f, 1.0f, vector.magnitude);
 			}
+
+			vertexLocalPositions_ = vertexLocalPositions;
+		}
+
+		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
+		void IRecycleSetupSubscriber.OnRecycleSetup() {
+			SetVertexLocalPositions(serializedVertexLocalPositions_);
 		}
 
 
@@ -57,20 +67,22 @@ namespace DT.Game.Battle.Walls {
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]
 		[SerializeField]
-		private Vector3[] vertexLocalPositions_;
+		private Vector3[] serializedVertexLocalPositions_;
 
 		[Header("Properties")]
 		[SerializeField]
 		private WallType wallType_ = WallType.Reflect;
 
+		private Vector3[] vertexLocalPositions_;
+
 		private void OnDrawGizmos() {
-			if (vertexLocalPositions_ == null) {
+			if (serializedVertexLocalPositions_ == null) {
 				return;
 			}
 
-			for (int i = 0; i < vertexLocalPositions_.Length - 1; i++) {
-				Vector3 aPoint = vertexLocalPositions_[i] + this.transform.position;
-				Vector3 bPoint = vertexLocalPositions_[i + 1] + this.transform.position;
+			for (int i = 0; i < serializedVertexLocalPositions_.Length - 1; i++) {
+				Vector3 aPoint = serializedVertexLocalPositions_[i] + this.transform.position;
+				Vector3 bPoint = serializedVertexLocalPositions_[i + 1] + this.transform.position;
 
 				for (float y = 0; y <= 1.5f; y += 0.25f) {
 					Vector3 raisedAPoint = aPoint.SetY(y);
