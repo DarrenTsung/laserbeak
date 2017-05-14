@@ -9,23 +9,22 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.LevelEditor {
-	public class ObjectPlacer : MonoBehaviour, IRecycleCleanupSubscriber {
-		public void Init(DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditorCursor cursor) {
-			dynamicArenaData_ = dynamicArenaData;
-			undoHistory_ = undoHistory;
-			inputDevice_ = inputDevice;
-
-			cursor_ = cursor;
-			cursor_.OnMoved += RefreshPositionAndScale;
-
-			RefreshPositionAndScale();
-		}
-
-		public void SetObjectToPlace(GameObject prefab) {
+	public class PlatformPlacer : MonoBehaviour, IPlacer, IRecycleCleanupSubscriber {
+		// PRAGMA MARK - IPlacer Implementation
+		void IPlacer.Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor) {
 			if (prefab == null) {
 				Debug.LogWarning("Cannot set preview object of null object!");
 				return;
 			}
+
+			dynamicArenaData_ = dynamicArenaData;
+			undoHistory_ = undoHistory;
+			inputDevice_ = inputDevice;
+
+			levelEditor_ = levelEditor;
+			levelEditor_.Cursor.OnMoved += HandleCusorMoved;
+
+			RefreshPositionAndScale();
 
 			CleanupCurrentPlacable();
 
@@ -43,9 +42,11 @@ namespace DT.Game.LevelEditor {
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			CleanupCurrentPlacable();
 
-			if (cursor_ != null) {
-				cursor_.OnMoved -= RefreshPositionAndScale;
-				cursor_ = null;
+			if (levelEditor_ != null) {
+				if (levelEditor_.Cursor != null) {
+					levelEditor_.Cursor.OnMoved -= HandleCusorMoved;
+				}
+				levelEditor_ = null;
 			}
 		}
 
@@ -64,7 +65,8 @@ namespace DT.Game.LevelEditor {
 		private DynamicArenaData dynamicArenaData_;
 		private UndoHistory undoHistory_;
 		private InputDevice inputDevice_;
-		private LevelEditorCursor cursor_;
+		private LevelEditor levelEditor_;
+
 		private GameObject placablePrefab_;
 		private GameObject previewObject_;
 
@@ -81,19 +83,29 @@ namespace DT.Game.LevelEditor {
 
 			if (inputDevice_.Action3.WasPressed) {
 				pressedStartPosition_ = this.transform.position;
+				RefreshPositionAndScale(ignoreCheck: true);
 			}
 
 			if (inputDevice_.Action3.WasReleased) {
 				dynamicArenaData_.SerializeObject(placablePrefab_, this.transform.position, Quaternion.identity, this.transform.localScale);
 				undoHistory_.RecordState();
 				this.transform.localScale = Vector3.one;
-				RefreshPositionAndScale();
+				RefreshPositionAndScale(ignoreCheck: true);
 			}
 		}
 
-		private void RefreshPositionAndScale() {
+		private void HandleCusorMoved() {
+			RefreshPositionAndScale();
+		}
+
+		private void RefreshPositionAndScale(bool ignoreCheck = false) {
+			// Race Condition - Cursor moves before Update() above is hit - need to prevent this until after Update is run
+			if (!ignoreCheck && (inputDevice_.Action3.WasReleased || inputDevice_.Action3.WasPressed)) {
+				return;
+			}
+
 			// snap onto grid - assume preview object is 1x1 for now
-			Vector3 cursorSnappedPosition = SnapPosition(cursor_.transform.position);
+			Vector3 cursorSnappedPosition = SnapPosition(levelEditor_.Cursor.transform.position);
 			if (ShouldScaleFromStartPosition) {
 				Vector3 unsnappedMidpoint = Vector3.Lerp(pressedStartPosition_, cursorSnappedPosition, 0.5f);
 
@@ -151,12 +163,12 @@ namespace DT.Game.LevelEditor {
 			if (clampedX != 0) {
 				newX += (clampedX > 0.0f) ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			} else {
-				newX = cursor_.transform.position.x >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
+				newX = levelEditor_.Cursor.transform.position.x >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			}
 			if (clampedZ != 0) {
 				newZ += (clampedZ > 0.0f) ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			} else {
-				newZ = cursor_.transform.position.z >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
+				newZ = levelEditor_.Cursor.transform.position.z >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			}
 
 			newPosition = newPosition.SetX(newX);

@@ -75,10 +75,12 @@ namespace DT.Game {
 		[Header("Level Editors")]
 		public GameObject LevelEditorPrefab;
 		public GameObject LevelEditorCursorPrefab;
-		public GameObject ObjectPlacerPrefab;
 
 		public GameObject[] LevelEditorObjects;
 		public GameObject DynamicArenaObjectContainer;
+
+		[Space]
+		public GameObject PlatformPlacerPrefab;
 
 		[Header("Generic Menu")]
 		public GameObject MenuViewPrefab;

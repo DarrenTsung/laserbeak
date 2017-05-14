@@ -9,6 +9,8 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Walls;
+
 namespace DT.Game.LevelEditor {
 	public class LevelEditor : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
@@ -16,11 +18,19 @@ namespace DT.Game.LevelEditor {
 			get { return cursor_; }
 		}
 
-		public ObjectPlacer ObjectPlacer {
-			get { return objectPlacer_; }
+		public void SetObjectToPlace(GameObject prefab) {
+			if (prefab.GetComponent<Wall>() != null) {
+				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.PlatformPlacerPrefab, parent: this.gameObject);
+			} else {
+				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.PlatformPlacerPrefab, parent: this.gameObject);
+			}
+			var placer = placerObject_.GetComponent<IPlacer>();
+			placer.Init(prefab, dynamicArenaData_, undoHistory_, inputDevice_, this);
 		}
 
 		public void Init(InputDevice inputDevice, Action exitCallback) {
+			inputDevice_ = inputDevice;
+
 			cursorContextMenu_ = new CursorContextMenu(inputDevice, this);
 			levelEditorMenu_ = new LevelEditorMenu(inputDevice, this, exitCallback, SaveDataToEditor);
 
@@ -32,9 +42,7 @@ namespace DT.Game.LevelEditor {
 			cursor_ = ObjectPoolManager.Create<LevelEditorCursor>(GamePrefabs.Instance.LevelEditorCursorPrefab, parent: this.gameObject);
 			cursor_.Init(inputDevice);
 
-			objectPlacer_ = ObjectPoolManager.Create<ObjectPlacer>(GamePrefabs.Instance.ObjectPlacerPrefab, parent: this.gameObject);
-			objectPlacer_.Init(dynamicArenaData_, undoHistory_, inputDevice, cursor_);
-			objectPlacer_.SetObjectToPlace(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
+			SetObjectToPlace(GamePrefabs.Instance.LevelEditorObjects.FirstOrDefault());
 		}
 
 
@@ -45,9 +53,9 @@ namespace DT.Game.LevelEditor {
 				cursor_ = null;
 			}
 
-			if (objectPlacer_ != null) {
-				ObjectPoolManager.Recycle(objectPlacer_);
-				objectPlacer_ = null;
+			if (placerObject_ != null) {
+				ObjectPoolManager.Recycle(placerObject_);
+				placerObject_ = null;
 			}
 
 			if (undoHistory_ != null) {
@@ -73,10 +81,11 @@ namespace DT.Game.LevelEditor {
 		private DynamicArenaView dynamicArenaView_;
 
 		private LevelEditorCursor cursor_;
-		private ObjectPlacer objectPlacer_;
+		private GameObject placerObject_;
 		private UndoHistory undoHistory_;
 		private LevelEditorMenu levelEditorMenu_;
 		private CursorContextMenu cursorContextMenu_;
+		private InputDevice inputDevice_;
 
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
 

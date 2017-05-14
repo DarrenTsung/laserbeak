@@ -1313,12 +1313,12 @@ MonoBehaviour:
     type: 2}
   LevelEditorCursorPrefab: {fileID: 1032272098610160, guid: d6fa58ee5f2474569a67a6c059d05f58,
     type: 2}
-  ObjectPlacerPrefab: {fileID: 1752641326289320, guid: 3932461ada1334093adde9760098d20d,
-    type: 2}
   LevelEditorObjects:
   - {fileID: 1469350141857788, guid: 98e3f9daf94254bbf936533718eb3a9b, type: 2}
   - {fileID: 1469350141857788, guid: 96a0e4ee7203c4a5eb7a611c1a630ee0, type: 2}
   DynamicArenaObjectContainer: {fileID: 1640466625818348, guid: 3c8716af44356488ea27342d7a54af9e,
+    type: 2}
+  PlatformPlacerPrefab: {fileID: 1752641326289320, guid: 3932461ada1334093adde9760098d20d,
     type: 2}
   MenuViewPrefab: {fileID: 1363955355451658, guid: 51bf3459f7bfd425aa76450e6b763cb5,
     type: 2}
