@@ -9,48 +9,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.LevelEditor {
-	public class PlatformPlacer : MonoBehaviour, IPlacer, IRecycleCleanupSubscriber {
-		// PRAGMA MARK - IPlacer Implementation
-		void IPlacer.Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor) {
-			if (prefab == null) {
-				Debug.LogWarning("Cannot set preview object of null object!");
-				return;
-			}
-
-			dynamicArenaData_ = dynamicArenaData;
-			undoHistory_ = undoHistory;
-			inputDevice_ = inputDevice;
-
-			levelEditor_ = levelEditor;
-			levelEditor_.Cursor.OnMoved += HandleCusorMoved;
-
-			RefreshPositionAndScale();
-
-			CleanupCurrentPlacable();
-
-			placablePrefab_ = prefab;
-			previewObject_ = ObjectPoolManager.Create(prefab, parent: this.gameObject);
-			foreach (var collider in previewObject_.GetComponentsInChildren<Collider>()) {
-				collider.enabled = false;
-			}
-
-			RefreshPreviewObjectValidity();
-		}
-
-
-		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
-		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			CleanupCurrentPlacable();
-
-			if (levelEditor_ != null) {
-				if (levelEditor_.Cursor != null) {
-					levelEditor_.Cursor.OnMoved -= HandleCusorMoved;
-				}
-				levelEditor_ = null;
-			}
-		}
-
-
+	public class PlatformPlacer : BasePlacer {
 		// PRAGMA MARK - Internal
 		[Header("Line Renderers")]
 		[SerializeField]
@@ -62,50 +21,46 @@ namespace DT.Game.LevelEditor {
 		[SerializeField]
 		private LineRenderer topLeftLineRenderer_;
 
-		private DynamicArenaData dynamicArenaData_;
-		private UndoHistory undoHistory_;
-		private InputDevice inputDevice_;
-		private LevelEditor levelEditor_;
-
-		private GameObject placablePrefab_;
-		private GameObject previewObject_;
-
 		private Vector3 pressedStartPosition_;
 
 		private bool ShouldScaleFromStartPosition {
-			get { return inputDevice_.Action3.IsPressed; }
+			get { return InputDevice_.Action3.IsPressed; }
 		}
 
 		private void Update() {
-			if (placablePrefab_ == null) {
+			if (PlacablePrefab_ == null) {
 				return;
 			}
 
-			if (inputDevice_.Action3.WasPressed) {
+			if (InputDevice_.Action3.WasPressed) {
 				pressedStartPosition_ = this.transform.position;
 				RefreshPositionAndScale(ignoreCheck: true);
 			}
 
-			if (inputDevice_.Action3.WasReleased) {
-				dynamicArenaData_.SerializeObject(placablePrefab_, this.transform.position, Quaternion.identity, this.transform.localScale);
-				undoHistory_.RecordState();
+			if (InputDevice_.Action3.WasReleased) {
+				DynamicArenaData_.SerializeObject(PlacablePrefab_, this.transform.position, Quaternion.identity, this.transform.localScale);
+				UndoHistory_.RecordState();
 				this.transform.localScale = Vector3.one;
 				RefreshPositionAndScale(ignoreCheck: true);
 			}
 		}
 
-		private void HandleCusorMoved() {
+		protected override void HandleCusorMoved() {
+			RefreshPositionAndScale();
+		}
+
+		protected override void HandlePreviewObjectCreated() {
 			RefreshPositionAndScale();
 		}
 
 		private void RefreshPositionAndScale(bool ignoreCheck = false) {
 			// Race Condition - Cursor moves before Update() above is hit - need to prevent this until after Update is run
-			if (!ignoreCheck && (inputDevice_.Action3.WasReleased || inputDevice_.Action3.WasPressed)) {
+			if (!ignoreCheck && (InputDevice_.Action3.WasReleased || InputDevice_.Action3.WasPressed)) {
 				return;
 			}
 
 			// snap onto grid - assume preview object is 1x1 for now
-			Vector3 cursorSnappedPosition = SnapPosition(levelEditor_.Cursor.transform.position);
+			Vector3 cursorSnappedPosition = SnapPosition(LevelEditor_.Cursor.transform.position);
 			if (ShouldScaleFromStartPosition) {
 				Vector3 unsnappedMidpoint = Vector3.Lerp(pressedStartPosition_, cursorSnappedPosition, 0.5f);
 
@@ -138,7 +93,7 @@ namespace DT.Game.LevelEditor {
 		}
 
 		private void RefreshPreviewObjectValidity() {
-			if (previewObject_ == null) {
+			if (PreviewObject_ == null) {
 				return;
 			}
 
@@ -147,7 +102,7 @@ namespace DT.Game.LevelEditor {
 			halfExtents = halfExtents.SetZ(halfExtents.z - 0.1f);
 
 			bool hit = Physics.BoxCast(this.transform.position + Vector3.up, halfExtents: halfExtents, direction: -Vector3.up, orientation: Quaternion.identity, maxDistance: Mathf.Infinity, layerMask: InGameConstants.PlatformsLayerMask);
-			foreach (var renderer in previewObject_.GetComponentsInChildren<Renderer>()) {
+			foreach (var renderer in PreviewObject_.GetComponentsInChildren<Renderer>()) {
 				renderer.material.color = hit ? Color.red : Color.green;
 			}
 		}
@@ -163,12 +118,12 @@ namespace DT.Game.LevelEditor {
 			if (clampedX != 0) {
 				newX += (clampedX > 0.0f) ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			} else {
-				newX = levelEditor_.Cursor.transform.position.x >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
+				newX = LevelEditor_.Cursor.transform.position.x >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			}
 			if (clampedZ != 0) {
 				newZ += (clampedZ > 0.0f) ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			} else {
-				newZ = levelEditor_.Cursor.transform.position.z >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
+				newZ = LevelEditor_.Cursor.transform.position.z >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
 			}
 
 			newPosition = newPosition.SetX(newX);
@@ -221,14 +176,6 @@ namespace DT.Game.LevelEditor {
 			Vector3 gridLeftBottomPoint = bottomLeftPoint.SetX(-LevelEditorConstants.kArenaHalfWidth);
 			bottomLeftLineRenderer_.positionCount = 4;
 			bottomLeftLineRenderer_.SetPositions(new Vector3[] { bottomLeftPoint, gridBottomLeftPoint, bottomLeftPoint, gridLeftBottomPoint });
-		}
-
-		private void CleanupCurrentPlacable() {
-			placablePrefab_ = null;
-			if (previewObject_ != null) {
-				GameObject.Destroy(previewObject_);
-				previewObject_ = null;
-			}
 		}
 	}
 }
