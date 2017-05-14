@@ -63,7 +63,10 @@ namespace DT.Game.LevelEditor {
 				}
 				contextMenu_ = null;
 			}
-			levelEditor_.Cursor.SetLockedInPlace(false);
+
+			if (levelEditor_.Cursor != null) {
+				levelEditor_.Cursor.SetLockedInPlace(false);
+			}
 		}
 	}
 }

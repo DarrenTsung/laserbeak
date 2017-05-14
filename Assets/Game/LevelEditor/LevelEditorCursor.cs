@@ -24,6 +24,7 @@ namespace DT.Game.LevelEditor {
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			inputDevice_ = null;
+			locked_ = false;
 		}
 
 

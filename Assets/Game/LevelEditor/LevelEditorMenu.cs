@@ -48,7 +48,9 @@ namespace DT.Game.LevelEditor {
 
 		private void HideMenu() {
 			MenuView.Hide();
-			levelEditor_.Cursor.SetLockedInPlace(false);
+			if (levelEditor_.Cursor != null) {
+				levelEditor_.Cursor.SetLockedInPlace(false);
+			}
 		}
 	}
 }

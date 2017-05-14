@@ -19,6 +19,8 @@ namespace DT.Game.LevelEditor {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			this.gameObject.RecycleAllChildren();
+
 			if (dynamicArenaData_ != null) {
 				dynamicArenaData_.OnDataDirty -= HandleDataDirty;
 				dynamicArenaData_ = null;
