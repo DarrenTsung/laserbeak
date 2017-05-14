@@ -1318,11 +1318,17 @@ MonoBehaviour:
   - {fileID: 1469350141857788, guid: 96a0e4ee7203c4a5eb7a611c1a630ee0, type: 2}
   - {fileID: 1780075588032556, guid: 2a3f93da63a2a4e5687dac6731e3125f, type: 2}
   - {fileID: 1780075588032556, guid: 92cd009c42a424cfb9346543d103622a, type: 2}
+  - {fileID: 1358755961755438, guid: e2603b2035c4f408c89350f7027c2d4d, type: 2}
+  - {fileID: 1358755961755438, guid: 6e051b8bd852e4ec5ad1e615e4d6c606, type: 2}
+  - {fileID: 1358755961755438, guid: 534dce9e3110a4ea69927cc3795e9243, type: 2}
+  - {fileID: 1358755961755438, guid: 521a59baa3787406b9586a521d8185d9, type: 2}
   DynamicArenaObjectContainer: {fileID: 1640466625818348, guid: 3c8716af44356488ea27342d7a54af9e,
     type: 2}
   WallPlacerPrefab: {fileID: 1752641326289320, guid: e3b90a8b147524ecc9778fe67c192877,
     type: 2}
   PlatformPlacerPrefab: {fileID: 1752641326289320, guid: 3932461ada1334093adde9760098d20d,
+    type: 2}
+  PlayerSpawnPointPlacerPrefab: {fileID: 1752641326289320, guid: 5540e351f906e4318956703220374089,
     type: 2}
   MenuViewPrefab: {fileID: 1363955355451658, guid: 51bf3459f7bfd425aa76450e6b763cb5,
     type: 2}

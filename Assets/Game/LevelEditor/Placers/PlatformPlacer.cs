@@ -60,7 +60,7 @@ namespace DT.Game.LevelEditor {
 			}
 
 			// snap onto grid - assume preview object is 1x1 for now
-			Vector3 cursorSnappedPosition = SnapPosition(LevelEditor_.Cursor.transform.position);
+			Vector3 cursorSnappedPosition = LevelEditorUtil.SnapToGridCenter(LevelEditor_.Cursor.transform.position);
 			if (ShouldScaleFromStartPosition) {
 				Vector3 unsnappedMidpoint = Vector3.Lerp(pressedStartPosition_, cursorSnappedPosition, 0.5f);
 
@@ -105,31 +105,6 @@ namespace DT.Game.LevelEditor {
 			foreach (var renderer in PreviewObject_.GetComponentsInChildren<Renderer>()) {
 				renderer.material.color = hit ? Color.red : Color.green;
 			}
-		}
-
-		private Vector3 SnapPosition(Vector3 position) {
-			Vector3 newPosition = position;
-			newPosition = newPosition.SetY(0.0f);
-			int clampedX = MathUtil.Clamp((int)newPosition.x, (int)-LevelEditorConstants.kArenaHalfWidth + 1, (int)LevelEditorConstants.kArenaHalfWidth - 1);
-			int clampedZ = MathUtil.Clamp((int)newPosition.z, (int)-LevelEditorConstants.kArenaHalfHeight + 1, (int)LevelEditorConstants.kArenaHalfHeight - 1);
-
-			float newX = clampedX;
-			float newZ = clampedZ;
-			if (clampedX != 0) {
-				newX += (clampedX > 0.0f) ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
-			} else {
-				newX = LevelEditor_.Cursor.transform.position.x >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
-			}
-			if (clampedZ != 0) {
-				newZ += (clampedZ > 0.0f) ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
-			} else {
-				newZ = LevelEditor_.Cursor.transform.position.z >= 0.0f ? LevelEditorConstants.kHalfGridSize : -LevelEditorConstants.kHalfGridSize;
-			}
-
-			newPosition = newPosition.SetX(newX);
-			newPosition = newPosition.SetZ(newZ);
-
-			return newPosition;
 		}
 
 		private Vector3 SnappedToHintedVertex(Vector3 position, Vector3 hintVector) {

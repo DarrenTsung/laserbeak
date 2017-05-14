@@ -82,6 +82,7 @@ namespace DT.Game {
 		[Space]
 		public GameObject WallPlacerPrefab;
 		public GameObject PlatformPlacerPrefab;
+		public GameObject PlayerSpawnPointPlacerPrefab;
 
 		[Header("Generic Menu")]
 		public GameObject MenuViewPrefab;

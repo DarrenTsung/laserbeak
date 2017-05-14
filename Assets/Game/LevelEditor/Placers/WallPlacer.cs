@@ -21,7 +21,7 @@ namespace DT.Game.LevelEditor {
 		}
 
 		private Vector3 CursorSnappedPosition_ {
-			get { return SnapPosition(LevelEditor_.Cursor.transform.position); }
+			get { return LevelEditorUtil.SnapToVertex(LevelEditor_.Cursor.transform.position); }
 		}
 
 		private void Update() {
@@ -73,17 +73,6 @@ namespace DT.Game.LevelEditor {
 
 				this.transform.position = CursorSnappedPosition_;
 			}
-		}
-
-		// snap onto vertices
-		private Vector3 SnapPosition(Vector3 position) {
-			Vector3 newPosition = position;
-
-			newPosition = newPosition.SetY(0.0f);
-			newPosition = newPosition.SetX(Mathf.Round(newPosition.x));
-			newPosition = newPosition.SetZ(Mathf.Round(newPosition.z));
-
-			return newPosition;
 		}
 	}
 }

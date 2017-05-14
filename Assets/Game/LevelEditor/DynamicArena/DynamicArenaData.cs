@@ -20,6 +20,10 @@ namespace DT.Game.LevelEditor {
 			get { return walls_; }
 		}
 
+		public Vector3[] PlayerSpawnPoints {
+			get { return playerSpawnPoints_ ?? (playerSpawnPoints_ = new Vector3[4]); }
+		}
+
 		public void SerializeObject(GameObject prefab, Vector3 position, Quaternion rotation, Vector3 localScale) {
 			var objectData = new DynamicArenaObjectData();
 			objectData.PrefabName = prefab.name;
@@ -39,6 +43,16 @@ namespace DT.Game.LevelEditor {
 			OnDataDirty.Invoke();
 		}
 
+		public void SerializePlayerSpawnPoint(int index, Vector3 position) {
+			if (index < 0 || index >= 4) {
+				Debug.LogError("Invalid index: " + index + " when trying to serialize player spawn point!");
+				return;
+			}
+
+			PlayerSpawnPoints[index] = position;
+			OnDataDirty.Invoke();
+		}
+
 		public void ReloadFromSerialized(string serialized) {
 			JsonUtility.FromJsonOverwrite(serialized, this);
 			OnDataDirty.Invoke();
@@ -54,6 +68,8 @@ namespace DT.Game.LevelEditor {
 		private List<DynamicArenaObjectData> objects_ = new List<DynamicArenaObjectData>();
 		[SerializeField]
 		private List<DynamicArenaWallData> walls_ = new List<DynamicArenaWallData>();
+		[SerializeField]
+		private Vector3[] playerSpawnPoints_ = null;
 	}
 
 	[Serializable]

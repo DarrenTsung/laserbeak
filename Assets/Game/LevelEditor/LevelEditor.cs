@@ -23,6 +23,8 @@ namespace DT.Game.LevelEditor {
 
 			if (prefab.GetComponent<Wall>() != null) {
 				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.WallPlacerPrefab, parent: this.gameObject);
+			} else if (prefab.GetComponent<LevelEditorPlayerSpawnPoint>() != null) {
+				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.PlayerSpawnPointPlacerPrefab, parent: this.gameObject);
 			} else {
 				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.PlatformPlacerPrefab, parent: this.gameObject);
 			}

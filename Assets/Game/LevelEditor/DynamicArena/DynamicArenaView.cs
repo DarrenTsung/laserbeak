@@ -52,6 +52,22 @@ namespace DT.Game.LevelEditor {
 				var wall = ObjectPoolManager.Create<Wall>(prefab, position: wallData.Position, rotation: Quaternion.identity, parent: this.gameObject);
 				wall.SetVertexLocalPositions(wallData.VertexLocalPositions);
 			}
+
+			int playerIndex = 0;
+			foreach (Vector3 position in dynamicArenaData_.PlayerSpawnPoints) {
+				// Vector3.zero is not valid - hide until valid player spawn point is placed
+				if (position == Vector3.zero) {
+					continue;
+				}
+
+				GameObject prefab = FindRequiredPrefabFor("PlayerSpawnPoint" + playerIndex);
+				if (prefab == null) {
+					continue;
+				}
+
+				ObjectPoolManager.Create(prefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
+				playerIndex++;
+			}
 		}
 
 		private GameObject FindRequiredPrefabFor(string prefabName) {
