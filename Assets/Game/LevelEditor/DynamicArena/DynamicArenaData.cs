@@ -21,7 +21,17 @@ namespace DT.Game.LevelEditor {
 		}
 
 		public Vector3[] PlayerSpawnPoints {
-			get { return playerSpawnPoints_ ?? (playerSpawnPoints_ = new Vector3[4]); }
+			get {
+				if (playerSpawnPoints_ == null) {
+					playerSpawnPoints_ = new Vector3[4];
+				}
+
+				if (playerSpawnPoints_.Length != 4) {
+					Array.Resize(ref playerSpawnPoints_, 4);
+				}
+
+				return playerSpawnPoints_;
+			}
 		}
 
 		public void SerializeObject(GameObject prefab, Vector3 position, Quaternion rotation, Vector3 localScale) {

@@ -11,4 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714c0c70020984e9280378a90cd77e0b, type: 3}
   m_Name: A1_Single
   m_EditorClassIdentifier: 
-  prefab_: {fileID: 1507349627388286, guid: 2c7d9db35d3904bdca7a7711b6560a13, type: 2}
+  prefab_: {fileID: 0}
+  dynamicArenaDataJson_: {fileID: 4900000, guid: 717893b7b54454208adcc008c40b0465,
+    type: 3}

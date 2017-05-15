@@ -585,7 +585,6 @@ Transform:
   m_Children:
   - {fileID: 61758704}
   - {fileID: 1498427400}
-  - {fileID: 1675223164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1302,6 +1301,10 @@ MonoBehaviour:
     type: 2}
   TagExplosivePrefab: {fileID: 1251852763226904, guid: e61770b0d400c4c508a0f0fd568a1ee2,
     type: 2}
+  InGameDynamicArenaPrefab: {fileID: 1084837975160882, guid: c7ed0ae5635944661853ebd5895c1c4c,
+    type: 2}
+  PlayerSpawnPointPrefab: {fileID: 1183888085139686, guid: 86c33e104c6ee44f7870bc650a8cfec3,
+    type: 2}
   DisappearingPlatformPrefab: {fileID: 1417983034532250, guid: 9796194979e134f7381cb65a86b473b2,
     type: 2}
   InstructionPopupPrefab: {fileID: 1008465435243600, guid: 2eb91f4cd562a45068f3f5b37f0c816d,
@@ -1520,12 +1523,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1675223163}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 257688708}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1675223165
 MonoBehaviour:

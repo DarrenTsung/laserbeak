@@ -29,6 +29,10 @@ namespace DT.Game.LevelEditor {
 
 
 		// PRAGMA MARK - Internal
+		[Header("Properties")]
+		[SerializeField]
+		private bool forLevelEditor_ = true;
+
 		private DynamicArenaData dynamicArenaData_;
 
 		private void HandleDataDirty() {
@@ -55,15 +59,22 @@ namespace DT.Game.LevelEditor {
 				wall.SetVertexLocalPositions(wallData.VertexLocalPositions);
 			}
 
-			for (int playerIndex = 0; playerIndex < dynamicArenaData_.PlayerSpawnPoints.Length; playerIndex++) {
-				Vector3 position = dynamicArenaData_.PlayerSpawnPoints[playerIndex];
-				// Vector3.zero is not valid - hide until valid player spawn point is placed
-				if (position == Vector3.zero) {
-					continue;
-				}
+			if (forLevelEditor_) {
+				for (int playerIndex = 0; playerIndex < dynamicArenaData_.PlayerSpawnPoints.Length; playerIndex++) {
+					Vector3 position = dynamicArenaData_.PlayerSpawnPoints[playerIndex];
+					// Vector3.zero is not valid - hide until valid player spawn point is placed
+					if (position == Vector3.zero) {
+						continue;
+					}
 
-				var spawnPoint = ObjectPoolManager.Create<LevelEditorPlayerSpawnPoint>(GamePrefabs.Instance.LevelEditorPlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
-				spawnPoint.SetPlayerIndex(playerIndex);
+					var spawnPoint = ObjectPoolManager.Create<LevelEditorPlayerSpawnPoint>(GamePrefabs.Instance.LevelEditorPlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
+					spawnPoint.SetPlayerIndex(playerIndex);
+				}
+			} else {
+				for (int playerIndex = 0; playerIndex < dynamicArenaData_.PlayerSpawnPoints.Length; playerIndex++) {
+					Vector3 position = dynamicArenaData_.PlayerSpawnPoints[playerIndex];
+					ObjectPoolManager.Create(GamePrefabs.Instance.PlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
+				}
 			}
 		}
 

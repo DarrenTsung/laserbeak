@@ -7,6 +7,8 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.LevelEditor;
+
 namespace DT.Game.Battle {
 	public class ArenaManager : Singleton<ArenaManager> {
 		// PRAGMA MARK - Public Interface
@@ -21,7 +23,7 @@ namespace DT.Game.Battle {
 
 		public void LoadArena(ArenaConfig arenaConfig) {
 			CleanupLoadedArena();
-			loadedArena_ = new Arena(ObjectPoolManager.Create(arenaConfig.Prefab, parent: this.gameObject));
+			loadedArena_ = new Arena(arenaConfig.CreateArena(parent: this.gameObject));
 		}
 
 		public void CleanupLoadedArena() {

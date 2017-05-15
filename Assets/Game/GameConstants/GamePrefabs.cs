@@ -63,6 +63,8 @@ namespace DT.Game {
 		public GameObject TagExplosivePrefab;
 
 		[Header("Arena")]
+		public GameObject InGameDynamicArenaPrefab;
+		public GameObject PlayerSpawnPointPrefab;
 		public GameObject DisappearingPlatformPrefab;
 
 		[Header("Instruction Popups")]
