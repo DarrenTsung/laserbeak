@@ -432,6 +432,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23990825961023122
 MeshRenderer:
@@ -463,6 +464,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33367211740670672
 MeshFilter:
@@ -524,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf6f2aafdf5a45938beebf71dc8f9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertexLocalPositions_:
+  serializedVertexLocalPositions_:
   - {x: -11, y: 0, z: 8.5}
   - {x: 11, y: 0, z: 8.5}
   - {x: 11, y: 0, z: -8.5}

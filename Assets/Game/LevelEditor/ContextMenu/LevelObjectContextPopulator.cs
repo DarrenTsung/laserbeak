@@ -29,6 +29,8 @@ namespace DT.Game.LevelEditor {
 			return items;
 		}
 
+		void IScrollableMenuPopulator.Dispose() {}
+
 
 		// PRAGMA MARK - Internal
 		private LevelEditor levelEditor_;

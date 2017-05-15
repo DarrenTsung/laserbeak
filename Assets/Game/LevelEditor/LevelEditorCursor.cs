@@ -7,6 +7,8 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.ScrollableMenuPopups;
+
 namespace DT.Game.LevelEditor {
 	public class LevelEditorCursor : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
@@ -14,10 +16,12 @@ namespace DT.Game.LevelEditor {
 
 		public void Init(InputDevice inputDevice) {
 			inputDevice_ = inputDevice;
-		}
 
-		public void SetLockedInPlace(bool lockedInPlace) {
-			locked_ = lockedInPlace;
+			ScrollableMenuPopup.OnShown += LockInPlace;
+			ScrollableMenuPopup.OnHidden += UnlockInPlace;
+
+			MenuView.OnShown += LockInPlace;
+			MenuView.OnHidden += UnlockInPlace;
 		}
 
 
@@ -25,6 +29,12 @@ namespace DT.Game.LevelEditor {
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			inputDevice_ = null;
 			locked_ = false;
+
+			ScrollableMenuPopup.OnShown -= LockInPlace;
+			ScrollableMenuPopup.OnHidden -= UnlockInPlace;
+
+			MenuView.OnShown -= LockInPlace;
+			MenuView.OnHidden -= UnlockInPlace;
 		}
 
 
@@ -52,6 +62,14 @@ namespace DT.Game.LevelEditor {
 			if (oldPosition != this.transform.position) {
 				OnMoved.Invoke();
 			}
+		}
+
+		private void LockInPlace() {
+			locked_ = true;
+		}
+
+		private void UnlockInPlace() {
+			locked_ = false;
 		}
 	}
 }

@@ -10,6 +10,6 @@ using InControl;
 
 namespace DT.Game.LevelEditor {
 	public interface IPlacer {
-		void Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor);
+		void Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor, Action<GameObject> instanceInitialization);
 	}
 }

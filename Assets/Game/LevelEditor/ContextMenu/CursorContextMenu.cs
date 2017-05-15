@@ -18,6 +18,7 @@ namespace DT.Game.LevelEditor {
 			levelEditor_ = levelEditor;
 
 			populators_ = new IScrollableMenuPopulator[] {
+				new SpawnPointContextPopulator(inputDevice, levelEditor_),
 				new LevelObjectContextPopulator(levelEditor_),
 			};
 
@@ -26,7 +27,11 @@ namespace DT.Game.LevelEditor {
 
 		public void Dispose() {
 			MonoBehaviourWrapper.OnUpdate -= HandleUpdate;
-			HideContextMenu(recycle: true);
+			CleanupContextMenu();
+
+			foreach (var populator in populators_) {
+				populator.Dispose();
+			}
 		}
 
 
@@ -41,32 +46,22 @@ namespace DT.Game.LevelEditor {
 
 		private void HandleUpdate() {
 			if (inputDevice_.Action4.WasPressed) {
-				if (contextMenu_ != null) {
-					HideContextMenu(recycle: true);
-				} else {
-					contextMenu_ = ScrollableMenuPopup.Create(inputDevice_, populators_.SelectMany(p => p.GetItems()));
-					contextMenu_.OnHidden += HandleContextMenuHidden;
-					levelEditor_.Cursor.SetLockedInPlace(true);
-				}
+				CleanupContextMenu();
+				contextMenu_ = ScrollableMenuPopup.Create(inputDevice_, populators_.SelectMany(p => p.GetItems()));
+				contextMenu_.GetComponent<RecyclablePrefab>().OnCleanup += ClearContextMenuReferences;
 			}
 		}
 
-		private void HandleContextMenuHidden() {
-			HideContextMenu();
-		}
-
-		private void HideContextMenu(bool recycle = false) {
+		private void CleanupContextMenu() {
 			if (contextMenu_ != null) {
-				contextMenu_.OnHidden -= HandleContextMenuHidden;
-				if (recycle) {
-					ObjectPoolManager.Recycle(contextMenu_);
-				}
+				ObjectPoolManager.Recycle(contextMenu_);
 				contextMenu_ = null;
 			}
+		}
 
-			if (levelEditor_.Cursor != null) {
-				levelEditor_.Cursor.SetLockedInPlace(false);
-			}
+		private void ClearContextMenuReferences(RecyclablePrefab unused) {
+			contextMenu_.GetComponent<RecyclablePrefab>().OnCleanup -= ClearContextMenuReferences;
+			contextMenu_ = null;
 		}
 	}
 }

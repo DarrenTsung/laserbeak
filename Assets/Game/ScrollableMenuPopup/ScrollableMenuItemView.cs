@@ -20,8 +20,8 @@ namespace DT.Game.ScrollableMenuPopups {
 			nameOutlet_.Text = item.Name;
 
 			callback_ = () => {
-				item.Callback.Invoke();
 				onCallbackInvoked.Invoke();
+				item.Callback.Invoke();
 			};
 		}
 

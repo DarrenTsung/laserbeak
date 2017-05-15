@@ -7,13 +7,12 @@ using DTObjectPoolManager;
 using TMPro;
 
 namespace DT.Game.LevelEditor {
-	public class LevelEditorPlayerSpawnPoint : MonoBehaviour, IRecycleSetupSubscriber {
+	public class LevelEditorPlayerSpawnPoint : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public int PlayerIndex = 0;
 
-
-		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
-		void IRecycleSetupSubscriber.OnRecycleSetup() {
+		public void SetPlayerIndex(int playerIndex) {
+			PlayerIndex = playerIndex;
 			text_.text = PlayerIndex.ToString();
 		}
 

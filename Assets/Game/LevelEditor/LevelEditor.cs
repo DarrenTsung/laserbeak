@@ -18,7 +18,7 @@ namespace DT.Game.LevelEditor {
 			get { return cursor_; }
 		}
 
-		public void SetObjectToPlace(GameObject prefab) {
+		public void SetObjectToPlace(GameObject prefab, Action<GameObject> instanceInitialization = null) {
 			CleanupPlacer();
 
 			if (prefab.GetComponent<Wall>() != null) {
@@ -29,14 +29,14 @@ namespace DT.Game.LevelEditor {
 				placerObject_ = ObjectPoolManager.Create(GamePrefabs.Instance.PlatformPlacerPrefab, parent: this.gameObject);
 			}
 			var placer = placerObject_.GetComponent<IPlacer>();
-			placer.Init(prefab, dynamicArenaData_, undoHistory_, inputDevice_, this);
+			placer.Init(prefab, dynamicArenaData_, undoHistory_, inputDevice_, this, instanceInitialization);
 		}
 
 		public void Init(InputDevice inputDevice, Action exitCallback) {
 			inputDevice_ = inputDevice;
 
 			cursorContextMenu_ = new CursorContextMenu(inputDevice, this);
-			levelEditorMenu_ = new LevelEditorMenu(inputDevice, this, exitCallback, SaveDataToEditor);
+			levelEditorMenu_ = new LevelEditorMenu(inputDevice, exitCallback, SaveDataToEditor);
 
 			dynamicArenaData_ = new DynamicArenaData();
 			undoHistory_ = new UndoHistory(dynamicArenaData_, inputDevice);

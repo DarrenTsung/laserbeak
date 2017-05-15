@@ -55,20 +55,15 @@ namespace DT.Game.LevelEditor {
 				wall.SetVertexLocalPositions(wallData.VertexLocalPositions);
 			}
 
-			int playerIndex = 0;
-			foreach (Vector3 position in dynamicArenaData_.PlayerSpawnPoints) {
+			for (int playerIndex = 0; playerIndex < dynamicArenaData_.PlayerSpawnPoints.Length; playerIndex++) {
+				Vector3 position = dynamicArenaData_.PlayerSpawnPoints[playerIndex];
 				// Vector3.zero is not valid - hide until valid player spawn point is placed
 				if (position == Vector3.zero) {
 					continue;
 				}
 
-				GameObject prefab = FindRequiredPrefabFor("PlayerSpawnPoint" + playerIndex);
-				if (prefab == null) {
-					continue;
-				}
-
-				ObjectPoolManager.Create(prefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
-				playerIndex++;
+				var spawnPoint = ObjectPoolManager.Create<LevelEditorPlayerSpawnPoint>(GamePrefabs.Instance.LevelEditorPlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
+				spawnPoint.SetPlayerIndex(playerIndex);
 			}
 		}
 

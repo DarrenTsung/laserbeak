@@ -14,6 +14,9 @@ using DT.Game.ElementSelection;
 namespace DT.Game {
 	public class MenuView : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Static
+		public static event Action OnShown = delegate {};
+		public static event Action OnHidden = delegate {};
+
 		private static MenuView menuView_;
 
 		public static bool Showing {
@@ -23,6 +26,8 @@ namespace DT.Game {
 		public static void Show(InputDevice inputDevice, string title, Dictionary<string, Action> menuItemMap) {
 			menuView_ = ObjectPoolManager.CreateView<MenuView>(GamePrefabs.Instance.MenuViewPrefab);
 			menuView_.Init(inputDevice, title, menuItemMap);
+
+			OnShown.Invoke();
 		}
 
 		public static void Hide() {
@@ -30,6 +35,8 @@ namespace DT.Game {
 				ObjectPoolManager.Recycle(menuView_);
 				menuView_ = null;
 			}
+
+			OnHidden.Invoke();
 		}
 
 

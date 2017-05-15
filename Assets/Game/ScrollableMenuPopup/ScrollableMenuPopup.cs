@@ -26,6 +26,9 @@ namespace DT.Game.ScrollableMenuPopups {
 
 	public class ScrollableMenuPopup : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Static
+		public static event Action OnShown = delegate {};
+		public static event Action OnHidden = delegate {};
+
 		public static ScrollableMenuPopup Create(InputDevice inputDevice, IEnumerable<ScrollableMenuItem> items) {
 			var popup = ObjectPoolManager.CreateView<ScrollableMenuPopup>(GamePrefabs.Instance.ScrollableMenuPopupPrefab);
 			popup.Init(inputDevice, items);
@@ -35,8 +38,6 @@ namespace DT.Game.ScrollableMenuPopups {
 
 
 		// PRAGMA MARK - Public Interface
-		public event Action OnHidden = delegate {};
-
 		public void Init(InputDevice inputDevice, IEnumerable<ScrollableMenuItem> items) {
 			foreach (var item in items) {
 				var view = ObjectPoolManager.Create<ScrollableMenuItemView>(GamePrefabs.Instance.ScrollableMenuItemViewPrefab, parent: layoutRectTransform_.gameObject);
@@ -46,6 +47,8 @@ namespace DT.Game.ScrollableMenuPopups {
 			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
 			selectionView_.OnSelectableHover += HandleNewSelection;
 			selectionView_.Init(new InputDevice[] { inputDevice }, layoutRectTransform_.gameObject);
+
+			OnShown.Invoke();
 		}
 
 
@@ -58,6 +61,8 @@ namespace DT.Game.ScrollableMenuPopups {
 			}
 
 			layoutRectTransform_.RecycleAllChildren();
+
+			OnHidden.Invoke();
 		}
 
 
@@ -108,7 +113,6 @@ namespace DT.Game.ScrollableMenuPopups {
 
 		private void HideMenu() {
 			ObjectPoolManager.Recycle(this);
-			OnHidden.Invoke();
 		}
 	}
 }

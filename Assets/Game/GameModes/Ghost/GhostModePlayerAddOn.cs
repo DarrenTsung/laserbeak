@@ -20,8 +20,8 @@ namespace DT.Game.GameModes.Ghost {
 		// PRAGMA MARK - Public Interface
 		public GhostModePlayerAddOn(BattlePlayer battlePlayer) {
 			battlePlayer_ = battlePlayer;
-			recycablePrefab_ = battlePlayer_.GetComponentInParent<RecyclablePrefab>();
-			recycablePrefab_.OnCleanup += HandleCleanup;
+			recyclablePrefab_ = battlePlayer_.GetComponentInParent<RecyclablePrefab>();
+			recyclablePrefab_.OnCleanup += HandleCleanup;
 
 			battlePlayer_.DustParticleSystem.gameObject.SetActive(false);
 			SetAlpha(0.0f);
@@ -50,7 +50,7 @@ namespace DT.Game.GameModes.Ghost {
 
 		private BattlePlayer battlePlayer_;
 		private CoroutineWrapper animateCoroutine_;
-		private RecyclablePrefab recycablePrefab_;
+		private RecyclablePrefab recyclablePrefab_;
 
 		private void SetAlpha(float alpha) {
 			float metallic = Mathf.Lerp(0.0f, kBaseMetallic, alpha);
@@ -92,9 +92,9 @@ namespace DT.Game.GameModes.Ghost {
 				battlePlayer_ = null;
 			}
 
-			if (recycablePrefab_ != null) {
-				recycablePrefab_.OnCleanup -= HandleCleanup;
-				recycablePrefab_ = null;
+			if (recyclablePrefab_ != null) {
+				recyclablePrefab_.OnCleanup -= HandleCleanup;
+				recyclablePrefab_ = null;
 			}
 		}
 	}

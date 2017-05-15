@@ -32,7 +32,7 @@ namespace DT.Game.LevelEditor {
 		}
 
 		protected override void Initialize() {
-			playerIndex_ = PlacablePrefab_.GetComponent<LevelEditorPlayerSpawnPoint>().PlayerIndex;
+			playerIndex_ = PreviewObject_.GetComponent<LevelEditorPlayerSpawnPoint>().PlayerIndex;
 		}
 
 		protected override void HandleCusorMoved() {

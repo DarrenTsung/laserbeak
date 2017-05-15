@@ -77,6 +77,7 @@ namespace DT.Game {
 		public GameObject LevelEditorCursorPrefab;
 
 		public GameObject[] LevelEditorObjects;
+		public GameObject LevelEditorPlayerSpawnPointPrefab;
 		public GameObject DynamicArenaObjectContainer;
 
 		[Space]

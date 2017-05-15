@@ -13,5 +13,6 @@ using DT.Game.ScrollableMenuPopups;
 namespace DT.Game.LevelEditor {
 	public interface IScrollableMenuPopulator {
 		List<ScrollableMenuItem> GetItems();
+		void Dispose();
 	}
 }

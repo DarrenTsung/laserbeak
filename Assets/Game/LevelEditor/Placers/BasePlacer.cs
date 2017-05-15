@@ -11,7 +11,7 @@ using InControl;
 namespace DT.Game.LevelEditor {
 	public class BasePlacer : MonoBehaviour, IPlacer, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - IPlacer Implementation
-		void IPlacer.Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor) {
+		void IPlacer.Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor, Action<GameObject> instanceInitialization) {
 			if (prefab == null) {
 				Debug.LogWarning("Cannot set preview object of null object!");
 				return;
@@ -28,8 +28,13 @@ namespace DT.Game.LevelEditor {
 
 			placablePrefab_ = prefab;
 			previewObject_ = ObjectPoolManager.Create(prefab, parent: this.gameObject);
+			previewObject_.transform.localPosition = Vector3.zero;
 			foreach (var collider in previewObject_.GetComponentsInChildren<Collider>()) {
 				collider.enabled = false;
+			}
+
+			if (instanceInitialization != null) {
+				instanceInitialization.Invoke(previewObject_);
 			}
 
 			HandlePreviewObjectCreated();
