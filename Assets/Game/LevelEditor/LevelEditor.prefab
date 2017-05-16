@@ -366,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dynamicArenaView_: {fileID: 114745287896268306}
+  levelToLoad_: {fileID: 0}
 --- !u!114 &114745287896268306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,3 +378,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d7a707b9f5b49aa85c30cdae0b287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forLevelEditor_: 1

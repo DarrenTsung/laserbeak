@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: A1_Single
   m_EditorClassIdentifier: 
   prefab_: {fileID: 0}
-  dynamicArenaDataJson_: {fileID: 4900000, guid: 717893b7b54454208adcc008c40b0465,
+  dynamicArenaDataJson_: {fileID: 4900000, guid: eea748162ff3749cea39e68d8be3adee,
     type: 3}

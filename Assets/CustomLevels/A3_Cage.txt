@@ -22,7 +22,7 @@
    ],
    "walls_":[
       {
-         "PrefabName":"BarrierWall",
+         "PrefabName":"ReflectWall",
          "Position":{
             "x":10.0,
             "y":0.0,
@@ -42,7 +42,7 @@
          ]
       },
       {
-         "PrefabName":"BarrierWall",
+         "PrefabName":"ReflectWall",
          "Position":{
             "x":-10.0,
             "y":0.0,
@@ -62,7 +62,7 @@
          ]
       },
       {
-         "PrefabName":"BarrierWall",
+         "PrefabName":"ReflectWall",
          "Position":{
             "x":-10.0,
             "y":0.0,
@@ -82,7 +82,7 @@
          ]
       },
       {
-         "PrefabName":"BarrierWall",
+         "PrefabName":"ReflectWall",
          "Position":{
             "x":10.0,
             "y":0.0,

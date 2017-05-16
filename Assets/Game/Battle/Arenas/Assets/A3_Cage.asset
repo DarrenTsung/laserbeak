@@ -11,4 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714c0c70020984e9280378a90cd77e0b, type: 3}
   m_Name: A3_Cage
   m_EditorClassIdentifier: 
-  prefab_: {fileID: 1507349627388286, guid: 9e47fe1751b3a4db19a6572ed948c064, type: 2}
+  prefab_: {fileID: 0}
+  dynamicArenaDataJson_: {fileID: 4900000, guid: 0affacdc9ecd44e16998e49ae79476f9,
+    type: 3}

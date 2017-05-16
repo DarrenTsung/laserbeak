@@ -9,6 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 714c0c70020984e9280378a90cd77e0b, type: 3}
-  m_Name: A6_Beat_Arena
+  m_Name: A5_SeparatedBarrier
   m_EditorClassIdentifier: 
-  prefab_: {fileID: 1507349627388286, guid: aea34147ca63b426fbd214a8628f9881, type: 2}
+  prefab_: {fileID: 0}
+  dynamicArenaDataJson_: {fileID: 4900000, guid: e1d41c5798ce6459bb100db3d496a20f,
+    type: 3}

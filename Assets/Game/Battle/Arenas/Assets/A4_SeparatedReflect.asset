@@ -9,6 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 714c0c70020984e9280378a90cd77e0b, type: 3}
-  m_Name: A4_Shrinking_Cylinder
+  m_Name: A4_SeparatedReflect
   m_EditorClassIdentifier: 
-  prefab_: {fileID: 1507349627388286, guid: 37436a803effd41f89904b84dede3eb2, type: 2}
+  prefab_: {fileID: 0}
+  dynamicArenaDataJson_: {fileID: 4900000, guid: 3c1f1a23c6d954ac2a6a6a3df7aa8186,
+    type: 3}

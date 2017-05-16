@@ -33,12 +33,16 @@ namespace DT.Game.LevelEditor {
 		}
 
 		public void Init(InputDevice inputDevice, Action exitCallback) {
+			dynamicArenaData_ = new DynamicArenaData();
+			if (levelToLoad_ != null) {
+				dynamicArenaData_.ReloadFromSerialized(levelToLoad_.text);
+			}
+
 			inputDevice_ = inputDevice;
 
 			cursorContextMenu_ = new CursorContextMenu(inputDevice, this);
 			levelEditorMenu_ = new LevelEditorMenu(inputDevice, exitCallback, SaveDataToEditor);
 
-			dynamicArenaData_ = new DynamicArenaData();
 			undoHistory_ = new UndoHistory(dynamicArenaData_, inputDevice);
 
 			dynamicArenaView_.Init(dynamicArenaData_);
@@ -80,6 +84,9 @@ namespace DT.Game.LevelEditor {
 		[Header("Outlets")]
 		[SerializeField]
 		private DynamicArenaView dynamicArenaView_;
+
+		[SerializeField]
+		private TextAsset levelToLoad_;
 
 		private LevelEditorCursor cursor_;
 		private GameObject placerObject_;
