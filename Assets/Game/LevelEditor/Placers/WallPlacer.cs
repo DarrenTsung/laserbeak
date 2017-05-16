@@ -49,6 +49,11 @@ namespace DT.Game.LevelEditor {
 			PreviewWall_.SetVertexLocalPositions(new Vector3[] { Vector3.zero, Vector3.zero });
 		}
 
+		protected override void Cleanup() {
+			wall_ = null;
+			placingWall_ = false;
+		}
+
 		protected override void HandleCusorMoved() {
 			Refresh();
 		}
