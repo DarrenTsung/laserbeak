@@ -27,6 +27,12 @@ namespace DT.Game.Battle.Players {
 		private Coroutine wingFlapCoroutine_;
 		private bool chainedWingFlap_ = false;
 
+		protected override void Initialize() {
+			leftWingTransform_.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+			rightWingTransform_.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+			wingFlapCoroutine_ = null;
+		}
+
 		protected override void Cleanup() {
 			soundOffset_ = 0;
 			keepBeakOpen_ = false;
