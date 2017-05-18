@@ -71,7 +71,9 @@ namespace DT.Game {
 		public GameObject InstructionPopupPrefab;
 		public GameObject InstructionPlayerReadyViewPrefab;
 
-		[Header("Scoring")]
+		[Header("Stats")]
+		public GameObject PlayerStatsViewPrefab;
+		public GameObject IndividualPlayerStatsViewPrefab;
 		public GameObject StatView;
 
 		[Header("Level Editors")]

@@ -1311,6 +1311,10 @@ MonoBehaviour:
     type: 2}
   InstructionPlayerReadyViewPrefab: {fileID: 1364895875076536, guid: 5d8763793714d4d40a3a3feb5f265435,
     type: 2}
+  PlayerStatsViewPrefab: {fileID: 1466384693120092, guid: 7a504cc9197dd47da924bdf375999fe8,
+    type: 2}
+  IndividualPlayerStatsViewPrefab: {fileID: 1244183671406430, guid: cfafc9aae03ea40469a347222589d922,
+    type: 2}
   StatView: {fileID: 1418376473286452, guid: 29337950e21d44aa082f706217cdc892, type: 2}
   LevelEditorPrefab: {fileID: 1313660554984734, guid: 09c753f399e434b10b2264e0bd86cc22,
     type: 2}
@@ -1471,7 +1475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToWin: 4
+  ScoreToWin: 1
   PlayersToFill: 4
   FillWithAI: 1
   DemoMode: 0

@@ -29,6 +29,10 @@ namespace DT.Game {
 			animator_.SetTrigger("Continue");
 		}
 
+		public void HandleGameFinished() {
+			animator_.SetTrigger("GameFinished");
+		}
+
 
 		// PRAGMA MARK - Internal
 		private Animator animator_;

@@ -12,7 +12,7 @@ using InControl;
 using DT.Game.GameModes;
 using DT.Game.Players;
 
-namespace DT.Game.Scoring {
+namespace DT.Game.Stats {
 	public class StatView : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public void Init(Player player, string statName, string statValue, bool showMarker) {

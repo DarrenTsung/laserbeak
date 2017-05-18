@@ -13,7 +13,7 @@ using DT.Game.Battle.Stats;
 using DT.Game.GameModes;
 using DT.Game.Players;
 
-namespace DT.Game.Scoring {
+namespace DT.Game.Stats {
 	public class StatsContainer : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
 		public void Init(Player player) {

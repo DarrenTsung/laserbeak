@@ -29,15 +29,11 @@ namespace DT.Game.Scoring {
 			RefreshScoreBubbles(animate: false);
 
 			PlayerScores.OnPlayerScoresChanged += HandlePlayerScoresChanged;
-			PlayerScores.OnPlayerWon += HandleAnyPlayerWon;
 		}
 
 
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
-			rankContainer_.SetActive(false);
-			statsContainer_.gameObject.SetActive(false);
-
 			scoresContainer_.gameObject.SetActive(true);
 		}
 
@@ -48,7 +44,6 @@ namespace DT.Game.Scoring {
 			scoresContainer_.transform.RecycleAllChildren();
 
 			PlayerScores.OnPlayerScoresChanged -= HandlePlayerScoresChanged;
-			PlayerScores.OnPlayerWon -= HandleAnyPlayerWon;
 
 			player_ = null;
 		}
@@ -61,22 +56,6 @@ namespace DT.Game.Scoring {
 
 		[SerializeField]
 		private GameObject scoresContainer_;
-
-		[SerializeField]
-		private StatsContainer statsContainer_;
-
-		[Header("Rank")]
-		[SerializeField]
-		private GameObject rankContainer_;
-
-		[SerializeField]
-		private GameObject crownObject_;
-
-		[SerializeField]
-		private Image rankBannerImage_;
-
-		[SerializeField]
-		private TextOutlet rankText_;
 
 		private Player player_;
 		private ScoreBubbleView[] scoreBubbleViews_;
@@ -91,30 +70,6 @@ namespace DT.Game.Scoring {
 				int flippedIndex = GameConstants.Instance.ScoreToWin - 1 - i;
 				scoreBubbleViews_[i].SetFilled(flippedIndex < playerScore, animate);
 			}
-		}
-
-		private void HandleAnyPlayerWon() {
-			statsContainer_.Init(player_);
-			statsContainer_.gameObject.SetActive(true);
-			scoresContainer_.gameObject.SetActive(false);
-
-			rankContainer_.SetActive(true);
-
-			int rank = PlayerScores.GetRankFor(player_);
-			Color rankColor = Color.clear;
-			if (rank == 1) {
-				rankColor = ColorUtil.HexStringToColor("EAD94FFF");
-			} else if (rank == 2) {
-				rankColor = ColorUtil.HexStringToColor("B6B6B6FF");
-			} else if (rank == 3) {
-				rankColor = ColorUtil.HexStringToColor("A79376FF");
-			} else {
-				rankColor = ColorUtil.HexStringToColor("B08A76FF");
-			}
-			rankBannerImage_.color = rankColor;
-			rankText_.Text = string.Format("{0}", rank);
-
-			crownObject_.SetActive(PlayerScores.Winner == player_);
 		}
 	}
 }

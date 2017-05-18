@@ -37,14 +37,12 @@ namespace DT.Game.Scoring {
 			this.DoAfterDelay(kBeforeScoringDelay, () => {
 				StartCoroutine(DoScoring());
 			});
-			hasWinnerContainer_.SetActive(false);
 		}
 
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			scoringViewContainer_.transform.RecycleAllChildren();
-			hasWinnerContainer_.SetActive(false);
 		}
 
 
@@ -56,9 +54,6 @@ namespace DT.Game.Scoring {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject scoringViewContainer_;
-
-		[SerializeField]
-		private GameObject hasWinnerContainer_;
 
 		private Action onFinishedCallback_;
 
@@ -77,15 +72,10 @@ namespace DT.Game.Scoring {
 
 			if (PlayerScores.HasWinner) {
 				GameNotifications.OnGameWon.Invoke();
-				hasWinnerContainer_.SetActive(true);
 				AudioConstants.Instance.Win.PlaySFX(randomPitchRange: 0.0f);
-				// wait for main button press
-				while (!InputUtil.WasAnyCommandButtonPressed()) {
-					yield return null;
-				}
-			} else {
-				yield return new WaitForSeconds(kEndScoringDelay);
 			}
+
+			yield return new WaitForSeconds(kEndScoringDelay);
 
 			Finish();
 		}
