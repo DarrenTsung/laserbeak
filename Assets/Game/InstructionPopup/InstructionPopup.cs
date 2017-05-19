@@ -32,6 +32,7 @@ namespace DT.Game.InstructionPopups {
 
 				views_.Add(view);
 			}
+			CheckIfAllPlayersReady();
 		}
 
 

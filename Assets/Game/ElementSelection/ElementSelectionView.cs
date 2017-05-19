@@ -115,19 +115,25 @@ namespace DT.Game.ElementSelection {
 				UpdateMovement(inputDevice);
 			}
 
-			if (inputDevices_.Any(i => InputUtil.WasPositivePressedFor(i))) {
+			UpdateMovement(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+			if (InputUtil.WasAnyPositiveButtonPressed(inputDevices_)) {
 				OnSelectableSelected.Invoke(currentSelectable_);
 				currentSelectable_.HandleSelected();
 			}
 		}
 
 		private void UpdateMovement(InputDevice inputDevice) {
+			UpdateMovement(inputDevice.LeftStick.X, inputDevice.LeftStick.Y);
+		}
+
+		private void UpdateMovement(float xMovement, float yMovement) {
 			delay_ -= Time.deltaTime;
 
 			bool resetDelay = false;
-			if (delay_ <= 0.0f && Mathf.Abs(inputDevice.LeftStick.X) > kIntentThreshold) {
+			if (delay_ <= 0.0f && Mathf.Abs(xMovement) > kIntentThreshold) {
 				// placeholder
-				if (inputDevice.LeftStick.X > 0) {
+				if (xMovement > 0) {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMax <= other.xMin);
 				} else {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMin >= other.xMax);
@@ -136,9 +142,9 @@ namespace DT.Game.ElementSelection {
 				resetDelay = true;
 			}
 
-			if (delay_ <= 0.0f && Mathf.Abs(inputDevice.LeftStick.Y) > kIntentThreshold) {
+			if (delay_ <= 0.0f && Mathf.Abs(yMovement) > kIntentThreshold) {
 				// placeholder
-				if (inputDevice.LeftStick.Y > 0) {
+				if (yMovement > 0) {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMax <= other.yMin);
 				} else {
 					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMin >= other.yMax);

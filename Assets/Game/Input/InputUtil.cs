@@ -11,15 +11,17 @@ using InControl;
 namespace DT.Game {
 	public static class InputUtil {
 		// PRAGMA MARK - Static Public Interface
-		public static bool WasAnyMainButtonPressed() {
-			foreach (InputDevice device in InputManager.Devices) {
+		public static bool WasAnyPositiveButtonPressed(IEnumerable<InputDevice> devices = null) {
+			devices = devices ?? InputManager.Devices;
+
+			foreach (InputDevice device in devices) {
 				if (WasPositivePressedFor(device)) {
 					return true;
 				}
 			}
 
 			// TODO (darren): custom profiles binding later
-			if (Input.GetKeyDown(KeyCode.Space)) {
+			if (Input.GetKeyDown(KeyCode.Return)) {
 				return true;
 			}
 
