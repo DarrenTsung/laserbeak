@@ -70,13 +70,14 @@ namespace DT.Game.InstructionPopups {
 			}
 
 			// animation would go here I think
+			CoroutineWrapper.DoAfterDelay(0.7f, () => {
+				if (allPlayersReadyCallback_ != null) {
+					allPlayersReadyCallback_.Invoke();
+					allPlayersReadyCallback_ = null;
+				}
 
-			if (allPlayersReadyCallback_ != null) {
-				allPlayersReadyCallback_.Invoke();
-				allPlayersReadyCallback_ = null;
-			}
-
-			ObjectPoolManager.Recycle(this);
+				ObjectPoolManager.Recycle(this);
+			});
 		}
 	}
 }
