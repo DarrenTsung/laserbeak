@@ -13,6 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instructionDetailPrefab_: {fileID: 1539234487112590, guid: fa8e92ba10ab34a7d92ddeb12915118a,
     type: 2}
-  arenaConfigs_:
-  - {fileID: 11400000, guid: d2b38beb731df489b9a423b6cb28fd3b, type: 2}
-  - {fileID: 11400000, guid: 73d7e3e4fdf83444db9febe3e293fc1a, type: 2}
+  arenaWhitelist_: []

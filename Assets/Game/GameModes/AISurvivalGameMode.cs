@@ -36,8 +36,6 @@ namespace DT.Game.GameModes {
 		private ArenaConfig[] arenas_;
 
 		protected override void Activate() {
-			ArenaManager.Instance.LoadArena(arenas_.Random());
-
 			PlayerSpawner.SpawnAllPlayers();
 			BattlePlayerTeams.DeclareTeam(PlayerSpawner.AllSpawnedBattlePlayers);
 

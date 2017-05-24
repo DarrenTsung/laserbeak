@@ -28,7 +28,6 @@ namespace DT.Game.GameModes {
 
 		// PRAGMA MARK - Internal
 		protected override void Activate() {
-			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
 
 			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();

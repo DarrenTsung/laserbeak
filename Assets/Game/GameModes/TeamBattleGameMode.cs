@@ -37,7 +37,6 @@ namespace DT.Game.GameModes {
 		private HashSet<Player>[] teams_;
 
 		protected override void Activate() {
-			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
 
 			// sometimes teams will be imbalanced like 5 players being split into 3 teams

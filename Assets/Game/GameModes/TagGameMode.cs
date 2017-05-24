@@ -74,7 +74,6 @@ namespace DT.Game.GameModes {
 		}
 
 		protected override void Activate() {
-			ArenaManager.Instance.LoadRandomArena();
 			PlayerSpawner.SpawnAllPlayers();
 
 			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();

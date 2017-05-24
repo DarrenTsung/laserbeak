@@ -8,6 +8,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle;
 using DT.Game.InstructionPopups;
 
 namespace DT.Game.GameModes {
@@ -29,6 +30,14 @@ namespace DT.Game.GameModes {
 		}
 
 		public abstract void Cleanup();
+
+		public void LoadArena() {
+			if (arenaWhitelist_ != null && arenaWhitelist_.Length > 0) {
+				ArenaManager.Instance.LoadArena(arenaWhitelist_.Random());
+			} else {
+				ArenaManager.Instance.LoadRandomArena();
+			}
+		}
 
 		public void ShowIntroductionIfNecessary(Action callback) {
 			// TODO (darren): in demo mode reset instructions on title screen
@@ -56,6 +65,10 @@ namespace DT.Game.GameModes {
 		[Header("Instruction Detail Prefab")]
 		[SerializeField]
 		private GameObject instructionDetailPrefab_;
+
+		[Header("Outlets")]
+		[SerializeField]
+		private ArenaConfig[] arenaWhitelist_;
 
 		private Action onFinishedCallback_ = null;
 

@@ -41,6 +41,7 @@ namespace DT.Game.Battle {
 				}
 			} while (previousGameMode_ == currentGameMode_);
 
+			currentGameMode_.LoadArena();
 			currentGameMode_.ShowIntroductionIfNecessary(() => {
 				currentGameMode_.Activate(FinishBattle);
 				previousGameMode_ = currentGameMode_;

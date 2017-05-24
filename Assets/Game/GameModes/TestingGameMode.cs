@@ -29,11 +29,7 @@ namespace DT.Game.GameModes {
 
 
 		// PRAGMA MARK - Internal
-		[SerializeField]
-		private ArenaConfig arenaConfig_;
-
 		protected override void Activate() {
-			ArenaManager.Instance.LoadArena(arenaConfig_);
 			PlayerSpawner.SpawnAllPlayers();
 
 			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();
