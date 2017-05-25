@@ -45,7 +45,14 @@ namespace DT.Game.GameModes {
 			OnActivate.Invoke(this);
 		}
 
-		public abstract void Cleanup();
+		public void Cleanup() {
+			if (popup_ != null) {
+				ObjectPoolManager.Recycle(popup_);
+				popup_ = null;
+			}
+
+			CleanupInternal();
+		}
 
 		public void LoadArena() {
 			if (arenaWhitelist_ != null && arenaWhitelist_.Length > 0) {
@@ -68,11 +75,12 @@ namespace DT.Game.GameModes {
 				return;
 			}
 
-			var popup = ObjectPoolManager.CreateView<InstructionPopup>(GamePrefabs.Instance.InstructionPopupPrefab);
+			popup_ = ObjectPoolManager.CreateView<InstructionPopup>(GamePrefabs.Instance.InstructionPopupPrefab);
 			string title = string.Format("<b>{0}</b>\n<size=23>INSTRUCTIONS", DisplayTitle);
-			popup.Init(title, instructionDetailPrefab_, () => {
+			popup_.Init(title, instructionDetailPrefab_, () => {
 				GameModeShowedInstructionsCache.MarkInstructionsAsShownFor(this);
 				callback.Invoke();
+				popup_ = null;
 			});
 		}
 
@@ -87,8 +95,10 @@ namespace DT.Game.GameModes {
 		private ArenaConfig[] arenaWhitelist_;
 
 		private Action onFinishedCallback_ = null;
+		private InstructionPopup popup_;
 
 		protected abstract void Activate();
+		protected abstract void CleanupInternal();
 
 		protected void Finish() {
 			if (onFinishedCallback_ == null) {

@@ -25,10 +25,6 @@ namespace DT.Game.GameModes {
 			get { return GameMode.GetIdFor<TeamBattleGameMode>(); }
 		}
 
-		public override void Cleanup() {
-			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
-		}
-
 
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]
@@ -102,6 +98,10 @@ namespace DT.Game.GameModes {
 			GameModeIntroView.Show(DisplayTitle, icons, playerOrdering);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
+		}
+
+		protected override void CleanupInternal() {
+			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 		}
 
 		private void HandleSpawnedPlayerRemoved() {

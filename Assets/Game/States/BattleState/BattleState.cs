@@ -14,6 +14,10 @@ using DT.Game.Players;
 
 namespace DT.Game.Battle {
 	public class BattleState : DTStateMachineBehaviour<GameStateMachine> {
+		// PRAGMA MARK - Static
+		public static GameMode QueuedGameMode = null;
+
+
 		// PRAGMA MARK - Internal
 		private GameMode currentGameMode_ = null;
 
@@ -29,7 +33,13 @@ namespace DT.Game.Battle {
 			CleanupCurrentGameMode();
 
 			// TODO (darren): filtering based on options will be here
-			currentGameMode_ = GameModesPlayedTracker.FilterByLeastPlayed(GameConstants.Instance.GameModes).ToArray().Random();
+			if (QueuedGameMode != null) {
+				currentGameMode_ = QueuedGameMode;
+				QueuedGameMode = null;
+			} else {
+				var unlockedModes = GameModesProgression.FilterByUnlocked(GameConstants.Instance.GameModes);
+				currentGameMode_ = GameModesPlayedTracker.FilterByLeastPlayed(unlockedModes).ToArray().Random();
+			}
 
 			currentGameMode_.LoadArena();
 			currentGameMode_.ShowIntroductionIfNecessary(() => {

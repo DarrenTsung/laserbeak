@@ -3,12 +3,21 @@ using System.Collections;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
+using DTCommandPalette;
 
 using DT.Game.Audio;
 
 namespace DT.Game {
 	[RequireComponent(typeof(Animator))]
 	public class GameStateMachine : MonoBehaviour {
+		// PRAGMA MARK - Static
+		[MethodCommand]
+		private static void SkipBattle() {
+			UnityEngine.Object.FindObjectOfType<GameStateMachine>().HandleBattleFinished();
+		}
+
+
+		// PRAGMA MARK - Public Interface
 		public void GoToMainMenu() {
 			animator_.SetTrigger("GoToMainMenu");
 		}

@@ -11,12 +11,43 @@ using InControl;
 
 namespace DT.Game.GameModes {
 	public static class GameModesPlayedTracker {
+		public static event Action<GameMode> OnGameModePlayTracked = delegate {};
+
+		public static int GetPlayedCountFor(GameMode gameMode) {
+			return PlayedData_.GetCountFor(gameMode.Id);
+		}
+
+		public static void Reset() {
+			PlayedData_.Reset();
+			SavePlayedData();
+		}
+
+		public static void IncrementPlayedCountFor(GameMode gameMode) {
+			PlayedData_.IncrementCountFor(gameMode.Id);
+			SavePlayedData();
+
+			OnGameModePlayTracked.Invoke(gameMode);
+		}
+
+		public static IEnumerable<GameMode> FilterByLeastPlayed(IEnumerable<GameMode> gameModes) {
+			int minPlayed = gameModes.Min(gm => GetPlayedCountFor(gm));
+			foreach (GameMode mode in gameModes) {
+				if (GetPlayedCountFor(mode) == minPlayed) {
+					yield return mode;
+				}
+			}
+		}
+
 		[Serializable]
 		private class GameModesPlayedData {
+			public void Reset() {
+				PlayedMap_.Clear();
+				SaveDataPoints();
+			}
+
 			public void IncrementCountFor(int gameModeId) {
 				PlayedMap_.Increment(gameModeId);
-
-				dataPoints_ = PlayedMap_.Select(kvp => new GameModesPlayedDataPoint(kvp.Key, kvp.Value)).ToArray();
+				SaveDataPoints();
 			}
 
 			public int GetCountFor(int gameModeId) {
@@ -42,6 +73,10 @@ namespace DT.Game.GameModes {
 					return playedMap_;
 				}
 			}
+
+			private void SaveDataPoints() {
+				dataPoints_ = PlayedMap_.Select(kvp => new GameModesPlayedDataPoint(kvp.Key, kvp.Value)).ToArray();
+			}
 		}
 
 		[Serializable]
@@ -52,20 +87,6 @@ namespace DT.Game.GameModes {
 			public GameModesPlayedDataPoint(int gameModeId, int count) {
 				GameModeId = gameModeId;
 				Count = count;
-			}
-		}
-
-
-		public static int GetPlayedCountFor(GameMode gameMode) {
-			return PlayedData_.GetCountFor(gameMode.Id);
-		}
-
-		public static IEnumerable<GameMode> FilterByLeastPlayed(IEnumerable<GameMode> gameModes) {
-			int minPlayed = gameModes.Min(gm => GetPlayedCountFor(gm));
-			foreach (GameMode mode in gameModes) {
-				if (GetPlayedCountFor(mode) == minPlayed) {
-					yield return mode;
-				}
 			}
 		}
 
@@ -87,8 +108,7 @@ namespace DT.Game.GameModes {
 		}
 
 		private static void HandleGameModeActivated(GameMode gameMode) {
-			PlayedData_.IncrementCountFor(gameMode.Id);
-			SavePlayedData();
+			IncrementPlayedCountFor(gameMode);
 		}
 
 		private static void SavePlayedData() {

@@ -27,13 +27,6 @@ namespace DT.Game.GameModes {
 			get { return GameMode.GetIdFor<GhostGameMode>(); }
 		}
 
-		public override void Cleanup() {
-			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
-			BattlePlayerInputDash.OnPlayerDash -= HandlePlayerDash;
-			GameNotifications.OnBattlePlayerShootLaser.RemoveListener(HandlePlayerShoot);
-			CleanupGhostModeAddOns();
-		}
-
 
 		// PRAGMA MARK - Internal
 		private const float kAlphaLevel = 0.65f;
@@ -62,6 +55,13 @@ namespace DT.Game.GameModes {
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 			BattlePlayerInputDash.OnPlayerDash += HandlePlayerDash;
 			GameNotifications.OnBattlePlayerShootLaser.AddListener(HandlePlayerShoot);
+		}
+
+		protected override void CleanupInternal() {
+			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
+			BattlePlayerInputDash.OnPlayerDash -= HandlePlayerDash;
+			GameNotifications.OnBattlePlayerShootLaser.RemoveListener(HandlePlayerShoot);
+			CleanupGhostModeAddOns();
 		}
 
 		private void HandlePlayerDash(BattlePlayer battlePlayer) {

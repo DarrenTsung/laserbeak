@@ -27,25 +27,6 @@ namespace DT.Game.GameModes {
 			get { return GameMode.GetIdFor<TagGameMode>(); }
 		}
 
-		public override void Cleanup() {
-			GameNotifications.OnBattlePlayerLaserHit.RemoveListener(HandleBattlePlayerHit);
-			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
-			BattlePlayerHealth.LaserDamage = 1;
-			InGameConstants.AllowChargingLasers = true;
-			InGameConstants.AllowedChargingLasersWhitelist.Clear();
-
-			itPlayer_ = null;
-
-			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
-				var explosive = battlePlayer.GetComponentInChildren<TagExplosive>();
-				if (explosive == null) {
-					continue;
-				}
-
-				ObjectPoolManager.Recycle(explosive);
-			}
-		}
-
 
 		// PRAGMA MARK - Internal
 		// the person who is "it" - also they will explode if they don't tag anyone soon :)
@@ -96,6 +77,25 @@ namespace DT.Game.GameModes {
 
 			GameNotifications.OnBattlePlayerLaserHit.AddListener(HandleBattlePlayerHit);
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
+		}
+
+		protected override void CleanupInternal() {
+			GameNotifications.OnBattlePlayerLaserHit.RemoveListener(HandleBattlePlayerHit);
+			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
+			BattlePlayerHealth.LaserDamage = 1;
+			InGameConstants.AllowChargingLasers = true;
+			InGameConstants.AllowedChargingLasersWhitelist.Clear();
+
+			itPlayer_ = null;
+
+			foreach (BattlePlayer battlePlayer in PlayerSpawner.AllSpawnedBattlePlayers) {
+				var explosive = battlePlayer.GetComponentInChildren<TagExplosive>();
+				if (explosive == null) {
+					continue;
+				}
+
+				ObjectPoolManager.Recycle(explosive);
+			}
 		}
 
 		private void HandleBattlePlayerHit(Laser laser, BattlePlayer playerHit) {

@@ -25,12 +25,6 @@ namespace DT.Game.GameModes {
 			get { return 0; }
 		}
 
-		public override void Cleanup() {
-			BattlePlayerHealth.LaserDamage = 1;
-			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
-			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
-		}
-
 
 		// PRAGMA MARK - Internal
 		protected override void Activate() {
@@ -54,6 +48,12 @@ namespace DT.Game.GameModes {
 			}
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
+		}
+
+		protected override void CleanupInternal() {
+			BattlePlayerHealth.LaserDamage = 1;
+			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
+			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 		}
 
 		private void HandleSpawnedPlayerRemoved() {

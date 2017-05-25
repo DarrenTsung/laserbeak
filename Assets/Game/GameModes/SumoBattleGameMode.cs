@@ -25,14 +25,6 @@ namespace DT.Game.GameModes {
 			get { return GameMode.GetIdFor<SumoBattleGameMode>(); }
 		}
 
-		public override void Cleanup() {
-			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
-			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
-			BattlePlayerHealth.LaserDamage = 1;
-
-			InGameConstants.AllowChargingLasers = true;
-		}
-
 
 		// PRAGMA MARK - Internal
 		protected override void Activate() {
@@ -53,6 +45,14 @@ namespace DT.Game.GameModes {
 			GameModeIntroView.Show(DisplayTitle, icons);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
+		}
+
+		protected override void CleanupInternal() {
+			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
+			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
+			BattlePlayerHealth.LaserDamage = 1;
+
+			InGameConstants.AllowChargingLasers = true;
 		}
 
 		private void HandleSpawnedPlayerRemoved() {

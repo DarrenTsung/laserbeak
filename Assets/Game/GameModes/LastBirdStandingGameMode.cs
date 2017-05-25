@@ -25,10 +25,6 @@ namespace DT.Game.GameModes {
 			get { return GameMode.GetIdFor<LastBirdStandingGameMode>(); }
 		}
 
-		public override void Cleanup() {
-			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
-		}
-
 
 		// PRAGMA MARK - Internal
 		protected override void Activate() {
@@ -44,6 +40,10 @@ namespace DT.Game.GameModes {
 			GameModeIntroView.Show(DisplayTitle, icons);
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
+		}
+
+		protected override void CleanupInternal() {
+			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 		}
 
 		private void HandleSpawnedPlayerRemoved() {
