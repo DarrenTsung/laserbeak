@@ -21,6 +21,10 @@ namespace DT.Game.GameModes {
 			get { return "ANGELS VS DEMONS"; }
 		}
 
+		public override int Id {
+			get { return GameMode.GetIdFor<TeamBattleGameMode>(); }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 		}

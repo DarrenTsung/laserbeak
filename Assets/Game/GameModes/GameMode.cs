@@ -17,9 +17,25 @@ namespace DT.Game.GameModes {
 		public static event Action<GameMode> OnActivate = delegate {};
 		public static event Action<GameMode> OnFinish = delegate {};
 
+		private static Dictionary<Type, int> idMap_ = new Dictionary<Type, int>() {
+			{ typeof(LastBirdStandingGameMode), 1 },
+			{ typeof(TagGameMode), 2 },
+			{ typeof(TeamBattleGameMode), 3 },
+			{ typeof(SumoBattleGameMode), 4 },
+			{ typeof(GhostGameMode), 5 },
+		};
+
+		public static int GetIdFor<T>() where T : GameMode {
+			return idMap_.GetRequiredValueOrDefault(typeof(T));
+		}
+
 
 		// PRAGMA MARK - Public Interface
 		public abstract string DisplayTitle {
+			get;
+		}
+
+		public abstract int Id {
 			get;
 		}
 

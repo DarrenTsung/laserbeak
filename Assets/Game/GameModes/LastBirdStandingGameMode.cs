@@ -21,6 +21,10 @@ namespace DT.Game.GameModes {
 			get { return "LAST BIRD STANDING"; }
 		}
 
+		public override int Id {
+			get { return GameMode.GetIdFor<LastBirdStandingGameMode>(); }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 		}

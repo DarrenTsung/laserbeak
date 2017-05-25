@@ -21,6 +21,10 @@ namespace DT.Game.GameModes {
 			get { return "TESTING MODE"; }
 		}
 
+		public override int Id {
+			get { return 0; }
+		}
+
 		public override void Cleanup() {
 			BattlePlayerHealth.LaserDamage = 1;
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;

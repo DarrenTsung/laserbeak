@@ -23,6 +23,10 @@ namespace DT.Game.GameModes {
 			get { return "HOT POTATO - WITH BOMBS"; }
 		}
 
+		public override int Id {
+			get { return GameMode.GetIdFor<TagGameMode>(); }
+		}
+
 		public override void Cleanup() {
 			GameNotifications.OnBattlePlayerLaserHit.RemoveListener(HandleBattlePlayerHit);
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;

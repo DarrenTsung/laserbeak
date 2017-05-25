@@ -23,6 +23,10 @@ namespace DT.Game.GameModes {
 			get { return "GHOST MODE"; }
 		}
 
+		public override int Id {
+			get { return GameMode.GetIdFor<GhostGameMode>(); }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerInputDash.OnPlayerDash -= HandlePlayerDash;

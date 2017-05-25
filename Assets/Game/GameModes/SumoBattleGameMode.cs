@@ -21,6 +21,10 @@ namespace DT.Game.GameModes {
 			get { return "SUMO WRESTLERS"; }
 		}
 
+		public override int Id {
+			get { return GameMode.GetIdFor<SumoBattleGameMode>(); }
+		}
+
 		public override void Cleanup() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
