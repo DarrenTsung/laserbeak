@@ -62,8 +62,7 @@ namespace DT.Game.GameModes {
 			}
 		}
 
-		// TODO (darren): rename to Instructions
-		public void ShowIntroductionIfNecessary(Action callback) {
+		public void ShowInstructionsIfNecessary(Action callback) {
 			// TODO (darren): in demo mode reset instructions on title screen
 			if (GameModeShowedInstructionsCache.HasShowedInstructionsFor(this)) {
 				callback.Invoke();

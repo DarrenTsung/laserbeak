@@ -42,7 +42,7 @@ namespace DT.Game.Battle {
 			}
 
 			currentGameMode_.LoadArena();
-			currentGameMode_.ShowIntroductionIfNecessary(() => {
+			currentGameMode_.ShowInstructionsIfNecessary(() => {
 				currentGameMode_.Activate(FinishBattle);
 
 				GameModeIntroView.OnIntroFinished += HandleIntroFinished;
