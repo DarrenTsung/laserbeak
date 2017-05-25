@@ -27,8 +27,10 @@ namespace DT.Game.GameModes {
 		public static event Action OnIntroFinished = delegate {};
 
 		public static void Show(string text, IList<Icon> icons, IList<int> playerOrdering = null, Action onFinishedCallback = null) {
-			var view = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
-			view.Init(text, icons, playerOrdering, onFinishedCallback);
+			Cleanup();
+
+			view_ = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
+			view_.Init(text, icons, playerOrdering, onFinishedCallback);
 
 			oldAllowBattlePlayerMovement_ = InGameConstants.AllowBattlePlayerMovement;
 			oldAllowChargingLasers_ = InGameConstants.AllowChargingLasers;
@@ -38,6 +40,15 @@ namespace DT.Game.GameModes {
 
 			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Muted);
 		}
+
+		public static void Cleanup() {
+			if (view_ != null) {
+				ObjectPoolManager.Recycle(view_);
+				view_ = null;
+			}
+		}
+
+		private static GameModeIntroView view_;
 
 		private static bool oldAllowBattlePlayerMovement_;
 		private static bool oldAllowChargingLasers_;
@@ -87,6 +98,7 @@ namespace DT.Game.GameModes {
 				onFinishedCallback_.Invoke();
 			}
 			ObjectPoolManager.Recycle(this);
+			view_ = null;
 
 			InGameConstants.AllowBattlePlayerMovement = oldAllowBattlePlayerMovement_;
 			InGameConstants.AllowChargingLasers = oldAllowChargingLasers_;

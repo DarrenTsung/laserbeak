@@ -58,7 +58,10 @@ namespace DT.Game.Battle {
 			CleanupPauseController();
 			CleanupCurrentGameMode();
 
+			GameModeIntroView.Cleanup();
+
 			InGamePlayerCollectionView.Hide();
+			InGamePlayerHUDEffect.CleanupAllEffects();
 		}
 
 		private void FinishBattle() {

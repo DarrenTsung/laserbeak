@@ -15,11 +15,23 @@ namespace DT.Game.Battle.Players {
 	public class InGamePlayerHUDEffect : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Static Public Interface
 		public static void CreateForAllPlayers() {
+			CleanupAllEffects();
+
 			foreach (Player player in RegisteredPlayers.AllPlayers) {
 				var effect = ObjectPoolManager.CreateView<InGamePlayerHUDEffect>(GamePrefabs.Instance.InGamePlayerHUDEffect, viewManager: GameViewManagerLocator.Battle);
 				effect.Init(player);
+				effects_.Add(effect);
 			}
 		}
+
+		public static void CleanupAllEffects() {
+			foreach (var effect in effects_) {
+				ObjectPoolManager.Recycle(effect);
+			}
+			effects_.Clear();
+		}
+
+		private static readonly List<InGamePlayerHUDEffect> effects_ = new List<InGamePlayerHUDEffect>();
 
 
 		// PRAGMA MARK - Public Interface
@@ -35,6 +47,7 @@ namespace DT.Game.Battle.Players {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			this.StopAllCoroutines();
 			battlePlayer_ = null;
 		}
 
@@ -83,18 +96,18 @@ namespace DT.Game.Battle.Players {
 
 		private void Animate() {
 			// animate color in
-			CoroutineWrapper.DoEaseFor(kAnimateColorDuration, EaseType.CubicEaseInOut, (float p) => {
+			this.DoEaseFor(kAnimateColorDuration, EaseType.CubicEaseInOut, (float p) => {
 				nicknameText_.Color = Color.Lerp(playerColor_.WithAlpha(0.0f), playerColor_, p);
 				pointer_.color = Color.Lerp(playerColor_.WithAlpha(0.0f), playerColor_, p);
 			});
 
 			// animate color out
-			CoroutineWrapper.DoAfterDelay(kAnimateDuration - kAnimateColorDuration, () => {
-				CoroutineWrapper.DoEaseFor(kAnimateColorDuration, EaseType.CubicEaseInOut, (float p) => {
+			this.DoAfterDelay(kAnimateDuration - kAnimateColorDuration, () => {
+				this.DoEaseFor(kAnimateColorDuration, EaseType.CubicEaseInOut, (float p) => {
 					nicknameText_.Color = Color.Lerp(playerColor_.WithAlpha(0.0f), playerColor_, 1.0f - p);
 					pointer_.color = Color.Lerp(playerColor_.WithAlpha(0.0f), playerColor_, 1.0f - p);
 				}, () => {
-					ObjectPoolManager.Recycle(this);
+					InGamePlayerHUDEffect.CleanupAllEffects();
 				});
 			});
 		}
