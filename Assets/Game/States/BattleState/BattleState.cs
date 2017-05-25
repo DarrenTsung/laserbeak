@@ -15,16 +15,12 @@ using DT.Game.Players;
 namespace DT.Game.Battle {
 	public class BattleState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
-		private GameMode previousGameMode_ = null;
 		private GameMode currentGameMode_ = null;
 
 		private PauseController pauseController_;
 
 		protected override void OnInitialized() {
-			GameNotifications.OnGameWon.AddListener(() => {
-				// reset previous game mode
-				previousGameMode_ = null;
-			});
+			// stub
 		}
 
 		protected override void OnStateEntered() {
@@ -33,18 +29,11 @@ namespace DT.Game.Battle {
 			CleanupCurrentGameMode();
 
 			// TODO (darren): filtering based on options will be here
-			do {
-				if (previousGameMode_ == null) {
-					currentGameMode_ = GameConstants.Instance.GameModes.First();
-				} else {
-					currentGameMode_ = GameConstants.Instance.GameModes.Random();
-				}
-			} while (previousGameMode_ == currentGameMode_);
+			currentGameMode_ = GameModesPlayedTracker.FilterByLeastPlayed(GameConstants.Instance.GameModes).ToArray().Random();
 
 			currentGameMode_.LoadArena();
 			currentGameMode_.ShowIntroductionIfNecessary(() => {
 				currentGameMode_.Activate(FinishBattle);
-				previousGameMode_ = currentGameMode_;
 
 				GameModeIntroView.OnIntroFinished += HandleIntroFinished;
 

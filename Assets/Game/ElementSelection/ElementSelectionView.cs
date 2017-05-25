@@ -162,7 +162,7 @@ namespace DT.Game.ElementSelection {
 			Rect currentRect = GetRectFor(currentSelectable_);
 			return selectables_.Where(s => s != currentSelectable_)
 							   .Where(s => predicate.Invoke(currentRect, GetRectFor(s)))
-							   .Min(s => Vector2.Distance(currentRect.position, GetRectFor(s).position));
+							   .MinBy(s => Vector2.Distance(currentRect.position, GetRectFor(s).position));
 		}
 
 		private static readonly Vector3[] corners_ = new Vector3[4];

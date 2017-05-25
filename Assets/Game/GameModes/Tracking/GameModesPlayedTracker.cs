@@ -60,6 +60,15 @@ namespace DT.Game.GameModes {
 			return PlayedData_.GetCountFor(gameMode.Id);
 		}
 
+		public static IEnumerable<GameMode> FilterByLeastPlayed(IEnumerable<GameMode> gameModes) {
+			int minPlayed = gameModes.Min(gm => GetPlayedCountFor(gm));
+			foreach (GameMode mode in gameModes) {
+				if (GetPlayedCountFor(mode) == minPlayed) {
+					yield return mode;
+				}
+			}
+		}
+
 		private static GameModesPlayedData playedData_ = null;
 		private static GameModesPlayedData PlayedData_ {
 			get { return playedData_ ?? (playedData_ = JsonUtility.FromJson<GameModesPlayedData>(PlayerPrefs.GetString("GameModesPlayedTracker::PlayedData"))) ?? (playedData_ = new GameModesPlayedData()); }

@@ -104,7 +104,7 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private void RefreshEnabledStatus() {
-			bool enabled = priorityKeyEnabledMap_.Max(kvp => kvp.Key).Value;
+			bool enabled = priorityKeyEnabledMap_.MaxBy(kvp => kvp.Key).Value;
 			foreach (var component in playerInputComponents_) {
 				if (componentsToKeepOn_.Contains(component)) {
 					component.Enabled = true;
