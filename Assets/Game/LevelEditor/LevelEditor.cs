@@ -85,7 +85,7 @@ namespace DT.Game.LevelEditor {
 		[SerializeField]
 		private DynamicArenaView dynamicArenaView_;
 
-		[SerializeField]
+		[SerializeField, DTValidator.Optional]
 		private TextAsset levelToLoad_;
 
 		private LevelEditorCursor cursor_;

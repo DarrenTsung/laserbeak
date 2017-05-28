@@ -88,7 +88,7 @@ namespace DT.Game.GameModes {
 
 		// PRAGMA MARK - Internal
 		[Header("Instruction Detail Prefab")]
-		[SerializeField]
+		[SerializeField, DTValidator.Optional]
 		private GameObject instructionDetailPrefab_;
 
 		[Header("Outlets")]

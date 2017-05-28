@@ -24,9 +24,9 @@ namespace DT.Game.Battle {
 		}
 
 		// PRAGMA MARK - Internal
-		[SerializeField]
+		[SerializeField, DTValidator.Optional]
 		private GameObject prefab_;
-		[SerializeField]
+		[SerializeField, DTValidator.Optional]
 		private TextAsset dynamicArenaDataJson_;
 
 		[NonSerialized]

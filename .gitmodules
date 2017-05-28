@@ -10,3 +10,6 @@
 [submodule "Assets/Plugins/compile-time-tracker"]
 	path = Assets/Plugins/compile-time-tracker
 	url = https://github.com/DarrenTsung/compile-time-tracker.git
+[submodule "Assets/Plugins/DTValidator"]
+	path = Assets/Plugins/DTValidator
+	url = https://github.com/DarrenTsung/DTValidator.git

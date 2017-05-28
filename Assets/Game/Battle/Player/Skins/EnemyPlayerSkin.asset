@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779b159f4246e4637827fe4a503c12e5, type: 3}
   m_Name: EnemyPlayerSkin
   m_EditorClassIdentifier: 
-  ThumbnailSprite: {fileID: 0}
+  ThumbnailSprite: {fileID: 21300000, guid: 3bca3572bb5784f978b8b78f7462dca4, type: 3}
   bodyColor_: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
   laserColor_: {r: 0.9647059, g: 0.30588236, b: 0.30588236, a: 1}

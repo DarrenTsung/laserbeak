@@ -69,7 +69,7 @@ namespace DT.Game.Battle.AI {
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]
-		[SerializeField, ReadOnly]
+		[SerializeField, ReadOnly, DTValidator.Optional]
 		private AIConfiguration configuration_;
 
 		private BattlePlayer player_;
