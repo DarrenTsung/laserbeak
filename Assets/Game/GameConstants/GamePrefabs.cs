@@ -97,6 +97,11 @@ namespace DT.Game {
 		public GameObject ScrollableMenuPopupPrefab;
 		public GameObject ScrollableMenuItemViewPrefab;
 
+		[Header("King Of The Hill")]
+		public GameObject KotHEdgePrefab;
+		public GameObject KotHScoreViewPrefab;
+		public GameObject IndividualKotHScorePrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

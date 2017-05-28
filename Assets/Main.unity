@@ -1325,6 +1325,7 @@ MonoBehaviour:
   - {fileID: 1469350141857788, guid: 96a0e4ee7203c4a5eb7a611c1a630ee0, type: 2}
   - {fileID: 1780075588032556, guid: 2a3f93da63a2a4e5687dac6731e3125f, type: 2}
   - {fileID: 1780075588032556, guid: 92cd009c42a424cfb9346543d103622a, type: 2}
+  - {fileID: 1469350141857788, guid: 6e247e576a2524d6993fd6e5b038ca6b, type: 2}
   LevelEditorPlayerSpawnPointPrefab: {fileID: 1358755961755438, guid: e2603b2035c4f408c89350f7027c2d4d,
     type: 2}
   DynamicArenaObjectContainer: {fileID: 1640466625818348, guid: 3c8716af44356488ea27342d7a54af9e,
@@ -1342,6 +1343,12 @@ MonoBehaviour:
   ScrollableMenuPopupPrefab: {fileID: 1968367838565832, guid: 99c7a9960154f411baa5cc0843085c90,
     type: 2}
   ScrollableMenuItemViewPrefab: {fileID: 1114619707275828, guid: 08a1daf442cb64c6db6a85a655cb7880,
+    type: 2}
+  KotHEdgePrefab: {fileID: 1291461846953610, guid: 4aaec0013ba3544dab811e8e89b344cc,
+    type: 2}
+  KotHScoreViewPrefab: {fileID: 1474343440587170, guid: 83604595ed88e425e96ce6528040f6b7,
+    type: 2}
+  IndividualKotHScorePrefab: {fileID: 1355993241810014, guid: f6dc8a90326254ee0991c91eb8a85b77,
     type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
@@ -1475,7 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToWin: 2
+  ScoreToWin: 5
   PlayersToFill: 4
   FillWithAI: 1
   DemoMode: 0
@@ -1499,10 +1506,11 @@ MonoBehaviour:
   LaserMaterial: {fileID: 2100000, guid: c955e315cf3ff4901882649a6e7eb9ee, type: 2}
   gameModes_:
   - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
-  - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
+  - {fileID: 11400000, guid: 23fac7ceffc974057bd4f816592eef9b, type: 2}
   - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
-  - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
+  - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
+  - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
 --- !u!1 &1675223163

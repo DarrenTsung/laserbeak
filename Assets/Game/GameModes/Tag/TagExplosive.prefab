@@ -164,6 +164,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23250319179426364
 MeshRenderer:
@@ -195,6 +196,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23480631248636210
 MeshRenderer:
@@ -226,6 +228,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33556144419968558
 MeshFilter:
@@ -240,14 +243,14 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1316821375155466}
-  m_Mesh: {fileID: 4300000, guid: fc986ebb1dd974a75a9641d87f8d5214, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 591be80b823ca4095a0fe4e8f81aafea, type: 3}
 --- !u!33 &33950243535507384
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834246362034790}
-  m_Mesh: {fileID: 4300000, guid: fc986ebb1dd974a75a9641d87f8d5214, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 591be80b823ca4095a0fe4e8f81aafea, type: 3}
 --- !u!65 &65981286954679586
 BoxCollider:
   m_ObjectHideFlags: 1

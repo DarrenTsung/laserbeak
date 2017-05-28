@@ -33,6 +33,16 @@ namespace DT.Game {
 			}
 		}
 
+		private static int? playersLayerMask_;
+		public static int PlayersLayerMask {
+			get {
+				if (playersLayerMask_ == null) {
+					playersLayerMask_ = LayerMask.GetMask("Player");
+				}
+				return playersLayerMask_.Value;
+			}
+		}
+
 		public static bool IsAllowedToChargeLasers(BattlePlayer battlePlayer) {
 			if (AllowChargingLasers == false) {
 				return AllowedChargingLasersWhitelist.Contains(battlePlayer);

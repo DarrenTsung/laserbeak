@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea20649a213d41a49ac038dd7389ab4, type: 3}
+  m_Name: KingOfTheHill
+  m_EditorClassIdentifier: 
+  instructionDetailPrefab_: {fileID: 0}
+  arenaWhitelist_:
+  - {fileID: 11400000, guid: 8cb90f6d6ff8949afb67c5d90d3735d3, type: 2}
+  - {fileID: 11400000, guid: b089a56bde9984a00ae7251d60c02e6d, type: 2}
+  - {fileID: 11400000, guid: ef0fc6785feae4f98a2c741e03e7d217, type: 2}

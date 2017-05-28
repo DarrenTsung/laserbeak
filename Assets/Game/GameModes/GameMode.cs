@@ -23,6 +23,7 @@ namespace DT.Game.GameModes {
 			{ typeof(TeamBattleGameMode), 3 },
 			{ typeof(SumoBattleGameMode), 4 },
 			{ typeof(GhostGameMode), 5 },
+			{ typeof(KingOfTheHillGameMode), 6 },
 		};
 
 		public static int GetIdFor<T>() where T : GameMode {

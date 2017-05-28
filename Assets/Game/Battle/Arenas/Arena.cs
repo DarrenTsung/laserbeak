@@ -10,6 +10,8 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.GameModes.KingOfTheHill;
+
 namespace DT.Game.Battle {
 	public class Arena : IDisposable {
 		// PRAGMA MARK - Public Interface
@@ -46,12 +48,25 @@ namespace DT.Game.Battle {
 			}
 		}
 
+		public KingOfTheHillArea KingOfTheHillArea {
+			get {
+				if (disposed_) {
+					Debug.LogError("Cannot access properties of disposed Arena!");
+					return null;
+				}
+
+				return kingOfTheHillArea_;
+			}
+		}
+
 		public Arena(GameObject arenaObject) {
 			gameObject_ = arenaObject;
 
 			List<PlayerSpawnPoint> spawnPoints = arenaObject.GetComponentsInChildren<PlayerSpawnPoint>().ToList();
 			playerSpawnPoints_ = new ReadOnlyCollection<PlayerSpawnPoint>(spawnPoints);
 			aiSpawnPoints_ = new ReadOnlyCollection<AISpawnPoint>(arenaObject.GetComponentsInChildren<AISpawnPoint>());
+
+			kingOfTheHillArea_ = gameObject_.GetComponentInChildren<KingOfTheHillArea>();
 		}
 
 		public void Dispose() {
@@ -63,6 +78,7 @@ namespace DT.Game.Battle {
 		private readonly ReadOnlyCollection<PlayerSpawnPoint> playerSpawnPoints_;
 		private readonly ReadOnlyCollection<AISpawnPoint> aiSpawnPoints_;
 		private readonly GameObject gameObject_ = null;
+		private readonly KingOfTheHillArea kingOfTheHillArea_ = null;
 
 		private bool disposed_ = false;
 	}
