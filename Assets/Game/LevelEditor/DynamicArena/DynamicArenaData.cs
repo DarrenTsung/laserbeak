@@ -63,6 +63,15 @@ namespace DT.Game.LevelEditor {
 			OnDataDirty.Invoke();
 		}
 
+		public void RemoveObject(DynamicArenaObjectData obj) {
+			bool removed = objects_.Remove(obj);
+			if (!removed) {
+				Debug.LogWarning("Could not remove obj: " + obj + " because not in objects_!");
+				return;
+			}
+			OnDataDirty.Invoke();
+		}
+
 		public void ReloadFromSerialized(string serialized) {
 			JsonUtility.FromJsonOverwrite(serialized, this);
 			OnDataDirty.Invoke();
