@@ -97,6 +97,22 @@ namespace DT.Game.LevelEditor {
 
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
 
+		private void Update() {
+			// HACK (darren): do deletion better
+			if (inputDevice_.Action2.WasPressed) {
+				Vector3 cursorPosition = cursor_.transform.position;
+				foreach (var dynamicObject in dynamicArenaData_.Objects) {
+					Vector2 position = (dynamicObject.Position - (dynamicObject.LocalScale / 2.0f)).Vector2XZValue();
+					Vector2 size = dynamicObject.LocalScale.Vector2XZValue();
+					Rect rect = new Rect(position, size);
+					if (rect.Contains(cursorPosition.Vector2XZValue())) {
+						dynamicArenaData_.RemoveObject(dynamicObject);
+						return;
+					}
+				}
+			}
+		}
+
 		private void SaveDataToEditor() {
 			string directoryPath = Path.Combine(Application.dataPath, "CustomLevels");
 			Directory.CreateDirectory(directoryPath);
