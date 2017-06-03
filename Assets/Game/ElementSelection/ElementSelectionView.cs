@@ -115,7 +115,9 @@ namespace DT.Game.ElementSelection {
 				UpdateMovement(inputDevice);
 			}
 
-			UpdateMovement(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+			float horizontal = (Input.GetKey(KeyCode.RightArrow) ? 1.0f : 0.0f) + (Input.GetKey(KeyCode.LeftArrow) ? -1.0f : 0.0f);
+			float vertical = (Input.GetKey(KeyCode.UpArrow) ? 1.0f : 0.0f) + (Input.GetKey(KeyCode.DownArrow) ? -1.0f : 0.0f);
+			UpdateMovement(horizontal, vertical);
 
 			if (InputUtil.WasAnyPositiveButtonPressed(inputDevices_)) {
 				OnSelectableSelected.Invoke(currentSelectable_);
