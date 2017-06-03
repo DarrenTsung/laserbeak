@@ -49,7 +49,7 @@ namespace DT.Game.ElementSelection {
 		private static readonly Vector2 kPadding = new Vector2(8, 8);
 		private const float kIntentThreshold = 0.3f;
 
-		private const float kMoveDelay = 0.26f;
+		private const float kMoveDelay = 0.16f;
 
 		private RectTransform selectorTransform_;
 		private Player player_;
@@ -111,6 +111,8 @@ namespace DT.Game.ElementSelection {
 				return;
 			}
 
+			delay_ -= Time.deltaTime;
+
 			foreach (InputDevice inputDevice in inputDevices_) {
 				UpdateMovement(inputDevice);
 			}
@@ -130,8 +132,6 @@ namespace DT.Game.ElementSelection {
 		}
 
 		private void UpdateMovement(float xMovement, float yMovement) {
-			delay_ -= Time.deltaTime;
-
 			bool resetDelay = false;
 			if (delay_ <= 0.0f && Mathf.Abs(xMovement) > kIntentThreshold) {
 				// placeholder
