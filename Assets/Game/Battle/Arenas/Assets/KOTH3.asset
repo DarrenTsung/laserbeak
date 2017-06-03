@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: KOTH3
   m_EditorClassIdentifier: 
   prefab_: {fileID: 0}
-  dynamicArenaDataJson_: {fileID: 4900000, guid: cfd26d40efd834e12a5dce092602cbb9,
+  dynamicArenaDataJson_: {fileID: 4900000, guid: 1a8a7c8e3a6134e768db521fc1190e1f,
     type: 3}
