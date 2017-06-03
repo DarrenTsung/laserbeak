@@ -49,7 +49,7 @@ namespace DT.Game.ElementSelection {
 		private static readonly Vector2 kPadding = new Vector2(8, 8);
 		private const float kIntentThreshold = 0.3f;
 
-		private const float kMoveDelay = 0.16f;
+		private const float kMoveDelay = 0.26f;
 
 		private RectTransform selectorTransform_;
 		private Player player_;
