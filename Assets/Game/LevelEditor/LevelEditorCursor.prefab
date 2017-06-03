@@ -84,7 +84,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 85dd7ef4db5244cfaba752a22590551c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,6 +101,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33703898249687054
 MeshFilter:
@@ -108,7 +109,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1733742224693676}
-  m_Mesh: {fileID: 4300000, guid: fc986ebb1dd974a75a9641d87f8d5214, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 591be80b823ca4095a0fe4e8f81aafea, type: 3}
 --- !u!114 &114855506386733272
 MonoBehaviour:
   m_ObjectHideFlags: 1
