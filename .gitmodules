@@ -13,3 +13,6 @@
 [submodule "Assets/Plugins/DTValidator"]
 	path = Assets/Plugins/DTValidator
 	url = https://github.com/DarrenTsung/DTValidator.git
+[submodule "Assets/Plugins/DTTimeScaleScrubber"]
+	path = Assets/Plugins/DTTimeScaleScrubber
+	url = https://github.com/DarrenTsung/DTTimeScaleScrubber.git
