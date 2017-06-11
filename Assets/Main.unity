@@ -1244,6 +1244,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabName: watermark
+--- !u!1 &1232538755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1232538757}
+  - component: {fileID: 1232538756}
+  m_Layer: 0
+  m_Name: DTTimeScaleScrubber
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1232538756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232538755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e67f967437c415aa2855ad1650b9d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewPrefab_: {fileID: 1569356011557092, guid: 9d9837dc502c34bdba9294ea5935bc43,
+    type: 2}
+  timeScaleMax_: 20
+  timeScaleMin_: 0.1
+  slowTimeKey_: 113
+  speedTimeKey_: 101
+  slowTimeControl_: 17
+  speedTimeControl_: 18
+--- !u!4 &1232538757
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232538755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1351997728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,6 +1421,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1418232443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1418232445}
+  - component: {fileID: 1418232444}
+  m_Layer: 0
+  m_Name: DTDebugMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1418232444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418232443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0b2c4fd544e4ef18b2a295c9f98f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuItems_:
+  - {fileID: 11400000, guid: 93095c2b547d245459c2a16d07e05a7e, type: 2}
+  viewPrefab_: {fileID: 1097148128178404, guid: 339fa41919d624586ad1de2c20834064,
+    type: 2}
+  toggleKey_: 103
+  numberOfFingersToToggle_: 3
+  toggleControl_: 13
+--- !u!4 &1418232445
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418232443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498427399
 GameObject:

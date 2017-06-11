@@ -19,12 +19,7 @@ namespace DTViewManager {
 			}
 
 			RecyclablePrefab r = view.GetRequiredComponent<RecyclablePrefab>();
-			if (priorityMap_ == null) {
-				Debug.LogError("ViewManager - no priority configuration when attaching view!");
-				return;
-			}
-
-			int priority = priorityMap_.PriorityForPrefabName(r.prefabName);
+			int priority = priorityMap_.PriorityForPrefabName(r.PrefabName);
 			cachedPriorities_[view.transform] = priority;
 
 			for (int i = 0; i < this.transform.childCount; i++) {
@@ -72,6 +67,10 @@ namespace DTViewManager {
 			priorityMap_ = new ViewPriorityMap(defaultPriority_);
 			foreach (var viewPriorityPair in serializedPriorities_) {
 				priorityMap_.SetPriorityForPrefabName(viewPriorityPair.PrefabName, viewPriorityPair.Priority);
+			}
+
+			foreach (Transform child in this.transform) {
+				cachedPriorities_[child] = defaultPriority_;
 			}
 		}
 	}

@@ -16,3 +16,6 @@
 [submodule "Assets/Plugins/DTTimeScaleScrubber"]
 	path = Assets/Plugins/DTTimeScaleScrubber
 	url = https://github.com/DarrenTsung/DTTimeScaleScrubber.git
+[submodule "Assets/Plugins/DTDebugMenu"]
+	path = Assets/Plugins/DTDebugMenu
+	url = https://github.com/DarrenTsung/DTDebugMenu.git

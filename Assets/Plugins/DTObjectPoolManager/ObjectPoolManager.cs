@@ -92,7 +92,7 @@ namespace DTObjectPoolManager {
 				this.DoAfterFrame(() => {
 					usedObject.SetActive(false);
 
-					Stack<GameObject> recycledObjects = ObjectPoolForPrefabName(recycleData.prefabName);
+					Stack<GameObject> recycledObjects = ObjectPoolForPrefabName(recycleData.PrefabName);
 					recycledObjects.Push(usedObject);
 
 					objectsBeingCleanedUp_.Remove(usedObject);
@@ -149,7 +149,7 @@ namespace DTObjectPoolManager {
 			}
 
 			RecyclablePrefab recycleData = instantiatedPrefab.GetOrAddComponent<RecyclablePrefab>();
-			recycleData.prefabName = prefabName;
+			recycleData.PrefabName = prefabName;
 
 			OnGameObjectCreated.Invoke(instantiatedPrefab);
 			return instantiatedPrefab;
@@ -167,7 +167,7 @@ namespace DTObjectPoolManager {
 				return false;
 			}
 
-			if (recycleData.prefabName != prefabName) {
+			if (recycleData.PrefabName != prefabName) {
 				Debug.LogError("ValidateRecycledObject: recycled object: (" + recycledObject + ") doesn't match prefab name: " + prefabName + "!");
 				return false;
 			}

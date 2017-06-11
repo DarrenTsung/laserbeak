@@ -64,7 +64,7 @@ namespace DTObjectPoolManager {
 			r.OnCleanup += DetachChildRecyclableObject;
 		}
 
-		public string prefabName;
+		public string PrefabName;
 
 		// PRAGMA MARK - Internal
 		private IRecycleSetupSubscriber[] setupSubscribers_;
