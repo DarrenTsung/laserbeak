@@ -654,7 +654,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 880202779}
-  - component: {fileID: 880202781}
   - component: {fileID: 880202780}
   m_Layer: 5
   m_Name: FPSView
@@ -696,18 +695,6 @@ MonoBehaviour:
   fpsText_:
     _unityText: {fileID: 0}
     _tmpText: {fileID: 13377275}
---- !u!114 &880202781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 880202778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ba88dfc6dac4d58a076a89eab31670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabName: watermark
 --- !u!1 &924780641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1192,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1211959141}
-  - component: {fileID: 1211959142}
   m_Layer: 5
   m_Name: Watermark
   m_TagString: Untagged
@@ -1232,18 +1218,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10, y: -10}
   m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &1211959142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1211959140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ba88dfc6dac4d58a076a89eab31670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabName: watermark
 --- !u!1 &1232538755
 GameObject:
   m_ObjectHideFlags: 0
