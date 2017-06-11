@@ -13,6 +13,10 @@ using InControl;
 namespace DT.Game.Battle.Walls {
 	public class CollidesWithLaser : MonoBehaviour {
 		// PRAGMA MARK - Internal
+		[Header("Properties")]
+		[SerializeField]
+		private bool reflect_ = true;
+
 		private Rigidbody rigidbody_;
 
 		private void Awake() {
@@ -25,7 +29,11 @@ namespace DT.Game.Battle.Walls {
 				return;
 			}
 
-			laser.Ricochet(-this.transform.right, rigidbody_.velocity);
+			if (reflect_) {
+				laser.Ricochet(-this.transform.right, rigidbody_.velocity);
+			} else {
+				laser.HandleHit(destroy: true);
+			}
 		}
 	}
 }

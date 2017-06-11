@@ -1344,6 +1344,7 @@ MonoBehaviour:
     type: 2}
   LevelEditorObjects:
   - {fileID: 1469350141857788, guid: 98e3f9daf94254bbf936533718eb3a9b, type: 2}
+  - {fileID: 1469350141857788, guid: d8b8b286f3a1a43ce8003891b0f71c7a, type: 2}
   - {fileID: 1469350141857788, guid: 96a0e4ee7203c4a5eb7a611c1a630ee0, type: 2}
   - {fileID: 1780075588032556, guid: 2a3f93da63a2a4e5687dac6731e3125f, type: 2}
   - {fileID: 1780075588032556, guid: 92cd009c42a424cfb9346543d103622a, type: 2}
@@ -1628,6 +1629,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6dbbe5841b4094208af64197dbb76982, type: 2}
   - {fileID: 11400000, guid: 89598db54397a4306bb47cfe01ae37ac, type: 2}
   - {fileID: 11400000, guid: fbfef6fd8c14e462f85dd286b7ec60a2, type: 2}
+  - {fileID: 11400000, guid: c4695f8e014014139a0a67dcdef2727e, type: 2}
 --- !u!1 &1950817757
 GameObject:
   m_ObjectHideFlags: 0

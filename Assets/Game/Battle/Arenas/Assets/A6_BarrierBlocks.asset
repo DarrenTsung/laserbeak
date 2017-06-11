@@ -8,9 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3f8cdad50234252bf98d0ef766dc14, type: 3}
-  m_Name: TESTINGMODE
+  m_Script: {fileID: 11500000, guid: 714c0c70020984e9280378a90cd77e0b, type: 3}
+  m_Name: A6_BarrierBlocks
   m_EditorClassIdentifier: 
-  instructionDetailPrefab_: {fileID: 0}
-  arenaWhitelist_:
-  - {fileID: 11400000, guid: c4695f8e014014139a0a67dcdef2727e, type: 2}
+  prefab_: {fileID: 0}
+  dynamicArenaDataJson_: {fileID: 4900000, guid: 97396b3f5ec154cd28ed625d2087ea2d,
+    type: 3}
