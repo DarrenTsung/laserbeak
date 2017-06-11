@@ -63,6 +63,7 @@ namespace DT.Game.Battle.Players {
 				AnimateDamageEmissionFor(partMaterialArray);
 				AudioConstants.Instance.PlayerDeath.PlaySFX();
 				BattleCamera.Shake(1.0f);
+				BattleCamera.StopTimeForKill();
 				OnBattlePlayerDied.Invoke(Player_);
 				if (damageSource != null) {
 					GameNotifications.OnBattlePlayerDiedWithSource.Invoke(Player_, damageSource);

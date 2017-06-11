@@ -81,7 +81,6 @@ namespace DT.Game.GameModes {
 			}
 
 			GameMode unlockedMode = lockedGameModes.Random();
-			Debug.Log("Unlocking: " + unlockedMode.DisplayTitle);
 			Unlock(unlockedMode);
 			GameModesPlayedTracker.Reset();
 			BattleState.QueuedGameMode = unlockedMode;

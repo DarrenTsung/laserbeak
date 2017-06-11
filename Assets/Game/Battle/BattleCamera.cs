@@ -19,8 +19,13 @@ namespace DT.Game.Battle {
 				Debug.LogWarning("?? What are you trying to do here?");
 			}
 
-			Instance.transform.Shake(kShakeMaxAmount * percentage, kShakeMaxDuration * percentage, returnToOriginalPosition: false);
-			Instance.AnimateChromaticAberration(intensity: Easings.QuarticEaseIn(percentage) * kAberrationMaxAmount, duration: kShakeMaxDuration * percentage);
+			float shakeDuration = kShakeMaxDuration * percentage;
+			Instance.transform.Shake(kShakeMaxAmount * percentage, shakeDuration, returnToOriginalPosition: false);
+			Instance.AnimateChromaticAberration(intensity: Easings.QuarticEaseIn(percentage) * kAberrationMaxAmount, duration: shakeDuration);
+		}
+
+		public static void StopTimeForKill() {
+			Instance.StopTimeFor(duration: 0.1f);
 		}
 
 
@@ -70,6 +75,7 @@ namespace DT.Game.Battle {
 		private Vector3 initialPosition_;
 
 		private CoroutineWrapper aberrationCoroutine_;
+		private CoroutineWrapper timeScaleCoroutine_;
 
 		private void Awake() {
 			camera_ = this.GetRequiredComponent<Camera>();
@@ -142,6 +148,18 @@ namespace DT.Game.Battle {
 				ChromaticAberrationModel.Settings settings = postProcessingProfile_.chromaticAberration.settings;
 				settings.intensity = Mathf.Lerp(intensity, 0.0f, p);
 				postProcessingProfile_.chromaticAberration.settings = settings;
+			});
+		}
+
+		private void StopTimeFor(float duration) {
+			if (timeScaleCoroutine_ != null) {
+				timeScaleCoroutine_.Cancel();
+				timeScaleCoroutine_ = null;
+			}
+
+			Time.timeScale = 0.0f;
+			timeScaleCoroutine_ = CoroutineWrapper.DoAfterRealtimeDelay(duration, () => {
+				Time.timeScale = 1.0f;
 			});
 		}
 	}
