@@ -19,3 +19,6 @@
 [submodule "Assets/Plugins/DTDebugMenu"]
 	path = Assets/Plugins/DTDebugMenu
 	url = https://github.com/DarrenTsung/DTDebugMenu.git
+[submodule "Assets/Plugins/DTUIRebuildVisualizer"]
+	path = Assets/Plugins/DTUIRebuildVisualizer
+	url = https://github.com/DarrenTsung/DTUIRebuildVisualizer.git
