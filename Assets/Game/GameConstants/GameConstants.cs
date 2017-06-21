@@ -36,6 +36,9 @@ namespace DT.Game {
 		public BattlePlayerSkin[] PlayerSkins;
 		public BattlePlayerSkin EnemySkin;
 
+		[Space]
+		public float PlayerShieldAlphaMin = 0.2f;
+
 		[Header("Materials")]
 		public Material PlayerOpaqueMaterial;
 		public Material PlayerTransparentMaterial;

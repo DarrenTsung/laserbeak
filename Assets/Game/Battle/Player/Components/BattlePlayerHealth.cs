@@ -73,7 +73,8 @@ namespace DT.Game.Battle.Players {
 			} else {
 				float multiplier = 1.0f;
 				if (damage > 0) {
-					AnimateDamageEmissionFor(Player_.BodyRenderers.Select(r => r.sharedMaterial));
+					AnimateShieldHit(hideShieldAfterwards: health_ <= 1);
+					// AnimateDamageEmissionFor(Player_.BodyRenderers.Select(r => r.sharedMaterial));
 					multiplier = 0.5f;
 				}
 
@@ -93,6 +94,8 @@ namespace DT.Game.Battle.Players {
 		public void OnRecycleSetup() {
 			HandleCollisions = true;
 			health_ = kBaseHealth;
+
+			shieldRenderer_.enabled = true;
 		}
 
 
@@ -106,6 +109,9 @@ namespace DT.Game.Battle.Players {
 		private const float kEmissionDuration = 0.15f;
 		private const float kEmissionWhiteBalance = 0.2f;
 
+		private const float kShieldAnimateDuration = 0.3f;
+		private const float kShieldAlphaMax = 1.0f;
+
 		private const float kDamageKnockbackDuration = 0.3f;
 		private const float kDamageKnockbackDistance = 2.5f;
 
@@ -114,6 +120,9 @@ namespace DT.Game.Battle.Players {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject playerPartsPrefab_;
+
+		[SerializeField]
+		private MeshRenderer shieldRenderer_;
 
 		[Header("Properties")]
 		[SerializeField, ReadOnly]
@@ -173,6 +182,20 @@ namespace DT.Game.Battle.Players {
 				float whiteBalance = inversePercentage * kEmissionWhiteBalance;
 				foreach (Material material in materials) {
 					material.SetColor("_EmissionColor", new Color(whiteBalance, whiteBalance, whiteBalance));
+				}
+			});
+		}
+
+		private void AnimateShieldHit(bool hideShieldAfterwards = false) {
+			Color baseColor = shieldRenderer_.material.GetColor("_Color");
+			CoroutineWrapper.DoEaseFor(kShieldAnimateDuration, EaseType.QuadraticEaseOut, (float percentage) => {
+				float inversePercentage = 1.0f - percentage;
+				float alpha = Mathf.Lerp(GameConstants.Instance.PlayerShieldAlphaMin, kShieldAlphaMax, inversePercentage);
+				Color newColor = baseColor.WithAlpha(alpha);
+				shieldRenderer_.material.SetColor("_Color", newColor);
+			}, () => {
+				if (hideShieldAfterwards) {
+					shieldRenderer_.enabled = false;
 				}
 			});
 		}

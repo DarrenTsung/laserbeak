@@ -34,6 +34,9 @@ namespace DT.Game.Battle.Players {
 		[SerializeField]
 		private Renderer[] beakRenderers_;
 
+		[SerializeField]
+		private MeshRenderer shieldRenderer_;
+
 		private void HandleSkinChanged() {
 			foreach (var renderer in bodyRenderers_) {
 				renderer.sharedMaterial = Player_.Skin.OpaqueBodyMaterial;
@@ -46,6 +49,10 @@ namespace DT.Game.Battle.Players {
 			foreach (var renderer in beakRenderers_) {
 				renderer.sharedMaterial = Player_.Skin.BeakMaterial;
 			}
+
+			Color baseColor = Player_.Skin.BodyColor;
+			shieldRenderer_.material.SetColor("_Color", baseColor.WithAlpha(GameConstants.Instance.PlayerShieldAlphaMin));
 		}
+
 	}
 }
