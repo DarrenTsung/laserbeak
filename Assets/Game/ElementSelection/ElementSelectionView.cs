@@ -32,6 +32,10 @@ namespace DT.Game.ElementSelection {
 			Init(elementsContainer, startSelectable);
 		}
 
+		public void SetPaused(bool paused) {
+			paused_ = paused;
+		}
+
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
@@ -42,6 +46,7 @@ namespace DT.Game.ElementSelection {
 
 			player_ = null;
 			inputDevices_ = null;
+			paused_ = false;
 		}
 
 
@@ -55,10 +60,10 @@ namespace DT.Game.ElementSelection {
 		private Player player_;
 
 		private IEnumerable<InputDevice> inputDevices_ = null;
+		private ISelectable[] selectables_;
 
 		private float delay_ = 0.0f;
-
-		private ISelectable[] selectables_;
+		private bool paused_ = false;
 
 		private ISelectable currentSelectable_;
 		private ISelectable CurrentSelectable_ {
@@ -107,6 +112,10 @@ namespace DT.Game.ElementSelection {
 		}
 
 		private void Update() {
+			if (paused_) {
+				return;
+			}
+
 			if (inputDevices_ == null) {
 				return;
 			}

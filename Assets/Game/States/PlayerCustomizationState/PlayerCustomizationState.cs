@@ -19,7 +19,7 @@ namespace DT.Game.PlayerCustomization {
 		protected override void OnStateEntered() {
 			RegisteredPlayersUtil.UnregisterAIPlayers();
 			RegisteredPlayers.BeginPlayerRegistration();
-			PlayerCustomizationView.Show(Continue);
+			PlayerCustomizationView.Show(GoBack, Continue);
 
 			// in case where no players to customize - continue
 			if (RegisteredPlayers.AllPlayers.Count <= 0) {
@@ -43,6 +43,10 @@ namespace DT.Game.PlayerCustomization {
 			}
 
 			StateMachine_.Continue();
+		}
+
+		private void GoBack() {
+			StateMachine_.GoToMainMenu();
 		}
 	}
 }

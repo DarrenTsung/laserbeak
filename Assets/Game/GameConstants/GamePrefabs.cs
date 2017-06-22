@@ -102,6 +102,10 @@ namespace DT.Game {
 		public GameObject KotHScoreViewPrefab;
 		public GameObject IndividualKotHScorePrefab;
 
+		[Header("Popup View")]
+		public GameObject PopupViewPrefab;
+		public GameObject PopupButtonViewPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

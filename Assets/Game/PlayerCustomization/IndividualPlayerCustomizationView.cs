@@ -48,14 +48,26 @@ namespace DT.Game.PlayerCustomization {
 			get { return state_ == State.Ready; }
 		}
 
+		public bool IsJoined {
+			get { return state_ != State.CanJoin; }
+		}
+
 		public bool IsCustomizing {
 			get { return state_ != State.CanJoin && !IsReady; }
+		}
+
+		public void SetPaused(bool paused) {
+			paused_ = paused;
+			if (stateHandler_ != null) {
+				stateHandler_.HandlePaused(paused_);
+			}
 		}
 
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			playerViewContainer_.RecycleAllChildren();
+			paused_ = false;
 		}
 
 
@@ -67,11 +79,16 @@ namespace DT.Game.PlayerCustomization {
 		[SerializeField]
 		private GameObject currentStateContainer_;
 
+		private IndividualPlayerCustomizationState stateHandler_;
 		private Player player_;
 		private State state_;
-		private IndividualPlayerCustomizationState stateHandler_;
+		private bool paused_;
 
 		private void Update() {
+			if (paused_) {
+				return;
+			}
+
 			if (player_.IsAI) {
 				return;
 			}

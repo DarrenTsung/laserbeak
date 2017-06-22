@@ -12,7 +12,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.PlayerCustomization.States {
-	public class IndividualPlayerCustomizationState {
+	public abstract class IndividualPlayerCustomizationState {
 		// PRAGMA MARK - Public Interface
 		public IndividualPlayerCustomizationState(Player player, GameObject container, Action moveToNextState, Action moveToPreviousState) {
 			player_ = player;
@@ -21,6 +21,10 @@ namespace DT.Game.PlayerCustomization.States {
 			moveToPreviousState_ = moveToPreviousState;
 
 			Init();
+		}
+
+		public virtual void HandlePaused(bool paused) {
+			// stub
 		}
 
 		public virtual void Update() {

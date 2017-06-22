@@ -5,18 +5,20 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-using DT.Game.Battle.Players;
-using DT.Game.Players;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Players;
+using DT.Game.Players;
+using DT.Game.Popups;
+
 namespace DT.Game.PlayerCustomization {
 	public class PlayerCustomizationView : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Static
-		public static void Show(Action continueCallback) {
+		public static void Show(Action goBackCallback, Action continueCallback) {
 			view_ = ObjectPoolManager.CreateView<PlayerCustomizationView>(GamePrefabs.Instance.PlayerCustomizationViewPrefab);
-			view_.Init(continueCallback);
+			view_.Init(goBackCallback, continueCallback);
 		}
 
 		public static void Hide() {
@@ -58,6 +60,11 @@ namespace DT.Game.PlayerCustomization {
 				ObjectPoolManager.Recycle(view);
 			}
 			views_.Clear();
+
+			if (popupView_ != null) {
+				ObjectPoolManager.Recycle(popupView_);
+				popupView_ = null;
+			}
 		}
 
 
@@ -69,7 +76,10 @@ namespace DT.Game.PlayerCustomization {
 		[SerializeField]
 		private GameObject readyToFightContainer_;
 
+		private Action goBackCallback_;
 		private Action continueCallback_;
+
+		private PopupView popupView_;
 
 		private readonly List<IndividualPlayerCustomizationView> views_ = new List<IndividualPlayerCustomizationView>();
 
@@ -85,15 +95,21 @@ namespace DT.Game.PlayerCustomization {
 			get { return AtLeastOnePlayerReady && AllPlayersDoneCustomizing; }
 		}
 
-		private void Init(Action continueCallback) {
-			if (continueCallback == null) {
-				Debug.LogError("continueCallback is null!");
+		private void Init(Action goBackCallback, Action continueCallback) {
+			if (goBackCallback == null || continueCallback == null) {
+				Debug.LogError("callback is null!");
 			}
 
+			goBackCallback_ = goBackCallback;
 			continueCallback_ = continueCallback;
 		}
 
 		private void Update() {
+			UpdateCheckContinue();
+			UpdateCheckGoBack();
+		}
+
+		private void UpdateCheckContinue() {
 			if (!ReadyToFight) {
 				return;
 			}
@@ -107,6 +123,37 @@ namespace DT.Game.PlayerCustomization {
 					LeavePlayerCustomization();
 				}
 			}
+		}
+
+		private void UpdateCheckGoBack() {
+			foreach (var view in views_) {
+				if (view.IsJoined) {
+					continue;
+				}
+
+				Player player = view.Player;
+				if (InputUtil.WasNegativePressedFor(player.InputDevice)) {
+					OpenGoBackView(player);
+				}
+			}
+		}
+
+		private void OpenGoBackView(Player player) {
+			foreach (var view in views_) {
+				view.SetPaused(true);
+			}
+			popupView_ = PopupConfirmationView.Create("GO BACK TO THE MAIN MENU?", player, confirmCallback: () => {
+				if (goBackCallback_ != null) {
+					goBackCallback_.Invoke();
+					goBackCallback_ = null;
+				}
+				popupView_ = null;
+			}, cancelCallback: () => {
+				foreach (var view in views_) {
+					view.SetPaused(false);
+				}
+				popupView_ = null;
+			});
 		}
 
 		private void RefreshReadyToFight() {

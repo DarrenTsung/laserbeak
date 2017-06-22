@@ -35,6 +35,10 @@ namespace DT.Game.PlayerCustomization.States {
 		public StateSkinCustomization(Player player, GameObject container, Action moveToNextState, Action moveToPreviousState)
 						: base(player, container, moveToNextState, moveToPreviousState) {}
 
+		public override void HandlePaused(bool paused) {
+			selectionView_.SetPaused(paused);
+		}
+
 		public override void Update() {
 			if (InputUtil.WasNegativePressedFor(Player_.InputDevice)) {
 				Player_.Skin = null;
