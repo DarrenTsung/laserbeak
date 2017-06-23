@@ -19,7 +19,7 @@ namespace DT.Game.Scoring {
 			player_ = player;
 
 			var inGamePlayerView = ObjectPoolManager.Create<InGamePlayerView>(GamePrefabs.Instance.InGamePlayerViewPrefab, parent: playerViewContainer_);
-			inGamePlayerView.InitWith(player);
+			inGamePlayerView.InitWith(player, enableNudge: true);
 
 			scoreBubbleViews_ = new ScoreBubbleView[GameConstants.Instance.ScoreToWin];
 			for (int i = 0; i < GameConstants.Instance.ScoreToWin; i++) {

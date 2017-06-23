@@ -20,7 +20,7 @@ namespace DT.Game.Stats {
 			player_ = player;
 
 			var inGamePlayerView = ObjectPoolManager.Create<InGamePlayerView>(GamePrefabs.Instance.InGamePlayerViewPrefab, parent: playerViewContainer_);
-			inGamePlayerView.InitWith(player);
+			inGamePlayerView.InitWith(player, enableNudge: true);
 
 			statsContainer_.Init(player_);
 			statsContainer_.gameObject.SetActive(true);

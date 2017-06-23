@@ -30,7 +30,7 @@ namespace DT.Game.PlayerCustomization {
 			player_ = player;
 
 			var view = ObjectPoolManager.Create<InGamePlayerView>(GamePrefabs.Instance.InGamePlayerViewPrefab, parent: playerViewContainer_);
-			view.InitWith(player);
+			view.InitWith(player, enableNudge: true);
 
 			if (player_.IsAI || player_.IsProperlyCustomized()) {
 				state_ = State.Ready;
@@ -75,7 +75,6 @@ namespace DT.Game.PlayerCustomization {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject playerViewContainer_;
-
 		[SerializeField]
 		private GameObject currentStateContainer_;
 
