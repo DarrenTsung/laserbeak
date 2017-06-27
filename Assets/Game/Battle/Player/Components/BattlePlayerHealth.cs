@@ -95,7 +95,7 @@ namespace DT.Game.Battle.Players {
 			HandleCollisions = true;
 			health_ = kBaseHealth;
 
-			shieldRenderer_.enabled = true;
+			Player_.ShieldRenderer.enabled = true;
 		}
 
 
@@ -120,9 +120,6 @@ namespace DT.Game.Battle.Players {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject playerPartsPrefab_;
-
-		[SerializeField]
-		private MeshRenderer shieldRenderer_;
 
 		[Header("Properties")]
 		[SerializeField, ReadOnly]
@@ -187,15 +184,15 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private void AnimateShieldHit(bool hideShieldAfterwards = false) {
-			Color baseColor = shieldRenderer_.material.GetColor("_Color");
+			Color baseColor = Player_.ShieldRenderer.material.GetColor("_Color");
 			CoroutineWrapper.DoEaseFor(kShieldAnimateDuration, EaseType.QuadraticEaseOut, (float percentage) => {
 				float inversePercentage = 1.0f - percentage;
 				float alpha = Mathf.Lerp(GameConstants.Instance.PlayerShieldAlphaMin, kShieldAlphaMax, inversePercentage);
 				Color newColor = baseColor.WithAlpha(alpha);
-				shieldRenderer_.material.SetColor("_Color", newColor);
+				Player_.ShieldRenderer.material.SetColor("_Color", newColor);
 			}, () => {
 				if (hideShieldAfterwards) {
-					shieldRenderer_.enabled = false;
+					Player_.ShieldRenderer.enabled = false;
 				}
 			});
 		}

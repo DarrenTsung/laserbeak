@@ -75,6 +75,10 @@ namespace DT.Game.Battle.Players {
 			get { return health_; }
 		}
 
+		public MeshRenderer ShieldRenderer {
+			get { return shieldRenderer_; }
+		}
+
 		public Animator Animator {
 			get { return animator_; }
 		}
@@ -117,6 +121,9 @@ namespace DT.Game.Battle.Players {
 
 		[SerializeField]
 		private ParticleSystem dustParticleSystem_;
+
+		[SerializeField]
+		private MeshRenderer shieldRenderer_;
 
 		[SerializeField]
 		private Animator animator_;

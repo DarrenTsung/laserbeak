@@ -1364,7 +1364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPartsPrefab_: {fileID: 1424833563842176, guid: 039a40fbfa7c84690a93246a46db2964,
     type: 2}
-  shieldRenderer_: {fileID: 23647879708987434}
   health_: 0
   invulnerable_: 0
   handleCollisions_: 1
@@ -1476,6 +1475,7 @@ MonoBehaviour:
   body_: {fileID: 1074212480659128}
   accessoriesContainer_: {fileID: 1703667539718068}
   dustParticleSystem_: {fileID: 198743201416120474}
+  shieldRenderer_: {fileID: 23647879708987434}
   animator_: {fileID: 95910978956280426}
 --- !u!114 &114756151786186018
 MonoBehaviour:
