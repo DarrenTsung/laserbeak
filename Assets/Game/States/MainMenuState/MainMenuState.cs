@@ -27,7 +27,15 @@ namespace DT.Game.MainMenu {
 			PlayerSpawner.SpawnAllPlayers();
 
 			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
-			mainMenu_.Init(battleHandler: StateMachine_.GoToPlayerCustomization, levelEditorHandler: StateMachine_.GoToLevelEditor);
+			mainMenu_.Init(battleHandler: GoToPlayerCustomization, levelEditorHandler: GoToLevelEditor);
+		}
+
+		private void GoToPlayerCustomization() {
+			mainMenu_.AnimateOut(StateMachine_.GoToPlayerCustomization);
+		}
+
+		private void GoToLevelEditor() {
+			mainMenu_.AnimateOut(StateMachine_.GoToLevelEditor);
 		}
 
 		protected override void OnStateExited() {

@@ -9,6 +9,7 @@ using InControl;
 using DT.Game.Audio;
 using DT.Game.ElementSelection;
 using DT.Game.GameModes;
+using DT.Game.Transitions;
 
 namespace DT.Game.MainMenu {
 	public class MainMenu : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
@@ -16,6 +17,12 @@ namespace DT.Game.MainMenu {
 		public void Init(Action battleHandler, Action levelEditorHandler) {
 			battleHandler_ = battleHandler;
 			levelEditorHandler_ = levelEditorHandler;
+
+			transitionWrapper_.AnimateIn();
+		}
+
+		public void AnimateOut(Action callback) {
+			transitionWrapper_.AnimateOut(callback);
 		}
 
 		public void HandleBattlePressed() {
@@ -70,6 +77,12 @@ namespace DT.Game.MainMenu {
 		private ElementSelectionView selectionView_;
 		private Action levelEditorHandler_;
 		private Action battleHandler_;
+
+		private TransitionWrapper transitionWrapper_;
+
+		private void Awake() {
+			transitionWrapper_ = new TransitionWrapper(this.gameObject);
+		}
 
 		private void Update() {
 			if (InputUtil.WasAnyCommandButtonPressed()) {
