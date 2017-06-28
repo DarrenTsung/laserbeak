@@ -46,12 +46,15 @@ namespace DT.Game.PlayerCustomization {
 					var view = ObjectPoolManager.Create<IndividualPlayerCustomizationView>(GamePrefabs.Instance.IndividualPlayerCustomizationViewPrefab, parent: playerAnchors[i].gameObject);
 					view.Init(player);
 					view.OnStateChanged += RefreshReadyToFight;
+					view.OnStateChanged += RefreshControlsTab;
 					views_.Add(view);
 				}
 			}
 
 			readyToFightContainer_.SetActive(false);
 			readyToFightShowing_ = false;
+			controlsContainer_.SetActive(false);
+			controlsTabShowing_ = false;
 		}
 
 
@@ -59,6 +62,7 @@ namespace DT.Game.PlayerCustomization {
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			foreach (var view in views_) {
 				view.OnStateChanged -= RefreshReadyToFight;
+				view.OnStateChanged -= RefreshControlsTab;
 				ObjectPoolManager.Recycle(view);
 			}
 			views_.Clear();
@@ -81,6 +85,9 @@ namespace DT.Game.PlayerCustomization {
 		private GameObject readyToFightContainer_;
 
 		[SerializeField]
+		private GameObject controlsContainer_;
+
+		[SerializeField]
 		private GameObject viewTransitionsContainer_;
 
 		private Action goBackCallback_;
@@ -93,7 +100,9 @@ namespace DT.Game.PlayerCustomization {
 
 		private TransitionWrapper viewTransitionWrapper_;
 		private TransitionWrapper readyToFightTransitionWrapper_;
+		private TransitionWrapper controlsTransitionWrapper_;
 		private bool readyToFightShowing_ = false;
+		private bool controlsTabShowing_ = false;
 
 		private bool AtLeastOnePlayerReady {
 			get { return views_.Any(v => v.IsReady); }
@@ -126,6 +135,7 @@ namespace DT.Game.PlayerCustomization {
 			// are created dynamically and object pooled
 			viewTransitionWrapper_ = new TransitionWrapper(viewTransitionsContainer_).SetDynamic(true);
 			readyToFightTransitionWrapper_ = new TransitionWrapper(readyToFightContainer_);
+			controlsTransitionWrapper_ = new TransitionWrapper(controlsContainer_);
 		}
 
 		private void Init(Action goBackCallback, Action continueCallback) {
@@ -191,6 +201,24 @@ namespace DT.Game.PlayerCustomization {
 			});
 		}
 
+		private void RefreshControlsTab() {
+			bool show = AtLeastOnePlayerReady;
+			if (show == controlsTabShowing_) {
+				return;
+			}
+
+			if (!controlsContainer_.activeSelf) {
+				controlsContainer_.SetActive(true);
+			}
+
+			controlsTabShowing_ = show;
+			if (controlsTabShowing_) {
+				controlsTransitionWrapper_.AnimateIn();
+			} else {
+				controlsTransitionWrapper_.AnimateOut();
+			}
+		}
+
 		private void RefreshReadyToFight() {
 			if (ReadyToFight == readyToFightShowing_) {
 				return;
@@ -227,6 +255,7 @@ namespace DT.Game.PlayerCustomization {
 					continueCallback_ = null;
 				}
 			});
+			controlsTransitionWrapper_.AnimateOut();
 			AnimateOutReadyToFight();
 		}
 	}
