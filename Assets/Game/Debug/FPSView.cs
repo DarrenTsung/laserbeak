@@ -5,6 +5,20 @@ using UnityEngine.UI;
 
 namespace DT.Game {
 	public class FPSView : MonoBehaviour {
+		// PRAGMA MARK - Public Interface
+		public static event Action OnFPSViewEnabledChanged = delegate {};
+		public static bool Enabled {
+			get { return enabled_; }
+			set {
+				if (enabled_ == value) return;
+				enabled_ = value;
+				OnFPSViewEnabledChanged.Invoke();
+			}
+		}
+
+		private static bool enabled_ = true;
+
+
 		// PRAGMA MARK - Internal
 		private const float kUpdateInterval = 0.5f;
 
@@ -15,6 +29,19 @@ namespace DT.Game {
 		private float accumulatedFPS_ = 0; // FPS accumulated over the interval
 		private int frames_ = 0; // Frames drawn over the interval
 		private float timeleft_; // Left time for current interval
+
+		private void Awake() {
+			OnFPSViewEnabledChanged += HandleFPSViewEnabledChanged;
+		}
+
+		private void OnDestroy() {
+			OnFPSViewEnabledChanged -= HandleFPSViewEnabledChanged;
+		}
+
+		private void HandleFPSViewEnabledChanged() {
+			this.enabled = Enabled;
+			fpsText_.SetEnabled(Enabled);
+		}
 
 		private void Update() {
 			timeleft_ -= Time.deltaTime;

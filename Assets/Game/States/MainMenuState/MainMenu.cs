@@ -86,6 +86,7 @@ namespace DT.Game.MainMenu {
 			if (InputUtil.WasAnyCommandButtonPressed()) {
 				// TODO (darren): better place for this?
 				GameConstants.Instance.DemoMode = !GameConstants.Instance.DemoMode;
+				FPSView.Enabled = !GameConstants.Instance.DemoMode;
 				RefreshDemoMode();
 				GameModeShowedInstructionsCache.ResetShowedInstructionsCache();
 			}
