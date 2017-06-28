@@ -75,6 +75,10 @@ namespace DT.Game.Players {
 		}
 
 		private void UpdateProfileNudge() {
+			if (player_.InputDevice == null) {
+				return;
+			}
+
 			float oldX = profileTransform_.anchoredPosition.x;
 			float targetX = player_.InputDevice.LeftStick.X * kNudgeDistance;
 			float newX = Mathf.Lerp(oldX, targetX, kNudgeSpeed);

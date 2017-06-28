@@ -60,8 +60,11 @@ namespace DT.Game.GameModes.Ghost {
 				material.SetFloat("_Metallic", metallic);
 			}
 
+			battlePlayer_.ShieldRenderer.material.SetFloat("_Alpha", alpha);
+
+			bool zeroAlpha = Mathf.Approximately(alpha, 0.0f);
 			foreach (Renderer renderer in battlePlayer_.BodyRenderers) {
-				renderer.enabled = !Mathf.Approximately(alpha, 0.0f);
+				renderer.enabled = !zeroAlpha;
 			}
 		}
 

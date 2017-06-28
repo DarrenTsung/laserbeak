@@ -7,6 +7,7 @@ Shader "CloverSwatch/BinstonBarrier"
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_Color ("Color", Color) = (0,0,0,0)
+		_Alpha ("Alpha", float) = 1.0
 	}
 
 	SubShader
@@ -70,6 +71,7 @@ Shader "CloverSwatch/BinstonBarrier"
 
 			sampler2D _CameraDepthNormalsTexture;
 			fixed4 _Color;
+			float _Alpha;
 
 			float triWave(float t, float offset, float yOffset)
 			{
@@ -102,7 +104,7 @@ Shader "CloverSwatch/BinstonBarrier"
 				fixed4 hexes = texColor(i, rim);
 
 				fixed4 col = _Color * _Color.a + glowColor * glow + hexes;
-				return col;
+				return col * _Alpha;
 			}
 			ENDCG
 		}
