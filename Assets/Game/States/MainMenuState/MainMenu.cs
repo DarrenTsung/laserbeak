@@ -18,10 +18,14 @@ namespace DT.Game.MainMenu {
 			battleHandler_ = battleHandler;
 			levelEditorHandler_ = levelEditorHandler;
 
-			transitionWrapper_.AnimateIn();
+			transitionWrapper_.AnimateIn(() => {
+				selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
+				selectionView_.Init(InputManager.Devices, menuContainer_);
+			});
 		}
 
 		public void AnimateOut(Action callback) {
+			CleanupSelectionView();
 			transitionWrapper_.AnimateOut(callback);
 		}
 
@@ -51,18 +55,12 @@ namespace DT.Game.MainMenu {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			RefreshDemoMode();
-
-			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
-			selectionView_.Init(InputManager.Devices, menuContainer_);
 		}
 
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			if (selectionView_ != null) {
-				ObjectPoolManager.Recycle(selectionView_);
-				selectionView_ = null;
-			}
+			CleanupSelectionView();
 		}
 
 
@@ -95,6 +93,13 @@ namespace DT.Game.MainMenu {
 
 		private void RefreshDemoMode() {
 			demoModeContainer_.SetActive(GameConstants.Instance.DemoMode);
+		}
+
+		private void CleanupSelectionView() {
+			if (selectionView_ != null) {
+				ObjectPoolManager.Recycle(selectionView_);
+				selectionView_ = null;
+			}
 		}
 	}
 }

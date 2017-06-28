@@ -56,6 +56,8 @@ GameObject:
   - component: {fileID: 224107379007390608}
   - component: {fileID: 114723779890663326}
   - component: {fileID: 114604356468305498}
+  - component: {fileID: 114572075332564344}
+  - component: {fileID: 114426328745067476}
   m_Layer: 5
   m_Name: BattleElement
   m_TagString: Untagged
@@ -155,6 +157,8 @@ GameObject:
   - component: {fileID: 224597521715275146}
   - component: {fileID: 114873868185001244}
   - component: {fileID: 114002452707409610}
+  - component: {fileID: 114670408909500250}
+  - component: {fileID: 114523851958470128}
   m_Layer: 5
   m_Name: LevelEditorElement
   m_TagString: Untagged
@@ -344,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionType_: 1
-  duration_: 0.25
+  duration_: 0.2
   direction_: 2
   easeType_: 7
 --- !u!114 &114227360266058900
@@ -360,6 +364,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!114 &114426328745067476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164149632819280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67ca44978db04add86f849da0d513e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionType_: 1
+  duration_: 0.2
+  direction_: 2
+  easeType_: 7
 --- !u!114 &114493808212577584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionType_: 0
-  duration_: 0.25
+  duration_: 0.2
   direction_: 8
   easeType_: 8
 --- !u!114 &114503301422871804
@@ -488,6 +507,36 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114523851958470128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634819565764754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67ca44978db04add86f849da0d513e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionType_: 1
+  duration_: 0.2
+  direction_: 2
+  easeType_: 7
+--- !u!114 &114572075332564344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164149632819280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67ca44978db04add86f849da0d513e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionType_: 0
+  duration_: 0.2
+  direction_: 8
+  easeType_: 8
 --- !u!114 &114604356468305498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -515,6 +564,21 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114670408909500250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634819565764754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67ca44978db04add86f849da0d513e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionType_: 0
+  duration_: 0.2
+  direction_: 8
+  easeType_: 8
 --- !u!114 &114723779890663326
 MonoBehaviour:
   m_ObjectHideFlags: 1

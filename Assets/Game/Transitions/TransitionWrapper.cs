@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 using DTObjectPoolManager;
 
@@ -15,6 +16,7 @@ namespace DT.Game.Transitions {
 		}
 
 		public void AnimateIn(Action callback = null) {
+			Canvas.ForceUpdateCanvases();
 			Animate(TransitionType.In, callback);
 		}
 

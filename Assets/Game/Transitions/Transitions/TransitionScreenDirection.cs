@@ -13,11 +13,11 @@ namespace DT.Game.Transitions {
 		// PRAGMA MARK - ITransition Implementation
 		public override void Animate(Action<ITransition> callback) {
 			Canvas canvas = this.GetComponentInParent<Canvas>();
-			Vector2 outPosition = Vector2.Scale(direction_.Vector2Value(), canvas.pixelRect.size);
-			Vector2 inPosition = Vector2.zero;
+			Vector2 outPosition = InPosition_ + Vector2.Scale(direction_.Vector2Value(), canvas.pixelRect.size);
 
-			Vector2 startPosition = (this.Type == TransitionType.In) ? outPosition : inPosition;
-			Vector2 endPosition = (this.Type == TransitionType.In) ? inPosition : outPosition;
+			Vector2 startPosition = (this.Type == TransitionType.In) ? outPosition : InPosition_;
+			Vector2 endPosition = (this.Type == TransitionType.In) ? InPosition_ : outPosition;
+
 			CoroutineWrapper.DoEaseFor(Duration_, easeType_, (float p) => {
 				RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
 			}, () => {
@@ -32,5 +32,10 @@ namespace DT.Game.Transitions {
 		private Direction direction_;
 		[SerializeField]
 		private EaseType easeType_;
+
+		private Vector2? inPosition_ = null;
+		private Vector2 InPosition_ {
+			get { return (inPosition_ ?? (inPosition_ = RectTransform_.anchoredPosition)).Value; }
+		}
 	}
 }
