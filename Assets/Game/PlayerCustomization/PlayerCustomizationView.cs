@@ -12,6 +12,7 @@ using InControl;
 using DT.Game.Battle.Players;
 using DT.Game.Players;
 using DT.Game.Popups;
+using DT.Game.Transitions;
 
 namespace DT.Game.PlayerCustomization {
 	public class PlayerCustomizationView : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
@@ -50,6 +51,8 @@ namespace DT.Game.PlayerCustomization {
 			}
 
 			RefreshReadyToFight();
+
+			transitionWrapper_.AnimateIn();
 		}
 
 
@@ -80,8 +83,11 @@ namespace DT.Game.PlayerCustomization {
 		private Action continueCallback_;
 
 		private PopupView popupView_;
+		private bool paused_ = false;
 
 		private readonly List<IndividualPlayerCustomizationView> views_ = new List<IndividualPlayerCustomizationView>();
+
+		private TransitionWrapper transitionWrapper_;
 
 		private bool AtLeastOnePlayerReady {
 			get { return views_.Any(v => v.IsReady); }
@@ -91,8 +97,26 @@ namespace DT.Game.PlayerCustomization {
 			get { return views_.All(v => !v.IsCustomizing); }
 		}
 
+		private bool Paused_ {
+			get { return paused_; }
+			set {
+				if (paused_ == value) {
+					return;
+				}
+
+				paused_ = value;
+				foreach (var view in views_) {
+					view.SetPaused(paused_);
+				}
+			}
+		}
+
 		private bool ReadyToFight {
 			get { return AtLeastOnePlayerReady && AllPlayersDoneCustomizing; }
+		}
+
+		private void Awake() {
+			transitionWrapper_ = new TransitionWrapper(this.gameObject);
 		}
 
 		private void Init(Action goBackCallback, Action continueCallback) {
@@ -105,6 +129,10 @@ namespace DT.Game.PlayerCustomization {
 		}
 
 		private void Update() {
+			if (Paused_) {
+				return;
+			}
+
 			UpdateCheckContinue();
 			UpdateCheckGoBack();
 		}
@@ -139,9 +167,7 @@ namespace DT.Game.PlayerCustomization {
 		}
 
 		private void OpenGoBackView(Player player) {
-			foreach (var view in views_) {
-				view.SetPaused(true);
-			}
+			Paused_ = true;
 			popupView_ = PopupConfirmationView.Create("GO BACK TO THE MAIN MENU?", player, confirmCallback: () => {
 				if (goBackCallback_ != null) {
 					goBackCallback_.Invoke();
@@ -149,9 +175,7 @@ namespace DT.Game.PlayerCustomization {
 				}
 				popupView_ = null;
 			}, cancelCallback: () => {
-				foreach (var view in views_) {
-					view.SetPaused(false);
-				}
+				Paused_ = false;
 				popupView_ = null;
 			});
 		}
@@ -166,10 +190,15 @@ namespace DT.Game.PlayerCustomization {
 				RegisteredPlayers.Remove(view.Player);
 			}
 
-			if (continueCallback_ != null) {
-				continueCallback_.Invoke();
-				continueCallback_ = null;
-			}
+			// prevent players from modifying state while animating out
+			Paused_ = true;
+
+			transitionWrapper_.AnimateOut(() => {
+				if (continueCallback_ != null) {
+					continueCallback_.Invoke();
+					continueCallback_ = null;
+				}
+			});
 		}
 	}
 }

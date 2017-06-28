@@ -33,18 +33,25 @@ namespace DT.Game.Transitions {
 		}
 
 		public void Animate(TransitionType type, Action callback) {
-			if (transitionsFinishedCallback_ != null) {
+			if (animating_) {
 				Debug.LogWarning("TransitionWrapper - animating before previous animation was finished!");
+				return;
 			}
 
+			animating_ = true;
 			transitionsFinishedCallback_ = callback;
 			transitionType_ = type;
 			transitionsComplete_.Clear();
 
-			int index = 0;
-			foreach (ITransition transition in GetTransitionsFor(type)) {
-				transition.Animate(delay: index * offsetDelay_, callback: HandleTransitionComplete);
-				index++;
+			HashSet<ITransition> transitions = GetTransitionsFor(type);
+			if (transitions.Count > 0) {
+				int index = 0;
+				foreach (ITransition transition in transitions) {
+					transition.Animate(delay: index * offsetDelay_, callback: HandleTransitionComplete);
+					index++;
+				}
+			} else {
+				FinishTransitioning();
 			}
 		}
 
@@ -59,6 +66,7 @@ namespace DT.Game.Transitions {
 		private TransitionType transitionType_;
 		private GameObject gameObject_;
 
+		private bool animating_ = false;
 		private float offsetDelay_;
 
 		private ITransition[] Transitions_ {
@@ -85,6 +93,15 @@ namespace DT.Game.Transitions {
 			if (!allTransitionsFinished) {
 				return;
 			}
+
+			FinishTransitioning();
+		}
+
+		private void FinishTransitioning() {
+			if (!animating_) {
+				Debug.LogWarning("Callback to transition complete when not animating.. investigate this!");
+			}
+			animating_ = false;
 
 			if (transitionsFinishedCallback_ != null) {
 				transitionsFinishedCallback_.Invoke();
