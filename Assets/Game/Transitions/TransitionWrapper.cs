@@ -18,6 +18,11 @@ namespace DT.Game.Transitions {
 			OnTransitionWrapperCreated.Invoke(this);
 		}
 
+		public TransitionWrapper SetDynamic(bool dynamicTransitions) {
+			dynamicTransitions_ = dynamicTransitions;
+			return this;
+		}
+
 		public TransitionWrapper SetOffsetDelay(float offsetDelay) {
 			offsetDelay_ = offsetDelay;
 			return this;
@@ -36,6 +41,10 @@ namespace DT.Game.Transitions {
 			if (animating_) {
 				Debug.LogWarning("TransitionWrapper - animating before previous animation was finished!");
 				return;
+			}
+
+			if (dynamicTransitions_) {
+				transitionTypeMap_.Clear();
 			}
 
 			animating_ = true;
@@ -67,6 +76,7 @@ namespace DT.Game.Transitions {
 		private GameObject gameObject_;
 
 		private bool animating_ = false;
+		private bool dynamicTransitions_ = false;
 		private float offsetDelay_;
 
 		private ITransition[] Transitions_ {

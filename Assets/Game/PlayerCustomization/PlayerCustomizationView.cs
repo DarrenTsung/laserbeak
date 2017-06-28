@@ -51,8 +51,6 @@ namespace DT.Game.PlayerCustomization {
 			}
 
 			RefreshReadyToFight();
-
-			transitionWrapper_.AnimateIn();
 		}
 
 
@@ -68,6 +66,8 @@ namespace DT.Game.PlayerCustomization {
 				ObjectPoolManager.Recycle(popupView_);
 				popupView_ = null;
 			}
+
+			paused_ = false;
 		}
 
 
@@ -116,7 +116,7 @@ namespace DT.Game.PlayerCustomization {
 		}
 
 		private void Awake() {
-			transitionWrapper_ = new TransitionWrapper(this.gameObject);
+			transitionWrapper_ = new TransitionWrapper(this.gameObject).SetDynamic(true);
 		}
 
 		private void Init(Action goBackCallback, Action continueCallback) {
@@ -126,6 +126,8 @@ namespace DT.Game.PlayerCustomization {
 
 			goBackCallback_ = goBackCallback;
 			continueCallback_ = continueCallback;
+
+			transitionWrapper_.AnimateIn();
 		}
 
 		private void Update() {
