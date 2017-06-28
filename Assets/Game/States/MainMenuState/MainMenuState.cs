@@ -40,7 +40,7 @@ namespace DT.Game.MainMenu {
 		}
 
 		protected override void OnStateExited() {
-			BattleCamera.SetDepthOfFieldEnabled(false);
+			BattleCamera.SetDepthOfFieldEnabled(false, animate: true);
 			PlayerScores.Clear();
 			RegisteredPlayers.Clear();
 			PlayerSpawner.ShouldRespawn = false;

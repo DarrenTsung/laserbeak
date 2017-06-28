@@ -28,8 +28,8 @@ namespace DT.Game.Battle {
 			Instance.StopTimeFor(duration: 0.1f);
 		}
 
-		public static void SetDepthOfFieldEnabled(bool enabled) {
-			Instance.SetDepthOfFieldEnabledInternal(enabled);
+		public static void SetDepthOfFieldEnabled(bool enabled, bool animate = false) {
+			Instance.SetDepthOfFieldEnabledInternal(enabled, animate);
 		}
 
 
@@ -80,6 +80,7 @@ namespace DT.Game.Battle {
 
 		private CoroutineWrapper aberrationCoroutine_;
 		private CoroutineWrapper timeScaleCoroutine_;
+		private CoroutineWrapper depthOfFieldCoroutine_;
 
 		private void Awake() {
 			camera_ = this.GetRequiredComponent<Camera>();
@@ -167,8 +168,33 @@ namespace DT.Game.Battle {
 			});
 		}
 
-		private void SetDepthOfFieldEnabledInternal(bool enabled) {
-			postProcessingProfile_.depthOfField.enabled = enabled;
+		private const float kMaxFocalLength = 36.0f;
+		private const float kMinFocalLength = 0.0f;
+
+		private const float kDepthOfFieldAnimationDuration = 3.0f;
+
+		private void SetDepthOfFieldEnabledInternal(bool enabled, bool animate) {
+			if (depthOfFieldCoroutine_ != null) {
+				depthOfFieldCoroutine_.Cancel();
+				depthOfFieldCoroutine_ = null;
+			}
+
+			DepthOfFieldModel.Settings settings = postProcessingProfile_.depthOfField.settings;
+			if (!animate) {
+				settings.focalLength = enabled ? kMaxFocalLength : kMinFocalLength;
+				postProcessingProfile_.depthOfField.settings = settings;
+				postProcessingProfile_.depthOfField.enabled = enabled;
+			} else {
+				postProcessingProfile_.depthOfField.enabled = true;
+				float start = enabled ? kMinFocalLength : kMaxFocalLength;
+				float end = enabled ? kMaxFocalLength : kMinFocalLength;
+				depthOfFieldCoroutine_ = CoroutineWrapper.DoEaseFor(kDepthOfFieldAnimationDuration, EaseType.CubicEaseOut, (float p) => {
+					settings.focalLength = Mathf.Lerp(start, end, p);
+					postProcessingProfile_.depthOfField.settings = settings;
+				}, () => {
+					postProcessingProfile_.depthOfField.enabled = enabled;
+				});
+			}
 		}
 	}
 }
