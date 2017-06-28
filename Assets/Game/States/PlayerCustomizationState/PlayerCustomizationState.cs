@@ -9,6 +9,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle;
 using DT.Game.Battle.Players;
 using DT.Game.Battle.Stats;
 using DT.Game.Players;
@@ -29,6 +30,9 @@ namespace DT.Game.PlayerCustomization {
 		}
 
 		protected override void OnStateExited() {
+			BattleRecyclables.Clear();
+			PlayerSpawner.CleanupAllPlayers();
+
 			PlayerCustomizationView.Hide();
 			RegisteredPlayers.FinishPlayerRegistration();
 			StatsManager.ClearAllStats();
