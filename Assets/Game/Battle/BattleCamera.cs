@@ -28,6 +28,10 @@ namespace DT.Game.Battle {
 			Instance.StopTimeFor(duration: 0.1f);
 		}
 
+		public static void SetDepthOfFieldEnabled(bool enabled) {
+			Instance.SetDepthOfFieldEnabledInternal(enabled);
+		}
+
 
 		// PRAGMA MARK - Public Interface
 		public Camera Camera {
@@ -161,6 +165,10 @@ namespace DT.Game.Battle {
 			timeScaleCoroutine_ = CoroutineWrapper.DoAfterRealtimeDelay(duration, () => {
 				Time.timeScale = 1.0f;
 			});
+		}
+
+		private void SetDepthOfFieldEnabledInternal(bool enabled) {
+			postProcessingProfile_.depthOfField.enabled = enabled;
 		}
 	}
 }

@@ -69,11 +69,11 @@ MonoBehaviour:
       screenEdgeMask:
         intensity: 0.03
   depthOfField:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       focusDistance: 10
-      aperture: 1.7
-      focalLength: 50
+      aperture: 0.1
+      focalLength: 34
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0
+      intensity: 0.00000894613
   grain:
     m_Enabled: 0
     m_Settings:

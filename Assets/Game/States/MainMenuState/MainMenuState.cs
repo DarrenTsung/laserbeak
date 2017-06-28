@@ -19,6 +19,7 @@ namespace DT.Game.MainMenu {
 		private MainMenu mainMenu_;
 
 		protected override void OnStateEntered() {
+			BattleCamera.SetDepthOfFieldEnabled(true);
 			ArenaManager.Instance.LoadRandomArena();
 
 			RegisteredPlayers.Clear();
@@ -39,6 +40,7 @@ namespace DT.Game.MainMenu {
 		}
 
 		protected override void OnStateExited() {
+			BattleCamera.SetDepthOfFieldEnabled(false);
 			PlayerScores.Clear();
 			RegisteredPlayers.Clear();
 			PlayerSpawner.ShouldRespawn = false;
