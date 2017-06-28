@@ -6,8 +6,10 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+using DT.Game.Battle;
 using DT.Game.Battle.Players;
 using DT.Game.Players;
+
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
@@ -27,12 +29,14 @@ namespace DT.Game.PlayerCustomization.States {
 
 		public override void Cleanup() {
 			Container_.RecycleAllChildren();
+			PlayerSpawner.CleanupForPlayer(Player_);
 		}
 
 
 		// PRAGMA MARK - Internal
 		protected override void Init() {
 			ObjectPoolManager.Create(GamePrefabs.Instance.PlayerReadyView, parent: Container_);
+			PlayerSpawner.ForceSpawnPlayer(Player_);
 		}
 	}
 }

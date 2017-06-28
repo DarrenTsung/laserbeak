@@ -30,6 +30,21 @@ namespace DT.Game.Battle {
 			playerMap_.Clear();
 		}
 
+		public static void CleanupForPlayer(Player player) {
+			if (!playerMap_.ContainsKey(player)) {
+				return;
+			}
+
+			BattlePlayer battlePlayer = playerMap_[player];
+			// NOTE (darren): hacky, but prevent respawn from cleanup here
+			playerMap_.Remove(player);
+			ObjectPoolManager.Recycle(battlePlayer);
+		}
+
+		public static void ForceSpawnPlayer(Player player) {
+			SpawnPlayer(player);
+		}
+
 		public static bool IsAlive(Player player) {
 			return PlayerExistsFor(player);
 		}
@@ -115,6 +130,10 @@ namespace DT.Game.Battle {
 		}
 
 		private static void RemovePlayer(Player player) {
+			if (!playerMap_.ContainsKey(player)) {
+				return;
+			}
+
 			playerMap_.Remove(player);
 			OnSpawnedPlayerRemoved.Invoke();
 

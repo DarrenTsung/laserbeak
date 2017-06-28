@@ -22,6 +22,8 @@ namespace DT.Game.PlayerCustomization {
 			RegisteredPlayers.BeginPlayerRegistration();
 			PlayerCustomizationView.Show(GoBack, Continue);
 
+			PlayerSpawner.ShouldRespawn = true;
+
 			// in case where no players to customize - continue
 			if (RegisteredPlayers.AllPlayers.Count <= 0) {
 				Continue();
@@ -32,6 +34,8 @@ namespace DT.Game.PlayerCustomization {
 		protected override void OnStateExited() {
 			BattleRecyclables.Clear();
 			PlayerSpawner.CleanupAllPlayers();
+
+			PlayerSpawner.ShouldRespawn = false;
 
 			PlayerCustomizationView.Hide();
 			RegisteredPlayers.FinishPlayerRegistration();
