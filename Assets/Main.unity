@@ -1613,7 +1613,7 @@ MonoBehaviour:
   PlayersToFill: 4
   FillWithAI: 1
   DemoMode: 0
-  UIBetweenDelay: 0.1
+  UIOffsetDelay: 0.1
   ColliderDisappearDelay: 0.2
   PlayerSkins:
   - {fileID: 11400000, guid: f4391fb4d7c594a7faab01e17f7c9b53, type: 2}
@@ -1688,7 +1688,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6dbbe5841b4094208af64197dbb76982, type: 2}
   - {fileID: 11400000, guid: 89598db54397a4306bb47cfe01ae37ac, type: 2}
   - {fileID: 11400000, guid: fbfef6fd8c14e462f85dd286b7ec60a2, type: 2}
-  - {fileID: 11400000, guid: c4695f8e014014139a0a67dcdef2727e, type: 2}
 --- !u!1 &1950817757
 GameObject:
   m_ObjectHideFlags: 0
