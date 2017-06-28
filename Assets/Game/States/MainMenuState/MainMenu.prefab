@@ -401,7 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionType_: 1
   duration_: 0.2
-  direction_: 2
+  direction_: 4
   easeType_: 7
 --- !u!114 &114493808212577584
 MonoBehaviour:
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionType_: 1
   duration_: 0.2
-  direction_: 2
+  direction_: 4
   easeType_: 7
 --- !u!114 &114572075332564344
 MonoBehaviour:
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionType_: 0
   duration_: 0.2
-  direction_: 8
+  direction_: 4
   easeType_: 8
 --- !u!114 &114583555945289880
 MonoBehaviour:
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionType_: 0
   duration_: 0.2
-  direction_: 8
+  direction_: 4
   easeType_: 8
 --- !u!114 &114723779890663326
 MonoBehaviour:
