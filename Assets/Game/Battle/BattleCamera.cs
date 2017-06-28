@@ -98,7 +98,7 @@ namespace DT.Game.Battle {
 
 			Vector3 targetPosition = initialPosition_;
 			if (transformsOfInterest_ != null) {
-				targetPosition = GetTargetPositionToHighlightInterest();
+				targetPosition = GetTargetPositionToHighlightInterest() + GameConstants.Instance.PlayerFocusOffset;
 			}
 
 			this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, cameraSpeed_ * Time.deltaTime);

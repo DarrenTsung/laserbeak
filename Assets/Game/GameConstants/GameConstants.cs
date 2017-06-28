@@ -51,6 +51,9 @@ namespace DT.Game {
 
 		public Material LaserMaterial;
 
+		[Header("Battle")]
+		public Vector3 PlayerFocusOffset = new Vector3(0.0f, 4.0f, 0.0f);
+
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]
