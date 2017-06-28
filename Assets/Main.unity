@@ -1636,7 +1636,6 @@ MonoBehaviour:
   PlayerFocusOffset: {x: 0, y: 1.5, z: 1}
   gameModes_:
   - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
-  - {fileID: 11400000, guid: 23fac7ceffc974057bd4f816592eef9b, type: 2}
   - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
   - {fileID: 11400000, guid: 12436132583ff4273b11a540daa305c9, type: 2}
   - {fileID: 11400000, guid: 07ff17a4c984d4239981ab36f955b858, type: 2}
