@@ -13,6 +13,6 @@ namespace DT.Game.Transitions {
 			get;
 		}
 
-		void Animate(Action<ITransition> callback);
+		void Animate(float delay, Action<ITransition> callback);
 	}
 }

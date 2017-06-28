@@ -11,17 +11,20 @@ using DTObjectPoolManager;
 namespace DT.Game.Transitions {
 	public class TransitionScreenDirection : TransitionUI, ITransition {
 		// PRAGMA MARK - ITransition Implementation
-		public override void Animate(Action<ITransition> callback) {
+		public override void Animate(float delay, Action<ITransition> callback) {
 			Canvas canvas = this.GetComponentInParent<Canvas>();
 			Vector2 outPosition = InPosition_ + Vector2.Scale(direction_.Vector2Value(), canvas.pixelRect.size);
 
 			Vector2 startPosition = (this.Type == TransitionType.In) ? outPosition : InPosition_;
 			Vector2 endPosition = (this.Type == TransitionType.In) ? InPosition_ : outPosition;
 
-			CoroutineWrapper.DoEaseFor(Duration_, easeType_, (float p) => {
-				RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
-			}, () => {
-				callback.Invoke(this);
+			RectTransform_.anchoredPosition = startPosition;
+			CoroutineWrapper.DoAfterDelay(delay, () => {
+				CoroutineWrapper.DoEaseFor(Duration_, easeType_, (float p) => {
+					RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
+				}, () => {
+					callback.Invoke(this);
+				});
 			});
 		}
 

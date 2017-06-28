@@ -79,7 +79,7 @@ namespace DT.Game.MainMenu {
 		private TransitionWrapper transitionWrapper_;
 
 		private void Awake() {
-			transitionWrapper_ = new TransitionWrapper(this.gameObject);
+			transitionWrapper_ = new TransitionWrapper(this.gameObject).WithOffsetDelay(GameConstants.Instance.UIOffsetDelay);
 		}
 
 		private void Update() {

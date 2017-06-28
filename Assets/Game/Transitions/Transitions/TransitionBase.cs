@@ -14,7 +14,7 @@ namespace DT.Game.Transitions {
 			get { return transitionType_; }
 		}
 
-		public abstract void Animate(Action<ITransition> callback);
+		public abstract void Animate(float delay, Action<ITransition> callback);
 
 
 		// PRAGMA MARK - Internal

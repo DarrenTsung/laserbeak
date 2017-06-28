@@ -15,6 +15,11 @@ namespace DT.Game.Transitions {
 			gameObject_ = gameObject;
 		}
 
+		public TransitionWrapper WithOffsetDelay(float offsetDelay) {
+			offsetDelay_ = offsetDelay;
+			return this;
+		}
+
 		public void AnimateIn(Action callback = null) {
 			Canvas.ForceUpdateCanvases();
 			Animate(TransitionType.In, callback);
@@ -32,8 +37,11 @@ namespace DT.Game.Transitions {
 			transitionsFinishedCallback_ = callback;
 			transitionType_ = type;
 			transitionsComplete_.Clear();
+
+			int index = 0;
 			foreach (ITransition transition in GetTransitionsFor(type)) {
-				transition.Animate(HandleTransitionComplete);
+				transition.Animate(delay: index * offsetDelay_, callback: HandleTransitionComplete);
+				index++;
 			}
 		}
 
@@ -47,6 +55,8 @@ namespace DT.Game.Transitions {
 		private Action transitionsFinishedCallback_;
 		private TransitionType transitionType_;
 		private GameObject gameObject_;
+
+		private float offsetDelay_;
 
 		private ITransition[] Transitions_ {
 			get { return transitions_ ?? (transitions_ = gameObject_.GetComponentsInChildren<ITransition>()); }

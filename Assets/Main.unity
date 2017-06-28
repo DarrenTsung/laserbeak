@@ -1613,6 +1613,7 @@ MonoBehaviour:
   PlayersToFill: 4
   FillWithAI: 1
   DemoMode: 0
+  UIBetweenDelay: 0.1
   ColliderDisappearDelay: 0.2
   PlayerSkins:
   - {fileID: 11400000, guid: f4391fb4d7c594a7faab01e17f7c9b53, type: 2}

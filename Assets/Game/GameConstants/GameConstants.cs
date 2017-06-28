@@ -30,6 +30,9 @@ namespace DT.Game {
 		public bool DemoMode = false;
 
 		[Space]
+		public float UIOffsetDelay = 0.1f;
+
+		[Space]
 		public float ColliderDisappearDelay = 0.2f;
 
 		[Header("Player")]
