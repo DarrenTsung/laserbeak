@@ -11,11 +11,14 @@ using DTObjectPoolManager;
 namespace DT.Game.Transitions {
 	public class TransitionWrapper {
 		// PRAGMA MARK - Public Interface
+		public static Action<TransitionWrapper> OnTransitionWrapperCreated = delegate {};
+
 		public TransitionWrapper(GameObject gameObject) {
 			gameObject_ = gameObject;
+			OnTransitionWrapperCreated.Invoke(this);
 		}
 
-		public TransitionWrapper WithOffsetDelay(float offsetDelay) {
+		public TransitionWrapper SetOffsetDelay(float offsetDelay) {
 			offsetDelay_ = offsetDelay;
 			return this;
 		}
