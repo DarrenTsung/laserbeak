@@ -90,6 +90,8 @@ GameObject:
   - component: {fileID: 224896912414051122}
   - component: {fileID: 222631506522559268}
   - component: {fileID: 114583555945289880}
+  - component: {fileID: 114379769370118598}
+  - component: {fileID: 114447159318782488}
   m_Layer: 5
   m_Name: TitleTextContainer
   m_TagString: Untagged
@@ -388,6 +390,23 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &114379769370118598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434334332500532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0baed047e24de4892f9d534b78959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionType_: 0
+  duration_: 0.2
+  image_: {fileID: 114583555945289880}
+  minAlpha_: 0
+  maxAlpha_: 1
+  easeType_: 8
 --- !u!114 &114426328745067476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,6 +421,23 @@ MonoBehaviour:
   transitionType_: 1
   duration_: 0.2
   direction_: 4
+  easeType_: 7
+--- !u!114 &114447159318782488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434334332500532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0baed047e24de4892f9d534b78959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionType_: 1
+  duration_: 0.2
+  image_: {fileID: 114583555945289880}
+  minAlpha_: 0
+  maxAlpha_: 1
   easeType_: 7
 --- !u!114 &114493808212577584
 MonoBehaviour:
