@@ -29,7 +29,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Border
+    path: Inset/Border
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -45,7 +45,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Border
+    path: Inset/Border
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -61,7 +61,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Border
+    path: Inset/Border
     classID: 114
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
@@ -77,7 +77,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Border
+    path: Inset/Border
     classID: 114
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
@@ -93,7 +93,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Border
+    path: Inset/Border
     classID: 114
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
@@ -109,7 +109,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Container/LayoutElement
+    path: Inset/Container/LayoutElement
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -125,7 +125,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Container/LayoutElement
+    path: Inset/Container/LayoutElement
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -141,7 +141,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.r
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -157,7 +157,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.g
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -173,7 +173,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.b
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -189,7 +189,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.a
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -205,7 +205,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_havePropertiesChanged
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -221,7 +221,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -237,9 +237,25 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 224
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.a
+    path: Background
+    classID: 114
+    script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 10
   m_WrapMode: 0
@@ -248,88 +264,109 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 733287271
+    - serializedVersion: 2
+      path: 2817426253
       attribute: 671371128
       script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 3227086401
+    - serializedVersion: 2
+      path: 3208844733
       attribute: 1460864421
       script: {fileID: 0}
-      classID: 224
+      typeID: 224
       customType: 0
       isPPtrCurve: 0
-    - path: 3227086401
+    - serializedVersion: 2
+      path: 3208844733
       attribute: 1967290853
       script: {fileID: 0}
-      classID: 224
+      typeID: 224
       customType: 0
       isPPtrCurve: 0
-    - path: 3227086401
+    - serializedVersion: 2
+      path: 3208844733
       attribute: 2526845255
       script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 3227086401
+    - serializedVersion: 2
+      path: 3208844733
       attribute: 4215373228
       script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 3227086401
+    - serializedVersion: 2
+      path: 3208844733
       attribute: 2334886179
       script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 4188303777
+    - serializedVersion: 2
+      path: 2830065957
       attribute: 538195251
       script: {fileID: 0}
-      classID: 224
+      typeID: 224
       customType: 0
       isPPtrCurve: 0
-    - path: 4188303777
+    - serializedVersion: 2
+      path: 2830065957
       attribute: 38095219
       script: {fileID: 0}
-      classID: 224
+      typeID: 224
       customType: 0
       isPPtrCurve: 0
-    - path: 733287271
+    - serializedVersion: 2
+      path: 2817426253
       attribute: 2110649717
       script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 733287271
+    - serializedVersion: 2
+      path: 2817426253
       attribute: 269488542
       script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 733287271
+    - serializedVersion: 2
+      path: 2817426253
       attribute: 1618666769
       script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 733287271
+    - serializedVersion: 2
+      path: 2817426253
       attribute: 4185109675
       script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
-      classID: 114
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 733287271
+    - serializedVersion: 2
+      path: 2817426253
       attribute: 1460864421
       script: {fileID: 0}
-      classID: 224
+      typeID: 224
       customType: 0
       isPPtrCurve: 0
-    - path: 733287271
+    - serializedVersion: 2
+      path: 2817426253
       attribute: 1967290853
       script: {fileID: 0}
-      classID: 224
+      typeID: 224
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 4080383872
+      attribute: 304273561
+      script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
@@ -367,7 +404,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Border
+    path: Inset/Border
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -383,7 +420,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Border
+    path: Inset/Border
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -399,7 +436,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Border
+    path: Inset/Border
     classID: 114
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
@@ -415,7 +452,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: Border
+    path: Inset/Border
     classID: 114
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
@@ -431,7 +468,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: Border
+    path: Inset/Border
     classID: 114
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
@@ -447,7 +484,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Container/LayoutElement
+    path: Inset/Container/LayoutElement
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -463,7 +500,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Container/LayoutElement
+    path: Inset/Container/LayoutElement
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -479,7 +516,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.r
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -495,7 +532,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.g
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -511,7 +548,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.b
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -527,7 +564,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_fontColor.a
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -543,7 +580,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_havePropertiesChanged
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 114
     script: {fileID: 11500000, guid: 496f2e385b0c62542b5c739ccfafd8da, type: 3}
   - curve:
@@ -559,7 +596,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -575,12 +612,27 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: GameModeText
+    path: Inset/GameModeText
     classID: 224
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.a
+    path: Background
+    classID: 114
+    script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_IsEmpty: 0
   m_Events: []
