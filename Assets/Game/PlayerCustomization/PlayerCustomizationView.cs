@@ -147,6 +147,9 @@ namespace DT.Game.PlayerCustomization {
 			continueCallback_ = continueCallback;
 
 			viewTransitionWrapper_.AnimateIn();
+
+			RefreshReadyToFight();
+			RefreshControlsTab();
 		}
 
 		private void Update() {
