@@ -18,18 +18,22 @@ namespace DT.Game.Transitions {
 
 
 		// PRAGMA MARK - ITransition Implementation
-		public override void Animate(float delay, Action<ITransition> callback) {
+		public override void Animate(TransitionType transitionType, float delay, Action<ITransition> callback) {
 			Canvas canvas = this.GetComponentInParent<Canvas>();
 
-			Vector2 inPosition = InPositionFor(RectTransform_);
-			Vector2 outPosition = inPosition + Vector2.Scale(direction_.Vector2Value(), canvas.pixelRect.size);
+			Direction direction = (transitionType == TransitionType.In) ? inDirection_ : outDirection_;
 
-			Vector2 startPosition = (this.Type == TransitionType.In) ? outPosition : inPosition;
-			Vector2 endPosition = (this.Type == TransitionType.In) ? inPosition : outPosition;
+			Vector2 inPosition = InPositionFor(RectTransform_);
+			Vector2 outPosition = inPosition + Vector2.Scale(direction.Vector2Value(), canvas.pixelRect.size);
+
+			Vector2 startPosition = (transitionType == TransitionType.In) ? outPosition : inPosition;
+			Vector2 endPosition = (transitionType == TransitionType.In) ? inPosition : outPosition;
+
+			EaseType easeType = (transitionType == TransitionType.In) ? inEaseType_ : outEaseType_;
 
 			RectTransform_.anchoredPosition = startPosition;
 			CoroutineWrapper.DoAfterDelay(delay, () => {
-				CoroutineWrapper.DoEaseFor(Duration_, easeType_, (float p) => {
+				CoroutineWrapper.DoEaseFor(Duration_, easeType, (float p) => {
 					RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
 				}, () => {
 					callback.Invoke(this);
@@ -41,8 +45,14 @@ namespace DT.Game.Transitions {
 		// PRAGMA MARK - Internal
 		[Header("ScreenDirection Properties")]
 		[SerializeField]
-		private Direction direction_;
+		private Direction inDirection_ = Direction.UP;
 		[SerializeField]
-		private EaseType easeType_;
+		private Direction outDirection_ = Direction.UP;
+
+		[Space]
+		[SerializeField]
+		private EaseType inEaseType_ = EaseType.QuadraticEaseOut;
+		[SerializeField]
+		private EaseType outEaseType_ = EaseType.QuadraticEaseIn;
 	}
 }

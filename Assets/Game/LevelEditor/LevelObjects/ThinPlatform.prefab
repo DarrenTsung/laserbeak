@@ -35,7 +35,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4452660555927550}
   - component: {fileID: 114910315599959476}
-  - component: {fileID: 114209027915225748}
   m_Layer: 0
   m_Name: ThinPlatform
   m_TagString: Untagged
@@ -153,23 +152,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114209027915225748
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1469350141857788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae80a66e0025144df845b22fe43b4f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionType_: 1
-  duration_: 0.2
-  transform_: {fileID: 4005120740922784}
-  inLocalPosition_: {x: 0, y: 0, z: 0}
-  outLocalPosition_: {x: 0, y: -140, z: 0}
-  easeType_: 1
 --- !u!114 &114910315599959476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,4 +168,5 @@ MonoBehaviour:
   transform_: {fileID: 4005120740922784}
   inLocalPosition_: {x: 0, y: 0, z: 0}
   outLocalPosition_: {x: 0, y: -140, z: 0}
-  easeType_: 2
+  inEaseType_: 2
+  outEaseType_: 1

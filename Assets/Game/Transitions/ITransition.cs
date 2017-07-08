@@ -9,10 +9,6 @@ using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
 	public interface ITransition {
-		TransitionType Type {
-			get;
-		}
-
-		void Animate(float delay, Action<ITransition> callback);
+		void Animate(TransitionType transitionType, float delay, Action<ITransition> callback);
 	}
 }

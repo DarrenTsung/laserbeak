@@ -12,13 +12,15 @@ using DTObjectPoolManager;
 namespace DT.Game.Transitions {
 	public class TransitionAlpha : TransitionUI, ITransition {
 		// PRAGMA MARK - ITransition Implementation
-		public override void Animate(float delay, Action<ITransition> callback) {
-			float startAlpha = (this.Type == TransitionType.In) ? minAlpha_ : maxAlpha_;
-			float endAlpha = (this.Type == TransitionType.In) ? maxAlpha_ : minAlpha_;
+		public override void Animate(TransitionType transitionType, float delay, Action<ITransition> callback) {
+			float startAlpha = (transitionType == TransitionType.In) ? minAlpha_ : maxAlpha_;
+			float endAlpha = (transitionType == TransitionType.In) ? maxAlpha_ : minAlpha_;
+
+			EaseType easeType = (transitionType == TransitionType.In) ? inEaseType_ : outEaseType_;
 
 			SetAlpha(startAlpha);
 			CoroutineWrapper.DoAfterDelay(delay, () => {
-				CoroutineWrapper.DoEaseFor(Duration_, easeType_, (float p) => {
+				CoroutineWrapper.DoEaseFor(Duration_, easeType, (float p) => {
 					SetAlpha(Mathf.Lerp(startAlpha, endAlpha, p));
 				}, () => {
 					callback.Invoke(this);
@@ -40,7 +42,9 @@ namespace DT.Game.Transitions {
 
 		[Space]
 		[SerializeField]
-		private EaseType easeType_ = EaseType.QuarticEaseOut;
+		private EaseType inEaseType_ = EaseType.QuadraticEaseOut;
+		[SerializeField]
+		private EaseType outEaseType_ = EaseType.QuadraticEaseIn;
 
 		private void SetAlpha(float alpha) {
 			if (image_ != null) {
