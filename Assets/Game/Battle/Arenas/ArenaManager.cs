@@ -16,14 +16,21 @@ namespace DT.Game.Battle {
 			get { return loadedArena_; }
 		}
 
-		public void LoadRandomArena() {
+		public void AnimateLoadRandomArena(Action callback) {
 			ArenaConfig config = arenas_.Random();
-			LoadArena(config);
+			AnimateLoadArena(config, callback);
 		}
 
-		public void LoadArena(ArenaConfig arenaConfig) {
-			CleanupLoadedArena();
-			loadedArena_ = new Arena(arenaConfig.CreateArena(parent: this.gameObject));
+		public void AnimateLoadArena(ArenaConfig arenaConfig, Action callback) {
+			if (loadedArena_ != null) {
+				loadedArena_.AnimateOut(() => {
+					CleanupLoadedArena();
+					CreateArena(arenaConfig, animate: true, callback: callback);
+				});
+			} else {
+				CleanupLoadedArena();
+				CreateArena(arenaConfig, animate: true, callback: callback);
+			}
 		}
 
 		public void CleanupLoadedArena() {
@@ -40,5 +47,18 @@ namespace DT.Game.Battle {
 		private ArenaConfig[] arenas_;
 
 		private Arena loadedArena_;
+
+		private void CreateArena(ArenaConfig arenaConfig, bool animate, Action callback = null) {
+			GameObject arenaObject = arenaConfig.CreateArena(parent: this.gameObject);
+			loadedArena_ = new Arena(arenaObject);
+
+			if (animate) {
+				loadedArena_.AnimateIn(callback);
+			} else {
+				if (callback != null) {
+					callback.Invoke();
+				}
+			}
+		}
 	}
 }

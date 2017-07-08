@@ -55,11 +55,11 @@ namespace DT.Game.GameModes {
 			CleanupInternal();
 		}
 
-		public void LoadArena() {
+		public void LoadArena(Action callback) {
 			if (arenaWhitelist_ != null && arenaWhitelist_.Length > 0) {
-				ArenaManager.Instance.LoadArena(arenaWhitelist_.Random());
+				ArenaManager.Instance.AnimateLoadArena(arenaWhitelist_.Random(), callback);
 			} else {
-				ArenaManager.Instance.LoadRandomArena();
+				ArenaManager.Instance.AnimateLoadRandomArena(callback);
 			}
 		}
 

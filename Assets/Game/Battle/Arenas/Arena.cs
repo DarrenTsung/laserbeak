@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 
 using DT.Game.Players;
+using DT.Game.Transitions;
 using DTAnimatorStateMachine;
 using DTEasings;
 using DTObjectPoolManager;
@@ -73,6 +74,14 @@ namespace DT.Game.Battle {
 			disposed_ = true;
 		}
 
+		public void AnimateIn(Action callback) {
+			TransitionWrapper_.AnimateIn(callback);
+		}
+
+		public void AnimateOut(Action callback) {
+			TransitionWrapper_.AnimateOut(callback);
+		}
+
 
 		// PRAGMA MARK - Internal
 		private readonly ReadOnlyCollection<PlayerSpawnPoint> playerSpawnPoints_;
@@ -81,5 +90,10 @@ namespace DT.Game.Battle {
 		private readonly KingOfTheHillArea kingOfTheHillArea_ = null;
 
 		private bool disposed_ = false;
+
+		private TransitionWrapper transitionWrapper_;
+		private TransitionWrapper TransitionWrapper_ {
+			get { return transitionWrapper_ ?? (transitionWrapper_ = new TransitionWrapper(gameObject_).SetShuffledOrder(true)); }
+		}
 	}
 }

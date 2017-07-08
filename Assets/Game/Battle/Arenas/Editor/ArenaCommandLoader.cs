@@ -27,7 +27,7 @@ namespace DT.Game.Battle {
 				return;
 			}
 
-			ArenaManager.Instance.LoadArena(asset);
+			ArenaManager.Instance.AnimateLoadArena(asset, callback: null);
 		}
 	}
 }

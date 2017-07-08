@@ -41,14 +41,15 @@ namespace DT.Game.Battle {
 				currentGameMode_ = GameModesPlayedTracker.FilterByLeastPlayed(unlockedModes).ToArray().Random();
 			}
 
-			currentGameMode_.LoadArena();
-			currentGameMode_.ShowInstructionsIfNecessary(() => {
-				currentGameMode_.Activate(FinishBattle);
+			currentGameMode_.LoadArena(() => {
+				currentGameMode_.ShowInstructionsIfNecessary(() => {
+					currentGameMode_.Activate(FinishBattle);
 
-				GameModeIntroView.OnIntroFinished += HandleIntroFinished;
+					GameModeIntroView.OnIntroFinished += HandleIntroFinished;
 
-				InGamePlayerCollectionView.Show();
-				InGamePlayerHUDEffect.CreateForAllPlayers();
+					InGamePlayerCollectionView.Show();
+					InGamePlayerHUDEffect.CreateForAllPlayers();
+				});
 			});
 		}
 

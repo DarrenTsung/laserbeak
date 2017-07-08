@@ -28,6 +28,11 @@ namespace DT.Game.Transitions {
 			return this;
 		}
 
+		public TransitionWrapper SetShuffledOrder(bool shuffledOrder) {
+			shuffledOrder_ = shuffledOrder;
+			return this;
+		}
+
 		public void AnimateIn(Action callback = null) {
 			Canvas.ForceUpdateCanvases();
 			Animate(TransitionType.In, callback);
@@ -52,10 +57,15 @@ namespace DT.Game.Transitions {
 			transitionType_ = type;
 			transitionsComplete_.Clear();
 
-			HashSet<ITransition> transitions = GetTransitionsFor(type);
+			List<ITransition> transitions = GetTransitionsFor(type);
+			IEnumerable<ITransition> orderedTransitions = transitions;
+			if (shuffledOrder_) {
+				orderedTransitions = transitions.OrderBy(a => Guid.NewGuid());
+			}
+
 			if (transitions.Count > 0) {
 				int index = 0;
-				foreach (ITransition transition in transitions) {
+				foreach (ITransition transition in orderedTransitions) {
 					transition.Animate(delay: index * offsetDelay_, callback: HandleTransitionComplete);
 					index++;
 				}
@@ -69,7 +79,7 @@ namespace DT.Game.Transitions {
 		private ITransition[] transitions_;
 
 		private readonly HashSet<ITransition> transitionsComplete_ = new HashSet<ITransition>();
-		private readonly Dictionary<TransitionType, HashSet<ITransition>> transitionTypeMap_ = new Dictionary<TransitionType, HashSet<ITransition>>();
+		private readonly Dictionary<TransitionType, List<ITransition>> transitionTypeMap_ = new Dictionary<TransitionType, List<ITransition>>();
 
 		private Action transitionsFinishedCallback_;
 		private TransitionType transitionType_;
@@ -78,14 +88,15 @@ namespace DT.Game.Transitions {
 		private bool animating_ = false;
 		private bool dynamicTransitions_ = false;
 		private float offsetDelay_;
+		private bool shuffledOrder_ = false;
 
 		private ITransition[] Transitions_ {
 			get { return transitions_ ?? (transitions_ = gameObject_.GetComponentsInChildren<ITransition>()); }
 		}
 
-		private HashSet<ITransition> GetTransitionsFor(TransitionType type) {
+		private List<ITransition> GetTransitionsFor(TransitionType type) {
 			if (!transitionTypeMap_.ContainsKey(type)) {
-				transitionTypeMap_[type] = new HashSet<ITransition>(Transitions_.Where(t => t.Type == type));
+				transitionTypeMap_[type] = new List<ITransition>(Transitions_.Where(t => t.Type == type));
 			}
 
 			return transitionTypeMap_[type];
@@ -94,7 +105,7 @@ namespace DT.Game.Transitions {
 		private void HandleTransitionComplete(ITransition transition) {
 			transitionsComplete_.Add(transition);
 
-			HashSet<ITransition> transitions = GetTransitionsFor(transitionType_);
+			List<ITransition> transitions = GetTransitionsFor(transitionType_);
 			if (transitionsComplete_.Count < transitions.Count) {
 				return;
 			}

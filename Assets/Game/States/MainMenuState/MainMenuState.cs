@@ -20,12 +20,12 @@ namespace DT.Game.MainMenu {
 
 		protected override void OnStateEntered() {
 			BattleCamera.SetDepthOfFieldEnabled(true);
-			ArenaManager.Instance.LoadRandomArena();
-
 			RegisteredPlayers.Clear();
-			RegisteredPlayersUtil.RegisterAIPlayers(4);
-			PlayerSpawner.ShouldRespawn = true;
-			PlayerSpawner.SpawnAllPlayers();
+			ArenaManager.Instance.AnimateLoadRandomArena(() => {
+				RegisteredPlayersUtil.RegisterAIPlayers(4);
+				PlayerSpawner.ShouldRespawn = true;
+				PlayerSpawner.SpawnAllPlayers();
+			});
 
 			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
 			mainMenu_.Init(battleHandler: GoToPlayerCustomization, levelEditorHandler: GoToLevelEditor);
