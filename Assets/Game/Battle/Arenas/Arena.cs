@@ -75,11 +75,11 @@ namespace DT.Game.Battle {
 		}
 
 		public void AnimateIn(Action callback) {
-			TransitionWrapper_.AnimateIn(callback);
+			Transition_.AnimateIn(callback);
 		}
 
 		public void AnimateOut(Action callback) {
-			TransitionWrapper_.AnimateOut(callback);
+			Transition_.AnimateOut(callback);
 		}
 
 
@@ -93,14 +93,14 @@ namespace DT.Game.Battle {
 
 		private bool disposed_ = false;
 
-		private TransitionWrapper transitionWrapper_;
-		private TransitionWrapper TransitionWrapper_ {
+		private Transition transition_;
+		private Transition Transition_ {
 			get {
-				if (transitionWrapper_ == null) {
-					transitionWrapper_ = new TransitionWrapper(gameObject_).SetShuffledOrder(true);
-					transitionWrapper_.SetOffsetDelay(kArenaAnimateTime / transitionWrapper_.TransitionCount);
+				if (transition_ == null) {
+					transition_ = new Transition(gameObject_).SetShuffledOrder(true);
+					transition_.SetOffsetDelay(kArenaAnimateTime / transition_.TransitionCount);
 				}
-				return transitionWrapper_;
+				return transition_;
 			}
 		}
 	}

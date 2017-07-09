@@ -98,9 +98,9 @@ namespace DT.Game.PlayerCustomization {
 
 		private readonly List<IndividualPlayerCustomizationView> views_ = new List<IndividualPlayerCustomizationView>();
 
-		private TransitionWrapper viewTransitionWrapper_;
-		private TransitionWrapper readyToFightTransitionWrapper_;
-		private TransitionWrapper controlsTransitionWrapper_;
+		private Transition viewTransition_;
+		private Transition readyToFightTransition_;
+		private Transition controlsTransition_;
 		private bool readyToFightShowing_ = false;
 		private bool controlsTabShowing_ = false;
 
@@ -133,9 +133,9 @@ namespace DT.Game.PlayerCustomization {
 		private void Awake() {
 			// NOTE (darren): dynamic because the child views (which have transitions)
 			// are created dynamically and object pooled
-			viewTransitionWrapper_ = new TransitionWrapper(viewTransitionsContainer_).SetDynamic(true);
-			readyToFightTransitionWrapper_ = new TransitionWrapper(readyToFightContainer_);
-			controlsTransitionWrapper_ = new TransitionWrapper(controlsContainer_);
+			viewTransition_ = new Transition(viewTransitionsContainer_).SetDynamic(true);
+			readyToFightTransition_ = new Transition(readyToFightContainer_);
+			controlsTransition_ = new Transition(controlsContainer_);
 		}
 
 		private void Init(Action goBackCallback, Action continueCallback) {
@@ -146,7 +146,7 @@ namespace DT.Game.PlayerCustomization {
 			goBackCallback_ = goBackCallback;
 			continueCallback_ = continueCallback;
 
-			viewTransitionWrapper_.AnimateIn();
+			viewTransition_.AnimateIn();
 
 			RefreshReadyToFight();
 			RefreshControlsTab();
@@ -216,9 +216,9 @@ namespace DT.Game.PlayerCustomization {
 
 			controlsTabShowing_ = show;
 			if (controlsTabShowing_) {
-				controlsTransitionWrapper_.AnimateIn();
+				controlsTransition_.AnimateIn();
 			} else {
-				controlsTransitionWrapper_.AnimateOut();
+				controlsTransition_.AnimateOut();
 			}
 		}
 
@@ -233,14 +233,14 @@ namespace DT.Game.PlayerCustomization {
 
 			readyToFightShowing_ = ReadyToFight;
 			if (ReadyToFight) {
-				readyToFightTransitionWrapper_.AnimateIn();
+				readyToFightTransition_.AnimateIn();
 			} else {
 				AnimateOutReadyToFight();
 			}
 		}
 
 		private void AnimateOutReadyToFight() {
-			readyToFightTransitionWrapper_.AnimateOut();
+			readyToFightTransition_.AnimateOut();
 		}
 
 		private void LeavePlayerCustomization() {
@@ -252,13 +252,13 @@ namespace DT.Game.PlayerCustomization {
 			// prevent players from modifying state while animating out
 			Paused_ = true;
 
-			viewTransitionWrapper_.AnimateOut(() => {
+			viewTransition_.AnimateOut(() => {
 				if (continueCallback_ != null) {
 					continueCallback_.Invoke();
 					continueCallback_ = null;
 				}
 			});
-			controlsTransitionWrapper_.AnimateOut();
+			controlsTransition_.AnimateOut();
 			AnimateOutReadyToFight();
 		}
 	}

@@ -10,15 +10,15 @@ using InControl;
 using DT.Game.Transitions;
 
 namespace DT.Game {
-	// static class to configure all TransitionWrappers
-	public static class TransitionWrapperConfiguration {
+	// static class to configure all Transitions
+	public static class TransitionConfiguration {
 		[RuntimeInitializeOnLoadMethod]
 		public static void Initialize() {
-			TransitionWrapper.OnTransitionWrapperCreated += InitializeTransitionWrapper;
+			Transition.OnTransitionCreated += InitializeTransition;
 		}
 
-		private static void InitializeTransitionWrapper(TransitionWrapper transitionWrapper) {
-			transitionWrapper.SetOffsetDelay(GameConstants.Instance.UIOffsetDelay);
+		private static void InitializeTransition(Transition transition) {
+			transition.SetOffsetDelay(GameConstants.Instance.UIOffsetDelay);
 		}
 	}
 }

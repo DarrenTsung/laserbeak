@@ -9,30 +9,30 @@ using UnityEngine.UI;
 using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
-	public class TransitionWrapper {
+	public class Transition {
 		// PRAGMA MARK - Public Interface
-		public static Action<TransitionWrapper> OnTransitionWrapperCreated = delegate {};
+		public static Action<Transition> OnTransitionCreated = delegate {};
 
 		public int TransitionCount {
 			get { return Transitions_.Length; }
 		}
 
-		public TransitionWrapper(GameObject gameObject) {
+		public Transition(GameObject gameObject) {
 			gameObject_ = gameObject;
-			OnTransitionWrapperCreated.Invoke(this);
+			OnTransitionCreated.Invoke(this);
 		}
 
-		public TransitionWrapper SetDynamic(bool dynamicTransitions) {
+		public Transition SetDynamic(bool dynamicTransitions) {
 			dynamicTransitions_ = dynamicTransitions;
 			return this;
 		}
 
-		public TransitionWrapper SetOffsetDelay(float offsetDelay) {
+		public Transition SetOffsetDelay(float offsetDelay) {
 			offsetDelay_ = offsetDelay;
 			return this;
 		}
 
-		public TransitionWrapper SetShuffledOrder(bool shuffledOrder) {
+		public Transition SetShuffledOrder(bool shuffledOrder) {
 			shuffledOrder_ = shuffledOrder;
 			return this;
 		}
@@ -48,7 +48,7 @@ namespace DT.Game.Transitions {
 
 		public void Animate(TransitionType transitionType, Action callback) {
 			if (animating_) {
-				Debug.LogWarning("TransitionWrapper - animating before previous animation was finished!");
+				Debug.LogWarning("Transition - animating before previous animation was finished!");
 				return;
 			}
 

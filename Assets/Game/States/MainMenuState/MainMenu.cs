@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
@@ -18,7 +19,7 @@ namespace DT.Game.MainMenu {
 			battleHandler_ = battleHandler;
 			levelEditorHandler_ = levelEditorHandler;
 
-			transitionWrapper_.AnimateIn(() => {
+			transition_.AnimateIn(() => {
 				selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
 				selectionView_.Init(InputManager.Devices, menuContainer_);
 			});
@@ -26,7 +27,7 @@ namespace DT.Game.MainMenu {
 
 		public void AnimateOut(Action callback) {
 			CleanupSelectionView();
-			transitionWrapper_.AnimateOut(callback);
+			transition_.AnimateOut(callback);
 		}
 
 		public void HandleBattlePressed() {
@@ -76,10 +77,10 @@ namespace DT.Game.MainMenu {
 		private Action levelEditorHandler_;
 		private Action battleHandler_;
 
-		private TransitionWrapper transitionWrapper_;
+		private Transition transition_;
 
 		private void Awake() {
-			transitionWrapper_ = new TransitionWrapper(this.gameObject);
+			transition_ = new Transition(this.gameObject);
 		}
 
 		private void Update() {
