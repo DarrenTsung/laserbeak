@@ -17,31 +17,6 @@ namespace DT.Game.Transitions {
 		}
 
 
-		// PRAGMA MARK - ITransition Implementation
-		public override void Animate(TransitionType transitionType, float delay, Action<ITransition> callback) {
-			Canvas canvas = this.GetComponentInParent<Canvas>();
-
-			Direction direction = (transitionType == TransitionType.In) ? inDirection_ : outDirection_;
-
-			Vector2 inPosition = InPositionFor(RectTransform_);
-			Vector2 outPosition = inPosition + Vector2.Scale(direction.Vector2Value(), canvas.pixelRect.size);
-
-			Vector2 startPosition = (transitionType == TransitionType.In) ? outPosition : inPosition;
-			Vector2 endPosition = (transitionType == TransitionType.In) ? inPosition : outPosition;
-
-			EaseType easeType = (transitionType == TransitionType.In) ? inEaseType_ : outEaseType_;
-
-			RectTransform_.anchoredPosition = startPosition;
-			CoroutineWrapper.DoAfterDelay(delay, () => {
-				CoroutineWrapper.DoEaseFor(Duration_, easeType, (float p) => {
-					RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
-				}, () => {
-					callback.Invoke(this);
-				});
-			});
-		}
-
-
 		// PRAGMA MARK - Internal
 		[Header("ScreenDirection Properties")]
 		[SerializeField]
@@ -49,10 +24,22 @@ namespace DT.Game.Transitions {
 		[SerializeField]
 		private Direction outDirection_ = Direction.UP;
 
-		[Space]
-		[SerializeField]
-		private EaseType inEaseType_ = EaseType.QuadraticEaseOut;
-		[SerializeField]
-		private EaseType outEaseType_ = EaseType.QuadraticEaseIn;
+		private Canvas canvas_;
+
+		private Canvas Canvas_ {
+			get { return canvas_ ?? (canvas_ = this.GetComponentInParent<Canvas>()); }
+		}
+
+		protected override void Refresh(TransitionType transitionType, float percentage) {
+			Direction direction = (transitionType == TransitionType.In) ? inDirection_ : outDirection_;
+
+			Vector2 inPosition = InPositionFor(RectTransform_);
+			Vector2 outPosition = inPosition + Vector2.Scale(direction.Vector2Value(), Canvas_.pixelRect.size);
+
+			Vector2 startPosition = (transitionType == TransitionType.In) ? outPosition : inPosition;
+			Vector2 endPosition = (transitionType == TransitionType.In) ? inPosition : outPosition;
+
+			RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, percentage);
+		}
 	}
 }

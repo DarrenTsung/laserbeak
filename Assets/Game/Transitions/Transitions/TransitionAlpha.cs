@@ -11,24 +11,6 @@ using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
 	public class TransitionAlpha : TransitionUI, ITransition {
-		// PRAGMA MARK - ITransition Implementation
-		public override void Animate(TransitionType transitionType, float delay, Action<ITransition> callback) {
-			float startAlpha = (transitionType == TransitionType.In) ? minAlpha_ : maxAlpha_;
-			float endAlpha = (transitionType == TransitionType.In) ? maxAlpha_ : minAlpha_;
-
-			EaseType easeType = (transitionType == TransitionType.In) ? inEaseType_ : outEaseType_;
-
-			SetAlpha(startAlpha);
-			CoroutineWrapper.DoAfterDelay(delay, () => {
-				CoroutineWrapper.DoEaseFor(Duration_, easeType, (float p) => {
-					SetAlpha(Mathf.Lerp(startAlpha, endAlpha, p));
-				}, () => {
-					callback.Invoke(this);
-				});
-			});
-		}
-
-
 		// PRAGMA MARK - Internal
 		[Header("Alpha Outlets")]
 		[SerializeField, DTValidator.Optional]
@@ -40,11 +22,12 @@ namespace DT.Game.Transitions {
 		[SerializeField]
 		private float maxAlpha_ = 1.0f;
 
-		[Space]
-		[SerializeField]
-		private EaseType inEaseType_ = EaseType.QuadraticEaseOut;
-		[SerializeField]
-		private EaseType outEaseType_ = EaseType.QuadraticEaseIn;
+		protected override void Refresh(TransitionType transitionType, float percentage) {
+			float startAlpha = (transitionType == TransitionType.In) ? minAlpha_ : maxAlpha_;
+			float endAlpha = (transitionType == TransitionType.In) ? maxAlpha_ : minAlpha_;
+
+			SetAlpha(Mathf.Lerp(startAlpha, endAlpha, percentage));
+		}
 
 		private void SetAlpha(float alpha) {
 			if (image_ != null) {
