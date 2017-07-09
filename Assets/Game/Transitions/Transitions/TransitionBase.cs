@@ -11,7 +11,7 @@ using DTObjectPoolManager;
 namespace DT.Game.Transitions {
 	public abstract class TransitionBase : MonoBehaviour, ITransition {
 		// PRAGMA MARK - ITransition Implementation
-		public void Animate(TransitionType transitionType, float delay, Action<ITransition> callback) {
+		void ITransition.Animate(TransitionType transitionType, float delay, Action<ITransition> callback) {
 			EaseType easeType = (transitionType == TransitionType.In) ? inEaseType_ : outEaseType_;
 
 			Refresh(transitionType, 0.0f);
