@@ -122,6 +122,7 @@ namespace DT.Game.Battle {
 			};
 			recyclablePrefab.OnCleanup += onCleanupCallback;
 
+			battlePlayer.PlaySpawnTransition();
 			playerMap_[player] = battlePlayer;
 		}
 

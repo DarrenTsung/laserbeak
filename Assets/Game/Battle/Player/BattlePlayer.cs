@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using DT.Game.Transitions;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
@@ -24,6 +25,13 @@ namespace DT.Game.Battle.Players {
 		public const float kBaseDrag = 6.0f;
 
 		public event Action OnSkinChanged = delegate {};
+
+		public void PlaySpawnTransition() {
+			shieldRenderer_.enabled = false;
+			spawnTransition_.AnimateIn(() => {
+				shieldRenderer_.enabled = true;
+			});
+		}
 
 		public void Init(IInputDelegate inputDelegate, BattlePlayerSkin skin) {
 			SetInputDelegate(inputDelegate);
@@ -134,6 +142,8 @@ namespace DT.Game.Battle.Players {
 		private Rigidbody rigidbody_;
 		private BattlePlayerSkin skin_;
 
+		private Transition spawnTransition_;
+
 		private readonly Dictionary<object, float> weightModifications_ = new Dictionary<object, float>();
 
 		private void Awake() {
@@ -144,6 +154,8 @@ namespace DT.Game.Battle.Players {
 			foreach (BattlePlayerComponent component in this.GetComponentsInChildren<BattlePlayerComponent>()) {
 				component.Init(this);
 			}
+
+			spawnTransition_ = new Transition(this.gameObject);
 		}
 	}
 }
