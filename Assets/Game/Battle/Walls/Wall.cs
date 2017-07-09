@@ -22,7 +22,7 @@ namespace DT.Game.Battle.Walls {
 		}
 
 		public void SetVertexLocalPositions(Vector3[] vertexLocalPositions) {
-			this.gameObject.RecycleAllChildren();
+			container_.RecycleAllChildren();
 
 			GameObject prefab = null;
 			switch (wallType_) {
@@ -45,7 +45,7 @@ namespace DT.Game.Battle.Walls {
 				Vector3 vector = bPoint - aPoint;
 				Quaternion rotation = Quaternion.LookRotation(vector);
 
-				GameObject wallSegment = ObjectPoolManager.Create(prefab, aPoint, rotation, parent: this.gameObject);
+				GameObject wallSegment = ObjectPoolManager.Create(prefab, aPoint, rotation, parent: container_);
 				wallSegment.transform.localScale = new Vector3(1.0f, 1.0f, vector.magnitude);
 			}
 
@@ -60,7 +60,7 @@ namespace DT.Game.Battle.Walls {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			this.gameObject.RecycleAllChildren();
+			container_.RecycleAllChildren();
 		}
 
 
@@ -68,6 +68,8 @@ namespace DT.Game.Battle.Walls {
 		[Header("Outlets")]
 		[SerializeField]
 		private Vector3[] serializedVertexLocalPositions_;
+		[SerializeField]
+		private GameObject container_;
 
 		[Header("Properties")]
 		[SerializeField]

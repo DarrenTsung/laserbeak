@@ -13,6 +13,10 @@ namespace DT.Game.Transitions {
 		// PRAGMA MARK - Public Interface
 		public static Action<TransitionWrapper> OnTransitionWrapperCreated = delegate {};
 
+		public int TransitionCount {
+			get { return Transitions_.Length; }
+		}
+
 		public TransitionWrapper(GameObject gameObject) {
 			gameObject_ = gameObject;
 			OnTransitionWrapperCreated.Invoke(this);

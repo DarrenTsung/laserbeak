@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1780075588032556}
   m_IsPrefabParent: 1
+--- !u!1 &1022026691365270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4285861704967032}
+  m_Layer: 0
+  m_Name: Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1780075588032556
 GameObject:
   m_ObjectHideFlags: 0
@@ -20,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4332628480986332}
   - component: {fileID: 114632045729606300}
+  - component: {fileID: 114193594149167214}
   m_Layer: 0
   m_Name: ReflectWall
   m_TagString: Untagged
@@ -27,6 +43,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4285861704967032
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1022026691365270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4332628480986332}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4332628480986332
 Transform:
   m_ObjectHideFlags: 1
@@ -36,10 +65,28 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4285861704967032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114193594149167214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780075588032556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae80a66e0025144df845b22fe43b4f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration_: 0.2
+  transform_: {fileID: 4285861704967032}
+  inLocalPosition_: {x: 0, y: 0, z: 0}
+  outLocalPosition_: {x: 0, y: -140, z: 0}
+  inEaseType_: 2
+  outEaseType_: 1
 --- !u!114 &114632045729606300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,4 +99,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializedVertexLocalPositions_: []
+  container_: {fileID: 1022026691365270}
   wallType_: 0

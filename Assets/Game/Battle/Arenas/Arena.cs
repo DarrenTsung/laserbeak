@@ -84,6 +84,8 @@ namespace DT.Game.Battle {
 
 
 		// PRAGMA MARK - Internal
+		private const float kArenaAnimateTime = 0.3f;
+
 		private readonly ReadOnlyCollection<PlayerSpawnPoint> playerSpawnPoints_;
 		private readonly ReadOnlyCollection<AISpawnPoint> aiSpawnPoints_;
 		private readonly GameObject gameObject_ = null;
@@ -93,7 +95,13 @@ namespace DT.Game.Battle {
 
 		private TransitionWrapper transitionWrapper_;
 		private TransitionWrapper TransitionWrapper_ {
-			get { return transitionWrapper_ ?? (transitionWrapper_ = new TransitionWrapper(gameObject_).SetShuffledOrder(true)); }
+			get {
+				if (transitionWrapper_ == null) {
+					transitionWrapper_ = new TransitionWrapper(gameObject_).SetShuffledOrder(true);
+					transitionWrapper_.SetOffsetDelay(kArenaAnimateTime / transitionWrapper_.TransitionCount);
+				}
+				return transitionWrapper_;
+			}
 		}
 	}
 }
