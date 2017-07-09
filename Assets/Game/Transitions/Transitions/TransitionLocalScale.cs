@@ -10,6 +10,15 @@ using DTEasings;
 
 namespace DT.Game.Transitions {
 	public class TransitionLocalScale : TransitionBase, ITransition {
+		// PRAGMA MARK - ITransition Implementation
+		public override void Refresh(TransitionType transitionType, float percentage) {
+			Vector3 startLocalScale = (transitionType == TransitionType.In) ? outLocalScale_ : inLocalScale_;
+			Vector3 endLocalScale = (transitionType == TransitionType.In) ? inLocalScale_ : outLocalScale_;
+
+			SetLocalScale(Vector3.Lerp(startLocalScale, endLocalScale, percentage));
+		}
+
+
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]
 		[SerializeField]
@@ -20,13 +29,6 @@ namespace DT.Game.Transitions {
 		private Vector3 inLocalScale_ = Vector3.one;
 		[SerializeField]
 		private Vector3 outLocalScale_ = Vector3.one;
-
-		protected override void Refresh(TransitionType transitionType, float percentage) {
-			Vector3 startLocalScale = (transitionType == TransitionType.In) ? outLocalScale_ : inLocalScale_;
-			Vector3 endLocalScale = (transitionType == TransitionType.In) ? inLocalScale_ : outLocalScale_;
-
-			SetLocalScale(Vector3.Lerp(startLocalScale, endLocalScale, percentage));
-		}
 
 		private void SetLocalScale(Vector3 localScale) {
 			if (transform_ != null) {

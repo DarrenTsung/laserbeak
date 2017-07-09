@@ -11,6 +11,14 @@ using DTObjectPoolManager;
 namespace DT.Game.Transitions {
 	public abstract class TransitionBase : MonoBehaviour, ITransition {
 		// PRAGMA MARK - ITransition Implementation
+		float ITransition.Duration {
+			get { return duration_; }
+		}
+
+		float ITransition.BaseDelay {
+			get { return baseDelay_; }
+		}
+
 		void ITransition.Animate(TransitionType transitionType, float delay, Action<ITransition> callback) {
 			EaseType easeType = (transitionType == TransitionType.In) ? inEaseType_ : outEaseType_;
 
@@ -23,6 +31,9 @@ namespace DT.Game.Transitions {
 				});
 			});
 		}
+
+		// ITransition.Refresh
+		public abstract void Refresh(TransitionType transitionType, float percentage);
 
 
 		// PRAGMA MARK - Internal
@@ -37,7 +48,5 @@ namespace DT.Game.Transitions {
 		private EaseType inEaseType_ = EaseType.QuadraticEaseOut;
 		[SerializeField]
 		private EaseType outEaseType_ = EaseType.QuadraticEaseIn;
-
-		protected abstract void Refresh(TransitionType transitionType, float percentage);
 	}
 }

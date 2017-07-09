@@ -17,6 +17,19 @@ namespace DT.Game.Transitions {
 		}
 
 
+		// PRAGMA MARK - ITransition Implementation
+		public override void Refresh(TransitionType transitionType, float percentage) {
+			Direction direction = (transitionType == TransitionType.In) ? inDirection_ : outDirection_;
+
+			Vector2 inPosition = InPositionFor(RectTransform_);
+			Vector2 outPosition = inPosition + Vector2.Scale(direction.Vector2Value(), Canvas_.pixelRect.size);
+
+			Vector2 startPosition = (transitionType == TransitionType.In) ? outPosition : inPosition;
+			Vector2 endPosition = (transitionType == TransitionType.In) ? inPosition : outPosition;
+
+			RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, percentage);
+		}
+
 		// PRAGMA MARK - Internal
 		[Header("ScreenDirection Properties")]
 		[SerializeField]
@@ -28,18 +41,6 @@ namespace DT.Game.Transitions {
 
 		private Canvas Canvas_ {
 			get { return canvas_ ?? (canvas_ = this.GetComponentInParent<Canvas>()); }
-		}
-
-		protected override void Refresh(TransitionType transitionType, float percentage) {
-			Direction direction = (transitionType == TransitionType.In) ? inDirection_ : outDirection_;
-
-			Vector2 inPosition = InPositionFor(RectTransform_);
-			Vector2 outPosition = inPosition + Vector2.Scale(direction.Vector2Value(), Canvas_.pixelRect.size);
-
-			Vector2 startPosition = (transitionType == TransitionType.In) ? outPosition : inPosition;
-			Vector2 endPosition = (transitionType == TransitionType.In) ? inPosition : outPosition;
-
-			RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, percentage);
 		}
 	}
 }

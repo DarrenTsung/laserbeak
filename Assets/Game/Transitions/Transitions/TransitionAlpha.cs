@@ -11,6 +11,15 @@ using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
 	public class TransitionAlpha : TransitionUI, ITransition {
+		// PRAGMA MARK - ITransition Implementation
+		public override void Refresh(TransitionType transitionType, float percentage) {
+			float startAlpha = (transitionType == TransitionType.In) ? minAlpha_ : maxAlpha_;
+			float endAlpha = (transitionType == TransitionType.In) ? maxAlpha_ : minAlpha_;
+
+			SetAlpha(Mathf.Lerp(startAlpha, endAlpha, percentage));
+		}
+
+
 		// PRAGMA MARK - Internal
 		[Header("Alpha Outlets")]
 		[SerializeField, DTValidator.Optional]
@@ -21,13 +30,6 @@ namespace DT.Game.Transitions {
 		private float minAlpha_ = 0.0f;
 		[SerializeField]
 		private float maxAlpha_ = 1.0f;
-
-		protected override void Refresh(TransitionType transitionType, float percentage) {
-			float startAlpha = (transitionType == TransitionType.In) ? minAlpha_ : maxAlpha_;
-			float endAlpha = (transitionType == TransitionType.In) ? maxAlpha_ : minAlpha_;
-
-			SetAlpha(Mathf.Lerp(startAlpha, endAlpha, percentage));
-		}
 
 		private void SetAlpha(float alpha) {
 			if (image_ != null) {
