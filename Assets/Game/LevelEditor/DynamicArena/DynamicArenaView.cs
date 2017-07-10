@@ -10,6 +10,8 @@ using DT.Game.Battle.Walls;
 namespace DT.Game.LevelEditor {
 	public class DynamicArenaView : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
+		public event Action OnViewRefreshed = delegate {};
+
 		public void Init(DynamicArenaData dynamicArenaData) {
 			dynamicArenaData_ = dynamicArenaData;
 			dynamicArenaData_.OnDataDirty += HandleDataDirty;
@@ -76,6 +78,8 @@ namespace DT.Game.LevelEditor {
 					ObjectPoolManager.Create(GamePrefabs.Instance.PlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
 				}
 			}
+
+			OnViewRefreshed.Invoke();
 		}
 
 		private GameObject FindRequiredPrefabFor(string prefabName) {

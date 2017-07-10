@@ -10,6 +10,7 @@ using DTObjectPoolManager;
 using InControl;
 
 using DT.Game.Battle.Walls;
+using DT.Game.Transitions;
 
 namespace DT.Game.LevelEditor {
 	public class LevelEditor : MonoBehaviour, IRecycleCleanupSubscriber {
@@ -46,6 +47,7 @@ namespace DT.Game.LevelEditor {
 			undoHistory_ = new UndoHistory(dynamicArenaData_, inputDevice);
 
 			dynamicArenaView_.Init(dynamicArenaData_);
+			dynamicArenaView_.OnViewRefreshed += HandleArenaViewRefreshed;
 
 			cursor_ = ObjectPoolManager.Create<LevelEditorCursor>(GamePrefabs.Instance.LevelEditorCursorPrefab, parent: this.gameObject);
 			cursor_.Init(inputDevice);
@@ -97,6 +99,11 @@ namespace DT.Game.LevelEditor {
 
 		private DynamicArenaData dynamicArenaData_ = new DynamicArenaData();
 
+		private Transition arenaViewTransition_;
+		private Transition ArenaViewTransition_ {
+			get { return arenaViewTransition_ ?? (arenaViewTransition_ = new Transition(dynamicArenaView_.gameObject).SetDynamic(true)); }
+		}
+
 		private void Update() {
 			// HACK (darren): do deletion better
 			if (inputDevice_.Action2.WasPressed) {
@@ -134,6 +141,10 @@ namespace DT.Game.LevelEditor {
 				ObjectPoolManager.Recycle(placerObject_);
 				placerObject_ = null;
 			}
+		}
+
+		private void HandleArenaViewRefreshed() {
+			ArenaViewTransition_.AnimateIn(instant: true);
 		}
 	}
 }

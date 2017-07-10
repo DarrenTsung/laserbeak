@@ -37,16 +37,27 @@ namespace DT.Game.Transitions {
 			return this;
 		}
 
-		public void AnimateIn(Action callback = null) {
+		public void AnimateIn(Action callback = null, bool instant = false) {
 			Canvas.ForceUpdateCanvases();
-			Animate(TransitionType.In, callback);
+			Animate(TransitionType.In, callback, instant);
 		}
 
-		public void AnimateOut(Action callback = null) {
-			Animate(TransitionType.Out, callback);
+		public void AnimateOut(Action callback = null, bool instant = false) {
+			Animate(TransitionType.Out, callback, instant);
 		}
 
-		public void Animate(TransitionType transitionType, Action callback) {
+		public void Animate(TransitionType transitionType, Action callback, bool instant) {
+			if (instant) {
+				foreach (ITransition transition in Transitions_) {
+					transition.Refresh(transitionType, 1.0f);
+				}
+
+				if (callback != null) {
+					callback.Invoke();
+				}
+				return;
+			}
+
 			if (animating_) {
 				Debug.LogWarning("Transition - animating before previous animation was finished!");
 				return;
