@@ -7,6 +7,7 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle;
 using DT.Game.Battle.AI;
 using DT.Game.Battle.Players;
 using DT.Game.GameModes;
@@ -53,6 +54,7 @@ namespace DT.Game {
 
 		[Header("Battle")]
 		public Vector3 PlayerFocusOffset = new Vector3(0.0f, 4.0f, 0.0f);
+		public ArenaConfig PlayerCustomizationLobbyArena;
 
 
 		// PRAGMA MARK - Internal
