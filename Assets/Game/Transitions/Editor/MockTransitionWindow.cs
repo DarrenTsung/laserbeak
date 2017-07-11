@@ -83,9 +83,9 @@ namespace DT.Game.Transitions {
 				playTime_ = null;
 			} else {
 				playTime_ = playTime;
-				Refresh();
-				Repaint();
 			}
+			Refresh();
+			Repaint();
 		}
 
 		private void RefreshTransitions() {
