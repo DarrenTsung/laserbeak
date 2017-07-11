@@ -27,6 +27,8 @@ namespace DT.Game.Battle.Players {
 		public event Action OnSkinChanged = delegate {};
 
 		public void PlaySpawnTransition() {
+			BattleCamera.Shake(0.6f);
+			AudioConstants.Instance.PlayerSpawn.PlaySFX();
 			shieldRenderer_.enabled = false;
 			spawnTransition_.AnimateIn(() => {
 				shieldRenderer_.enabled = true;

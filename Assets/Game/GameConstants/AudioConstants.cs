@@ -31,6 +31,7 @@ namespace DT.Game {
 		public AudioClip CluckAlarm;
 
 		[Header("Player")]
+		public AudioClip PlayerSpawn;
 		public AudioClip PlayerHurt;
 		public AudioClip PlayerDeath;
 	}
