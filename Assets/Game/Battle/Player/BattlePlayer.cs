@@ -157,7 +157,8 @@ namespace DT.Game.Battle.Players {
 				component.Init(this);
 			}
 
-			spawnTransition_ = new Transition(this.gameObject);
+			// override the offset delay present in all UI transitions
+			spawnTransition_ = new Transition(this.gameObject).SetOffsetDelay(0.0f);
 		}
 	}
 }
