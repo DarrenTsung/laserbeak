@@ -17,6 +17,19 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - Static
 		public static GameMode QueuedGameMode = null;
 
+		public static void SkipAndLoadGameMode(GameMode gameMode) {
+			if (onSkipBattle_ == null) {
+				// can't skip to game mode if no ability to skip
+				return;
+			}
+
+			QueuedGameMode = gameMode;
+			onSkipBattle_.Invoke();
+		}
+
+
+		private static Action onSkipBattle_ = null;
+
 
 		// PRAGMA MARK - Internal
 		private GameMode currentGameMode_ = null;
@@ -51,6 +64,8 @@ namespace DT.Game.Battle {
 					InGamePlayerHUDEffect.CreateForAllPlayers();
 				});
 			});
+
+			onSkipBattle_ = FinishBattle;
 		}
 
 		protected override void OnStateExited() {
@@ -63,6 +78,8 @@ namespace DT.Game.Battle {
 
 			InGamePlayerCollectionView.Hide();
 			InGamePlayerHUDEffect.CleanupAllEffects();
+
+			onSkipBattle_ = null;
 		}
 
 		private void FinishBattle() {
