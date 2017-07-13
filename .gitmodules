@@ -25,3 +25,6 @@
 [submodule "Assets/Plugins/DTEasings"]
 	path = Assets/Plugins/DTEasings
 	url = https://github.com/DarrenTsung/DTEasings.git
+[submodule "Assets/Plugins/DTViewManager"]
+	path = Assets/Plugins/DTViewManager
+	url = https://github.com/DarrenTsung/DTViewManager.git
