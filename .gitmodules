@@ -22,3 +22,6 @@
 [submodule "Assets/Plugins/DTUIRebuildVisualizer"]
 	path = Assets/Plugins/DTUIRebuildVisualizer
 	url = https://github.com/DarrenTsung/DTUIRebuildVisualizer.git
+[submodule "Assets/Plugins/DTEasings"]
+	path = Assets/Plugins/DTEasings
+	url = https://github.com/DarrenTsung/DTEasings.git
