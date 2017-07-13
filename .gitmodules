@@ -31,3 +31,6 @@
 [submodule "Assets/Plugins/DTObjectPoolManager"]
 	path = Assets/Plugins/DTObjectPoolManager
 	url = https://github.com/DarrenTsung/DTObjectPoolManager.git
+[submodule "Assets/Plugins/DTAnimatorStateMachine"]
+	path = Assets/Plugins/DTAnimatorStateMachine
+	url = https://github.com/DarrenTsung/DTAnimatorStateMachine.git
