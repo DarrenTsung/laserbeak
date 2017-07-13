@@ -35,14 +35,25 @@ namespace DT.Game.Battle.Players {
 		[SerializeField]
 		private float outWhiteBalance_ = 1.0f;
 
+		private readonly Material[] skinMaterials_ = new Material[1];
+
 		private void SetWhiteBalancePercentage(float whiteBalancePercentage) {
-			if (battlePlayer_.Skin == null) {
-				// TODO (darren): support for editor preview if necessary
-				return;
+			Renderer bodyRenderer = battlePlayer_.BodyRenderers.First();
+			IEnumerable<Material> bodyMaterials = null;
+			// NOTE (darren): detect bodyRenderer.material != OpaqueBodyMaterial for ghost mode
+			if (battlePlayer_.Skin != null && battlePlayer_.Skin.OpaqueBodyMaterial == bodyRenderer.sharedMaterial) {
+				skinMaterials_[0] = battlePlayer_.Skin.OpaqueBodyMaterial;
+				bodyMaterials = skinMaterials_;
+				Debug.LogError("skin!");
+			} else {
+				bodyMaterials = battlePlayer_.BodyRenderers.Select(r => r.material);
+				Debug.LogError("body!");
 			}
 
-			float whiteBalance = whiteBalancePercentage * kEmissionWhiteBalance;
-			battlePlayer_.Skin.OpaqueBodyMaterial.SetColor("_EmissionColor", new Color(whiteBalance, whiteBalance, whiteBalance));
+			foreach (var bodyMaterial in bodyMaterials) {
+				float whiteBalance = whiteBalancePercentage * kEmissionWhiteBalance;
+				bodyMaterial.SetColor("_EmissionColor", new Color(whiteBalance, whiteBalance, whiteBalance));
+			}
 		}
 	}
 }

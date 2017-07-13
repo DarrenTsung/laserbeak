@@ -24,13 +24,19 @@ namespace DT.Game.GameModes.Ghost {
 			recyclablePrefab_.OnCleanup += HandleCleanup;
 
 			battlePlayer_.DustParticleSystem.gameObject.SetActive(false);
-			SetAlpha(0.0f);
+			SetAlpha(1.0f);
 			foreach (Renderer r in battlePlayer_.BodyRenderers) {
 				Color diffuseColor = r.material.GetColor("_DiffuseColor");
 				r.material = GameConstants.Instance.PlayerTransparentMaterial;
 				r.material.SetColor("_DiffuseColor", diffuseColor);
 				r.shadowCastingMode = ShadowCastingMode.Off;
 			}
+
+			CoroutineWrapper.DoAfterDelay(kFadeAwayDelay, () => {
+				CoroutineWrapper.DoEaseFor(kFadeAwayDuration, EaseType.QuadraticEaseOut, (p) => {
+					SetAlpha(Mathf.Lerp(1.0f, 0.0f, p));
+				});
+			});
 		}
 
 		public void Dispose() {
@@ -46,6 +52,9 @@ namespace DT.Game.GameModes.Ghost {
 
 
 		// PRAGMA MARK - Internal
+		private const float kFadeAwayDelay = 1.5f;
+		private const float kFadeAwayDuration = 0.5f;
+
 		private const float kBaseMetallic = 0.11f;
 
 		private BattlePlayer battlePlayer_;
