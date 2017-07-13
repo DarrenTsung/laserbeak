@@ -28,3 +28,6 @@
 [submodule "Assets/Plugins/DTViewManager"]
 	path = Assets/Plugins/DTViewManager
 	url = https://github.com/DarrenTsung/DTViewManager.git
+[submodule "Assets/Plugins/DTObjectPoolManager"]
+	path = Assets/Plugins/DTObjectPoolManager
+	url = https://github.com/DarrenTsung/DTObjectPoolManager.git
