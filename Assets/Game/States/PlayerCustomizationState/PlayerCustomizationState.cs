@@ -22,14 +22,14 @@ namespace DT.Game.PlayerCustomization {
 			RegisteredPlayers.BeginPlayerRegistration();
 			PlayerCustomizationView.Show(GoBack, Continue);
 
-			ArenaManager.Instance.AnimateLoadArena(GameConstants.Instance.PlayerCustomizationLobbyArena, callback: null);
-
 			PlayerSpawner.ShouldRespawn = true;
 
 			// in case where no players to customize - continue
 			if (RegisteredPlayers.AllPlayers.Count <= 0) {
 				Continue();
 				return;
+			} else {
+				ArenaManager.Instance.AnimateLoadArena(GameConstants.Instance.PlayerCustomizationLobbyArena, callback: null);
 			}
 		}
 
