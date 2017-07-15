@@ -44,10 +44,8 @@ namespace DT.Game.Battle.Players {
 			if (battlePlayer_.Skin != null && battlePlayer_.Skin.OpaqueBodyMaterial == bodyRenderer.sharedMaterial) {
 				skinMaterials_[0] = battlePlayer_.Skin.OpaqueBodyMaterial;
 				bodyMaterials = skinMaterials_;
-				Debug.LogError("skin!");
 			} else {
 				bodyMaterials = battlePlayer_.BodyRenderers.Select(r => r.material);
-				Debug.LogError("body!");
 			}
 
 			foreach (var bodyMaterial in bodyMaterials) {
