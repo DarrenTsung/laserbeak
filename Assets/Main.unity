@@ -1430,6 +1430,8 @@ MonoBehaviour:
     type: 2}
   PopupButtonViewPrefab: {fileID: 1996700527504320, guid: 1eea4bcfdac734b7ca0170b7e836ff5d,
     type: 2}
+  ScoreBarViewPrefab: {fileID: 1823382340009162, guid: 1bf5fa2ad348d4d19b13fba6f81ab755,
+    type: 2}
   playerPrefab_: {fileID: 1008062535264508, guid: 66660e805250249c797e4f5de9635918,
     type: 2}
   aiPrefab_: {fileID: 1578289794265454, guid: cdfe8fdc1508b4c3898b5e8ed59f3e9f, type: 2}
@@ -1609,7 +1611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61480a069fbf847f38786ae79e49dbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreToWin: 5
+  ScoreToWin: 4
   PlayersToFill: 4
   FillWithAI: 1
   DemoMode: 0

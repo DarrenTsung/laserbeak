@@ -21,12 +21,8 @@ namespace DT.Game.Scoring {
 			var inGamePlayerView = ObjectPoolManager.Create<InGamePlayerView>(GamePrefabs.Instance.InGamePlayerViewPrefab, parent: playerViewContainer_);
 			inGamePlayerView.InitWith(player, enableNudge: true);
 
-			scoreBubbleViews_ = new ScoreBubbleView[GameConstants.Instance.ScoreToWin];
-			for (int i = 0; i < GameConstants.Instance.ScoreToWin; i++) {
-				scoreBubbleViews_[i] = ObjectPoolManager.Create<ScoreBubbleView>(GamePrefabs.Instance.ScoreBubbleViewPrefab, parent: scoresContainer_);
-			}
-
-			RefreshScoreBubbles(animate: false);
+			startScoreBar_ = ObjectPoolManager.Create<ScoreBarView>(GamePrefabs.Instance.ScoreBarViewPrefab, parent: scoresContainer_);
+			RefreshScoreBar(animate: false);
 
 			PlayerScores.OnPlayerScoresChanged += HandlePlayerScoresChanged;
 		}
@@ -45,6 +41,8 @@ namespace DT.Game.Scoring {
 
 			PlayerScores.OnPlayerScoresChanged -= HandlePlayerScoresChanged;
 
+			startScoreBar_ = null;
+
 			player_ = null;
 		}
 
@@ -58,18 +56,16 @@ namespace DT.Game.Scoring {
 		private GameObject scoresContainer_;
 
 		private Player player_;
-		private ScoreBubbleView[] scoreBubbleViews_;
+
+		private ScoreBarView startScoreBar_;
 
 		private void HandlePlayerScoresChanged() {
-			RefreshScoreBubbles(animate: true);
+			RefreshScoreBar(animate: true);
 		}
 
-		private void RefreshScoreBubbles(bool animate) {
+		private void RefreshScoreBar(bool animate) {
 			int playerScore = PlayerScores.GetScoreFor(player_);
-			for (int i = 0; i < GameConstants.Instance.ScoreToWin; i++) {
-				int flippedIndex = GameConstants.Instance.ScoreToWin - 1 - i;
-				scoreBubbleViews_[i].SetFilled(flippedIndex < playerScore, animate);
-			}
+			startScoreBar_.SetScoreCount(playerScore, player_.Skin.BodyColor, animate);
 		}
 	}
 }

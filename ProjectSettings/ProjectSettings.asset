@@ -562,7 +562,7 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
-    1: DT_COMMAND_PALETTE;TMPRO;IN_CONTROL
+    1: DT_COMMAND_PALETTE;TMPRO;IN_CONTROL;DT_CORE_MODULE
     7: DT_COMMAND_PALETTE
   platformArchitecture: {}
   scriptingBackend:
