@@ -26,6 +26,15 @@ namespace DT.Game.Battle.AI {
 				return;
 			}
 
+			// NOTE (darren): do calculations in XZ space because height doesn't matter in PHASERBEAK
+			Vector2 laserDirection = laser.transform.forward.Vector2XZValue();
+			Vector2 laserToSelfVector = (StateMachine_.Player.transform.position - laser.transform.position).Vector2XZValue();
+
+			float angleDistance = Vector2.Angle(laserDirection, laserToSelfVector);
+			if (angleDistance > 30.0f) {
+				return;
+			}
+
 			// dash randomly!
 			StateMachine_.Dash(UnityEngine.Random.onUnitSphere);
 		}
