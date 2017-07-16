@@ -1301,7 +1301,7 @@ MonoBehaviour:
   viewPrefab_: {fileID: 1569356011557092, guid: 9d9837dc502c34bdba9294ea5935bc43,
     type: 2}
   timeScaleMax_: 20
-  timeScaleMin_: 0.1
+  timeScaleMin_: 0.3
   slowTimeKey_: 113
   speedTimeKey_: 101
   slowTimeControl_: 17
