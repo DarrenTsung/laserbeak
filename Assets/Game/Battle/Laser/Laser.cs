@@ -38,7 +38,7 @@ namespace DT.Game.Battle.Lasers {
 			light_.color = laserColor;
 			laserHitMaterial_ = battlePlayer.Skin.LaserMaterial;
 
-			GameNotifications.OnBattlePlayerShootLaser.Invoke(battlePlayer);
+			GameNotifications.OnBattlePlayerShotLaser.Invoke(this, battlePlayer);
 		}
 
 		public void ChangeBattlePlayerSource(BattlePlayer battlePlayer) {

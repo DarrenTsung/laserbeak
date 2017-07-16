@@ -20,7 +20,7 @@ namespace DT.Game {
 		public static UnityEvent OnGameWon = new UnityEvent();
 		public static BattlePlayerLaserEvent OnBattlePlayerReflectLaser = new BattlePlayerLaserEvent();
 		public static BattlePlayerLaserEvent OnBattlePlayerLaserHit = new BattlePlayerLaserEvent();
-		public static BattlePlayerEvent OnBattlePlayerShootLaser = new BattlePlayerEvent();
+		public static BattlePlayerLaserEvent OnBattlePlayerShotLaser = new BattlePlayerLaserEvent();
 		public static BattlePlayerDashHitEvent OnBattlePlayerDashHit = new BattlePlayerDashHitEvent();
 		public static BattlePlayerObjectEvent OnBattlePlayerDiedWithSource = new BattlePlayerObjectEvent();
 		public static BattlePlayerEvent OnBattlePlayerFellOffGround = new BattlePlayerEvent();

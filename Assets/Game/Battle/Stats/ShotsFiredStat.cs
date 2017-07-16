@@ -8,6 +8,7 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Lasers;
 using DT.Game.Battle.Players;
 using DT.Game.Players;
 
@@ -23,7 +24,7 @@ namespace DT.Game.Battle.Stats {
 		}
 
 		public ShotsFiredStat(Player player) : base(player) {
-			GameNotifications.OnBattlePlayerShootLaser.AddListener(HandleBattlePlayerShootLaser);
+			GameNotifications.OnBattlePlayerShotLaser.AddListener(HandleBattlePlayerShotLaser);
 		}
 
 		public override IList<StatAward> GetQualifiedAwards() {
@@ -49,7 +50,7 @@ namespace DT.Game.Battle.Stats {
 		// PRAGMA MARK - Internal
 		private int recordedShots_ = 0;
 
-		private void HandleBattlePlayerShootLaser(BattlePlayer battlePlayer) {
+		private void HandleBattlePlayerShotLaser(Laser laser, BattlePlayer battlePlayer) {
 			if (battlePlayer != PlayerSpawner.GetBattlePlayerFor(Player_)) {
 				return;
 			}

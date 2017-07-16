@@ -54,13 +54,13 @@ namespace DT.Game.GameModes {
 
 			PlayerSpawner.OnSpawnedPlayerRemoved += HandleSpawnedPlayerRemoved;
 			BattlePlayerInputDash.OnPlayerDash += HandlePlayerDash;
-			GameNotifications.OnBattlePlayerShootLaser.AddListener(HandlePlayerShoot);
+			GameNotifications.OnBattlePlayerShotLaser.AddListener(HandlePlayerShotLaser);
 		}
 
 		protected override void CleanupInternal() {
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerInputDash.OnPlayerDash -= HandlePlayerDash;
-			GameNotifications.OnBattlePlayerShootLaser.RemoveListener(HandlePlayerShoot);
+			GameNotifications.OnBattlePlayerShotLaser.RemoveListener(HandlePlayerShotLaser);
 			CleanupGhostModeAddOns();
 		}
 
@@ -68,7 +68,7 @@ namespace DT.Game.GameModes {
 			ghostModeAddOns_[battlePlayer].AnimateAlpha(kAlphaLevel, kAlphaDashDuration);
 		}
 
-		private void HandlePlayerShoot(BattlePlayer battlePlayer) {
+		private void HandlePlayerShotLaser(Laser laser, BattlePlayer battlePlayer) {
 			foreach (BattlePlayer p in PlayerSpawner.AllSpawnedBattlePlayers) {
 				ghostModeAddOns_[p].AnimateAlpha(kAlphaLevel, kAlphaShootDuration);
 			}

@@ -32,7 +32,7 @@ namespace DT.Game.Battle.Stats {
 		public AccuracyStat(Player player) : base(player) {
 			GameNotifications.OnBattlePlayerLaserHit.AddListener(HandleBattlePlayerLaserHit);
 			GameNotifications.OnBattlePlayerReflectLaser.AddListener(HandleBattlePlayerReflectLaser);
-			GameNotifications.OnBattlePlayerShootLaser.AddListener(HandleBattlePlayerShootLaser);
+			GameNotifications.OnBattlePlayerShotLaser.AddListener(HandleBattlePlayerShotLaser);
 		}
 
 		public override IList<StatAward> GetQualifiedAwards() {
@@ -74,7 +74,7 @@ namespace DT.Game.Battle.Stats {
 			}
 		}
 
-		private void HandleBattlePlayerShootLaser(BattlePlayer battlePlayer) {
+		private void HandleBattlePlayerShotLaser(Laser laser, BattlePlayer battlePlayer) {
 			if (battlePlayer != PlayerSpawner.GetBattlePlayerFor(Player_)) {
 				return;
 			}

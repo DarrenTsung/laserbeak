@@ -14,6 +14,7 @@ namespace DT.Game.Battle.AI {
 		public enum State {
 			Attack,
 			Idle,
+			Dash,
 		}
 
 		public AIInputState InputState {
@@ -32,6 +33,15 @@ namespace DT.Game.Battle.AI {
 			get; private set;
 		}
 
+		public Vector2 DashDirection {
+			get; private set;
+		}
+
+		public void Dash(Vector2 direction) {
+			DashDirection = direction.normalized;
+			SwitchState(State.Dash);
+		}
+
 		public void Init(BattlePlayer player, AIConfiguration configuration) {
 			player_ = player;
 			configuration_ = configuration;
@@ -39,6 +49,12 @@ namespace DT.Game.Battle.AI {
 			player_.SetInputDelegate(InputState);
 			playerRecyclable_ = player.GetComponentInChildren<RecyclablePrefab>();
 			playerRecyclable_.OnCleanup += RecycleSelf;
+
+			foreach (var eventHandler in eventHandlers_) {
+				eventHandler.Setup();
+			}
+
+			SwitchState(State.Idle);
 		}
 
 		public void SwitchState(State state) {
@@ -64,6 +80,10 @@ namespace DT.Game.Battle.AI {
 				playerRecyclable_.OnCleanup -= RecycleSelf;
 				playerRecyclable_ = null;
 			}
+
+			foreach (var eventHandler in eventHandlers_) {
+				eventHandler.Cleanup();
+			}
 		}
 
 
@@ -78,11 +98,19 @@ namespace DT.Game.Battle.AI {
 
 		private RecyclablePrefab playerRecyclable_;
 
+		private AIEventHandler[] eventHandlers_ = new AIEventHandler[] {
+			new AIDodgeHandler()
+		};
+
 		private void Awake() {
 			inputState_ = this.GetRequiredComponent<AIInputState>();
 			animator_ = this.GetRequiredComponent<Animator>();
 
 			GizmoOutlet = this.GetRequiredComponent<GizmoOutlet>();
+
+			foreach (var eventHandler in eventHandlers_) {
+				eventHandler.Init(this);
+			}
 		}
 
 		private void RecycleSelf(RecyclablePrefab unused) {

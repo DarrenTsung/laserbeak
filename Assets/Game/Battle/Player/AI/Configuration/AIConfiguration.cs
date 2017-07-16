@@ -16,6 +16,7 @@ namespace DT.Game.Battle.AI {
 
 
 		// PRAGMA MARK - Internal
+		[Header("Skill Level")]
 		[SerializeField, Range(0.0f, 1.0f)]
 		private float skillLevel_;
 	}

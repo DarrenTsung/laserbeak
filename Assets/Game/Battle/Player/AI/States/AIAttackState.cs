@@ -114,7 +114,7 @@ namespace DT.Game.Battle.AI {
 
 		private void HeadTowardsFuzzyTargetPosition() {
 			if (fuzzyTargetPosition_ == null) {
-				StateMachine_.InputState.LerpMovementVectorTo(Vector2.zero);
+				StateMachine_.InputState.LerpMovementVectorTowards(Vector2.zero);
 				return;
 			}
 
@@ -122,7 +122,7 @@ namespace DT.Game.Battle.AI {
 			StateMachine_.GizmoOutlet.SetLineTarget("AttackFuzzyTargetPosition", (Vector3)fuzzyTargetPosition_);
 			Vector3 fuzzyTargetPositionVector = (Vector3)fuzzyTargetPosition_ - StateMachine_.Player.transform.position;
 			if (fuzzyTargetPositionVector == Vector3.zero) {
-				StateMachine_.InputState.LerpMovementVectorTo(Vector2.zero);
+				StateMachine_.InputState.LerpMovementVectorTowards(Vector2.zero);
 				return;
 			}
 
@@ -135,12 +135,12 @@ namespace DT.Game.Battle.AI {
 				// if accurate enough then don't move anymore
 				float angleToTarget = Quaternion.Angle(rotation, rotationToTarget);
 				if (angleToTarget < 1.0f) {
-					StateMachine_.InputState.LerpMovementVectorTo(Vector2.zero);
+					StateMachine_.InputState.LerpMovementVectorTowards(Vector2.zero);
 					return;
 				}
 			}
 
-			StateMachine_.InputState.LerpMovementVectorTo(xzDirection);
+			StateMachine_.InputState.LerpMovementVectorTowards(xzDirection);
 		}
 
 		private void HandleFullyChargedLaser() {
