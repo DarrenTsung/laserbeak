@@ -51,5 +51,16 @@ namespace DT.Game.MainMenu {
 				mainMenu_ = null;
 			}
 		}
+
+		protected override void OnStateUpdated() {
+			// Debug: remove main menu and depth of field
+			if (Input.GetKeyDown(KeyCode.D)) {
+				BattleCamera.SetDepthOfFieldEnabled(false);
+				if (mainMenu_ != null) {
+					ObjectPoolManager.Recycle(mainMenu_);
+					mainMenu_ = null;
+				}
+			}
+		}
 	}
 }
