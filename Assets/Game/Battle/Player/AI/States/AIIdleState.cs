@@ -18,9 +18,12 @@ namespace DT.Game.Battle.AI {
 
 		protected override void OnStateEntered() {
 			movementAction_ = new AIMoveRandomlyAction(StateMachine_);
-			coroutine_ = CoroutineWrapper.DoAfterDelay(UnityEngine.Random.Range(kCheckAttackMinDelay, kCheckAttackMaxDelay), () => {
-				StateMachine_.SwitchState(AIStateMachine.State.Attack);
-			});
+
+			if (InGameConstants.AllowChargingLasers) {
+				coroutine_ = CoroutineWrapper.DoAfterDelay(UnityEngine.Random.Range(kCheckAttackMinDelay, kCheckAttackMaxDelay), () => {
+					StateMachine_.SwitchState(AIStateMachine.State.Attack);
+				});
+			}
 		}
 
 		protected override void OnStateExited() {

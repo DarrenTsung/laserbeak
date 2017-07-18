@@ -28,6 +28,11 @@ namespace DT.Game.Battle.AI {
 		}
 
 		protected override void OnStateEntered() {
+			if (!InGameConstants.AllowChargingLasers) {
+				StateMachine_.SwitchState(AIStateMachine.State.Idle);
+				return;
+			}
+
 			fuzzyTargetPosition_ = null;
 			StateMachine_.InputState.LaserPressed = true;
 			if (ChargedLaserComponent_.FullyCharged) {
