@@ -28,7 +28,12 @@ namespace DT.Game.Battle.Players {
 
 			// snap rotation if input is not (0, 0)
 			if (speedWorldVector.magnitude > Mathf.Epsilon) {
-				Player_.Rigidbody.MoveRotation(Quaternion.LookRotation(speedWorldVector.normalized));
+				Vector3 speedWorldDirection = speedWorldVector.normalized;
+				if (speedWorldDirection == Vector3.zero) {
+					return;
+				}
+
+				Player_.Rigidbody.MoveRotation(Quaternion.LookRotation(speedWorldDirection));
 			}
 		}
 	}
