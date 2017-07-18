@@ -28,7 +28,7 @@ namespace DT.Game.Battle.AI {
 		}
 
 		protected override void OnStateEntered() {
-			if (!InGameConstants.AllowChargingLasers) {
+			if (!InGameConstants.IsAllowedToChargeLasers(StateMachine_.Player)) {
 				StateMachine_.SwitchState(AIStateMachine.State.Idle);
 				return;
 			}
@@ -70,9 +70,7 @@ namespace DT.Game.Battle.AI {
 				return;
 			}
 
-			BattlePlayer closestEnemyPlayer = BattlePlayer.ActivePlayers.Where(p => p != StateMachine_.Player)
-																		.Where(p => !BattlePlayerTeams.AreOnSameTeam(StateMachine_.Player, p))
-																		.MinBy(p => (p.transform.position - StateMachine_.Player.transform.position).magnitude);
+			BattlePlayer closestEnemyPlayer = BattlePlayerUtil.GetClosestEnemyPlayerFor(StateMachine_.Player);
 			target_ = closestEnemyPlayer;
 
 			fuzzyTargetPosition_ = null;

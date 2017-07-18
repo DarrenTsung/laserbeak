@@ -15,6 +15,7 @@ namespace DT.Game.Battle.AI {
 			Attack,
 			Idle,
 			Dash,
+			DashAttack,
 		}
 
 		public AIInputState InputState {
