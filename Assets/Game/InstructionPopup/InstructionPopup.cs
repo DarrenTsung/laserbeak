@@ -13,6 +13,7 @@ using InControl;
 using TMPro;
 
 using DT.Game.Players;
+using DT.Game.Transitions;
 
 namespace DT.Game.InstructionPopups {
 	 public class InstructionPopup : MonoBehaviour, IRecycleCleanupSubscriber {
@@ -32,7 +33,14 @@ namespace DT.Game.InstructionPopups {
 
 				views_.Add(view);
 			}
-			CheckIfAllPlayersReady();
+
+			transition_.AnimateIn(() => {
+				// NOTE (darren): don't allow players to ready up until transition is finished
+				foreach (var view in views_) {
+					view.StartChecking();
+				}
+				CheckIfAllPlayersReady();
+			});
 		}
 
 
@@ -62,6 +70,11 @@ namespace DT.Game.InstructionPopups {
 		private Action allPlayersReadyCallback_;
 
 		private readonly List<InstructionPlayerReadyView> views_ = new List<InstructionPlayerReadyView>();
+		private Transition transition_;
+
+		private void Awake() {
+			transition_ = new Transition(this.gameObject).SetOffsetDelay(0.0f);
+		}
 
 		private void CheckIfAllPlayersReady() {
 			// if not all ready
@@ -70,7 +83,7 @@ namespace DT.Game.InstructionPopups {
 			}
 
 			// animation would go here I think
-			CoroutineWrapper.DoAfterDelay(0.7f, () => {
+			transition_.AnimateOut(() => {
 				if (allPlayersReadyCallback_ != null) {
 					allPlayersReadyCallback_.Invoke();
 					allPlayersReadyCallback_ = null;

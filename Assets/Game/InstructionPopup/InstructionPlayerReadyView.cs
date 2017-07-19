@@ -24,6 +24,10 @@ namespace DT.Game.InstructionPopups {
 			readyImage_.sprite = player.Skin.ThumbnailSprite;
 		}
 
+		public void StartChecking() {
+			canCheck_ = true;
+		}
+
 		public bool Ready {
 			get { return ready_; }
 		}
@@ -33,6 +37,7 @@ namespace DT.Game.InstructionPopups {
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			ready_ = false;
 			readyImage_.color = Color.white.WithAlpha(0.3f);
+			canCheck_ = false;
 		}
 
 
@@ -42,8 +47,13 @@ namespace DT.Game.InstructionPopups {
 
 		private Player player_;
 		private bool ready_;
+		private bool canCheck_;
 
 		private void Update() {
+			if (!canCheck_) {
+				return;
+			}
+
 			if (player_ == null) {
 				return;
 			}

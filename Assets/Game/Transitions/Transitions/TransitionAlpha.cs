@@ -24,6 +24,9 @@ namespace DT.Game.Transitions {
 		[Header("Alpha Outlets")]
 		[SerializeField, DTValidator.Optional]
 		private Image image_;
+		[SerializeField, DTValidator.Optional]
+		private CanvasGroup canvasGroup_;
+
 
 		[Header("Alpha Properties")]
 		[SerializeField]
@@ -34,6 +37,10 @@ namespace DT.Game.Transitions {
 		private void SetAlpha(float alpha) {
 			if (image_ != null) {
 				image_.color = image_.color.WithAlpha(alpha);
+			}
+
+			if (canvasGroup_ != null) {
+				canvasGroup_.alpha = alpha;
 			}
 		}
 	}

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 using DTEasings;
 using DTObjectPoolManager;
@@ -25,6 +26,8 @@ namespace DT.Game.Transitions {
 		private ITransition[] transitions_;
 		private float maxDuration_;
 
+		private float offsetDelay_;
+
 		private TransitionType transitionType_;
 		private float value_ = 0.0f;
 
@@ -39,6 +42,7 @@ namespace DT.Game.Transitions {
 			EditorGUI.BeginChangeCheck();
 
 			transitionTarget_ = (GameObject)EditorGUILayout.ObjectField("Transition Target: ", transitionTarget_, typeof(GameObject), allowSceneObjects: true);
+			offsetDelay_ = EditorGUILayout.FloatField("Offset Delay: ", offsetDelay_);
 
 			bool changed = EditorGUI.EndChangeCheck();
 			if (changed && transitionTarget_ != null) {
@@ -105,12 +109,25 @@ namespace DT.Game.Transitions {
 				return;
 			}
 
-			maxDuration_ = transitions_.Max(t => t.Duration + t.BaseDelay);
+			float maxDuration = 0.0f;
+			int i = 0;
+			foreach (ITransition t in transitions_) {
+				float duration = t.Duration + t.BaseDelay + (i * offsetDelay_);
+				if (duration > maxDuration) {
+					maxDuration = duration;
+				}
+				i++;
+			}
+			maxDuration_ = maxDuration;
 
 			float time = value_ * maxDuration_;
+
+			i = 0;
 			foreach (ITransition transition in transitions_) {
-				float transitionValue = Mathf.Clamp01((time - transition.BaseDelay) / transition.Duration);
+				float transitionValue = Mathf.Clamp01((time - transition.BaseDelay - (i * offsetDelay_)) / transition.Duration);
 				transition.Refresh(transitionType_, transitionValue);
+
+				i++;
 			}
 		}
 	}
