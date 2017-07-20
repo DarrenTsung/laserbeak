@@ -9,13 +9,13 @@ using DTObjectPoolManager;
 
 namespace DT.Game.Battle.AI {
 	public class AIMoveRandomlyAction : IAIMovementAction {
-		// PRAGMA MARK - Public Internal
-		public AIMoveRandomlyAction(AIStateMachine stateMachine) {
+		// PRAGMA MARK - IAIMovementAction Implementation
+		void IAIMovementAction.Init(AIStateMachine stateMachine) {
 			stateMachine_ = stateMachine;
 			MoveToRandomNearbyPosition();
 		}
 
-		public void Dispose() {
+		void IDisposable.Dispose() {
 			stateMachine_ = null;
 			if (coroutine_ != null) {
 				coroutine_.Cancel();
@@ -25,8 +25,11 @@ namespace DT.Game.Battle.AI {
 
 
 		// PRAGMA MARK - Internal
-		private const float kNearDistance = 2.0f;
-		private const float kIdleStandardDeviation = 0.5f;
+		private const float kNearDistanceMin = 1.0f;
+		private const float kNearDistanceMax = 3.0f;
+
+		private const float kIdleDelayMin = 0.1f;
+		private const float kIdleDelayMax = 0.7f;
 
 		private const float kGoodEnoughDistance = 0.1f;
 
@@ -59,14 +62,14 @@ namespace DT.Game.Battle.AI {
 			}
 
 			stateMachine_.InputState.LerpMovementVectorTowards(Vector2.zero);
-			coroutine_ = CoroutineWrapper.DoAfterDelay(Math.Max(0.0f, MathUtil.SampleGaussian(0.0f, kIdleStandardDeviation)), () => {
+			coroutine_ = CoroutineWrapper.DoAfterDelay(UnityEngine.Random.Range(kIdleDelayMin, kIdleDelayMax), () => {
 				MoveToRandomNearbyPosition();
 			});
 		}
 
 		private Vector3 GenerateRandomNearbyPosition() {
 			Quaternion randomDirection = Quaternion.Euler(new Vector3(0.0f, UnityEngine.Random.Range(0.0f, 360.0f), 0.0f));
-			return stateMachine_.Player.transform.position + (randomDirection * Vector3.forward * UnityEngine.Random.Range(kGoodEnoughDistance, kNearDistance));
+			return stateMachine_.Player.transform.position + (randomDirection * Vector3.forward * UnityEngine.Random.Range(kNearDistanceMin, kNearDistanceMax));
 		}
 	}
 }

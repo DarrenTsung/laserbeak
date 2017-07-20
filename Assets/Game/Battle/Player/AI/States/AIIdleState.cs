@@ -15,7 +15,7 @@ namespace DT.Game.Battle.AI {
 
 		private const float kDashAggroDistance = 6.0f;
 
-		private IAIMovementAction movementAction_;
+		private IAIMovementAction movementAction_ = new AIMoveRandomlyAction();
 		private CoroutineWrapper coroutine_;
 		private CoroutineWrapper checkDashAttackCoroutine_;
 
@@ -24,16 +24,13 @@ namespace DT.Game.Battle.AI {
 		}
 
 		protected override void OnStateEntered() {
-			movementAction_ = new AIMoveRandomlyAction(StateMachine_);
+			movementAction_.Init(StateMachine_);
 
 			checkDashAttackCoroutine_ = CoroutineWrapper.StartCoroutine(CheckDashAttack());
 		}
 
 		protected override void OnStateExited() {
-			if (movementAction_ != null) {
-				movementAction_.Dispose();
-				movementAction_ = null;
-			}
+			movementAction_.Dispose();
 
 			if (coroutine_ != null) {
 				coroutine_.Cancel();
