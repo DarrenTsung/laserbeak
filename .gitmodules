@@ -34,3 +34,6 @@
 [submodule "Assets/Plugins/DTAnimatorStateMachine"]
 	path = Assets/Plugins/DTAnimatorStateMachine
 	url = https://github.com/DarrenTsung/DTAnimatorStateMachine.git
+[submodule "Assets/Plugins/DTMediaCapture"]
+	path = Assets/Plugins/DTMediaCapture
+	url = https://github.com/DarrenTsung/DTMediaCapture.git
