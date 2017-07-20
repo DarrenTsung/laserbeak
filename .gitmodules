@@ -34,6 +34,3 @@
 [submodule "Assets/Plugins/DTAnimatorStateMachine"]
 	path = Assets/Plugins/DTAnimatorStateMachine
 	url = https://github.com/DarrenTsung/DTAnimatorStateMachine.git
-[submodule "Assets/Plugins/DTScreenshotter"]
-	path = Assets/Plugins/DTScreenshotter
-	url = https://github.com/DarrenTsung/DTScreenshotter.git
