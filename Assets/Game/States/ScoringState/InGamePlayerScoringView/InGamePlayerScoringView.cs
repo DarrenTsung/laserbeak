@@ -10,6 +10,7 @@ using InControl;
 
 using DT.Game.GameModes;
 using DT.Game.Players;
+using DT.Game.Transitions;
 
 namespace DT.Game.Scoring {
 	public class InGamePlayerScoringView : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
@@ -23,6 +24,12 @@ namespace DT.Game.Scoring {
 		// PRAGMA MARK - Public Interface
 		public void Init(Action onFinishedCallback) {
 			onFinishedCallback_ = onFinishedCallback;
+
+			transition_.AnimateIn(() => {
+				this.DoAfterDelay(kBeforeScoringDelay, () => {
+					StartCoroutine(DoScoring());
+				});
+			});
 		}
 
 
@@ -32,11 +39,6 @@ namespace DT.Game.Scoring {
 				var individualPlayerScoringView = ObjectPoolManager.Create<IndividualPlayerScoringView>(GamePrefabs.Instance.IndividualPlayerScoringViewPrefab, parent: scoringViewContainer_);
 				individualPlayerScoringView.Init(player);
 			}
-
-			// TODO (darren): animate in
-			this.DoAfterDelay(kBeforeScoringDelay, () => {
-				StartCoroutine(DoScoring());
-			});
 		}
 
 
@@ -47,15 +49,20 @@ namespace DT.Game.Scoring {
 
 
 		// PRAGMA MARK - Internal
-		private const float kBeforeScoringDelay = 1.0f;
+		private const float kBeforeScoringDelay = 0.4f;
 		private const float kBetweenScoringDelay = 1.0f;
-		private const float kEndScoringDelay = 2.0f;
+		private const float kEndScoringDelay = 1.4f;
 
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject scoringViewContainer_;
 
 		private Action onFinishedCallback_;
+		private Transition transition_;
+
+		private void Awake() {
+			transition_ = new Transition(this.gameObject).SetDynamic(true);
+		}
 
 		private IEnumerator DoScoring() {
 			WaitForSeconds betweenScoringDelay = new WaitForSeconds(kBetweenScoringDelay);
@@ -77,7 +84,9 @@ namespace DT.Game.Scoring {
 
 			yield return new WaitForSeconds(kEndScoringDelay);
 
-			Finish();
+			transition_.AnimateOut(() => {
+				Finish();
+			});
 		}
 
 		private void Finish() {

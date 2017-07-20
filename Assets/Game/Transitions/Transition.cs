@@ -72,7 +72,7 @@ namespace DT.Game.Transitions {
 			transitionsComplete_.Clear();
 
 			if (Transitions_.Length > 0) {
-				IEnumerable<ITransition> orderedTransitions = Transitions_;
+				IEnumerable<ITransition> orderedTransitions = transitionType == TransitionType.In ? Transitions_ : Transitions_.ListReverse();
 				if (shuffledOrder_) {
 					orderedTransitions = Transitions_.OrderBy(a => Guid.NewGuid());
 				}
@@ -127,8 +127,11 @@ namespace DT.Game.Transitions {
 			animating_ = false;
 
 			if (transitionsFinishedCallback_ != null) {
-				transitionsFinishedCallback_.Invoke();
+				// NOTE (darren): why the convoluted logic here? In case Animate() is called
+				// as a result of the callback we don't want to null the new transitionsFinishedCallback_
+				Action finishedCallback = transitionsFinishedCallback_;
 				transitionsFinishedCallback_ = null;
+				finishedCallback.Invoke();
 			}
 		}
 	}
