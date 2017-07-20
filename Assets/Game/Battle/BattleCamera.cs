@@ -110,7 +110,10 @@ namespace DT.Game.Battle {
 		private Vector3 GetTargetPositionToHighlightInterest() {
 			Vector3 averageInterestPosition = transformsOfInterest_.Select(t => t.position).Average();
 
-			Vector3 currentFocusVector = GetCurrentFocusVector();
+			Vector3 focusPoint = GetFocusPoint();
+
+			Vector3 initialPositionFocusVector = initialPosition_ - focusPoint;
+			Vector3 currentFocusVector = this.transform.position - focusPoint;
 			float minimumFocusScale = currentFocusVector.magnitude / kFocusMinimum;
 
 			float maxOutOfRadiusScale = 1.0f;
@@ -125,10 +128,16 @@ namespace DT.Game.Battle {
 			}
 
 			Vector3 newFocusVector = currentFocusVector.normalized * kFocusMinimum * maxOutOfRadiusScale;
+			// focus should never go beyond initialPosition
+			newFocusVector = Vector3.ClampMagnitude(newFocusVector, initialPositionFocusVector.magnitude);
 			return averageInterestPosition + newFocusVector;
 		}
 
 		private Vector3 GetCurrentFocusVector() {
+			return this.transform.position - GetFocusPoint();
+		}
+
+		private Vector3 GetFocusPoint() {
 			Ray centerRay = camera_.ViewportPointToRay(new Vector2(0.5f, 0.5f));
 			Vector3 currentFocusPoint;
 			float distanceAlongRay = 0.0f;
@@ -140,7 +149,7 @@ namespace DT.Game.Battle {
 				currentFocusPoint = centerRay.GetPoint(distanceAlongRay);
 			}
 
-			return this.transform.position - currentFocusPoint;
+			return currentFocusPoint;
 		}
 
 		private void AnimateChromaticAberration(float intensity, float duration) {
