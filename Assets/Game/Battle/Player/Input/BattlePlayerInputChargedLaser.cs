@@ -94,6 +94,10 @@ namespace DT.Game.Battle.Players {
 				chargingLaser_.SetColor(Player_.Skin.LaserColor, Player_.Skin.SmearedLaserMaterial);
 			}
 
+			if (percentCharged < 1.0f && fullyChargedParticle_ != null) {
+				DisperseFullyChargedParticle();
+			}
+
 			if (chargingLaser_ != null) {
 				chargingLaser_.UpdateWithPercentage(percentCharged);
 				if (!Mathf.Approximately(previousPercentCharged, 1.0f) && Mathf.Approximately(percentCharged, 1.0f)) {

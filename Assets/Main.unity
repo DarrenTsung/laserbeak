@@ -238,11 +238,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -714,7 +714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &880202779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1810,8 +1810,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2013273996}
   - component: {fileID: 2013273997}
+  - component: {fileID: 2013273998}
   m_Layer: 0
-  m_Name: DTScreenshotter
+  m_Name: DTMediaCapture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1845,6 +1846,24 @@ MonoBehaviour:
   screenshotNameFormat_: PHASERBEAK_${DATE}_${INDEX}
   togglePauseKey_: 111
   screenshotKey_: 108
+--- !u!114 &2013273998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2013273995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e01e52923b5944d8b6ddd40f9272712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordingPath_: ${DESKTOP}/PHASERBEAK/Recordings
+  recordingNameFormat_: Recording__${DATE}__${INDEX}
+  frameRate_: 60
+  toggleRecordingKey_: 107
+  recordSetLengthInSeconds_: 120
+  recordSetLengthOnStart_: 0
+  recordingTime_: 0
 --- !u!1 &2128445820
 GameObject:
   m_ObjectHideFlags: 0
