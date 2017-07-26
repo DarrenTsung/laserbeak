@@ -15,7 +15,7 @@ using DT.Game.Players;
 namespace DT.Game.Scoring {
 	public class ScoringState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
-		private const float kShowDelay = 0.5f;
+		private const float kShowDelay = 1.7f;
 
 		protected override void OnStateEntered() {
 			if (!PlayerScores.HasPendingScores) {

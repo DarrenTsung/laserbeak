@@ -1635,7 +1635,7 @@ MonoBehaviour:
   EyeMaterial: {fileID: 2100000, guid: 363ae95a8bd7840c1b4378bef4b69b18, type: 2}
   BeakMaterial: {fileID: 2100000, guid: 22954d0ecd6bf44408b367dcc6c3d473, type: 2}
   LaserMaterial: {fileID: 2100000, guid: c955e315cf3ff4901882649a6e7eb9ee, type: 2}
-  PlayerFocusOffset: {x: 0, y: 1.5, z: 1}
+  PlayerFocusOffset: {x: 0, y: 0, z: 0}
   PlayerCustomizationLobbyArena: {fileID: 11400000, guid: db87c8be4fd5149478bcad74f003f2db,
     type: 2}
   gameModes_:
