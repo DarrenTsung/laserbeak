@@ -16,6 +16,7 @@ namespace DT.Game.Battle.AI {
 			Idle,
 			Dash,
 			DashAttack,
+			Celebrate
 		}
 
 		public AIInputState InputState {
@@ -67,6 +68,8 @@ namespace DT.Game.Battle.AI {
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
 			this.EnableAllStateBehaviours(animator_);
 			this.ConfigureAllStateBehaviours(animator_);
+
+			GameStateMachine.OnBattleFinished += HandleBattleFinished;
 		}
 
 
@@ -85,6 +88,8 @@ namespace DT.Game.Battle.AI {
 			foreach (var eventHandler in eventHandlers_) {
 				eventHandler.Cleanup();
 			}
+
+			GameStateMachine.OnBattleFinished -= HandleBattleFinished;
 		}
 
 
@@ -116,6 +121,10 @@ namespace DT.Game.Battle.AI {
 
 		private void RecycleSelf(RecyclablePrefab unused) {
 			ObjectPoolManager.Recycle(this);
+		}
+
+		private void HandleBattleFinished() {
+			SwitchState(State.Celebrate);
 		}
 	}
 }

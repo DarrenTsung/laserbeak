@@ -11,6 +11,8 @@ namespace DT.Game {
 	[RequireComponent(typeof(Animator))]
 	public class GameStateMachine : MonoBehaviour {
 		// PRAGMA MARK - Static
+		public static event Action OnBattleFinished = delegate {};
+
 		[MethodCommand]
 		private static void SkipBattle() {
 			UnityEngine.Object.FindObjectOfType<GameStateMachine>().HandleBattleFinished();
@@ -32,6 +34,7 @@ namespace DT.Game {
 
 		public void HandleBattleFinished() {
 			animator_.SetTrigger("BattleFinished");
+			OnBattleFinished.Invoke();
 		}
 
 		public void Continue() {
