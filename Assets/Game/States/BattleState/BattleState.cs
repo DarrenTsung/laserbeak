@@ -62,6 +62,9 @@ namespace DT.Game.Battle {
 
 					InGamePlayerCollectionView.Show();
 					InGamePlayerHUDEffect.CreateForAllPlayers();
+
+					// Action Shot - focus on a single player
+					// BattleCamera.Instance.SetTransformsOfInterest(new Transform[] { PlayerSpawner.AllSpawnedBattlePlayers.First().transform });
 				});
 			});
 

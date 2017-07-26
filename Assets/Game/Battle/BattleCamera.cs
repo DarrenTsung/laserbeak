@@ -42,6 +42,10 @@ namespace DT.Game.Battle {
 			survivingPlayersAsInterest_ = true;
 		}
 
+		public void SetTransformsOfInterest(IEnumerable<Transform> transformsOfInterest) {
+			transformsOfInterest_ = transformsOfInterest;
+		}
+
 		public void ClearTransformsOfInterest() {
 			survivingPlayersAsInterest_ = false;
 			transformsOfInterest_ = null;
