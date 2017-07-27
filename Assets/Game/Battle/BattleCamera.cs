@@ -147,7 +147,6 @@ namespace DT.Game.Battle {
 			float distanceAlongRay = 0.0f;
 			// if center ray misses plane
 			if (kFocusPlane.Raycast(centerRay, out distanceAlongRay) == false) {
-				Debug.LogWarning("Focus plane no intersection with center ray!");
 				currentFocusPoint = this.transform.position;
 			} else {
 				currentFocusPoint = centerRay.GetPoint(distanceAlongRay);
