@@ -10,14 +10,11 @@ using DTObjectPoolManager;
 namespace DT.Game.Battle.AI {
 	public class AIDashAttackState : DTStateMachineBehaviour<AIStateMachine> {
 		// PRAGMA MARK - Internal
-		private const float kDashPredictionDistanceMin = 3.5f;
-		private const float kDashPredictionDistanceMax = 4.5f;
-
 		private float predictedDashDistance_;
 		private BattlePlayer target_;
 
 		protected override void OnStateEntered() {
-			predictedDashDistance_ = UnityEngine.Random.Range(kDashPredictionDistanceMin, kDashPredictionDistanceMax);
+			predictedDashDistance_ = AIUtil.GetRandomPredictedDashDistance();
 
 			target_ = BattlePlayerUtil.GetClosestEnemyPlayerFor(StateMachine_.Player);
 		}

@@ -13,9 +13,10 @@ using InControl;
 namespace DT.Game.Battle.Players {
 	public static class BattlePlayerUtil {
 		// PRAGMA MARK - Static Public Interface
-		public static BattlePlayer GetClosestEnemyPlayerFor(BattlePlayer player) {
+		public static BattlePlayer GetClosestEnemyPlayerFor(BattlePlayer player, Predicate<BattlePlayer> whereCondition = null) {
 			BattlePlayer closestEnemyPlayer = BattlePlayer.ActivePlayers.Where(p => p != player)
 																		.Where(p => !BattlePlayerTeams.AreOnSameTeam(player, p))
+																		.Where(p => whereCondition != null ? whereCondition.Invoke(p) : true)
 																		.MinBy(p => (p.transform.position - player.transform.position).magnitude);
 			return closestEnemyPlayer;
 		}

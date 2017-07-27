@@ -56,7 +56,9 @@ namespace DT.Game.Battle.AI {
 			while (true) {
 				yield return new WaitForSeconds(GetRandomCheckAttackDelay());
 
-				BattlePlayer target = BattlePlayerUtil.GetClosestEnemyPlayerFor(StateMachine_.Player);
+				BattlePlayer target = BattlePlayerUtil.GetClosestEnemyPlayerFor(StateMachine_.Player, whereCondition: (otherPlayer) => {
+					return !AIUtil.DoesWallExistBetweenXZPoints(StateMachine_.Player.transform.position, otherPlayer.transform.position);
+				});
 				if (target == null) {
 					continue;
 				}

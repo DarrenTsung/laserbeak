@@ -64,5 +64,8 @@ namespace DT.Game {
 
 		[SerializeField]
 		private AIConfiguration substitutePlayerAIConfiguration_;
+
+		[Header("AI")]
+		public int AIPositionRetries = 30;
 	}
 }

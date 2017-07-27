@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 114296536127161508}
   - component: {fileID: 114560065830814288}
   - component: {fileID: 225776224179466378}
-  - component: {fileID: 114731275501057876}
   m_Layer: 5
   m_Name: InGamePlayerScoringView
   m_TagString: Untagged
@@ -1074,18 +1073,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoringViewContainer_: {fileID: 1654646788874546}
---- !u!114 &114731275501057876
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466384693120092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd917d83f7ccf499599e2ac5a53258bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoringViewContainer_: {fileID: 0}
 --- !u!114 &114774002019640386
 MonoBehaviour:
   m_ObjectHideFlags: 1

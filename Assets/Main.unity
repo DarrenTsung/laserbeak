@@ -1646,6 +1646,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
+  AIPositionRetries: 30
 --- !u!1 &1675223163
 GameObject:
   m_ObjectHideFlags: 0

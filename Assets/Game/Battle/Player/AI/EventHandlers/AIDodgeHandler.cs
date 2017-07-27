@@ -35,8 +35,29 @@ namespace DT.Game.Battle.AI {
 				return;
 			}
 
-			// dash randomly!
-			StateMachine_.Dash(UnityEngine.Random.onUnitSphere);
+			StateMachine_.Dash(GenerateValidDashDirection());
+		}
+
+		private Vector3 GenerateValidDashDirection() {
+			float predictedDashDistance = AIUtil.GetRandomPredictedDashDistance();
+			Vector3 playerPosition = StateMachine_.Player.transform.position;
+
+			Vector3 lastDashDirection = Vector3.zero;
+			for (int i = 0; i < GameConstants.Instance.AIPositionRetries; i++) {
+				Vector3 dashDirection = UnityEngine.Random.insideUnitCircle.normalized;
+				Vector3 dashEndPosition = playerPosition + (dashDirection * predictedDashDistance);
+
+				lastDashDirection = dashDirection;
+
+				if (!AIUtil.IsXZPositionOnPlatform(dashEndPosition) || AIUtil.DoesWallExistBetweenXZPoints(playerPosition, dashEndPosition)) {
+					continue;
+				}
+
+				return dashDirection;
+			}
+
+			Debug.LogWarning("Using invalid dash direction!", context: StateMachine_.Player);
+			return lastDashDirection;
 		}
 	}
 }

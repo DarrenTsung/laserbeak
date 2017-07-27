@@ -28,8 +28,8 @@ namespace DT.Game.Battle.AI {
 		private const float kNearDistanceMin = 1.0f;
 		private const float kNearDistanceMax = 3.0f;
 
-		private const float kIdleDelayMin = 0.1f;
-		private const float kIdleDelayMax = 0.7f;
+		private const float kIdleDelayMin = 0.0f;
+		private const float kIdleDelayMax = 0.6f;
 
 		private const float kGoodEnoughDistance = 0.1f;
 
@@ -61,15 +61,30 @@ namespace DT.Game.Battle.AI {
 				yield return null;
 			}
 
-			stateMachine_.InputState.LerpMovementVectorTowards(Vector2.zero);
-			coroutine_ = CoroutineWrapper.DoAfterDelay(UnityEngine.Random.Range(kIdleDelayMin, kIdleDelayMax), () => {
+			coroutine_ = CoroutineWrapper.DoEveryFrameForDelay(UnityEngine.Random.Range(kIdleDelayMin, kIdleDelayMax), () => {
+				stateMachine_.InputState.LerpMovementVectorTowards(Vector2.zero);
+			}, () => {
 				MoveToRandomNearbyPosition();
 			});
 		}
 
 		private Vector3 GenerateRandomNearbyPosition() {
-			Quaternion randomDirection = Quaternion.Euler(new Vector3(0.0f, UnityEngine.Random.Range(0.0f, 360.0f), 0.0f));
-			return stateMachine_.Player.transform.position + (randomDirection * Vector3.forward * UnityEngine.Random.Range(kNearDistanceMin, kNearDistanceMax));
+			Vector3 lastNearbyPosition = Vector3.zero;
+			for (int i = 0; i < GameConstants.Instance.AIPositionRetries; i++) {
+				Quaternion randomDirection = Quaternion.Euler(new Vector3(0.0f, UnityEngine.Random.Range(0.0f, 360.0f), 0.0f));
+				Vector3 nearbyPosition = stateMachine_.Player.transform.position + (randomDirection * Vector3.forward * UnityEngine.Random.Range(kNearDistanceMin, kNearDistanceMax));
+
+				lastNearbyPosition = nearbyPosition;
+
+				if (!AIUtil.IsXZPositionOnPlatform(nearbyPosition)) {
+					continue;
+				}
+
+				return nearbyPosition;
+			}
+
+			Debug.LogWarning("Using invalid nearby position!", context: stateMachine_.Player);
+			return lastNearbyPosition;
 		}
 	}
 }
