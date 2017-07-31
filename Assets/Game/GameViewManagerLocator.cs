@@ -18,6 +18,17 @@ namespace DT.Game {
 			}
 		}
 
+		public static ViewManager Selector {
+			get {
+				if (selector_ == null) {
+					GameObject main = GameObjectUtil.FindRequired("SelectorViewManager");
+					selector_ = main.GetRequiredComponent<ViewManager>();
+				}
+				return selector_;
+			}
+		}
+
 		private static ViewManager battle_;
+		private static ViewManager selector_;
 	}
 }

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 using DT.Game.Players;
 using DTAnimatorStateMachine;
+using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 using TMPro;
@@ -55,12 +56,14 @@ namespace DT.Game.ElementSelection {
 		private const float kIntentThreshold = 0.3f;
 
 		private const float kMoveDelay = 0.16f;
+		private const float kSelectorAnimationDuration = 0.1f;
 
 		private RectTransform selectorTransform_;
 		private Player player_;
 
 		private IEnumerable<InputDevice> inputDevices_ = null;
 		private ISelectable[] selectables_;
+		private CoroutineWrapper selectorAnimationCoroutine_;
 
 		private float delay_ = 0.0f;
 		private bool paused_ = false;
@@ -91,7 +94,7 @@ namespace DT.Game.ElementSelection {
 			}
 
 			CoroutineWrapper.DoAtEndOfFrame(() => {
-				selectorTransform_ = ObjectPoolManager.CreateView(GamePrefabs.Instance.SelectorPrefab).GetComponent<RectTransform>();
+				selectorTransform_ = ObjectPoolManager.CreateView(GamePrefabs.Instance.SelectorPrefab, viewManager: GameViewManagerLocator.Selector).GetComponent<RectTransform>();
 
 				if (player_ != null) {
 					// hacky way to get a color
@@ -184,23 +187,35 @@ namespace DT.Game.ElementSelection {
 		}
 
 		private void RefreshSelectorPosition() {
+			if (selectorAnimationCoroutine_ != null) {
+				selectorAnimationCoroutine_.Cancel();
+				selectorAnimationCoroutine_ = null;
+			}
+
 			MonoBehaviour selectableMonoBehaviour = (currentSelectable_ as MonoBehaviour);
 
 			Vector3[] fourCorners = new Vector3[4];
 			RectTransform selectableTransform = selectableMonoBehaviour.GetComponent<RectTransform>();
-			selectableTransform.GetLocalCorners(fourCorners);
+			selectableTransform.GetWorldCorners(fourCorners);
 
-			// NOTE (darren): god this sucks... (setting the parent)
-			// maybe we just won't animate the selector :(
-			selectorTransform_.SetParent(selectableMonoBehaviour.transform.parent, worldPositionStays: false);
-			selectorTransform_.anchorMin = selectableTransform.anchorMin;
-			selectorTransform_.anchorMax = selectableTransform.anchorMax;
-			selectorTransform_.sizeDelta = selectableTransform.sizeDelta + kPadding;
-			selectorTransform_.pivot = selectableTransform.pivot;
-			selectorTransform_.anchoredPosition = selectableTransform.anchoredPosition + Vector2.Scale(kPadding, (selectableTransform.pivot - new Vector2(0.5f, 0.5f)));
+			// relies on XY coordinate space
+			Vector2 targetPosition = new Vector2(fourCorners.Average(v => v.x), fourCorners.Average(v => v.y));
+
+			selectorTransform_.GetWorldCorners(fourCorners);
+			Vector2 currentPosition = new Vector2(fourCorners.Average(v => v.x), fourCorners.Average(v => v.y));
+
+			Vector2 startPosition = selectorTransform_.anchoredPosition;
+			Vector2 endPosition = startPosition + (targetPosition - currentPosition);
+
+			Vector2 startSize = selectorTransform_.sizeDelta;
+			Vector2 endSize = selectableTransform.sizeDelta + kPadding;
 
 			AudioConstants.Instance.ScrollClick.PlaySFX(volumeScale: 0.7f);
 			OnSelectorMoved.Invoke();
+			selectorAnimationCoroutine_ = CoroutineWrapper.DoEaseFor(kSelectorAnimationDuration, EaseType.QuadraticEaseOut, (p) => {
+				selectorTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
+				selectorTransform_.sizeDelta = Vector2.Lerp(startSize, endSize, p);
+			});
 		}
 	}
 }
