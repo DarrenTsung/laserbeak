@@ -39,7 +39,11 @@ namespace DT.Game.InstructionPopups {
 				foreach (var view in views_) {
 					view.StartChecking();
 				}
-				CheckIfAllPlayersReady();
+
+				CoroutineWrapper.DoAfterDelay(kNoPlayersCheckDuration, () => {
+					// NOTE (darren): if all AI players then this will pass inspection
+					CheckIfAllPlayersReady();
+				});
 			});
 		}
 
@@ -57,6 +61,8 @@ namespace DT.Game.InstructionPopups {
 
 
 		// PRAGMA MARK - Internal
+		private const float kNoPlayersCheckDuration = 0.8f;
+
 		[Header("Outlets")]
 		[SerializeField]
 		private TextOutlet titleText_;
