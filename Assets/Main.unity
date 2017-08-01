@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   m_Fog: 1
-  m_FogColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 0}
+  m_FogColor: {r: 0.47794116, g: 0.87038535, b: 1, a: 0}
   m_FogMode: 3
   m_FogDensity: 0.02
   m_LinearFogStart: 0
@@ -364,7 +364,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.1102941, g: 0.1102941, b: 0.1102941, a: 0}
+  m_BackGroundColor: {r: 0.47794116, g: 0.87038535, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1747,6 +1747,8 @@ MonoBehaviour:
   PlayerFocusOffset: {x: 0, y: 0, z: 0}
   PlayerCustomizationLobbyArena: {fileID: 11400000, guid: db87c8be4fd5149478bcad74f003f2db,
     type: 2}
+  BackgroundColor: {r: 0.47794116, g: 0.87038535, b: 1, a: 0}
+  AIPositionRetries: 30
   gameModes_:
   - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}
   - {fileID: 11400000, guid: 9239b51380b6d4e95aac607e094f436f, type: 2}
@@ -1755,7 +1757,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59c2e1db59ce440a5857a90db93a705c, type: 2}
   substitutePlayerAIConfiguration_: {fileID: 11400000, guid: d05a91663d4e24437aa89123300ecddb,
     type: 2}
-  AIPositionRetries: 30
 --- !u!1 &1675223163
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
@@ -56,6 +57,11 @@ namespace DT.Game {
 		public Vector3 PlayerFocusOffset = new Vector3(0.0f, 4.0f, 0.0f);
 		public ArenaConfig PlayerCustomizationLobbyArena;
 
+		[Space]
+		public Color BackgroundColor;
+
+		[Header("AI")]
+		public int AIPositionRetries = 30;
 
 		// PRAGMA MARK - Internal
 		[Header("Properties")]
@@ -65,7 +71,23 @@ namespace DT.Game {
 		[SerializeField]
 		private AIConfiguration substitutePlayerAIConfiguration_;
 
-		[Header("AI")]
-		public int AIPositionRetries = 30;
+		private void Awake() {
+			RefreshBackgroundColor();
+		}
+
+		private void OnValidate() {
+			RefreshBackgroundColor();
+		}
+
+		private void RefreshBackgroundColor() {
+			if (Application.isPlaying) {
+				BattleCamera.Instance.Camera.backgroundColor = BackgroundColor;
+			} else {
+				foreach (var camera in UnityEngine.Object.FindObjectsOfType<Camera>().Where(c => c.gameObject.name == "BattleCamera")) {
+					camera.backgroundColor = BackgroundColor;
+				}
+			}
+			RenderSettings.fogColor = BackgroundColor;
+		}
 	}
 }
