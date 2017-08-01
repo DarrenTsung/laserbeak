@@ -39,21 +39,34 @@ namespace DT.Game.Battle {
 				loadedArena_.Dispose();
 				loadedArena_ = null;
 			}
+
+			if (loadedArenaBackdrop_ != null) {
+				loadedArenaBackdrop_.Dispose();
+				loadedArenaBackdrop_ = null;
+			}
 		}
 
 
 		// PRAGMA MARK - Internal
 		[SerializeField]
 		private ArenaConfig[] arenas_;
+		[SerializeField]
+		private GameObject backdropContainer_;
 
 		private Arena loadedArena_;
+		private IArenaBackdrop loadedArenaBackdrop_;
 
 		private void CreateArena(ArenaConfig arenaConfig, bool animate, Action callback = null) {
 			GameObject arenaObject = arenaConfig.CreateArena(parent: this.gameObject);
 			loadedArena_ = new Arena(arenaObject);
 
 			if (animate) {
-				loadedArena_.AnimateIn(callback);
+				loadedArena_.AnimateIn(() => {
+					loadedArenaBackdrop_ = new RandomizedArenaBackdrop(backdropContainer_);
+					if (callback != null) {
+						callback.Invoke();
+					}
+				});
 			} else {
 				if (callback != null) {
 					callback.Invoke();

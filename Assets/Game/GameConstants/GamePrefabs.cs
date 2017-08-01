@@ -66,6 +66,7 @@ namespace DT.Game {
 		public GameObject InGameDynamicArenaPrefab;
 		public GameObject PlayerSpawnPointPrefab;
 		public GameObject DisappearingPlatformPrefab;
+		public GameObject BackdropPlatformPrefab;
 
 		[Header("Instruction Popups")]
 		public GameObject InstructionPopupPrefab;

@@ -1489,6 +1489,8 @@ MonoBehaviour:
     type: 2}
   DisappearingPlatformPrefab: {fileID: 1417983034532250, guid: 9796194979e134f7381cb65a86b473b2,
     type: 2}
+  BackdropPlatformPrefab: {fileID: 1469350141857788, guid: 98e3f9daf94254bbf936533718eb3a9b,
+    type: 2}
   InstructionPopupPrefab: {fileID: 1008465435243600, guid: 2eb91f4cd562a45068f3f5b37f0c816d,
     type: 2}
   InstructionPlayerReadyViewPrefab: {fileID: 1364895875076536, guid: 5d8763793714d4d40a3a3feb5f265435,
@@ -1779,7 +1781,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1812539026}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1800,6 +1803,35 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6dbbe5841b4094208af64197dbb76982, type: 2}
   - {fileID: 11400000, guid: 89598db54397a4306bb47cfe01ae37ac, type: 2}
   - {fileID: 11400000, guid: fbfef6fd8c14e462f85dd286b7ec60a2, type: 2}
+  backdropContainer_: {fileID: 1812539025}
+--- !u!1 &1812539025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1812539026}
+  m_Layer: 8
+  m_Name: BackdropContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1812539026
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1812539025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1675223164}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950817757
 GameObject:
   m_ObjectHideFlags: 0
