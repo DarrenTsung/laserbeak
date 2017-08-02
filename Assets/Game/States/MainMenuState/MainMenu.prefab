@@ -292,7 +292,7 @@ MonoBehaviour:
   image_: {fileID: 114583555945289880}
   canvasGroup_: {fileID: 0}
   minAlpha_: 0
-  maxAlpha_: 0.75
+  maxAlpha_: 0.6
 --- !u!114 &114410554108600030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
