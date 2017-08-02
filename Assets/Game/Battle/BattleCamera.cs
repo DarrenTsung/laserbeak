@@ -35,7 +35,7 @@ namespace DT.Game.Battle {
 
 		// PRAGMA MARK - Public Interface
 		public Camera Camera {
-			get { return camera_; }
+			get { return camera_ ?? (camera_ = this.GetRequiredComponent<Camera>()); }
 		}
 
 		public void SetSurvivingPlayersAsTransformsOfInterest() {
@@ -87,7 +87,6 @@ namespace DT.Game.Battle {
 		private CoroutineWrapper depthOfFieldCoroutine_;
 
 		private void Awake() {
-			camera_ = this.GetRequiredComponent<Camera>();
 			initialPosition_ = this.transform.position;
 		}
 
