@@ -71,16 +71,17 @@ namespace DT.Game.ElementSelection {
 		private ISelectable currentSelectable_;
 		private ISelectable CurrentSelectable_ {
 			get { return currentSelectable_; }
-			set {
-				if (value == null) {
-					return;
-				}
+		}
 
-				currentSelectable_ = value;
-				OnSelectableHover.Invoke(currentSelectable_);
-
-				RefreshSelectorPosition();
+		private void SetCurrentSelectable(ISelectable selectable, bool animate = true) {
+			if (selectable == null) {
+				return;
 			}
+
+			currentSelectable_ = selectable;
+			OnSelectableHover.Invoke(currentSelectable_);
+
+			RefreshSelectorPosition(animate);
 		}
 
 		private void Init(GameObject elementsContainer, ISelectable startSelectable) {
@@ -102,13 +103,13 @@ namespace DT.Game.ElementSelection {
 				}
 
 				if (startSelectable != null) {
-					CurrentSelectable_ = startSelectable;
+					SetCurrentSelectable(startSelectable, animate: false);
 				} else {
 					DefaultSelectableMarker defaultSelectableMarker = elementsContainer.GetComponentInChildren<DefaultSelectableMarker>();
 					if (defaultSelectableMarker != null) {
-						CurrentSelectable_ = defaultSelectableMarker.GetComponent<ISelectable>();
+						SetCurrentSelectable(defaultSelectableMarker.GetComponent<ISelectable>(), animate: false);
 					} else {
-						CurrentSelectable_ = selectables_[0];
+						SetCurrentSelectable(selectables_[0], animate: false);
 					}
 				}
 			});
@@ -148,9 +149,9 @@ namespace DT.Game.ElementSelection {
 			if (delay_ <= 0.0f && Mathf.Abs(xMovement) > kIntentThreshold) {
 				// placeholder
 				if (xMovement > 0) {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMax <= other.xMin);
+					SetCurrentSelectable(GetBestSelectableFor((r, other) => r.xMax <= other.xMin));
 				} else {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.xMin >= other.xMax);
+					SetCurrentSelectable(GetBestSelectableFor((r, other) => r.xMin >= other.xMax));
 				}
 
 				resetDelay = true;
@@ -159,9 +160,9 @@ namespace DT.Game.ElementSelection {
 			if (delay_ <= 0.0f && Mathf.Abs(yMovement) > kIntentThreshold) {
 				// placeholder
 				if (yMovement > 0) {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMax <= other.yMin);
+					SetCurrentSelectable(GetBestSelectableFor((r, other) => r.yMax <= other.yMin));
 				} else {
-					CurrentSelectable_ = GetBestSelectableFor((r, other) => r.yMin >= other.yMax);
+					SetCurrentSelectable(GetBestSelectableFor((r, other) => r.yMin >= other.yMax));
 				}
 
 				resetDelay = true;
@@ -186,7 +187,7 @@ namespace DT.Game.ElementSelection {
 			return new Rect((Vector2)corners_[0], (Vector2)corners_[2] - (Vector2)corners_[0]);
 		}
 
-		private void RefreshSelectorPosition() {
+		private void RefreshSelectorPosition(bool animate) {
 			if (selectorAnimationCoroutine_ != null) {
 				selectorAnimationCoroutine_.Cancel();
 				selectorAnimationCoroutine_ = null;
@@ -213,10 +214,15 @@ namespace DT.Game.ElementSelection {
 
 			AudioConstants.Instance.ScrollClick.PlaySFX(volumeScale: 0.7f);
 			OnSelectorMoved.Invoke();
-			selectorAnimationCoroutine_ = CoroutineWrapper.DoEaseFor(kSelectorAnimationDuration, EaseType.QuadraticEaseOut, (p) => {
-				selectorTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
-				selectorTransform_.sizeDelta = Vector2.Lerp(startSize, endSize, p);
-			});
+			if (animate) {
+				selectorAnimationCoroutine_ = CoroutineWrapper.DoEaseFor(kSelectorAnimationDuration, EaseType.QuadraticEaseOut, (p) => {
+					selectorTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
+					selectorTransform_.sizeDelta = Vector2.Lerp(startSize, endSize, p);
+				});
+			} else {
+				selectorTransform_.anchoredPosition = endPosition;
+				selectorTransform_.sizeDelta = endSize;
+			}
 		}
 	}
 }
