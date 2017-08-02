@@ -204,8 +204,9 @@ namespace DT.Game.ElementSelection {
 			selectorTransform_.GetWorldCorners(fourCorners);
 			Vector2 currentPosition = new Vector2(fourCorners.Average(v => v.x), fourCorners.Average(v => v.y));
 
+			float scaleFactor = GameViewManagerLocator.Selector.transform.localScale.x;
 			Vector2 startPosition = selectorTransform_.anchoredPosition;
-			Vector2 endPosition = startPosition + (targetPosition - currentPosition);
+			Vector2 endPosition = startPosition + ((targetPosition - currentPosition) / scaleFactor);
 
 			Vector2 startSize = selectorTransform_.sizeDelta;
 			Vector2 endSize = selectableTransform.sizeDelta + kPadding;
