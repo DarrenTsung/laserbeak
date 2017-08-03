@@ -47,7 +47,7 @@ namespace DT.Game.Battle.Players {
 
 		private const float kDeathDelay = 1.5f;
 
-		private const float kDustParticleEmissionRate = 1.0f;
+		private const float kDustParticleEmissionRate = 1.5f;
 
 		[Header("Outlets")]
 		[SerializeField]

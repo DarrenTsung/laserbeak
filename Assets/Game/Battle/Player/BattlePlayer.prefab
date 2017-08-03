@@ -1649,7 +1649,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.65
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1794,8 +1794,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.25
-      minScalar: 0.1
+      scalar: 0.33
+      minScalar: 0.25
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2056,7 +2056,7 @@ ParticleSystem:
     boxY: 1
     boxZ: 1
     radius:
-      value: 0.3
+      value: 0.15
       mode: 0
       spread: 0
       speed:
@@ -2204,7 +2204,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 0
       maxCurve:
         serializedVersion: 2

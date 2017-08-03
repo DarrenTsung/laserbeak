@@ -9,7 +9,7 @@ using InControl;
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputMovement : BattlePlayerInputComponent {
 		// PRAGMA MARK - Internal
-		private const float kPlayerSpeed = 4.8f;
+		private const float kPlayerSpeed = 5.3f;
 
 		private void FixedUpdate() {
 			if (!Enabled) {
