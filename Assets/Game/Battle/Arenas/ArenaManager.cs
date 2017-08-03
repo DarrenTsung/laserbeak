@@ -23,6 +23,7 @@ namespace DT.Game.Battle {
 
 		public void AnimateLoadArena(ArenaConfig arenaConfig, Action callback) {
 			if (loadedArena_ != null) {
+				loadedArenaBackdrop_.AnimateOut();
 				loadedArena_.AnimateOut(() => {
 					CleanupLoadedArena();
 					CreateArena(arenaConfig, animate: true, callback: callback);
@@ -61,12 +62,8 @@ namespace DT.Game.Battle {
 			loadedArena_ = new Arena(arenaObject);
 
 			if (animate) {
-				loadedArena_.AnimateIn(() => {
-					loadedArenaBackdrop_ = new RandomizedArenaBackdrop(backdropContainer_);
-					if (callback != null) {
-						callback.Invoke();
-					}
-				});
+				loadedArenaBackdrop_ = new RandomizedArenaBackdrop(backdropContainer_);
+				loadedArena_.AnimateIn(callback);
 			} else {
 				if (callback != null) {
 					callback.Invoke();

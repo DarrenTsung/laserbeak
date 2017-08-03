@@ -9,5 +9,6 @@ using InControl;
 
 namespace DT.Game.Battle {
 	public interface IArenaBackdrop : IDisposable {
+		void AnimateOut();
 	}
 }

@@ -9,6 +9,7 @@ using DTObjectPoolManager;
 using InControl;
 
 using DT.Game.LevelEditor;
+using DT.Game.Transitions;
 
 namespace DT.Game.Battle {
 	public class RandomizedArenaBackdrop : IArenaBackdrop {
@@ -63,6 +64,11 @@ namespace DT.Game.Battle {
 					break;
 				}
 			}
+
+			transition_ = new Transition(container_).SetShuffledOrder(true);
+			transition_.SetOffsetDelay(kAnimateTime / transition_.TransitionCount);
+
+			transition_.AnimateIn();
 		}
 
 
@@ -71,8 +77,14 @@ namespace DT.Game.Battle {
 			container_.RecycleAllChildren();
 		}
 
+		void IArenaBackdrop.AnimateOut() {
+			transition_.AnimateOut();
+		}
+
 
 		// PRAGMA MARK - Internal
+		private const float kAnimateTime = 0.3f;
+
 		private const int kBackdropXRange = (int)LevelEditorConstants.kArenaWidth * 2;
 		private const int kBackdropZRange = (int)LevelEditorConstants.kArenaLength * 2;
 
@@ -93,5 +105,7 @@ namespace DT.Game.Battle {
 		private const int kFadedPlatformCount = 15;
 
 		private GameObject container_;
+
+		private Transition transition_;
 	}
 }
