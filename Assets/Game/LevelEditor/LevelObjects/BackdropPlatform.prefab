@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4452660555927550}
   - component: {fileID: 114725910224449994}
   m_Layer: 0
-  m_Name: BasicPlatform
+  m_Name: BackdropPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4183848542858234}
   - component: {fileID: 33711758558342144}
-  - component: {fileID: 65303971878268680}
   - component: {fileID: 23646805926447498}
   m_Layer: 8
   m_Name: PlatformCube
@@ -140,18 +139,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599850460759180}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65303971878268680
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1599850460759180}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114725910224449994
 MonoBehaviour:
   m_ObjectHideFlags: 1

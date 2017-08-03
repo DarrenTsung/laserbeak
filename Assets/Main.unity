@@ -1489,7 +1489,7 @@ MonoBehaviour:
     type: 2}
   DisappearingPlatformPrefab: {fileID: 1417983034532250, guid: 9796194979e134f7381cb65a86b473b2,
     type: 2}
-  BackdropPlatformPrefab: {fileID: 1469350141857788, guid: 98e3f9daf94254bbf936533718eb3a9b,
+  BackdropPlatformPrefab: {fileID: 1469350141857788, guid: 2d77ae861272e44518b3f38785cf80ec,
     type: 2}
   InstructionPopupPrefab: {fileID: 1008465435243600, guid: 2eb91f4cd562a45068f3f5b37f0c816d,
     type: 2}
