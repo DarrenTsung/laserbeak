@@ -60,7 +60,6 @@ namespace DT.Game.Battle {
 
 					GameModeIntroView.OnIntroFinished += HandleIntroFinished;
 
-					InGamePlayerCollectionView.Show();
 					InGamePlayerHUDEffect.CreateForAllPlayers();
 
 					// Action Shot - focus on a single player
