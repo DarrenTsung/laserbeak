@@ -85,7 +85,7 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - Internal
 		private const float kAnimateTime = 0.3f;
 
-		private const int kBackdropXRange = (int)LevelEditorConstants.kArenaWidth * 3;
+		private const int kBackdropXRange = (int)LevelEditorConstants.kArenaWidth * 4;
 		private const int kBackdropZRange = (int)LevelEditorConstants.kArenaLength * 3;
 
 		private const int kBackdropYMin = -60;
