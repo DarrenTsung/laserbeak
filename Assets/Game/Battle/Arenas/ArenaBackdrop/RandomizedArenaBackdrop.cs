@@ -22,7 +22,7 @@ namespace DT.Game.Battle {
 				bool placed = false;
 				for (int j = 0; j < kMaxPlacementTries; j++) {
 					float x = UnityEngine.Random.Range(-kBackdropXRange, kBackdropXRange);
-					float z = UnityEngine.Random.Range(-kBackdropZRange, kBackdropZRange);
+					float z = UnityEngine.Random.Range(-kBackdropZRange / 2.0f, kBackdropZRange * 3.0f / 2.0f);
 
 					float width = UnityEngine.Random.Range(kRandomPlatformWidthMin, kRandomPlatformWidthMax);
 					float height = UnityEngine.Random.Range(kRandomPlatformHeightMin, kRandomPlatformHeightMax);
@@ -47,7 +47,7 @@ namespace DT.Game.Battle {
 					// to the camera, we want to make sure that the y is not too high
 					//
 					// when z is -kBackdropZRange, y is subtracted by kBackdropYZInfluence
-					float zPercentage = (z + kBackdropZRange) / (2.0f * kBackdropZRange);
+					float zPercentage = (z + (kBackdropZRange / 2.0f)) / (2.0f * kBackdropZRange);
 					y -= (1.0f - zPercentage) * kBackdropYZInfluence;
 
 
@@ -85,8 +85,8 @@ namespace DT.Game.Battle {
 		// PRAGMA MARK - Internal
 		private const float kAnimateTime = 0.3f;
 
-		private const int kBackdropXRange = (int)LevelEditorConstants.kArenaWidth * 2;
-		private const int kBackdropZRange = (int)LevelEditorConstants.kArenaLength * 2;
+		private const int kBackdropXRange = (int)LevelEditorConstants.kArenaWidth * 3;
+		private const int kBackdropZRange = (int)LevelEditorConstants.kArenaLength * 3;
 
 		private const int kBackdropYMin = -60;
 		private const int kBackdropYMax = -40;
