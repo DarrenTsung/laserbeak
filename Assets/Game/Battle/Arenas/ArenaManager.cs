@@ -62,7 +62,7 @@ namespace DT.Game.Battle {
 			loadedArena_ = new Arena(arenaObject);
 
 			if (animate) {
-				loadedArenaBackdrop_ = new RandomizedArenaBackdrop(backdropContainer_);
+				loadedArenaBackdrop_ = new RandomizedArenaBackdrop(backdropContainer_, arenaObject);
 				loadedArena_.AnimateIn(callback);
 			} else {
 				if (callback != null) {

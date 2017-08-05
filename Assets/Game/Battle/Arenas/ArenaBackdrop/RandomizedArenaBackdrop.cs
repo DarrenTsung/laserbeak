@@ -14,10 +14,15 @@ using DT.Game.Transitions;
 namespace DT.Game.Battle {
 	public class RandomizedArenaBackdrop : IArenaBackdrop {
 		// PRAGMA MARK - Public Interface
-		public RandomizedArenaBackdrop(GameObject container) {
+		public RandomizedArenaBackdrop(GameObject container, GameObject arenaObject) {
 			container_ = container;
 
 			List<Rect> placedPlatforms = new List<Rect>();
+			foreach (var backdropBlocker in arenaObject.GetComponentsInChildren<IBackdropBlocker>()) {
+				Vector3 position = (backdropBlocker as MonoBehaviour).transform.position;
+				placedPlatforms.Add(RectUtil.MakeRect(new Vector2(position.x, position.z), new Vector2(backdropBlocker.Width + kHalfPadding, backdropBlocker.Height + kHalfPadding), pivot: new Vector2(0.5f, 0.5f)));
+			}
+
 			for (int i = 0; i < kFadedPlatformCount; i++) {
 				bool placed = false;
 				for (int j = 0; j < kMaxPlacementTries; j++) {
