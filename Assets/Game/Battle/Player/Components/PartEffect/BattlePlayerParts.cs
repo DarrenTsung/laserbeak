@@ -25,6 +25,12 @@ namespace DT.Game.Battle.Players {
 					}
 				}
 			}
+
+			if (InGameConstants.BattlePlayerPartsFade) {
+				coroutine_ = CoroutineWrapper.DoAfterDelay(GameConstants.Instance.BattlePlayerPartFadeDuration, () => {
+					ObjectPoolManager.Recycle(this);
+				});
+			}
 		}
 
 

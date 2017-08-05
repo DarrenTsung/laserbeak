@@ -21,6 +21,7 @@ namespace DT.Game.PlayerCustomization {
 			RegisteredPlayersUtil.UnregisterAIPlayers();
 			RegisteredPlayers.BeginPlayerRegistration();
 			PlayerCustomizationView.Show(GoBack, Continue);
+			InGameConstants.BattlePlayerPartsFade = true;
 
 			PlayerSpawner.ShouldRespawn = true;
 
@@ -36,6 +37,7 @@ namespace DT.Game.PlayerCustomization {
 		protected override void OnStateExited() {
 			BattleRecyclables.Clear();
 			PlayerSpawner.CleanupAllPlayers();
+			InGameConstants.BattlePlayerPartsFade = false;
 
 			PlayerSpawner.ShouldRespawn = false;
 

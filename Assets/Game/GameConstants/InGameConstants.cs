@@ -21,6 +21,8 @@ namespace DT.Game {
 		public static bool EnableQuacking = false;
 		public static bool EnableFlapping = true;
 
+		public static bool BattlePlayerPartsFade = false;
+
 		public static readonly HashSet<BattlePlayer> AllowedChargingLasersWhitelist = new HashSet<BattlePlayer>();
 
 		private static int? platformsLayerMask_;

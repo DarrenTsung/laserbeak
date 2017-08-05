@@ -45,6 +45,8 @@ namespace DT.Game.Battle {
 			PlayerSpawner.CleanupAllPlayers();
 			CleanupCurrentGameMode();
 
+			InGameConstants.BattlePlayerPartsFade = false;
+
 			// TODO (darren): filtering based on options will be here
 			if (QueuedGameMode != null) {
 				currentGameMode_ = QueuedGameMode;

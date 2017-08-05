@@ -20,7 +20,9 @@ namespace DT.Game.MainMenu {
 
 		protected override void OnStateEntered() {
 			BattleCamera.SetDepthOfFieldEnabled(true);
+			InGameConstants.BattlePlayerPartsFade = true;
 			RegisteredPlayers.Clear();
+
 			ArenaManager.Instance.AnimateLoadRandomArena(() => {
 				RegisteredPlayersUtil.RegisterAIPlayers(4);
 				PlayerSpawner.ShouldRespawn = true;
@@ -41,6 +43,7 @@ namespace DT.Game.MainMenu {
 
 		protected override void OnStateExited() {
 			BattleCamera.SetDepthOfFieldEnabled(false, animate: true);
+			InGameConstants.BattlePlayerPartsFade = false;
 			PlayerScores.Clear();
 			RegisteredPlayers.Clear();
 			PlayerSpawner.ShouldRespawn = false;

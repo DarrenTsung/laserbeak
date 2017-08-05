@@ -17,6 +17,14 @@ namespace DT.Game.Battle.Players {
 			foreach (var collider in colliders_) {
 				collider.enabled = true;
 			}
+
+			if (InGameConstants.BattlePlayerPartsFade) {
+				CoroutineWrapper.DoAfterDelay(GameConstants.Instance.BattlePlayerPartFadeDuration * 0.8f, () => {
+					foreach (var collider in colliders_) {
+						collider.enabled = false;
+					}
+				});
+			}
 		}
 
 

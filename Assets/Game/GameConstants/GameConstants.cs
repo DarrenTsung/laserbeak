@@ -58,6 +58,9 @@ namespace DT.Game {
 		public ArenaConfig PlayerCustomizationLobbyArena;
 
 		[Space]
+		public float BattlePlayerPartFadeDuration = 5.0f;
+
+		[Space]
 		public Color BackgroundColor;
 
 		[Header("AI")]
