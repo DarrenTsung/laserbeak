@@ -17,12 +17,6 @@ namespace DT.Game.Battle.Players {
 			foreach (var collider in colliders_) {
 				collider.enabled = true;
 			}
-
-			CoroutineWrapper.DoAfterDelay(3.2f, () => {
-				foreach (var collider in colliders_) {
-					collider.enabled = false;
-				}
-			});
 		}
 
 

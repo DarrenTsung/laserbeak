@@ -25,10 +25,6 @@ namespace DT.Game.Battle.Players {
 					}
 				}
 			}
-
-			coroutine_ = CoroutineWrapper.DoAfterDelay(4.0f, () => {
-				ObjectPoolManager.Recycle(this);
-			});
 		}
 
 
