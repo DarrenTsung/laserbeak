@@ -16,6 +16,7 @@ namespace DT.Game.Scoring {
 	public class ScoringState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Internal
 		private const float kShowDelay = 1.7f;
+		private const float kResetCameraDelay = 0.7f;
 
 		protected override void OnStateEntered() {
 			if (!PlayerScores.HasPendingScores) {
@@ -41,14 +42,17 @@ namespace DT.Game.Scoring {
 
 			InGameConstants.AllowChargingLasers = true;
 			InGameConstants.EnableQuacking = false;
-			BattleCamera.Instance.ClearTransformsOfInterest();
 		}
 
 		private void HandleScoringFinished() {
 			if (PlayerScores.HasWinner) {
 				StateMachine_.HandleGameFinished();
 			} else {
-				StateMachine_.Continue();
+				BattleCamera.Instance.ClearTransformsOfInterest();
+				BattlePlayerPart.RemoveCollidersFromAll();
+				CoroutineWrapper.DoAfterDelay(kResetCameraDelay, () => {
+					StateMachine_.Continue();
+				});
 			}
 		}
 	}
