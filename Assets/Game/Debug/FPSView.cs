@@ -16,7 +16,7 @@ namespace DT.Game {
 			}
 		}
 
-		private static bool enabled_ = true;
+		private static bool enabled_ = false;
 
 
 		// PRAGMA MARK - Internal

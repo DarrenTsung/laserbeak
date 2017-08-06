@@ -782,7 +782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &880202779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 880202778}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ea77b42f0104449bacc12f0e9ad1fae, type: 3}
   m_Name: 
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   PlayerCustomizationLobbyArena: {fileID: 11400000, guid: db87c8be4fd5149478bcad74f003f2db,
     type: 2}
   BattlePlayerPartFadeDuration: 5
-  BackgroundColor: {r: 0.47794116, g: 0.87038535, b: 1, a: 0}
+  backgroundColor_: {r: 0.47794116, g: 0.87038535, b: 1, a: 0}
   AIPositionRetries: 30
   gameModes_:
   - {fileID: 11400000, guid: 4f2f1017167dd4ebbaf598710f5714e3, type: 2}

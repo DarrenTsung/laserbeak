@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 using DTAnimatorStateMachine;
 using DTEasings;
@@ -60,8 +61,17 @@ namespace DT.Game {
 		[Space]
 		public float BattlePlayerPartFadeDuration = 5.0f;
 
+		public Color BackgroundColor {
+			get { return backgroundColor_; }
+			set {
+				backgroundColor_ = value;
+				RefreshBackgroundColor();
+			}
+		}
+
 		[Space]
-		public Color BackgroundColor;
+		[SerializeField, FormerlySerializedAs("BackgroundColor")]
+		private Color backgroundColor_;
 
 		[Header("AI")]
 		public int AIPositionRetries = 30;
