@@ -45,15 +45,16 @@ namespace DT.Game.Scoring {
 		}
 
 		private void HandleScoringFinished() {
-			if (PlayerScores.HasWinner) {
-				StateMachine_.HandleGameFinished();
-			} else {
-				BattleCamera.Instance.ClearTransformsOfInterest();
-				BattlePlayerPart.RemoveCollidersFromAll();
-				CoroutineWrapper.DoAfterDelay(kResetCameraDelay, () => {
+			BattleCamera.Instance.ClearTransformsOfInterest();
+			BattlePlayerPart.RemoveCollidersFromAll();
+
+			CoroutineWrapper.DoAfterDelay(kResetCameraDelay, () => {
+				if (PlayerScores.HasWinner) {
+					StateMachine_.HandleGameFinished();
+				} else {
 					StateMachine_.Continue();
-				});
-			}
+				}
+			});
 		}
 	}
 }
