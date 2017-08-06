@@ -18,6 +18,13 @@ namespace DT.Game {
 
 		private static bool enabled_ = false;
 
+		[RuntimeInitializeOnLoadMethod]
+		private static void Initialize() {
+			if (Application.isEditor) {
+				FPSView.Enabled = true;
+			}
+		}
+
 
 		// PRAGMA MARK - Internal
 		private const float kUpdateInterval = 0.5f;
