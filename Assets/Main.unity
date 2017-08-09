@@ -238,11 +238,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1900,6 +1900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenshotPath_: ${DESKTOP}/PHASERBEAK/Screenshots
   screenshotNameFormat_: PHASERBEAK_${DATE}_${INDEX}
+  useKeyBindings_: 1
   togglePauseKey_: 111
   screenshotKey_: 108
 --- !u!114 &2013273998
@@ -1916,6 +1917,7 @@ MonoBehaviour:
   recordingPath_: ${DESKTOP}/PHASERBEAK/Recordings
   recordingNameFormat_: Recording__${DATE}__${INDEX}
   frameRate_: 60
+  useKeyBindings_: 1
   toggleRecordingKey_: 107
   recordSetLengthInSeconds_: 15
   recordSetLengthOnStart_: 0
