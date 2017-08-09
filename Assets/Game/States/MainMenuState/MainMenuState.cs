@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
+using DTDebugMenu;
 using DTObjectPoolManager;
 
 using DT.Game.Battle;
@@ -17,8 +18,19 @@ namespace DT.Game.MainMenu {
 		private GameObject mainMenuPrefab_;
 
 		private MainMenu mainMenu_;
+		private IDynamicGroup dynamicGroup_;
+
+		protected override void OnInitialized() {
+			var inspector = GenericInspectorRegistry.Get("PHASERBEAK");
+			inspector.BeginDynamic();
+			inspector.RegisterHeader("Main Menu State");
+			inspector.RegisterButton("Toggle Main Menu Visible", ToggleMainMenuVisible);
+			dynamicGroup_ = inspector.EndDynamic();
+		}
 
 		protected override void OnStateEntered() {
+			dynamicGroup_.Enabled = true;
+
 			BattleCamera.SetDepthOfFieldEnabled(true);
 			InGameConstants.BattlePlayerPartsFade = true;
 			RegisteredPlayers.Clear();
@@ -29,8 +41,7 @@ namespace DT.Game.MainMenu {
 				PlayerSpawner.SpawnAllPlayers();
 			});
 
-			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
-			mainMenu_.Init(battleHandler: GoToPlayerCustomization, levelEditorHandler: GoToLevelEditor);
+			CreateMainMenu();
 		}
 
 		private void GoToPlayerCustomization() {
@@ -42,6 +53,8 @@ namespace DT.Game.MainMenu {
 		}
 
 		protected override void OnStateExited() {
+			dynamicGroup_.Enabled = false;
+
 			BattleCamera.SetDepthOfFieldEnabled(false, animate: true);
 			InGameConstants.BattlePlayerPartsFade = false;
 			PlayerScores.Clear();
@@ -49,20 +62,28 @@ namespace DT.Game.MainMenu {
 			PlayerSpawner.ShouldRespawn = false;
 			PlayerSpawner.CleanupAllPlayers();
 
+			CleanupMainMenu();
+		}
+
+		private void CreateMainMenu() {
+			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
+			mainMenu_.Init(battleHandler: GoToPlayerCustomization, levelEditorHandler: GoToLevelEditor);
+		}
+
+		private void CleanupMainMenu() {
 			if (mainMenu_ != null) {
 				ObjectPoolManager.Recycle(mainMenu_);
 				mainMenu_ = null;
 			}
 		}
 
-		protected override void OnStateUpdated() {
-			// Debug: remove main menu and depth of field
-			if (Input.GetKeyDown(KeyCode.D)) {
+		private void ToggleMainMenuVisible() {
+			if (mainMenu_ != null) {
+				CleanupMainMenu();
 				BattleCamera.SetDepthOfFieldEnabled(false);
-				if (mainMenu_ != null) {
-					ObjectPoolManager.Recycle(mainMenu_);
-					mainMenu_ = null;
-				}
+			} else {
+				CreateMainMenu();
+				BattleCamera.SetDepthOfFieldEnabled(true);
 			}
 		}
 	}
