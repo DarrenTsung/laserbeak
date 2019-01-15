@@ -42,7 +42,7 @@ namespace DT.Game.Battle.Pausing {
 					continue;
 				}
 
-				if (InputUtil.WasCommandPressedFor(player.InputDevice)) {
+				if (player.Input.CommandWasPressed) {
 					PauseWith(player);
 					return;
 				}

@@ -9,7 +9,7 @@ using DTEasings;
 using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
-	public class TransitionScreenDirection : TransitionUI, ITransition {
+	public class TransitionScreenDirection : TransitionUI<Vector2> {
 		// PRAGMA MARK - Static
 		private static readonly Dictionary<RectTransform, Vector2> cachedInPositions_ = new Dictionary<RectTransform, Vector2>();
 		private static Vector2 InPositionFor(RectTransform rectTransform) {
@@ -17,18 +17,15 @@ namespace DT.Game.Transitions {
 		}
 
 
-		// PRAGMA MARK - ITransition Implementation
-		public override void Refresh(TransitionType transitionType, float percentage) {
-			Direction direction = (transitionType == TransitionType.In) ? inDirection_ : outDirection_;
-
-			Vector2 inPosition = InPositionFor(RectTransform_);
-			Vector2 outPosition = inPosition + Vector2.Scale(direction.Vector2Value(), Canvas_.pixelRect.size);
-
-			Vector2 startPosition = (transitionType == TransitionType.In) ? outPosition : inPosition;
-			Vector2 endPosition = (transitionType == TransitionType.In) ? inPosition : outPosition;
-
-			RectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, percentage);
+		// PRAGMA MARK - Public Interface
+		public void SetInDirection(Direction direction) {
+			inDirection_ = direction;
 		}
+
+		public void SetOutDirection(Direction direction) {
+			outDirection_ = direction;
+		}
+
 
 		// PRAGMA MARK - Internal
 		[Header("ScreenDirection Properties")]
@@ -38,6 +35,23 @@ namespace DT.Game.Transitions {
 		private Direction outDirection_ = Direction.UP;
 
 		private Canvas canvas_;
+
+		protected override Vector2 GetInValue() { return InPositionFor(RectTransform_); }
+		protected override Vector2 GetOutValue() {
+			Direction direction = (CurrentTransitionType_ == TransitionType.In) ? inDirection_ : outDirection_;
+			return GetInValue() + Vector2.Scale(direction.Vector2Value(), Canvas_.pixelRect.size);
+		}
+
+		protected override Vector2 GetCurrentValue() { return GetAnchoredPosition(); }
+		protected override void SetCurrentValue(Vector2 value) { SetAnchoredPosition(value); }
+
+		private Vector2 GetAnchoredPosition() {
+			return RectTransform_.anchoredPosition;
+		}
+
+		private void SetAnchoredPosition(Vector2 anchoredPosition) {
+			RectTransform_.anchoredPosition = anchoredPosition;
+		}
 
 		private Canvas Canvas_ {
 			get { return canvas_ ?? (canvas_ = this.GetComponentInParent<Canvas>()); }

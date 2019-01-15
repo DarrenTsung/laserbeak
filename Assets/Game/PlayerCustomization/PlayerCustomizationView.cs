@@ -17,9 +17,9 @@ using DT.Game.Transitions;
 namespace DT.Game.PlayerCustomization {
 	public class PlayerCustomizationView : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Static
-		public static void Show(Action goBackCallback, Action continueCallback) {
+		public static void Show(Action continueCallback) {
 			view_ = ObjectPoolManager.CreateView<PlayerCustomizationView>(GamePrefabs.Instance.PlayerCustomizationViewPrefab);
-			view_.Init(goBackCallback, continueCallback);
+			view_.Init(continueCallback);
 		}
 
 		public static void Hide() {
@@ -71,8 +71,6 @@ namespace DT.Game.PlayerCustomization {
 				ObjectPoolManager.Recycle(popupView_);
 				popupView_ = null;
 			}
-
-			paused_ = false;
 		}
 
 
@@ -80,21 +78,18 @@ namespace DT.Game.PlayerCustomization {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject playerAnchorsContainer_;
-
 		[SerializeField]
 		private GameObject readyToFightContainer_;
-
 		[SerializeField]
 		private GameObject controlsContainer_;
-
 		[SerializeField]
 		private GameObject viewTransitionsContainer_;
+		[SerializeField]
+		private DelayedActionView readyToFightActionView_;
 
-		private Action goBackCallback_;
 		private Action continueCallback_;
 
 		private PopupView popupView_;
-		private bool paused_ = false;
 
 		private readonly List<IndividualPlayerCustomizationView> views_ = new List<IndividualPlayerCustomizationView>();
 
@@ -112,20 +107,6 @@ namespace DT.Game.PlayerCustomization {
 			get { return views_.All(v => !v.IsCustomizing); }
 		}
 
-		private bool Paused_ {
-			get { return paused_; }
-			set {
-				if (paused_ == value) {
-					return;
-				}
-
-				paused_ = value;
-				foreach (var view in views_) {
-					view.SetPaused(paused_);
-				}
-			}
-		}
-
 		private bool ReadyToFight {
 			get { return AtLeastOnePlayerReady && AllPlayersDoneCustomizing; }
 		}
@@ -138,70 +119,20 @@ namespace DT.Game.PlayerCustomization {
 			controlsTransition_ = new Transition(controlsContainer_);
 		}
 
-		private void Init(Action goBackCallback, Action continueCallback) {
-			if (goBackCallback == null || continueCallback == null) {
+		private void Init(Action continueCallback) {
+			if (continueCallback == null) {
 				Debug.LogError("callback is null!");
 			}
 
-			goBackCallback_ = goBackCallback;
 			continueCallback_ = continueCallback;
 
 			viewTransition_.AnimateIn();
 
 			RefreshReadyToFight();
 			RefreshControlsTab();
-		}
 
-		private void Update() {
-			if (Paused_) {
-				return;
-			}
-
-			UpdateCheckContinue();
-			UpdateCheckGoBack();
-		}
-
-		private void UpdateCheckContinue() {
-			if (!ReadyToFight) {
-				return;
-			}
-
-			if (continueCallback_ == null) {
-				return;
-			}
-
-			foreach (InputDevice inputDevice in InputManager.Devices) {
-				if (InputUtil.WasCommandPressedFor(inputDevice)) {
-					LeavePlayerCustomization();
-				}
-			}
-		}
-
-		private void UpdateCheckGoBack() {
-			foreach (var view in views_) {
-				if (view.IsJoined) {
-					continue;
-				}
-
-				Player player = view.Player;
-				if (InputUtil.WasNegativePressedFor(player.InputDevice)) {
-					OpenGoBackView(player);
-				}
-			}
-		}
-
-		private void OpenGoBackView(Player player) {
-			Paused_ = true;
-			popupView_ = PopupConfirmationView.Create("GO BACK TO THE MAIN MENU?", player, confirmCallback: () => {
-				if (goBackCallback_ != null) {
-					goBackCallback_.Invoke();
-					goBackCallback_ = null;
-				}
-				popupView_ = null;
-			}, cancelCallback: () => {
-				Paused_ = false;
-				popupView_ = null;
-			});
+			readyToFightActionView_.Init("READY TO FIGHT - HOLD ", ActionType.Command, finishedCallback: LeavePlayerCustomization, animate: false);
+			readyToFightActionView_.SetActivePredicate(() => ReadyToFight);
 		}
 
 		private void RefreshControlsTab() {
@@ -248,9 +179,6 @@ namespace DT.Game.PlayerCustomization {
 			foreach (IndividualPlayerCustomizationView view in views_.Where(v => !v.IsReady)) {
 				RegisteredPlayers.Remove(view.Player);
 			}
-
-			// prevent players from modifying state while animating out
-			Paused_ = true;
 
 			viewTransition_.AnimateOut(() => {
 				if (continueCallback_ != null) {

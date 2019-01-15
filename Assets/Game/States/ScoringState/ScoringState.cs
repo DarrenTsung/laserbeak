@@ -10,6 +10,7 @@ using InControl;
 using DT.Game.Battle;
 using DT.Game.Battle.Players;
 using DT.Game.GameModes;
+using DT.Game.Hints;
 using DT.Game.Players;
 
 namespace DT.Game.Scoring {
@@ -17,6 +18,14 @@ namespace DT.Game.Scoring {
 		// PRAGMA MARK - Internal
 		private const float kShowDelay = 1.7f;
 		private const float kResetCameraDelay = 0.7f;
+
+		private ActionHintAccumulator celebrateActionAccumulator_;
+
+		protected override void OnInitialized() {
+			celebrateActionAccumulator_ = new ActionHintAccumulator(HintKey.CelebrateAction,
+											new EventRouter<BattlePlayer>(GameNotifications.OnBattlePlayerCelebrated)
+												.WithPredicate(battlePlayer => BattlePlayerUtil.IsHuman(battlePlayer)));
+		}
 
 		protected override void OnStateEntered() {
 			if (!PlayerScores.HasPendingScores) {
@@ -26,11 +35,24 @@ namespace DT.Game.Scoring {
 
 			InGameConstants.AllowChargingLasers = false;
 			InGameConstants.EnableQuacking = true;
-			BattleCamera.Instance.SetSurvivingPlayersAsTransformsOfInterest();
 
-			CoroutineWrapper.DoAfterDelay(kShowDelay, () => {
-				InGamePlayerScoringView.Show(HandleScoringFinished);
-			});
+			GameModesProgressionNextUnlockView.ShowIfPossible();
+			ActionHintTrackerUtil.ShowIfNecessary(HintKey.CelebrateAction, HintKey.ReflectAction);
+			celebrateActionAccumulator_.BeginAccumulating();
+
+			if (InGameConstants.ZoomInOnSurvivors) {
+				BattleCamera.Instance.SetSurvivingPlayersAsTransformsOfInterest();
+			}
+
+			if (InGameConstants.ShowScoringView) {
+				CoroutineWrapper.DoAfterDelay(kShowDelay, () => {
+					InGamePlayerScoringView.Show(HandleScoringFinished);
+				});
+			} else {
+				CoroutineWrapper.DoAfterDelay(kShowDelay + 2.0f, () => {
+					HandleScoringFinished();
+				});
+			}
 		}
 
 		protected override void OnStateExited() {
@@ -42,6 +64,10 @@ namespace DT.Game.Scoring {
 
 			InGameConstants.AllowChargingLasers = true;
 			InGameConstants.EnableQuacking = false;
+
+			celebrateActionAccumulator_.EndAccumulating();
+
+			Hint.Hide();
 		}
 
 		private void HandleScoringFinished() {

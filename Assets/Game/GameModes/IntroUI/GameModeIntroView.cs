@@ -24,7 +24,22 @@ namespace DT.Game.GameModes {
 		}
 
 		// PRAGMA MARK - Static Public Interface
-		public static event Action OnIntroFinished = delegate {};
+		public static event Action OnIntroFinished {
+			add { OnIntroFinished_ += value; }
+			remove { OnIntroFinished_ -= value; }
+		}
+
+		public static event Action OnIntroFinishedPossibleMock {
+			add {
+				OnIntroFinished_ += value;
+				// Invoke if view is not showing for mock purposes
+				if (view_ == null) {
+					Debug.LogWarning("Mocking OnIntroFinishedPossibleMock for GameModeIntroView - should not happen unless testing!");
+					value.Invoke();
+				}
+			}
+			remove { OnIntroFinished_ -= value; }
+		}
 
 		public static void Show(string text, IList<Icon> icons, IList<int> playerOrdering = null, Action onFinishedCallback = null) {
 			Cleanup();
@@ -32,7 +47,6 @@ namespace DT.Game.GameModes {
 			view_ = ObjectPoolManager.CreateView<GameModeIntroView>(GamePrefabs.Instance.GameModeIntroViewPrefab);
 			view_.Init(text, icons, playerOrdering, onFinishedCallback);
 
-			oldAllowBattlePlayerMovement_ = InGameConstants.AllowBattlePlayerMovement;
 			oldAllowChargingLasers_ = InGameConstants.AllowChargingLasers;
 
 			InGameConstants.AllowBattlePlayerMovement = false;
@@ -48,9 +62,11 @@ namespace DT.Game.GameModes {
 			}
 		}
 
-		private static GameModeIntroView view_;
 
-		private static bool oldAllowBattlePlayerMovement_;
+		// PRAGMA MARK - Static Internal
+		private static event Action OnIntroFinished_ = delegate {};
+
+		private static GameModeIntroView view_;
 		private static bool oldAllowChargingLasers_;
 
 		private static IEnumerable<BattlePlayer> AllBattlePlayers {
@@ -84,7 +100,7 @@ namespace DT.Game.GameModes {
 					if (playerOrdering != null) {
 						playerIndex = playerOrdering[index];
 					}
-					createdObject.GetComponentInChildren<Image>().color = RegisteredPlayers.AllPlayers[playerIndex].Skin.BodyColor;
+					createdObject.GetComponentInChildren<Image>().color = RegisteredPlayers.AllPlayers[playerIndex].Skin.UIColor;
 					index++;
 				}
 			}
@@ -96,15 +112,16 @@ namespace DT.Game.GameModes {
 		public void Finish() {
 			if (onFinishedCallback_ != null) {
 				onFinishedCallback_.Invoke();
+				onFinishedCallback_ = null;
 			}
 			ObjectPoolManager.Recycle(this);
 			view_ = null;
 
-			InGameConstants.AllowBattlePlayerMovement = oldAllowBattlePlayerMovement_;
+			InGameConstants.AllowBattlePlayerMovement = true;
 			InGameConstants.AllowChargingLasers = oldAllowChargingLasers_;
 
 			AudioManager.Instance.SetBGMState(AudioManager.BGMState.Normal);
-			OnIntroFinished.Invoke();
+			OnIntroFinished_.Invoke();
 		}
 
 

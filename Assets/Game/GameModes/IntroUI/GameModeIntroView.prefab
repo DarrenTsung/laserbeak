@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 224381547126930642}
   - component: {fileID: 222441564253702284}
   - component: {fileID: 114346826726511320}
+  - component: {fileID: 114965753967735290}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.4044118, g: 0.2200476, b: 0.2200476, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -364,6 +365,22 @@ MonoBehaviour:
     _unityText: {fileID: 0}
     _tmpText: {fileID: 114017092845985554}
   iconLayoutGroup_: {fileID: 1030373229405614}
+--- !u!114 &114965753967735290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1731019912798398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c060023bac91460aae166d6ea02068e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textOutlet_:
+    _unityText: {fileID: 0}
+    _tmpText: {fileID: 0}
+  image_: {fileID: 114346826726511320}
+  alpha_: 1
 --- !u!222 &222043707124954596
 CanvasRenderer:
   m_ObjectHideFlags: 1

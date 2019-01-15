@@ -39,7 +39,7 @@ namespace DT.Game.Battle.Players {
 			RefreshEnabledStatus();
 		}
 
-		public void InitInput(BattlePlayer player, IInputDelegate inputDelegate) {
+		public void InitInput(BattlePlayer player, IBattlePlayerInputDelegate inputDelegate) {
 			foreach (var component in playerInputComponents_) {
 				component.Init(player, this, inputDelegate);
 			}
@@ -57,7 +57,16 @@ namespace DT.Game.Battle.Players {
 				movementCoroutine_.Cancel();
 				movementCoroutine_ = null;
 			}
-			dieWhenOffGround_.ResumeCheckingDeath();
+
+			if (resumeCheckingDeathCoroutine_ != null) {
+				StopCoroutine(resumeCheckingDeathCoroutine_);
+				resumeCheckingDeathCoroutine_ = null;
+			}
+
+			resumeCheckingDeathCoroutine_ = this.DoAfterDelay(kResumeCheckingOffGroundDelay, () => {
+				dieWhenOffGround_.ResumeCheckingDeath();
+				resumeCheckingDeathCoroutine_ = null;
+			});
 		}
 
 
@@ -71,11 +80,14 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
+		private const float kResumeCheckingOffGroundDelay = 0.15f;
+
 		private BattlePlayerInputComponent[] playerInputComponents_;
 		private readonly Dictionary<int, bool> priorityKeyEnabledMap_ = new Dictionary<int, bool>();
 
 		private CoroutineWrapper movementCoroutine_;
 		private BattlePlayerDieWhenOffGround dieWhenOffGround_;
+		private Coroutine resumeCheckingDeathCoroutine_;
 
 		private readonly HashSet<BattlePlayerInputComponent> componentsToKeepOn_ = new HashSet<BattlePlayerInputComponent>();
 

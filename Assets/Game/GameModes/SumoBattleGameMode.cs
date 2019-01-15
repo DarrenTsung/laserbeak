@@ -40,6 +40,7 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.KnockbackMultiplier = 1.42f;
 			BattlePlayerHealth.LaserDamage = 0;
 
+			InGameConstants.ShowShields = false;
 			InGameConstants.AllowChargingLasers = false;
 
 			GameModeIntroView.Show(DisplayTitle, icons);
@@ -52,6 +53,7 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.KnockbackMultiplier = 1.0f;
 			BattlePlayerHealth.LaserDamage = 1;
 
+			InGameConstants.ShowShields = true;
 			InGameConstants.AllowChargingLasers = true;
 		}
 

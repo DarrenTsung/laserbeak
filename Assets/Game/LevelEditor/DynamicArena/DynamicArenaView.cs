@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 using DTAnimatorStateMachine;
@@ -12,7 +13,12 @@ namespace DT.Game.LevelEditor {
 		// PRAGMA MARK - Public Interface
 		public event Action OnViewRefreshed = delegate {};
 
-		public void Init(DynamicArenaData dynamicArenaData) {
+		public void Init(DynamicArenaData dynamicArenaData, GameObject customPrefab) {
+			customContainer_.RecycleAllChildren();
+			if (customPrefab != null) {
+				ObjectPoolManager.Create(customPrefab, parent: customContainer_);
+			}
+
 			dynamicArenaData_ = dynamicArenaData;
 			dynamicArenaData_.OnDataDirty += HandleDataDirty;
 			HandleDataDirty();
@@ -21,7 +27,8 @@ namespace DT.Game.LevelEditor {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			this.gameObject.RecycleAllChildren();
+			customContainer_.RecycleAllChildren();
+			dynamicContainer_.RecycleAllChildren();
 
 			if (dynamicArenaData_ != null) {
 				dynamicArenaData_.OnDataDirty -= HandleDataDirty;
@@ -31,6 +38,12 @@ namespace DT.Game.LevelEditor {
 
 
 		// PRAGMA MARK - Internal
+		[Header("Outlets")]
+		[SerializeField]
+		private GameObject dynamicContainer_;
+		[SerializeField]
+		private GameObject customContainer_;
+
 		[Header("Properties")]
 		[SerializeField]
 		private bool forLevelEditor_ = true;
@@ -38,7 +51,8 @@ namespace DT.Game.LevelEditor {
 		private DynamicArenaData dynamicArenaData_;
 
 		private void HandleDataDirty() {
-			this.gameObject.RecycleAllChildren();
+			// TODO (darren): deserialize attributes to deliver payloads
+			dynamicContainer_.RecycleAllChildren();
 
 			foreach (var objectData in dynamicArenaData_.Objects) {
 				GameObject prefab = FindRequiredPrefabFor(objectData.PrefabName);
@@ -46,9 +60,11 @@ namespace DT.Game.LevelEditor {
 					continue;
 				}
 
-				var container = ObjectPoolManager.Create<DynamicArenaObjectContainer>(GamePrefabs.Instance.DynamicArenaObjectContainer, position: objectData.Position, rotation: objectData.Rotation, parent: this.gameObject);
+				var container = ObjectPoolManager.Create<DynamicArenaObjectContainer>(GamePrefabs.Instance.DynamicArenaObjectContainer, position: objectData.Position, rotation: objectData.Rotation, parent: dynamicContainer_);
 				container.transform.localScale = objectData.LocalScale;
-				container.Init(prefab);
+				GameObject instantiated = container.Init(prefab);
+
+				FillAttributesOf(instantiated, objectData.UniqueId);
 			}
 
 			foreach (var wallData in dynamicArenaData_.Walls) {
@@ -57,8 +73,10 @@ namespace DT.Game.LevelEditor {
 					continue;
 				}
 
-				var wall = ObjectPoolManager.Create<Wall>(prefab, position: wallData.Position, rotation: Quaternion.identity, parent: this.gameObject);
+				var wall = ObjectPoolManager.Create<Wall>(prefab, position: wallData.Position, rotation: Quaternion.identity, parent: dynamicContainer_);
 				wall.SetVertexLocalPositions(wallData.VertexLocalPositions);
+
+				FillAttributesOf(wall.gameObject, wallData.UniqueId);
 			}
 
 			if (forLevelEditor_) {
@@ -69,17 +87,35 @@ namespace DT.Game.LevelEditor {
 						continue;
 					}
 
-					var spawnPoint = ObjectPoolManager.Create<LevelEditorPlayerSpawnPoint>(GamePrefabs.Instance.LevelEditorPlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
+					var spawnPoint = ObjectPoolManager.Create<LevelEditorPlayerSpawnPoint>(GamePrefabs.Instance.LevelEditorPlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: dynamicContainer_);
 					spawnPoint.SetPlayerIndex(playerIndex);
 				}
 			} else {
 				for (int playerIndex = 0; playerIndex < dynamicArenaData_.PlayerSpawnPoints.Length; playerIndex++) {
 					Vector3 position = dynamicArenaData_.PlayerSpawnPoints[playerIndex];
-					ObjectPoolManager.Create(GamePrefabs.Instance.PlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: this.gameObject);
+					ObjectPoolManager.Create(GamePrefabs.Instance.PlayerSpawnPointPrefab, position: position, rotation: Quaternion.identity, parent: dynamicContainer_);
 				}
 			}
 
 			OnViewRefreshed.Invoke();
+		}
+
+		private void FillAttributesOf(GameObject instantiated, int uniqueId) {
+			Dictionary<Type, IAttributeMarker> attributeMarkers = instantiated.GetComponentsInChildren<IAttributeMarker>().ToMapWithKeys(marker => marker.AttributeType);
+			List<AttributeData> attributeDatas = dynamicArenaData_.GetAttributesFor(uniqueId);
+			if (attributeDatas == null) {
+				return;
+			}
+
+			foreach (var attributeData in attributeDatas) {
+				Type attributeType = attributeData.GetType();
+				if (!attributeMarkers.ContainsKey(attributeType)) {
+					Debug.LogWarning("Cannot find attribute marker for key: " + attributeType);
+					continue;
+				}
+
+				attributeMarkers[attributeType].SetAttribute(attributeData);
+			}
 		}
 
 		private GameObject FindRequiredPrefabFor(string prefabName) {

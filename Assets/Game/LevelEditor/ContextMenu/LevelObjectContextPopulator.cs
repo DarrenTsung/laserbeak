@@ -23,7 +23,7 @@ namespace DT.Game.LevelEditor {
 			var items = new List<ScrollableMenuItem>();
 			foreach (GameObject levelObjectPrefab in GamePrefabs.Instance.LevelEditorObjects) {
 				items.Add(new ScrollableMenuItem(thumbnail: null, name: levelObjectPrefab.name, callback: () => {
-					levelEditor_.SetObjectToPlace(levelObjectPrefab);
+					AttributeLevelEditorObjectSetter.CheckAttributesAndSetObject(levelEditor_, levelObjectPrefab);
 				}));
 			}
 			return items;

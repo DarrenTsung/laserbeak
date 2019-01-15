@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e318c2aa17a4a4952b29fecf9cd1a8d3, type: 3}
+  m_Name: BakedCJKConfiguration
+  m_EditorClassIdentifier: 
+  Font: {fileID: 12800000, guid: e0ab031724ebc4addaeaf9cb35ff5d24, type: 3}
+  useAutoSizing: 1
+  FontSize: 60
+  CharacterPadding: 5
+  FontPackingMode: 0
+  AtlasWidth: 512
+  AtlasHeight: 512
+  FontStyle: 0
+  FontStyleMod: 2
+  FontRenderMode: 6
+  OutputFontAsset: {fileID: 11400000, guid: 215304d6375cf4ae6b401e6afdf507cb, type: 2}

@@ -9,7 +9,7 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.Battle.AI {
-	public class AIInputState : MonoBehaviour, IInputDelegate {
+	public class AIInputState : MonoBehaviour, IBattlePlayerInputDelegate {
 		// PRAGMA MARK - Public Interface
 		public Vector2 MovementVector {
 			get { return movementVector_; }
@@ -45,16 +45,16 @@ namespace DT.Game.Battle.AI {
 		}
 
 
-		// PRAGMA MARK - IInputDelegate Implementation
-		Vector2 IInputDelegate.MovementVector {
+		// PRAGMA MARK - IBattlePlayerInputDelegate Implementation
+		Vector2 IBattlePlayerInputDelegate.MovementVector {
 			get { return MovementVector; }
 		}
 
-		bool IInputDelegate.DashPressed {
+		bool IBattlePlayerInputDelegate.DashPressed {
 			get { return dashPressed_; }
 		}
 
-		bool IInputDelegate.LaserPressed {
+		bool IBattlePlayerInputDelegate.LaserPressed {
 			get { return LaserPressed; }
 		}
 

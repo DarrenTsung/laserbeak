@@ -71,6 +71,8 @@ namespace DT.Game.Battle.Players {
 					}
 					soundOffset_ = Mathf.Min(soundOffset_ + 1, kMaxSoundOffset);
 					count_++;
+
+					GameNotifications.OnBattlePlayerCelebrated.Invoke(Player_);
 				}
 			}
 		}

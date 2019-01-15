@@ -8,6 +8,8 @@ using DTObjectPoolManager;
 
 using DT.Game.Battle;
 using DT.Game.Battle.Players;
+using DT.Game.Debugs;
+using DT.Game.GameModes;
 using DT.Game.Players;
 using DT.Game.Scoring;
 
@@ -31,6 +33,10 @@ namespace DT.Game.MainMenu {
 		protected override void OnStateEntered() {
 			dynamicGroup_.Enabled = true;
 
+			#if DEMO
+			PHASERBEAKDebug.ResetAllThings();
+			#endif
+
 			BattleCamera.SetDepthOfFieldEnabled(true);
 			InGameConstants.BattlePlayerPartsFade = true;
 			RegisteredPlayers.Clear();
@@ -52,6 +58,10 @@ namespace DT.Game.MainMenu {
 			mainMenu_.AnimateOut(StateMachine_.GoToLevelEditor);
 		}
 
+		private void GoToLevelSelection() {
+			mainMenu_.AnimateOut(StateMachine_.GoToLevelSelect);
+		}
+
 		protected override void OnStateExited() {
 			dynamicGroup_.Enabled = false;
 
@@ -67,7 +77,7 @@ namespace DT.Game.MainMenu {
 
 		private void CreateMainMenu() {
 			mainMenu_ = ObjectPoolManager.CreateView<MainMenu>(mainMenuPrefab_);
-			mainMenu_.Init(battleHandler: GoToPlayerCustomization, levelEditorHandler: GoToLevelEditor);
+			mainMenu_.Init(battleHandler: GoToPlayerCustomization, levelEditorHandler: GoToLevelEditor, coopHandler: GoToLevelSelection);
 		}
 
 		private void CleanupMainMenu() {

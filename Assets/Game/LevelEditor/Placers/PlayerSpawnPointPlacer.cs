@@ -25,10 +25,15 @@ namespace DT.Game.LevelEditor {
 			}
 
 			if (InputDevice_.Action3.WasReleased) {
-				DynamicArenaData_.SerializePlayerSpawnPoint(playerIndex_, this.transform.position);
 				UndoHistory_.RecordState();
+				Place();
 				Refresh(ignoreCheck: true);
 			}
+		}
+
+		protected override int SerializeToDynamicData() {
+			DynamicArenaData_.SerializePlayerSpawnPoint(playerIndex_, this.transform.position);
+			return -1;
 		}
 
 		protected override void Initialize() {

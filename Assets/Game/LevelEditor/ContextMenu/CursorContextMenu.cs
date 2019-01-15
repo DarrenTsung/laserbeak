@@ -27,7 +27,7 @@ namespace DT.Game.LevelEditor {
 
 		public void Dispose() {
 			MonoBehaviourWrapper.OnUpdate -= HandleUpdate;
-			CleanupContextMenu();
+			ScrollableMenuPopup.Hide();
 
 			foreach (var populator in populators_) {
 				populator.Dispose();
@@ -39,29 +39,13 @@ namespace DT.Game.LevelEditor {
 		private InputDevice inputDevice_;
 		private LevelEditor levelEditor_;
 
-		private ScrollableMenuPopup contextMenu_;
-
 		// no selected item populators
 		private IScrollableMenuPopulator[] populators_;
 
 		private void HandleUpdate() {
 			if (inputDevice_.Action4.WasPressed) {
-				CleanupContextMenu();
-				contextMenu_ = ScrollableMenuPopup.Create(inputDevice_, populators_.SelectMany(p => p.GetItems()));
-				contextMenu_.GetComponent<RecyclablePrefab>().OnCleanup += ClearContextMenuReferences;
+				ScrollableMenuPopup.Show(inputDevice_, populators_.SelectMany(p => p.GetItems()));
 			}
-		}
-
-		private void CleanupContextMenu() {
-			if (contextMenu_ != null) {
-				ObjectPoolManager.Recycle(contextMenu_);
-				contextMenu_ = null;
-			}
-		}
-
-		private void ClearContextMenuReferences(RecyclablePrefab unused) {
-			contextMenu_.GetComponent<RecyclablePrefab>().OnCleanup -= ClearContextMenuReferences;
-			contextMenu_ = null;
 		}
 	}
 }

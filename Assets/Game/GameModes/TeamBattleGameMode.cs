@@ -27,48 +27,42 @@ namespace DT.Game.GameModes {
 
 
 		// PRAGMA MARK - Internal
+		private const int kNumberOfTeams = 2;
+
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject[] accessoryPrefabs_;
-
-		[SerializeField]
-		private int numberOfTeams_ = 2;
 
 		private HashSet<Player>[] teams_;
 
 		protected override void Activate() {
 			PlayerSpawner.SpawnAllPlayers();
 
-			// sometimes teams will be imbalanced like 5 players being split into 3 teams
-			// let X = number of extra players which is 2 (5 % 3)
-			// we extract the X weakest players to shuffle separately at the back of the list
-			// being at the back of the list means they get divided to the imbalanced teams
-			int imbalancedCount = RegisteredPlayers.AllPlayers.Count % numberOfTeams_;
+			// Sort the players from lowest score to highest score
 			List<Player> players = RegisteredPlayers.AllPlayers.ToList();
 			players.Sort((playerA, playerB) => {
 				return PlayerScores.GetScoreFor(playerA).CompareTo(PlayerScores.GetScoreFor(playerB));
 			});
 
-			List<Player> imbalancedWeakestPlayers = players.Take(imbalancedCount).ToList();
-			imbalancedWeakestPlayers.Shuffle();
+			teams_ = new HashSet<Player>[kNumberOfTeams];
+			if (players.Count == 4 && kNumberOfTeams == 2) {
+				teams_[0] = new HashSet<Player>() { players[0], players[3] };
+				teams_[1] = new HashSet<Player>() { players[1], players[2] };
+			} else {
+				Debug.LogWarning("Assumptions failed when creating teams - random teams!");
 
-			players.RemoveRange(0, imbalancedCount);
-			players.Shuffle();
+				players.Shuffle();
 
-			players.AddRange(imbalancedWeakestPlayers);
-			// end sorting list for imbalanced players
+				int teamIndex = 0;
+				foreach (Player player in players) {
+					if (teams_[teamIndex] == null) {
+						teams_[teamIndex] = new HashSet<Player>();
+					}
 
-			teams_ = new HashSet<Player>[numberOfTeams_];
+					teams_[teamIndex].Add(player);
 
-			int teamIndex = 0;
-			foreach (Player player in players) {
-				if (teams_[teamIndex] == null) {
-					teams_[teamIndex] = new HashSet<Player>();
+					teamIndex = MathUtil.Wrap(teamIndex + 1, 0, kNumberOfTeams);
 				}
-
-				teams_[teamIndex].Add(player);
-
-				teamIndex = MathUtil.Wrap(teamIndex + 1, 0, numberOfTeams_);
 			}
 
 			// set override color for players

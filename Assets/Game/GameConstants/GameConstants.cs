@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 using DTAnimatorStateMachine;
@@ -13,10 +14,13 @@ using DT.Game.Battle;
 using DT.Game.Battle.AI;
 using DT.Game.Battle.Players;
 using DT.Game.GameModes;
+using DT.Game.LevelSelect;
 
 namespace DT.Game {
-	public class GameConstants : Singleton<GameConstants> {
+	public class GameConstants : PreExistingSingleton<GameConstants> {
 		// PRAGMA MARK - Public Interface
+		public UnityEvent OnBackgroundAccentColorChanged = new UnityEvent();
+
 		public GameMode[] GameModes {
 			get { return gameModes_; }
 		}
@@ -29,8 +33,6 @@ namespace DT.Game {
 		[Header("Basic")]
 		public int ScoreToWin = 5;
 		public int PlayersToFill = 4;
-		public bool FillWithAI = false;
-		public bool DemoMode = false;
 
 		[Space]
 		public float UIOffsetDelay = 0.1f;
@@ -61,6 +63,10 @@ namespace DT.Game {
 		[Space]
 		public float BattlePlayerPartFadeDuration = 5.0f;
 
+		[Header("Coop")]
+		public CoopLevelConfig[] CoopLevels;
+		public int MaxNumberOfWaves = 5;
+
 		public Color BackgroundColor {
 			get { return backgroundColor_; }
 			set {
@@ -69,9 +75,15 @@ namespace DT.Game {
 			}
 		}
 
+		public Color BackgroundAccentColor {
+			get { return backgroundAccentColor_; }
+		}
+
 		[Space]
 		[SerializeField, FormerlySerializedAs("BackgroundColor")]
 		private Color backgroundColor_;
+		[SerializeField]
+		private Color backgroundAccentColor_;
 
 		[Header("AI")]
 		public int AIPositionRetries = 30;
@@ -101,6 +113,19 @@ namespace DT.Game {
 				}
 			}
 			RenderSettings.fogColor = BackgroundColor;
+
+			RefreshBackgroundAccentColor();
+		}
+
+		private void RefreshBackgroundAccentColor() {
+			float H, S, V;
+			Color.RGBToHSV(backgroundColor_, out H, out S, out V);
+
+			H = Mathf.Repeat(H + 0.03f, 1.0f);
+			S = Mathf.Clamp01(S - 0.05f);
+			V = Mathf.Clamp01(V - 0.68f);
+
+			backgroundAccentColor_ = Color.HSVToRGB(H, S, V);
 		}
 	}
 }

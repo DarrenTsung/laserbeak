@@ -32,28 +32,18 @@ namespace DT.Game.LevelEditor {
 						});
 					}));
 				}
-				contextMenu_ = ScrollableMenuPopup.Create(inputDevice_, spawnPointItems);
-				contextMenu_.GetComponent<RecyclablePrefab>().OnCleanup += ClearContextMenuReferences;
+				ScrollableMenuPopup.Show(inputDevice_, spawnPointItems);
 			}));
 			return items;
 		}
 
 		void IScrollableMenuPopulator.Dispose() {
-			if (contextMenu_ != null) {
-				ObjectPoolManager.Recycle(contextMenu_);
-				contextMenu_ = null;
-			}
+			ScrollableMenuPopup.Hide();
 		}
 
 
 		// PRAGMA MARK - Internal
 		private InputDevice inputDevice_;
 		private LevelEditor levelEditor_;
-		private ScrollableMenuPopup contextMenu_;
-
-		private void ClearContextMenuReferences(RecyclablePrefab unused) {
-			contextMenu_.GetComponent<RecyclablePrefab>().OnCleanup -= ClearContextMenuReferences;
-			contextMenu_ = null;
-		}
 	}
 }

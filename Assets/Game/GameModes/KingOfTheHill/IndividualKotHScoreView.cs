@@ -18,7 +18,7 @@ namespace DT.Game.GameModes.KingOfTheHill {
 		public void Init(Player player, IKotHScoreSource scoreSource) {
 			player_ = player;
 
-			Color playerColor = player_.Skin.BodyColor;
+			Color playerColor = player_.Skin.UIColor;
 			bar_.color = playerColor;
 			nicknameText_.Color = playerColor;
 

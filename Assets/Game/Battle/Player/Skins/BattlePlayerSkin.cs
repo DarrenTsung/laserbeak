@@ -12,6 +12,10 @@ namespace DT.Game.Battle.Players {
 	[CreateAssetMenu(fileName = "BattlePlayerSkin", menuName = "Game/BattlePlayerSkin")]
 	public class BattlePlayerSkin : ScriptableObject {
 		// PRAGMA MARK - Public Interface
+		public Color UIColor {
+			get { return bodyColor_; }
+		}
+
 		public Color BodyColor {
 			get { return bodyColor_; }
 		}

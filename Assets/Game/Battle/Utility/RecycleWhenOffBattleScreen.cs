@@ -25,6 +25,11 @@ namespace DT.Game.Battle {
 				return;
 			}
 
+			bool inArena = InGameConstants.ArenaRect.Contains(this.transform.position.Vector2XZValue());
+			if (inArena) {
+				return;
+			}
+
 			if (BattleCamera.Instance == null) {
 				return;
 			}

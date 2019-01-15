@@ -21,6 +21,12 @@ namespace DT.Game.Popups {
 			return view;
 		}
 
+		public static PopupView Create(string message, IEnumerable<IInputWrapper> inputs, IList<PopupButtonConfig> buttonConfigs) {
+			var view = ObjectPoolManager.CreateView<PopupView>(GamePrefabs.Instance.PopupViewPrefab);
+			view.Init(message, inputs, buttonConfigs);
+			return view;
+		}
+
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
@@ -42,7 +48,21 @@ namespace DT.Game.Popups {
 
 		private ElementSelectionView selectionView_;
 
+		private void Init(string message, IEnumerable<IInputWrapper> inputs, IList<PopupButtonConfig> buttonConfigs) {
+			var startSelectable = Init(message, buttonConfigs);
+
+			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
+			selectionView_.Init(inputs, buttonContainer_, startSelectable);
+		}
+
 		private void Init(string message, Player player, IList<PopupButtonConfig> buttonConfigs) {
+			var startSelectable = Init(message, buttonConfigs);
+
+			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
+			selectionView_.Init(player, buttonContainer_, startSelectable);
+		}
+
+		private ISelectable Init(string message, IList<PopupButtonConfig> buttonConfigs) {
 			messageOutlet_.Text = message;
 
 			ISelectable startSelectable = null;
@@ -55,8 +75,7 @@ namespace DT.Game.Popups {
 				}
 			}
 
-			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
-			selectionView_.Init(player, buttonContainer_, startSelectable);
+			return startSelectable;
 		}
 
 		private void HandleButtonSelected() {

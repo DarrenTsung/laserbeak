@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 114978360318072808}
   - component: {fileID: 222281451873112434}
   - component: {fileID: 114045119197826740}
+  - component: {fileID: 114350983492759758}
   m_Layer: 5
   m_Name: Backdrop
   m_TagString: Untagged
@@ -722,6 +723,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114350983492759758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1340308272798860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c060023bac91460aae166d6ea02068e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textOutlet_:
+    _unityText: {fileID: 0}
+    _tmpText: {fileID: 0}
+  image_: {fileID: 114045119197826740}
+  alpha_: 0.75
 --- !u!114 &114415204605217986
 MonoBehaviour:
   m_ObjectHideFlags: 1

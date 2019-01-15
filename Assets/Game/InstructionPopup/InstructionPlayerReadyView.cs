@@ -58,7 +58,7 @@ namespace DT.Game.InstructionPopups {
 				return;
 			}
 
-			if (InputUtil.WasPositivePressedFor(player_.InputDevice)) {
+			if (player_.Input.PositiveWasPressed) {
 				ready_ = true;
 				readyImage_.color = Color.white.WithAlpha(1.0f);
 				OnReady.Invoke();

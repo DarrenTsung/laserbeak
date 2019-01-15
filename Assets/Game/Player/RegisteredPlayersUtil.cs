@@ -36,18 +36,6 @@ namespace DT.Game.Players {
 			}
 		}
 
-		public static void RegisterDebugHumanPlayers() {
-			int i = 1;
-			foreach (InputDevice device in InputManager.Devices) {
-				Player player = new Player(device);
-				player.Nickname = "DEBUG-" + i;
-				player.Skin = GetBestRandomSkin();
-
-				RegisteredPlayers.Add(player);
-				i++;
-			}
-		}
-
 		public static void UnregisterAIPlayers() {
 			foreach (Player player in RegisteredPlayers.AllPlayers.ToList()) {
 				if (player.IsAI) {

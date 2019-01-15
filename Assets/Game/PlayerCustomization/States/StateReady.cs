@@ -22,20 +22,39 @@ namespace DT.Game.PlayerCustomization.States {
 						: base(player, container, moveToNextState, moveToPreviousState) {}
 
 		public override void Update() {
-			if (InputUtil.WasNegativePressedFor(Player_.InputDevice)) {
+			if (Player_.Input.NegativeWasPressed) {
 				MoveToPreviousState();
+			}
+
+			if (spawnPlayerAfterLobbyLoaded_ && PlayerCustomizationState.LobbyArenaLoaded) {
+				SpawnPlayer();
+				spawnPlayerAfterLobbyLoaded_ = false;
 			}
 		}
 
 		public override void Cleanup() {
+			spawnPlayerAfterLobbyLoaded_ = false;
+
 			Container_.RecycleAllChildren();
 			PlayerSpawner.CleanupForPlayer(Player_);
 		}
 
 
 		// PRAGMA MARK - Internal
+		private bool spawnPlayerAfterLobbyLoaded_ = false;
+
 		protected override void Init() {
 			ObjectPoolManager.Create(GamePrefabs.Instance.PlayerReadyView, parent: Container_);
+
+			if (!PlayerCustomizationState.LobbyArenaLoaded) {
+				spawnPlayerAfterLobbyLoaded_ = true;
+				return;
+			}
+
+			SpawnPlayer();
+		}
+
+		private void SpawnPlayer() {
 			PlayerSpawner.ForceSpawnPlayer(Player_);
 		}
 	}

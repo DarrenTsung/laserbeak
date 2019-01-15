@@ -6,6 +6,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
@@ -19,28 +20,42 @@ namespace DT.Game.InstructionPopups {
 	public class PlayLoopingMovie : MonoBehaviour, IRecycleSetupSubscriber, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - IRecycleSetupSubscriber Implementation
 		void IRecycleSetupSubscriber.OnRecycleSetup() {
-			rawImage_.texture = movieTexture_;
-
-			movieTexture_.loop = true;
-			movieTexture_.Play();
+			StartCoroutine(PlayVideoCoroutine());
 		}
 
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			movieTexture_.Stop();
+			videoPlayer_.Stop();
 		}
 
 
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]
 		[SerializeField]
-		private MovieTexture movieTexture_;
+		private VideoClip videoClip_;
 
+		private VideoPlayer videoPlayer_;
 		private RawImage rawImage_;
 
 		private void Awake() {
 			rawImage_ = this.GetRequiredComponent<RawImage>();
+
+			videoPlayer_ = this.gameObject.AddComponent<VideoPlayer>();
+			videoPlayer_.isLooping = true;
+			videoPlayer_.clip = videoClip_;
+			videoPlayer_.playOnAwake = false;
+			videoPlayer_.audioOutputMode = VideoAudioOutputMode.None;
+		}
+
+		private IEnumerator PlayVideoCoroutine() {
+			videoPlayer_.Prepare();
+			while (!videoPlayer_.isPrepared) {
+				yield return null;
+			}
+
+			rawImage_.texture = videoPlayer_.texture;
+			videoPlayer_.Play();
 		}
 	}
 }

@@ -15,6 +15,15 @@ using DT.Game.Audio;
 namespace DT.Game.Battle.Lasers {
 	public class Laser : MonoBehaviour, IRecycleSetupSubscriber {
 		// PRAGMA MARK - Static
+		public static void RegisterLaserTarget(Transform transform) {
+			laserTargets_.AddRequired(transform);
+		}
+
+		public static void UnregisterLaserTarget(Transform transform) {
+			laserTargets_.RemoveRequired(transform);
+		}
+
+		private static HashSet<Transform> laserTargets_ = new HashSet<Transform>();
 
 
 		// PRAGMA MARK - Public Interface
@@ -34,9 +43,10 @@ namespace DT.Game.Battle.Lasers {
 			BattleCamera.Shake(0.14f);
 
 			Color laserColor = battlePlayer.Skin.LaserColor;
-			laserRenderer_.sharedMaterial = battlePlayer.Skin.SmearedLaserMaterial;
+			laserRenderer_.material = battlePlayer.Skin.SmearedLaserMaterial;
 			light_.color = laserColor;
 			laserHitMaterial_ = battlePlayer.Skin.LaserMaterial;
+			particleSystemRenderer_.material = battlePlayer.Skin.LaserMaterial;
 
 			GameNotifications.OnBattlePlayerShotLaser.Invoke(this, battlePlayer);
 		}
@@ -46,7 +56,11 @@ namespace DT.Game.Battle.Lasers {
 			battlePlayerSources_.Add(battlePlayer);
 		}
 
-		public void Ricochet(Vector3 normal, Vector3 velocity) {
+		public void Ricochet(Vector3 normal, Vector3 velocity, object context) {
+			if (ricochetContexts_.Contains(context)) {
+				return;
+			}
+
 			ricochetCount_++;
 			if (ricochetCount_ > kRicochetAmount) {
 				HandleHit(destroy: true);
@@ -54,6 +68,10 @@ namespace DT.Game.Battle.Lasers {
 				HandleHit(destroy: false);
 				this.transform.forward = Vector3.Reflect(this.transform.forward, normal);
 				AddSpeedFromVelocity(velocity);
+
+				// prevent hitting the same object within X timeframe (physics bug)
+				ricochetContexts_.Add(context);
+				this.DoAfterDelay(0.2f, () => ricochetContexts_.Remove(context));
 			}
 		}
 
@@ -86,6 +104,7 @@ namespace DT.Game.Battle.Lasers {
 			SpeedMultiplier = 1.0f;
 			battlePlayerSources_.Clear();
 			ricochetCount_ = 0;
+			ricochetContexts_.Clear();
 		}
 
 
@@ -102,16 +121,17 @@ namespace DT.Game.Battle.Lasers {
 		[Header("Outlets")]
 		[SerializeField]
 		private GameObject laserHitParticlePrefab_;
-
 		[SerializeField]
 		private Light light_;
-
 		[SerializeField]
 		private Renderer laserRenderer_;
+		[SerializeField]
+		private ParticleSystemRenderer particleSystemRenderer_;
 
 		private int ricochetCount_ = 0;
 		private readonly List<BattlePlayer> battlePlayerSources_ = new List<BattlePlayer>();
 		private Rigidbody rigidbody_;
+		private readonly HashSet<object> ricochetContexts_ = new HashSet<object>();
 
 		private Material laserHitMaterial_;
 
@@ -127,17 +147,17 @@ namespace DT.Game.Battle.Lasers {
 			rigidbody_.velocity = Vector3.zero;
 			rigidbody_.angularVelocity = Vector3.zero;
 
-			CurveLaserTowardPlayers();
+			CurveLaserTowardTargets();
 
 			Vector3 deltaWorldPosition = this.transform.forward * kLaserSpeed * SpeedMultiplier * Time.fixedDeltaTime;
 			rigidbody_.MovePosition(rigidbody_.position + deltaWorldPosition);
 		}
 
-		private void CurveLaserTowardPlayers() {
+		private void CurveLaserTowardTargets() {
 			Quaternion minRotation = Quaternion.identity;
 			float minDeltaAngle = float.MaxValue;
-			foreach (BattlePlayer player in BattlePlayer.ActivePlayers) {
-				Vector3 delta = (player.transform.position - this.transform.position).normalized;
+			foreach (Transform laserTarget in laserTargets_) {
+				Vector3 delta = (laserTarget.position - this.transform.position).normalized;
 				delta = delta.SetY(0.0f);
 				if (delta.magnitude <= Mathf.Epsilon) {
 					continue;

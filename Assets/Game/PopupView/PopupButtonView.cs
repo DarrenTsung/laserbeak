@@ -39,8 +39,8 @@ namespace DT.Game.Popups {
 
 
 		// PRAGMA MARK - Internal
-		private static readonly Color kDefaultOptionColor = ColorUtil.HexStringToColor("7699C1FF");
-		private static readonly Color kNonDefaultOptionColor = ColorUtil.HexStringToColor("A3A3A3FF");
+		private static readonly Color kDefaultOptionColor = ColorUtil.HexStringToColor("FFFFFF00");
+		private static readonly Color kNonDefaultOptionColor = ColorUtil.HexStringToColor("FFFFFF00");
 
 		[Header("Outlets")]
 		[SerializeField]

@@ -12,107 +12,42 @@ using InControl;
 using DT.Game.ElementSelection;
 
 namespace DT.Game.ScrollableMenuPopups {
-	public class ScrollableMenuItem {
-		public Sprite Thumbnail;
-		public string Name;
-		public Action Callback;
-
-		public ScrollableMenuItem(Sprite thumbnail, string name, Action callback) {
-			Thumbnail = thumbnail;
-			Name = name;
-			Callback = callback;
-		}
-	}
-
-	public class ScrollableMenuPopup : MonoBehaviour, IRecycleCleanupSubscriber {
+	public static class ScrollableMenuPopup {
 		// PRAGMA MARK - Static
 		public static event Action OnShown = delegate {};
 		public static event Action OnHidden = delegate {};
 
-		public static ScrollableMenuPopup Create(InputDevice inputDevice, IEnumerable<ScrollableMenuItem> items) {
-			var popup = ObjectPoolManager.CreateView<ScrollableMenuPopup>(GamePrefabs.Instance.ScrollableMenuPopupPrefab);
-			popup.Init(inputDevice, items);
-			return popup;
-		}
-
-
-
-		// PRAGMA MARK - Public Interface
-		public void Init(InputDevice inputDevice, IEnumerable<ScrollableMenuItem> items) {
-			foreach (var item in items) {
-				var view = ObjectPoolManager.Create<ScrollableMenuItemView>(GamePrefabs.Instance.ScrollableMenuItemViewPrefab, parent: layoutRectTransform_.gameObject);
-				view.Init(item, onCallbackInvoked: HideMenu);
+		public static void Show(InputDevice inputDevice, IEnumerable<ScrollableMenuItem> items) {
+			if (popup_ != null) {
+				CleanupPopup();
 			}
 
-			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
-			selectionView_.OnSelectableHover += HandleNewSelection;
-			selectionView_.Init(new InputDevice[] { inputDevice }, layoutRectTransform_.gameObject);
-
+			popup_ = ObjectPoolManager.CreateView<ScrollableMenu>(GamePrefabs.Instance.ScrollableMenuPopupPrefab);
+			popup_.Init(new IInputWrapper[] { new InputWrapperDevice(inputDevice) }, items);
+			popup_.OnRecycled += HandlePopupRecycled;
 			OnShown.Invoke();
 		}
 
-
-		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
-		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
-			if (selectionView_ != null) {
-				selectionView_.OnSelectableHover -= HandleNewSelection;
-				ObjectPoolManager.Recycle(selectionView_);
-				selectionView_ = null;
-			}
-
-			layoutRectTransform_.RecycleAllChildren();
-
-			OnHidden.Invoke();
+		public static void Hide() {
+			CleanupPopup();
 		}
 
 
 		// PRAGMA MARK - Internal
-		private const float kLerpDuration = 0.5f;
+		private static ScrollableMenu popup_;
 
-		[Header("Outlets")]
-		[SerializeField]
-		private RectTransform layoutRectTransform_;
-
-		[SerializeField]
-		private RectTransform viewportRectTransform_;
-
-		private ElementSelectionView selectionView_;
-
-		// cache memory since not threading
-		private static Vector3[] selectableCorners_ = new Vector3[4];
-		private static Vector3[] viewportCorners_ = new Vector3[4];
-		private void HandleNewSelection(ISelectable selectable) {
-			RectTransform selectionRectTransform = (selectable as MonoBehaviour).transform as RectTransform;
-			selectionRectTransform.GetWorldCorners(selectableCorners_);
-			viewportRectTransform_.GetWorldCorners(viewportCorners_);
-
-			Rect selectionRect = ConvertToRect(selectableCorners_);
-			Rect viewportRect = ConvertToRect(viewportCorners_);
-
-			if (selectionRect.yMax > viewportRect.yMax) {
-				LerpLayoutYTranslation(viewportRect.yMax - selectionRect.yMax);
-			} else if (selectionRect.yMin < viewportRect.yMin) {
-				LerpLayoutYTranslation(viewportRect.yMin - selectionRect.yMin);
+		private static void HandlePopupRecycled() {
+			if (popup_ == null) {
+				return;
 			}
+
+			popup_.OnRecycled -= HandlePopupRecycled;
+			popup_ = null;
+			OnHidden.Invoke();
 		}
 
-		private void LerpLayoutYTranslation(float yDistance) {
-			this.StopAllCoroutines();
-
-			Vector2 startPosition = layoutRectTransform_.anchoredPosition;
-			Vector2 endPosition = startPosition.AddY(yDistance);
-
-			this.DoEaseFor(kLerpDuration, EaseType.QuadraticEaseOut, (float p) => {
-				layoutRectTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
-			});
-		}
-
-		private Rect ConvertToRect(Vector3[] corners) {
-			return new Rect((Vector2)corners[0], (Vector2)corners[2] - (Vector2)corners[0]);
-		}
-
-		private void HideMenu() {
-			ObjectPoolManager.Recycle(this);
+		private static void CleanupPopup() {
+			popup_.Hide();
 		}
 	}
 }

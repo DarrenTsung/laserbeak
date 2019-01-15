@@ -76,7 +76,7 @@ namespace DT.Game.Scoring {
 
 		private void RefreshScoreBar(bool animate) {
 			int playerScore = PlayerScores.GetScoreFor(player_);
-			startScoreBar_.SetScoreCount(playerScore, player_.Skin.BodyColor, animate);
+			startScoreBar_.SetScoreCount(playerScore, player_.Skin.UIColor, animate);
 		}
 
 		private void RefreshAttributeText(bool animate) {
@@ -91,7 +91,7 @@ namespace DT.Game.Scoring {
 			}
 
 			attributeTextOutlet_.Text = attribute;
-			attributeTextOutlet_.Color = player_.Skin.BodyColor;
+			attributeTextOutlet_.Color = player_.Skin.UIColor;
 
 			bool showing = !string.IsNullOrEmpty(attribute);
 			float endScale = showing ? 1.0f : 0.0f;

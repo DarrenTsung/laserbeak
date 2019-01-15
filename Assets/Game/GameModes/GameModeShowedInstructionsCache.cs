@@ -11,7 +11,8 @@ using InControl;
 using DT.Game.InstructionPopups;
 
 namespace DT.Game.GameModes {
-	public class GameModeShowedInstructionsCache {
+	[Serializable]
+	public class GameModeShowedInstructionsCache : ISerializationCallbackReceiver {
 		// PRAGMA MARK - Static
 		public static void ResetShowedInstructionsCache() {
 			cache_ = null;
@@ -48,5 +49,24 @@ namespace DT.Game.GameModes {
 
 		// PRAGMA MARK - Public Interface
 		public HashSet<string> ShowedDisplayNames = new HashSet<string>();
+
+
+		// PRAGMA MARK - ISerializationCallbackReceiver Implementation
+		void ISerializationCallbackReceiver.OnBeforeSerialize() {
+			showedDisplayNames_ = ShowedDisplayNames.ToArray();
+		}
+
+		void ISerializationCallbackReceiver.OnAfterDeserialize() {
+			if (showedDisplayNames_ != null) {
+				ShowedDisplayNames = new HashSet<string>(showedDisplayNames_);
+			} else {
+				ShowedDisplayNames = new HashSet<string>();
+			}
+		}
+
+
+		// PRAGMA MARK - Internal
+		[SerializeField]
+		private string[] showedDisplayNames_;
 	}
 }

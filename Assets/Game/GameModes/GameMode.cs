@@ -24,6 +24,8 @@ namespace DT.Game.GameModes {
 			{ typeof(SumoBattleGameMode), 4 },
 			{ typeof(GhostGameMode), 5 },
 			{ typeof(KingOfTheHillGameMode), 6 },
+			{ typeof(LaserSurvivalBattleGameMode), 7 },
+			{ typeof(CoopLevelGameMode), 8 },
 		};
 
 		public static int GetIdFor<T>() where T : GameMode {
@@ -56,15 +58,20 @@ namespace DT.Game.GameModes {
 		}
 
 		public void LoadArena(Action callback) {
-			if (arenaWhitelist_ != null && arenaWhitelist_.Length > 0) {
-				ArenaManager.Instance.AnimateLoadArena(arenaWhitelist_.Random(), callback);
+			Action wrappedCallback = () => {
+				HandleArenaLoaded();
+				callback.Invoke();
+			};
+
+			var arenasWhitelisted = GetArenasWhitelisted();
+			if (arenasWhitelisted != null && arenasWhitelisted.Count > 0) {
+				ArenaManager.Instance.AnimateLoadArena(arenasWhitelisted.Random(), wrappedCallback);
 			} else {
-				ArenaManager.Instance.AnimateLoadRandomArena(callback);
+				ArenaManager.Instance.AnimateLoadRandomArena(wrappedCallback);
 			}
 		}
 
 		public void ShowInstructionsIfNecessary(Action callback) {
-			// TODO (darren): in demo mode reset instructions on title screen
 			if (GameModeShowedInstructionsCache.HasShowedInstructionsFor(this)) {
 				callback.Invoke();
 				return;
@@ -100,6 +107,14 @@ namespace DT.Game.GameModes {
 
 		protected abstract void Activate();
 		protected abstract void CleanupInternal();
+
+		protected virtual IList<ArenaConfig> GetArenasWhitelisted() {
+			return arenaWhitelist_;
+		}
+
+		protected virtual void HandleArenaLoaded() {
+			// stub
+		}
 
 		protected void Finish() {
 			if (onFinishedCallback_ == null) {

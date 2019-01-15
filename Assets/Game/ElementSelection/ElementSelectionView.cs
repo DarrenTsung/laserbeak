@@ -6,12 +6,14 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-using DT.Game.Players;
 using DTAnimatorStateMachine;
 using DTEasings;
+using DTLocalization;
 using DTObjectPoolManager;
 using InControl;
 using TMPro;
+
+using DT.Game.Players;
 
 namespace DT.Game.ElementSelection {
 	public class ElementSelectionView : MonoBehaviour, IRecycleCleanupSubscriber {
@@ -22,13 +24,13 @@ namespace DT.Game.ElementSelection {
 
 		public void Init(Player player, GameObject elementsContainer, ISelectable startSelectable = null) {
 			player_ = player;
-			inputDevices_ = new List<InputDevice>() { player_.InputDevice };
+			inputs_ = new List<IInputWrapper>() { player_.Input };
 
 			Init(elementsContainer, startSelectable);
 		}
 
-		public void Init(IEnumerable<InputDevice> inputDevices, GameObject elementsContainer, ISelectable startSelectable = null) {
-			inputDevices_ = inputDevices;
+		public void Init(IEnumerable<IInputWrapper> inputs, GameObject elementsContainer, ISelectable startSelectable = null) {
+			inputs_ = inputs;
 
 			Init(elementsContainer, startSelectable);
 		}
@@ -40,14 +42,18 @@ namespace DT.Game.ElementSelection {
 
 		// PRAGMA MARK - IRecycleCleanupSubscriber Implementation
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
+			CleanupSelectorAnimationCoroutine();
+
 			if (selectorTransform_ != null) {
 				ObjectPoolManager.Recycle(selectorTransform_.gameObject);
 				selectorTransform_ = null;
 			}
 
 			player_ = null;
-			inputDevices_ = null;
+			inputs_ = null;
 			paused_ = false;
+
+			Localization.OnCultureChanged -= HandleLocalizationChanged;
 		}
 
 
@@ -61,7 +67,7 @@ namespace DT.Game.ElementSelection {
 		private RectTransform selectorTransform_;
 		private Player player_;
 
-		private IEnumerable<InputDevice> inputDevices_ = null;
+		private IEnumerable<IInputWrapper> inputs_ = null;
 		private ISelectable[] selectables_;
 		private CoroutineWrapper selectorAnimationCoroutine_;
 
@@ -99,7 +105,7 @@ namespace DT.Game.ElementSelection {
 
 				if (player_ != null) {
 					// hacky way to get a color
-					selectorTransform_.GetComponentInChildren<Image>().color = GameConstants.Instance.PlayerSkins[player_.Index()].BodyColor;
+					selectorTransform_.GetComponentInChildren<Image>().color = GameConstants.Instance.PlayerSkins[player_.Index()].UIColor;
 				}
 
 				if (startSelectable != null) {
@@ -112,6 +118,8 @@ namespace DT.Game.ElementSelection {
 						SetCurrentSelectable(selectables_[0], animate: false);
 					}
 				}
+
+				Localization.OnCultureChanged += HandleLocalizationChanged;
 			});
 		}
 
@@ -120,28 +128,28 @@ namespace DT.Game.ElementSelection {
 				return;
 			}
 
-			if (inputDevices_ == null) {
+			if (inputs_ == null) {
 				return;
 			}
 
 			delay_ -= Time.deltaTime;
 
-			foreach (InputDevice inputDevice in inputDevices_) {
-				UpdateMovement(inputDevice);
+			foreach (IInputWrapper input in inputs_) {
+				UpdateMovement(input);
 			}
 
 			float horizontal = (Input.GetKey(KeyCode.RightArrow) ? 1.0f : 0.0f) + (Input.GetKey(KeyCode.LeftArrow) ? -1.0f : 0.0f);
 			float vertical = (Input.GetKey(KeyCode.UpArrow) ? 1.0f : 0.0f) + (Input.GetKey(KeyCode.DownArrow) ? -1.0f : 0.0f);
 			UpdateMovement(horizontal, vertical);
 
-			if (InputUtil.WasAnyPositiveButtonPressed(inputDevices_)) {
+			if (inputs_.Any(input => input.PositiveWasPressed)) {
 				OnSelectableSelected.Invoke(currentSelectable_);
 				currentSelectable_.HandleSelected();
 			}
 		}
 
-		private void UpdateMovement(InputDevice inputDevice) {
-			UpdateMovement(inputDevice.LeftStick.X, inputDevice.LeftStick.Y);
+		private void UpdateMovement(IInputWrapper input) {
+			UpdateMovement(input.MovementVector.x, input.MovementVector.y);
 		}
 
 		private void UpdateMovement(float xMovement, float yMovement) {
@@ -187,17 +195,31 @@ namespace DT.Game.ElementSelection {
 			return new Rect((Vector2)corners_[0], (Vector2)corners_[2] - (Vector2)corners_[0]);
 		}
 
-		private void RefreshSelectorPosition(bool animate) {
+		private void HandleLocalizationChanged() {
+			this.DoAfterFrame(() => {
+				this.DoAfterFrame(() => {
+					RefreshSelectorPosition(animate: false);
+				});
+			});
+		}
+
+		private void CleanupSelectorAnimationCoroutine() {
 			if (selectorAnimationCoroutine_ != null) {
 				selectorAnimationCoroutine_.Cancel();
 				selectorAnimationCoroutine_ = null;
 			}
+		}
+
+		private void RefreshSelectorPosition(bool animate) {
+			CleanupSelectorAnimationCoroutine();
 
 			MonoBehaviour selectableMonoBehaviour = (currentSelectable_ as MonoBehaviour);
 
 			Vector3[] fourCorners = new Vector3[4];
 			RectTransform selectableTransform = selectableMonoBehaviour.GetComponent<RectTransform>();
 			selectableTransform.GetWorldCorners(fourCorners);
+
+			Vector2 targetStartPosition = (Vector2)selectableTransform.position;
 
 			// relies on XY coordinate space
 			Vector2 targetPosition = new Vector2(fourCorners.Average(v => v.x), fourCorners.Average(v => v.y));
@@ -216,7 +238,9 @@ namespace DT.Game.ElementSelection {
 			OnSelectorMoved.Invoke();
 			if (animate) {
 				selectorAnimationCoroutine_ = CoroutineWrapper.DoEaseFor(kSelectorAnimationDuration, EaseType.QuadraticEaseOut, (p) => {
-					selectorTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition, p);
+					Vector2 currentTargetPosition = (Vector2)selectableTransform.position;
+					Vector2 targetOffsetPosition = currentTargetPosition - targetStartPosition;
+					selectorTransform_.anchoredPosition = Vector2.Lerp(startPosition, endPosition + targetOffsetPosition, p);
 					selectorTransform_.sizeDelta = Vector2.Lerp(startSize, endSize, p);
 				});
 			} else {

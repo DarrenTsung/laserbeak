@@ -26,7 +26,7 @@ namespace DT.Game.PlayerCustomization.States {
 		}
 
 		public override void Update() {
-			if (InputUtil.WasNegativePressedFor(Player_.InputDevice)) {
+			if (Player_.Input.NegativeWasPressed) {
 				MoveToPreviousState();
 			}
 		}

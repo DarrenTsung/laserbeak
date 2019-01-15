@@ -22,15 +22,36 @@ namespace DT.Game.Battle {
 		}
 
 		public void AnimateLoadArena(ArenaConfig arenaConfig, Action callback) {
+			if (animating_) {
+				TriggerQueuedCallback();
+				queuedAnimatedArenaLoad_ = arenaConfig;
+				queuedCallback_ = callback;
+				return;
+			}
+
+			Action wrappedCallback = () => {
+				animating_ = false;
+				if (callback != null) {
+					callback.Invoke();
+				}
+
+				if (queuedAnimatedArenaLoad_ != null) {
+					ArenaConfig queuedArena = queuedAnimatedArenaLoad_;
+					queuedAnimatedArenaLoad_ = null;
+					AnimateLoadArena(queuedArena, TriggerQueuedCallback);
+				}
+			};
+
+			animating_ = true;
 			if (loadedArena_ != null) {
 				loadedArenaBackdrop_.AnimateOut();
 				loadedArena_.AnimateOut(() => {
 					CleanupLoadedArena();
-					CreateArena(arenaConfig, animate: true, callback: callback);
+					CreateArena(arenaConfig, animate: true, callback: wrappedCallback);
 				});
 			} else {
 				CleanupLoadedArena();
-				CreateArena(arenaConfig, animate: true, callback: callback);
+				CreateArena(arenaConfig, animate: true, callback: wrappedCallback);
 			}
 		}
 
@@ -56,6 +77,18 @@ namespace DT.Game.Battle {
 
 		private Arena loadedArena_;
 		private IArenaBackdrop loadedArenaBackdrop_;
+
+		private bool animating_;
+
+		private ArenaConfig queuedAnimatedArenaLoad_;
+		private Action queuedCallback_;
+
+		private void TriggerQueuedCallback() {
+			if (queuedCallback_ != null) {
+				queuedCallback_.Invoke();
+				queuedCallback_ = null;
+			}
+		}
 
 		private void CreateArena(ArenaConfig arenaConfig, bool animate, Action callback = null) {
 			GameObject arenaObject = arenaConfig.CreateArena(parent: this.gameObject);

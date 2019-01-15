@@ -39,16 +39,26 @@ namespace DT.Game.Battle {
 		}
 
 		public void SetSurvivingPlayersAsTransformsOfInterest() {
+			if (debugTransformsOfInterest_) {
+				return;
+			}
+
 			survivingPlayersAsInterest_ = true;
 		}
 
-		public void SetTransformsOfInterest(IEnumerable<Transform> transformsOfInterest) {
+		public void SetTransformsOfInterest(IEnumerable<Transform> transformsOfInterest, bool debug = false) {
+			if (debugTransformsOfInterest_) {
+				return;
+			}
+
 			transformsOfInterest_ = transformsOfInterest;
+			debugTransformsOfInterest_ = true;
 		}
 
 		public void ClearTransformsOfInterest() {
 			survivingPlayersAsInterest_ = false;
 			transformsOfInterest_ = null;
+			debugTransformsOfInterest_ = false;
 		}
 
 
@@ -86,6 +96,8 @@ namespace DT.Game.Battle {
 		private CoroutineWrapper timeScaleCoroutine_;
 		private CoroutineWrapper depthOfFieldCoroutine_;
 
+		private bool debugTransformsOfInterest_ = false;
+
 		private void Awake() {
 			initialPosition_ = this.transform.position;
 		}
@@ -100,7 +112,7 @@ namespace DT.Game.Battle {
 			}
 
 			Vector3 targetPosition = initialPosition_;
-			if (transformsOfInterest_ != null) {
+			if (transformsOfInterest_ != null && transformsOfInterest_.Count() != 0) {
 				targetPosition = GetTargetPositionToHighlightInterest() + GameConstants.Instance.PlayerFocusOffset;
 			}
 

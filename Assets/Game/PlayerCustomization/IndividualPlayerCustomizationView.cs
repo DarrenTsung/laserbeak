@@ -68,6 +68,11 @@ namespace DT.Game.PlayerCustomization {
 		void IRecycleCleanupSubscriber.OnRecycleCleanup() {
 			playerViewContainer_.RecycleAllChildren();
 			paused_ = false;
+
+			if (stateHandler_ != null) {
+				stateHandler_.Cleanup();
+				stateHandler_ = null;
+			}
 		}
 
 

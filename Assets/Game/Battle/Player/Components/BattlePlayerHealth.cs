@@ -16,6 +16,7 @@ namespace DT.Game.Battle.Players {
 		public static float KnockbackMultiplier = 1.0f;
 		public static int LaserDamage = 1;
 
+		public static event Action<BattlePlayer> OnBattlePlayerKnockbacked = delegate {};
 		public static event Action<BattlePlayer, int> OnBattlePlayerDamaged = delegate {};
 		public static event Action<BattlePlayer> OnBattlePlayerDied = delegate {};
 
@@ -28,6 +29,25 @@ namespace DT.Game.Battle.Players {
 		public void Kill() {
 			invulnerable_ = false;
 			TakeDamage(kMaxDamage, forward: Vector3.zero);
+		}
+
+		public void Knockback(Vector3 forward, object damageSource = null) {
+			if (knockbackClearCoroutine_ != null) {
+				knockbackClearCoroutine_.Cancel();
+				knockbackClearCoroutine_ = null;
+			}
+
+			OnBattlePlayerKnockbacked.Invoke(Player_);
+
+			knockbackDamageSource_ = damageSource;
+			Vector3 endPosition = Player_.Rigidbody.position + (KnockbackMultiplier * kDamageKnockbackDistance * forward);
+			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration * KnockbackMultiplier, EaseType.CubicEaseOut, onFinishedCallback: () => {
+				// why do we have another delay? Because dashing pauses checking if off ground,
+				// we need to persist the source of knockback for a little bit
+				knockbackClearCoroutine_ = CoroutineWrapper.DoAfterDelay(0.1f, () => {
+					knockbackDamageSource_ = null;
+				});
+			});
 		}
 
 		public void TakeDamage(int damage, Vector3 forward, object damageSource = null) {
@@ -78,7 +98,7 @@ namespace DT.Game.Battle.Players {
 					multiplier = 0.5f;
 				}
 
-				Knockback(forward, damageSource);
+				Knockback(forward, damageSource: damageSource);
 				AudioConstants.Instance.PlayerHurt.PlaySFX(volumeScale: multiplier);
 				BattleCamera.Shake(0.55f * multiplier);
 			}
@@ -94,8 +114,6 @@ namespace DT.Game.Battle.Players {
 		public void OnRecycleSetup() {
 			HandleCollisions = true;
 			health_ = kBaseHealth;
-
-			Player_.ShieldRenderer.enabled = true;
 		}
 
 
@@ -184,15 +202,13 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private void AnimateShieldHit(bool hideShieldAfterwards = false) {
-			Color baseColor = Player_.ShieldRenderer.material.GetColor("_Color");
 			CoroutineWrapper.DoEaseFor(kShieldAnimateDuration, EaseType.QuadraticEaseOut, (float percentage) => {
 				float inversePercentage = 1.0f - percentage;
 				float alpha = Mathf.Lerp(GameConstants.Instance.PlayerShieldAlphaMin, kShieldAlphaMax, inversePercentage);
-				Color newColor = baseColor.WithAlpha(alpha);
-				Player_.ShieldRenderer.material.SetColor("_Color", newColor);
+				Player_.SetShieldAlpha(alpha);
 			}, () => {
 				if (hideShieldAfterwards) {
-					Player_.ShieldRenderer.enabled = false;
+					Player_.SetShieldAlpha(0.0f);
 				}
 			});
 		}
@@ -201,23 +217,6 @@ namespace DT.Game.Battle.Players {
 			foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>()) {
 				renderer.sharedMaterial = material;
 			}
-		}
-
-		private void Knockback(Vector3 forward, object damageSource = null) {
-			if (knockbackClearCoroutine_ != null) {
-				knockbackClearCoroutine_.Cancel();
-				knockbackClearCoroutine_ = null;
-			}
-
-			knockbackDamageSource_ = damageSource;
-			Vector3 endPosition = Player_.Rigidbody.position + (KnockbackMultiplier * kDamageKnockbackDistance * forward);
-			Player_.InputController.MoveTo(Player_, endPosition, kDamageKnockbackDuration * KnockbackMultiplier, EaseType.CubicEaseOut, onFinishedCallback: () => {
-				// why do we have another delay? Because dashing pauses checking if off ground,
-				// we need to persist the source of knockback for a little bit
-				knockbackClearCoroutine_ = CoroutineWrapper.DoAfterDelay(0.1f, () => {
-					knockbackDamageSource_ = null;
-				});
-			});
 		}
 
 		private void SetInvulnerableFor(float time) {

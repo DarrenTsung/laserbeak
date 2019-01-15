@@ -14,7 +14,7 @@ namespace DT.Game.Battle.Players {
 			set { enabled_ = value; }
 		}
 
-		public void Init(BattlePlayer player, BattlePlayerInputController controller, IInputDelegate inputDelegate) {
+		public void Init(BattlePlayer player, BattlePlayerInputController controller, IBattlePlayerInputDelegate inputDelegate) {
 			player_ = player;
 			controller_ = controller;
 			inputDelegate_ = inputDelegate;
@@ -37,7 +37,7 @@ namespace DT.Game.Battle.Players {
 			get { return controller_; }
 		}
 
-		protected IInputDelegate InputDelegate_ {
+		protected IBattlePlayerInputDelegate InputDelegate_ {
 			get { return inputDelegate_; }
 		}
 
@@ -54,7 +54,7 @@ namespace DT.Game.Battle.Players {
 		}
 
 		private BattlePlayerInputController controller_;
-		private IInputDelegate inputDelegate_;
+		private IBattlePlayerInputDelegate inputDelegate_;
 		private BattlePlayer player_;
 
 		private bool enabled_;

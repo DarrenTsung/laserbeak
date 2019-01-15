@@ -38,7 +38,7 @@ namespace DT.Game.Battle.Players {
 		public void Init(Player player) {
 			battlePlayer_ = PlayerSpawner.GetBattlePlayerFor(player);
 			nicknameText_.Text = player.Nickname;
-			playerColor_ = player.Skin.BodyColor;
+			playerColor_ = player.Skin.UIColor;
 
 			UpdateAnchoredPosition();
 			Animate();

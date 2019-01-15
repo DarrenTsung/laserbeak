@@ -45,17 +45,15 @@ namespace DT.Game.Players {
 		}
 
 		public bool IsAI {
-			get { return InputDevice == null; }
+			get { return Input == null; }
 		}
 
-		// TODO (darren): will probably need an input device recovery system (if controller gets unplugged)
-		// will probably require InputDevice to be public set
-		public InputDevice InputDevice {
-			get { return inputDevice_; }
+		public IInputWrapper Input {
+			get { return input_; }
 		}
 
-		public Player(InputDevice inputDevice) {
-			inputDevice_ = inputDevice;
+		public Player(IInputWrapper input) {
+			input_ = input;
 		}
 
 		public override string ToString() {
@@ -66,7 +64,7 @@ namespace DT.Game.Players {
 		// PRAGMA MARK - Internal
 		private BattlePlayerSkin skin_ = null;
 		private string nickname_ = "";
-		private InputDevice inputDevice_;
+		private IInputWrapper input_;
 
 		private bool IsValidNickname(string nickname) {
 			if (nickname == null) {

@@ -110,6 +110,27 @@ namespace DT.Game {
 		[Header("Scores")]
 		public GameObject ScoreBarViewPrefab;
 
+		[Header("Hints")]
+		public GameObject HintPrefab;
+
+		[Header("Game Modes")]
+		public GameObject GameModesProgressionNextUnlockViewPrefab;
+
+		[Header("Level Select")]
+		public GameObject LevelSelectViewPrefab;
+		public GameObject CoopLevelSelectablePrefab;
+
+		[Header("General UI")]
+		public GameObject DelayedActionViewPrefab;
+
+		[Header("Action Icons")]
+		public GameObject ActionIconLetterView;
+		public GameObject ActionLabelViewPrefab;
+		public GameObject ActionLabelBarPrefab;
+
+		[Header("Laser Survival")]
+		public GameObject PatrolLaserPrefab;
+
 
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]

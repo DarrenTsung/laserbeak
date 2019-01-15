@@ -38,7 +38,7 @@ namespace DT.Game.Players {
 
 
 		// PRAGMA MARK - Internal
-		private const float kNudgeDistance = 5.0f;
+		private const float kNudgeDistance = 4.0f;
 		private const float kNudgeSpeed = 2.0f;
 
 		[Header("Outlets")]
@@ -64,7 +64,7 @@ namespace DT.Game.Players {
 
 		private void HandleSkinChanged() {
 			if (player_.Skin != null) {
-				nicknameText_.Color = player_.Skin.BodyColor;
+				nicknameText_.Color = player_.Skin.UIColor;
 				image_.sprite = player_.Skin.ThumbnailSprite;
 				image_.color = Color.white;
 			} else {
@@ -75,12 +75,12 @@ namespace DT.Game.Players {
 		}
 
 		private void UpdateProfileNudge() {
-			if (player_.InputDevice == null) {
+			if (player_.Input == null) {
 				return;
 			}
 
 			float oldX = profileTransform_.anchoredPosition.x;
-			float targetX = player_.InputDevice.LeftStick.X * kNudgeDistance;
+			float targetX = player_.Input.MovementVector.x * kNudgeDistance;
 			float newX = Mathf.Lerp(oldX, targetX, kNudgeSpeed);
 			profileTransform_.anchoredPosition = new Vector2(newX, 0.0f);
 		}

@@ -40,8 +40,8 @@ namespace DT.Game.Battle.Players {
 
 
 		// PRAGMA MARK - Internal
-		private const float kCheckRadius = 0.33f;
-		private const int kCheckSampleCount = 5;
+		private const float kCheckRadius = 0.35f;
+		private const int kCheckSampleCount = 6;
 
 		private const float kPenetrationLength = 0.3f;
 
@@ -93,12 +93,14 @@ namespace DT.Game.Battle.Players {
 			}
 
 			int resultCount = GetRaycastPositions().Sum(pos => CollisionsAtPosition(pos));
-			if (checkDeath_ && resultCount <= 0) {
+			bool isOffGround = resultCount <= 0;
+			if (checkDeath_ && isOffGround) {
 				enabled_ = false;
 
 				GameNotifications.OnBattlePlayerFellOffGround.Invoke(Player_);
 
 				Player_.InputController.DisableInput(BattlePlayerInputController.PriorityKey.OffGround);
+				Player_.InputController.CancelAnyAnimatedMovements();
 				Player_.Rigidbody.constraints = RigidbodyConstraints.None;
 				Player_.Rigidbody.drag = 0.0f;
 				dustParticleSystem_.SetEmissionRateOverDistance(0.0f);
@@ -112,10 +114,16 @@ namespace DT.Game.Battle.Players {
 			return Physics.RaycastNonAlloc(new Ray(position, -Vector3.up), results_, maxDistance: kPenetrationLength, layerMask: InGameConstants.PlatformsLayerMask);
 		}
 
+		private const float kVelocityCheckScale = 0.2f;
 		private IEnumerable<Vector3> GetRaycastPositions() {
 			foreach (Vector3 offset in CachedOffsets_) {
 				yield return this.transform.position + offset;
 			}
+
+			Vector3 velocityOffset = Player_.Rigidbody.velocity;
+			velocityOffset.y = 0.0f;
+			velocityOffset *= kVelocityCheckScale;
+			yield return this.transform.position + velocityOffset;
 		}
 	}
 }

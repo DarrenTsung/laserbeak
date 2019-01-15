@@ -101,6 +101,7 @@ namespace DT.Game.PlayerCustomization.Nickname {
 			set {
 				string newNickname = value.ToUpper();
 
+				player_.Nickname = newNickname;
 				cachedNicknames_[player_] = newNickname;
 				RefreshNicknameText();
 			}

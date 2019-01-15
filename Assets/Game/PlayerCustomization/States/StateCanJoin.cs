@@ -20,7 +20,8 @@ namespace DT.Game.PlayerCustomization.States {
 						: base(player, container, moveToNextState, moveToPreviousState) {}
 
 		public override void Update() {
-			if (InputUtil.WasPositivePressedFor(Player_.InputDevice)) {
+			if (Player_.Input.PositiveWasPressed) {
+				GameNotifications.OnPlayerJoinedGame.Invoke(Player_);
 				MoveToNextState();
 			}
 		}
@@ -32,7 +33,9 @@ namespace DT.Game.PlayerCustomization.States {
 
 		// PRAGMA MARK - Internal
 		protected override void Init() {
-			Player_.Nickname = RegisteredPlayers.GetDefaultNicknameFor(Player_);
+			if (string.IsNullOrEmpty(Player_.Nickname)) {
+				Player_.Nickname = RegisteredPlayers.GetDefaultNicknameFor(Player_);
+			}
 			Player_.Skin = null;
 
 			ObjectPoolManager.Create(GamePrefabs.Instance.CanJoinViewPrefab, parent: Container_);

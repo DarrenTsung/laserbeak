@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 224660375063399900}
   - component: {fileID: 222747018534248972}
   - component: {fileID: 114836973382836098}
-  - component: {fileID: 114844532207786162}
+  - component: {fileID: 114280478650294240}
   m_Layer: 5
   m_Name: ScrollableMenuPopup
   m_TagString: Untagged
@@ -76,6 +76,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114280478650294240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968367838565832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1c78eb561b44a85ac4fc8eff732863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layoutRectTransform_: {fileID: 224160989596961890}
+  viewportRectTransform_: {fileID: 224243887870898764}
 --- !u!114 &114374769244774264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.1764706}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -114,19 +127,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114844532207786162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1968367838565832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcef2e7b644c54086a8c78ca5362973f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layoutRectTransform_: {fileID: 224160989596961890}
-  viewportRectTransform_: {fileID: 224243887870898764}
 --- !u!114 &114967320643091072
 MonoBehaviour:
   m_ObjectHideFlags: 1

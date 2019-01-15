@@ -374,6 +374,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frameLag_: 1
+  useSharedMaterial_: 0
+  noSmearForward_: 0
   renderer_: {fileID: 23174452395410766}
 --- !u!198 &198501177034926248
 ParticleSystem:

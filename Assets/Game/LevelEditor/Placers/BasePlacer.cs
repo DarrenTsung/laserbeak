@@ -9,9 +9,9 @@ using DTObjectPoolManager;
 using InControl;
 
 namespace DT.Game.LevelEditor {
-	public class BasePlacer : MonoBehaviour, IPlacer, IRecycleCleanupSubscriber {
+	public abstract class BasePlacer : MonoBehaviour, IPlacer, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - IPlacer Implementation
-		void IPlacer.Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor, Action<GameObject> instanceInitialization) {
+		void IPlacer.Init(GameObject prefab, DynamicArenaData dynamicArenaData, UndoHistory undoHistory, InputDevice inputDevice, LevelEditor levelEditor, Action<GameObject> instanceInitialization, IList<AttributeData> attributeDatas) {
 			if (prefab == null) {
 				Debug.LogWarning("Cannot set preview object of null object!");
 				return;
@@ -20,6 +20,7 @@ namespace DT.Game.LevelEditor {
 			dynamicArenaData_ = dynamicArenaData;
 			undoHistory_ = undoHistory;
 			inputDevice_ = inputDevice;
+			attributeDatas_ = attributeDatas;
 
 			levelEditor_ = levelEditor;
 			levelEditor_.Cursor.OnMoved += HandleCusorMoved;
@@ -66,6 +67,8 @@ namespace DT.Game.LevelEditor {
 		private GameObject placablePrefab_;
 		private GameObject previewObject_;
 
+		private IList<AttributeData> attributeDatas_;
+
 		protected DynamicArenaData DynamicArenaData_ { get { return dynamicArenaData_; } }
 		protected UndoHistory UndoHistory_ { get { return undoHistory_; } }
 		protected InputDevice InputDevice_ { get { return inputDevice_; } }
@@ -73,6 +76,25 @@ namespace DT.Game.LevelEditor {
 
 		protected GameObject PlacablePrefab_ { get { return placablePrefab_; } }
 		protected GameObject PreviewObject_ { get { return previewObject_; } }
+
+		protected abstract int SerializeToDynamicData();
+
+		protected void Place() {
+			int uniqueId = SerializeToDynamicData();
+			bool hasAttributes = attributeDatas_ != null && attributeDatas_.Count > 0;
+			if (hasAttributes) {
+				bool validUniqueId = uniqueId > 0;
+				if (validUniqueId) {
+					foreach (var attributeData in attributeDatas_) {
+						AttributeDynamicArenaDataWriter.Serialize(attributeData, uniqueId, DynamicArenaData_);
+					}
+				} else {
+					Debug.LogWarning("Cannot add attributes to invalid uniqueId - will not add!");
+				}
+			}
+
+			UndoHistory_.RecordState();
+		}
 
 		protected virtual void HandleCusorMoved() {
 			// stub

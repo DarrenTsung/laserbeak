@@ -4,8 +4,10 @@ using UnityEngine;
 
 using DTAnimatorStateMachine;
 using DTCommandPalette;
+using DTViewManager;
 
 using DT.Game.Audio;
+using DT.Game.Hints;
 
 namespace DT.Game {
 	[RequireComponent(typeof(Animator))]
@@ -32,9 +34,17 @@ namespace DT.Game {
 			animator_.SetTrigger("GoToLevelEditor");
 		}
 
+		public void GoToLevelSelect() {
+			animator_.SetTrigger("GoToLevelSelect");
+		}
+
 		public void HandleBattleFinished() {
 			animator_.SetTrigger("BattleFinished");
 			OnBattleFinished.Invoke();
+		}
+
+		public void RestartBattle() {
+			animator_.SetTrigger("RestartBattle");
 		}
 
 		public void Continue() {
@@ -51,6 +61,7 @@ namespace DT.Game {
 
 		private void Awake() {
 			Cursor.visible = false;
+			Application.targetFrameRate = 60;
 
 			animator_ = this.GetRequiredComponent<Animator>();
 			this.ConfigureAllStateBehaviours(animator_);

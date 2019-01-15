@@ -23,9 +23,9 @@ namespace DT.Game {
 			get { return menuView_ != null; }
 		}
 
-		public static void Show(InputDevice inputDevice, string title, Dictionary<string, Action> menuItemMap) {
+		public static void Show(IInputWrapper input, string title, Dictionary<string, Action> menuItemMap) {
 			menuView_ = ObjectPoolManager.CreateView<MenuView>(GamePrefabs.Instance.MenuViewPrefab);
-			menuView_.Init(inputDevice, title, menuItemMap);
+			menuView_.Init(input, title, menuItemMap);
 
 			OnShown.Invoke();
 		}
@@ -42,7 +42,7 @@ namespace DT.Game {
 
 
 		// PRAGMA MARK - Public Interface
-		public void Init(InputDevice inputDevice, string title, Dictionary<string, Action> menuItemMap) {
+		public void Init(IInputWrapper input, string title, Dictionary<string, Action> menuItemMap) {
 			titleText_.Text = title;
 
 			foreach (var kvp in menuItemMap) {
@@ -51,7 +51,7 @@ namespace DT.Game {
 			}
 
 			selectionView_ = ObjectPoolManager.CreateView<ElementSelectionView>(GamePrefabs.Instance.ElementSelectionViewPrefab);
-			selectionView_.Init(new InputDevice[] { inputDevice }, layoutContainer_);
+			selectionView_.Init(new IInputWrapper[] { input }, layoutContainer_);
 		}
 
 

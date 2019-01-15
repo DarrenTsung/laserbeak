@@ -10,15 +10,7 @@ using DTEasings;
 using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
-	public class TransitionLocalPosition : TransitionBase, ITransition {
-		// PRAGMA MARK - ITransition Implementation
-		public override void Refresh(TransitionType transitionType, float percentage) {
-			Vector3 startLocalPosition = (transitionType == TransitionType.In) ? outLocalPosition_ : inLocalPosition_;
-			Vector3 endLocalPosition = (transitionType == TransitionType.In) ? inLocalPosition_ : outLocalPosition_;
-
-			SetLocalPosition(Vector3.Lerp(startLocalPosition, endLocalPosition, percentage));
-		}
-
+	public class TransitionLocalPosition : TransitionBase<Vector3> {
 		// PRAGMA MARK - Internal
 		[Header("Outlets")]
 		[SerializeField]
@@ -30,10 +22,18 @@ namespace DT.Game.Transitions {
 		[SerializeField]
 		private Vector3 outLocalPosition_ = Vector3.zero;
 
+		protected override Vector3 GetInValue() { return inLocalPosition_; }
+		protected override Vector3 GetOutValue() { return outLocalPosition_; }
+
+		protected override Vector3 GetCurrentValue() { return GetLocalPosition(); }
+		protected override void SetCurrentValue(Vector3 value) { SetLocalPosition(value); }
+
 		private void SetLocalPosition(Vector3 localPosition) {
-			if (transform_ != null) {
-				transform_.localPosition = localPosition;
-			}
+			transform_.localPosition = localPosition;
+		}
+
+		private Vector3 GetLocalPosition() {
+			return transform_.localPosition;
 		}
 	}
 }

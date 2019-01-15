@@ -8,7 +8,7 @@ using UnityEngine;
 using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
-	public abstract class TransitionUI : TransitionBase, ITransition {
+	public abstract class TransitionUI<T> : TransitionBase<T>, ITransition {
 		// PRAGMA MARK - Internal
 		private RectTransform rectTransform_;
 		protected RectTransform RectTransform_ {

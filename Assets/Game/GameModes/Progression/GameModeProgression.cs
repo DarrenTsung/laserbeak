@@ -21,6 +21,23 @@ namespace DT.Game.GameModes {
 			}
 		}
 
+		public static void Reset() {
+			unlockedData_ = null;
+			PlayerPrefs.DeleteKey("GameModeProgression::UnlockedData");
+		}
+
+		public static GameMode RecentlyUnlockedGameMode {
+			get { return BattleState.QueuedGameMode; }
+		}
+
+		public static bool HasLockedGameModes() {
+			return GameConstants.Instance.GameModes.Any(mode => !UnlockedData_.IsUnlocked(mode.Id));
+		}
+
+		public static int PlaysUntilNextUnlock() {
+			return Mathf.Max(kUnlockAfterPlays - TotalTrackedPlayCount(), 0);
+		}
+
 		[Serializable]
 		private class GameModesUnlocked {
 			public bool IsUnlocked(int gameModeId) {
@@ -49,7 +66,12 @@ namespace DT.Game.GameModes {
 			private int[] unlockedIds_;
 		}
 
+		#if DEMO
+		private const int kUnlockAfterPlays = 2;
+		#else
 		private const int kUnlockAfterPlays = 3;
+		#endif
+
 
 		private static GameModesUnlocked unlockedData_ = null;
 		private static GameModesUnlocked UnlockedData_ {
@@ -68,9 +90,13 @@ namespace DT.Game.GameModes {
 			}
 		}
 
+		private static int TotalTrackedPlayCount() {
+			return GameConstants.Instance.GameModes.Sum(mode => GameModesPlayedTracker.GetPlayedCountFor(mode));
+		}
+
 		private static void HandleGameModePlayTracked(GameMode gameMode) {
-			int totalPlayCount = GameConstants.Instance.GameModes.Sum(mode => GameModesPlayedTracker.GetPlayedCountFor(mode));
-			bool shouldUnlock = totalPlayCount >= kUnlockAfterPlays;
+			int totalTrackedPlayCount = TotalTrackedPlayCount();
+			bool shouldUnlock = totalTrackedPlayCount >= kUnlockAfterPlays;
 			if (!shouldUnlock) {
 				return;
 			}

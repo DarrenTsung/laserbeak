@@ -24,5 +24,9 @@ namespace DT.Game.Battle.Players {
 		public static Vector2 XZVectorFromTo(BattlePlayer playerA, BattlePlayer playerB) {
 			return (playerB.transform.position - playerA.transform.position).Vector2XZValue();
 		}
+
+		public static bool IsHuman(BattlePlayer battlePlayer) {
+			return !PlayerSpawner.GetPlayerFor(battlePlayer).IsAI;
+		}
 	}
 }

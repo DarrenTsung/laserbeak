@@ -6,11 +6,13 @@ using UnityEngine.Events;
 
 using DT.Game.Battle.Lasers;
 using DT.Game.Battle.Players;
+using DT.Game.Players;
 
 namespace DT.Game {
 	public class BattlePlayerLaserEvent : UnityEvent<Laser, BattlePlayer> {}
 	public class BattlePlayerEvent : UnityEvent<BattlePlayer> {}
 	public class BattlePlayerObjectEvent : UnityEvent<BattlePlayer, Object> {}
+	public class PlayerEvent : UnityEvent<Player> {}
 
 	// first is battle player was hit, second was battle player that hit the other player
 	public class BattlePlayerDashHitEvent : UnityEvent<BattlePlayer, BattlePlayer> {}
@@ -24,5 +26,8 @@ namespace DT.Game {
 		public static BattlePlayerDashHitEvent OnBattlePlayerDashHit = new BattlePlayerDashHitEvent();
 		public static BattlePlayerObjectEvent OnBattlePlayerDiedWithSource = new BattlePlayerObjectEvent();
 		public static BattlePlayerEvent OnBattlePlayerFellOffGround = new BattlePlayerEvent();
+		public static PlayerEvent OnPlayerJoinedGame = new PlayerEvent();
+
+		public static BattlePlayerEvent OnBattlePlayerCelebrated = new BattlePlayerEvent();
 	}
 }

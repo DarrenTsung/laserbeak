@@ -7,6 +7,8 @@ using DTEasings;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Walls;
+
 namespace DT.Game.Battle.Players {
 	public class BattlePlayerInputDash : BattlePlayerInputComponent {
 		// PRAGMA MARK - Static
@@ -70,9 +72,25 @@ namespace DT.Game.Battle.Players {
 				return;
 			}
 
+			CheckCollisionWithPlayer(collider);
+			CheckCollisionWithWall(collider);
+		}
+
+		private void CheckCollisionWithWall(Collider collider) {
+			Wall wall = collider.gameObject.GetComponentInParent<Wall>();
+			if (wall == null) {
+				return;
+			}
+
+			Player_.Health.Knockback(forward: -collider.transform.right);
+
+			dashCollider_.enabled = false;
+			OnDashCancelled.Invoke();
+		}
+
+		private void CheckCollisionWithPlayer(Collider collider) {
 			BattlePlayer battlePlayer = collider.gameObject.GetComponentInParent<BattlePlayer>();
 			if (battlePlayer == null) {
-				Debug.LogWarning("Dash collider colliding with unknown object: " + collider.gameObject.FullName());
 				return;
 			}
 
@@ -83,7 +101,7 @@ namespace DT.Game.Battle.Players {
 			Vector3 forward = Player_.Rigidbody.velocity;
 			forward = forward.normalized;
 			battlePlayer.Health.TakeDamage(DashDamage, forward, damageSource: Player_);
-			Player_.Health.TakeDamage(0, -forward);
+			Player_.Health.Knockback(-forward);
 
 			GameNotifications.OnBattlePlayerDashHit.Invoke(battlePlayer, Player_);
 

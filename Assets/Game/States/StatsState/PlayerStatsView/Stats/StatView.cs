@@ -19,7 +19,7 @@ namespace DT.Game.Stats {
 			if (player.Skin == null) {
 				Debug.LogWarning("StatView - player: " + player + " has no skin!");
 			} else {
-				Color color = player.Skin.BodyColor;
+				Color color = player.Skin.UIColor;
 				markerObject_.color = color;
 				bottomBarImage_.color = color;
 				statNameText_.Color = color;

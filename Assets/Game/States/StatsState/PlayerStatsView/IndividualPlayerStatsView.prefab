@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222600084927277708}
   - component: {fileID: 114351762439178366}
   - component: {fileID: 114731115469267768}
+  - component: {fileID: 114682028084770396}
   m_Layer: 5
   m_Name: IndividualPlayerStatsView
   m_TagString: Untagged
@@ -390,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 0.7058824}
+  m_Color: {r: 0.09019608, g: 0.09019608, b: 0.09019608, a: 0.78431374}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -534,6 +535,22 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114682028084770396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1244183671406430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c060023bac91460aae166d6ea02068e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textOutlet_:
+    _unityText: {fileID: 0}
+    _tmpText: {fileID: 0}
+  image_: {fileID: 114351762439178366}
+  alpha_: 0.8
 --- !u!114 &114731115469267768
 MonoBehaviour:
   m_ObjectHideFlags: 1

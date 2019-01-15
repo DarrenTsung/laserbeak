@@ -27,7 +27,7 @@ namespace DT.Game.Stats {
 
 			awardText_.Text = chosenAward.AwardText;
 
-			Color color = player.Skin.BodyColor;
+			Color color = player.Skin.UIColor;
 			awardText_.Color = color;
 			separatorImage_.color = color;
 

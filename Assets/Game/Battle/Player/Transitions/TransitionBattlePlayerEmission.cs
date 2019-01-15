@@ -12,16 +12,7 @@ using DTObjectPoolManager;
 using DT.Game.Transitions;
 
 namespace DT.Game.Battle.Players {
-	public class TransitionBattlePlayerEmission : TransitionBase, ITransition {
-		// PRAGMA MARK - ITransition Implementation
-		public override void Refresh(TransitionType transitionType, float percentage) {
-			float startWhiteBalance = (transitionType == TransitionType.In) ? outWhiteBalance_ : inWhiteBalance_;
-			float endWhiteBalance = (transitionType == TransitionType.In) ? inWhiteBalance_ : outWhiteBalance_;
-
-			SetWhiteBalancePercentage(Mathf.Lerp(startWhiteBalance, endWhiteBalance, percentage));
-		}
-
-
+	public class TransitionBattlePlayerEmission : TransitionBase<float> {
 		// PRAGMA MARK - Internal
 		private const float kEmissionWhiteBalance = 0.2f;
 
@@ -35,9 +26,31 @@ namespace DT.Game.Battle.Players {
 		[SerializeField]
 		private float outWhiteBalance_ = 1.0f;
 
+		protected override float GetInValue() { return inWhiteBalance_; }
+		protected override float GetOutValue() { return outWhiteBalance_; }
+
+		protected override float GetCurrentValue() { return GetWhiteBalance(); }
+		protected override void SetCurrentValue(float value) { SetWhiteBalancePercentage(value); }
+
 		private readonly Material[] skinMaterials_ = new Material[1];
 
 		private void SetWhiteBalancePercentage(float whiteBalancePercentage) {
+			foreach (var bodyMaterial in GetBodyMaterials()) {
+				float whiteBalance = whiteBalancePercentage * kEmissionWhiteBalance;
+				bodyMaterial.SetColor("_EmissionColor", new Color(whiteBalance, whiteBalance, whiteBalance));
+			}
+		}
+
+		private float GetWhiteBalance() {
+			foreach (var bodyMaterial in GetBodyMaterials()) {
+				Color c = bodyMaterial.GetColor("_EmissionColor");
+				return c.r / kEmissionWhiteBalance;
+			}
+
+			return 0.0f;
+		}
+
+		private IEnumerable<Material> GetBodyMaterials() {
 			Renderer bodyRenderer = battlePlayer_.BodyRenderers.First();
 			IEnumerable<Material> bodyMaterials = null;
 			// NOTE (darren): detect bodyRenderer.material != OpaqueBodyMaterial for ghost mode
@@ -47,11 +60,7 @@ namespace DT.Game.Battle.Players {
 			} else {
 				bodyMaterials = battlePlayer_.BodyRenderers.Select(r => r.material);
 			}
-
-			foreach (var bodyMaterial in bodyMaterials) {
-				float whiteBalance = whiteBalancePercentage * kEmissionWhiteBalance;
-				bodyMaterial.SetColor("_EmissionColor", new Color(whiteBalance, whiteBalance, whiteBalance));
-			}
+			return bodyMaterials;
 		}
 	}
 }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0715a0cd2b40445b687a9293823e4eb4, type: 3}
+  m_Name: CoopLevelSelectableLink
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 1800604674046024, guid: cb204185fe6034cb789e02dcc1feb22c, type: 2}
+  ParentPrefab: {fileID: 1412471611947468, guid: 7add0cf903e5f41b8842a28c3ba1953b,
+    type: 2}
+  Container: {fileID: 1482226955645602, guid: 7add0cf903e5f41b8842a28c3ba1953b, type: 2}

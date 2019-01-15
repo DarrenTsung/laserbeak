@@ -17,6 +17,10 @@ namespace DT.Game.Transitions {
 			get { return Transitions_.Length; }
 		}
 
+		public bool Animating {
+			get { return animating_; }
+		}
+
 		public Transition(GameObject gameObject) {
 			gameObject_ = gameObject;
 			OnTransitionCreated.Invoke(this);
@@ -60,7 +64,7 @@ namespace DT.Game.Transitions {
 
 			if (animating_) {
 				Debug.LogWarning("Transition - animating before previous animation was finished!");
-				return;
+				FinishTransitioning();
 			}
 
 			if (dynamicTransitions_) {

@@ -103,12 +103,12 @@ namespace DT.Game.Battle {
 
 			BattlePlayer battlePlayer = ObjectPoolManager.Create<BattlePlayer>(GamePrefabs.Instance.PlayerPrefab, spawnPoint.transform.position, Quaternion.identity, parent: ArenaManager.Instance.LoadedArena.GameObject);
 			battlePlayer.gameObject.name = string.Format("BattlePlayer ({0})", player);
-			if (player.InputDevice != null) {
-				battlePlayer.Init(new InputDeviceDelegate(player.InputDevice), player.Skin);
+			if (player.Input != null) {
+				battlePlayer.Init(new BattlePlayerInputDeviceDelegate(player.Input), player.Skin);
 			} else {
 				// spawn player with substitute AI
-				GameConstants.Instance.ConfigureWithSubstitutePlayerAI(battlePlayer);
 				battlePlayer.SetSkin(player.Skin);
+				GameConstants.Instance.ConfigureWithSubstitutePlayerAI(battlePlayer);
 			}
 
 			// face battle player forward

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using DT.Game.Battle.Lasers;
 using DT.Game.Transitions;
 using DTAnimatorStateMachine;
 using DTObjectPoolManager;
@@ -29,18 +30,18 @@ namespace DT.Game.Battle.Players {
 		public void PlaySpawnTransition() {
 			BattleCamera.Shake(0.6f);
 			AudioConstants.Instance.PlayerSpawn.PlaySFX();
-			shieldRenderer_.enabled = false;
+			SetShieldAlpha(0.0f);
 			spawnTransition_.AnimateIn(() => {
-				shieldRenderer_.enabled = true;
+				SetShieldAlpha(GameConstants.Instance.PlayerShieldAlphaMin);
 			});
 		}
 
-		public void Init(IInputDelegate inputDelegate, BattlePlayerSkin skin) {
-			SetInputDelegate(inputDelegate);
+		public void Init(IBattlePlayerInputDelegate inputDelegate, BattlePlayerSkin skin) {
 			SetSkin(skin);
+			SetInputDelegate(inputDelegate);
 		}
 
-		public void SetInputDelegate(IInputDelegate inputDelegate) {
+		public void SetInputDelegate(IBattlePlayerInputDelegate inputDelegate) {
 			inputController_.InitInput(this, inputDelegate);
 		}
 
@@ -85,12 +86,29 @@ namespace DT.Game.Battle.Players {
 			get { return health_; }
 		}
 
-		public MeshRenderer ShieldRenderer {
-			get { return shieldRenderer_; }
-		}
-
 		public Animator Animator {
 			get { return animator_; }
+		}
+
+		public void SetShieldAlpha(float alpha) {
+			if (alpha <= 0.0f) {
+				shieldRenderer_.enabled = false;
+				return;
+			}
+
+			if (!InGameConstants.ShowShields) {
+				shieldRenderer_.enabled = false;
+				return;
+			}
+
+			shieldRenderer_.enabled = true;
+			Color shieldColor = shieldRenderer_.material.GetColor("_Color");
+			Color newShieldColor = shieldColor.WithAlpha(alpha);
+			shieldRenderer_.material.SetColor("_Color", newShieldColor);
+		}
+
+		public void SetShieldAlphaMultiply(float alphaMultiply) {
+			shieldRenderer_.material.SetFloat("_Alpha", alphaMultiply);
 		}
 
 		public void SetWeightModification(object key, float weightModification) {
@@ -105,6 +123,8 @@ namespace DT.Game.Battle.Players {
 			Rigidbody.velocity = Vector3.zero;
 			Rigidbody.angularVelocity = Vector3.zero;
 			Rigidbody.drag = kBaseDrag;
+
+			Laser.RegisterLaserTarget(this.transform);
 		}
 
 
@@ -113,6 +133,8 @@ namespace DT.Game.Battle.Players {
 			activePlayers_.Remove(this);
 			weightModifications_.Clear();
 			AccessoriesContainer.RecycleAllChildren();
+
+			Laser.UnregisterLaserTarget(this.transform);
 		}
 
 

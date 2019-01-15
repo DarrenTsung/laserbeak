@@ -7,14 +7,17 @@ using DTAnimatorStateMachine;
 using DTObjectPoolManager;
 using InControl;
 
+using DT.Game.Battle.Lasers;
 using DT.Game.Battle.Pausing;
 using DT.Game.Battle.Players;
 using DT.Game.GameModes;
+using DT.Game.Hints;
 using DT.Game.Players;
 
 namespace DT.Game.Battle {
 	public class BattleState : DTStateMachineBehaviour<GameStateMachine> {
 		// PRAGMA MARK - Static
+		public static event Action OnBattleStateEntered = delegate {};
 		public static GameMode QueuedGameMode = null;
 
 		public static void SkipAndLoadGameMode(GameMode gameMode) {
@@ -35,17 +38,23 @@ namespace DT.Game.Battle {
 		private GameMode currentGameMode_ = null;
 
 		private PauseController pauseController_;
+		private ActionHintAccumulator reflectActionAccumulator_;
 
 		protected override void OnInitialized() {
-			// stub
+			reflectActionAccumulator_ = new ActionHintAccumulator(HintKey.ReflectAction,
+										new EventRouter<Laser, BattlePlayer>(GameNotifications.OnBattlePlayerReflectLaser)
+											.WithPredicate((laser, battlePlayer) => BattlePlayerUtil.IsHuman(battlePlayer)));
 		}
 
 		protected override void OnStateEntered() {
+			OnBattleStateEntered.Invoke();
+
 			// cleanup in-case
 			PlayerSpawner.CleanupAllPlayers();
 			CleanupCurrentGameMode();
 
 			InGameConstants.BattlePlayerPartsFade = false;
+			reflectActionAccumulator_.BeginAccumulating();
 
 			// TODO (darren): filtering based on options will be here
 			if (QueuedGameMode != null) {
@@ -63,9 +72,6 @@ namespace DT.Game.Battle {
 					GameModeIntroView.OnIntroFinished += HandleIntroFinished;
 
 					InGamePlayerHUDEffect.CreateForAllPlayers();
-
-					// Action Shot - focus on a single player
-					// BattleCamera.Instance.SetTransformsOfInterest(new Transform[] { PlayerSpawner.AllSpawnedBattlePlayers.First().transform });
 				});
 			});
 
@@ -79,6 +85,7 @@ namespace DT.Game.Battle {
 			CleanupCurrentGameMode();
 
 			GameModeIntroView.Cleanup();
+			reflectActionAccumulator_.EndAccumulating();
 
 			InGamePlayerCollectionView.Hide();
 			InGamePlayerHUDEffect.CleanupAllEffects();

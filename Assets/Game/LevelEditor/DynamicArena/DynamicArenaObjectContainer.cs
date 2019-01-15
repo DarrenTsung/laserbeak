@@ -8,8 +8,8 @@ using DTObjectPoolManager;
 namespace DT.Game.LevelEditor {
 	public class DynamicArenaObjectContainer : MonoBehaviour, IRecycleCleanupSubscriber {
 		// PRAGMA MARK - Public Interface
-		public void Init(GameObject prefab) {
-			ObjectPoolManager.Create(prefab, parent: this.gameObject);
+		public GameObject Init(GameObject prefab) {
+			return ObjectPoolManager.Create(prefab, parent: this.gameObject);
 		}
 
 

@@ -40,7 +40,7 @@ namespace DT.Game.PlayerCustomization.States {
 		}
 
 		public override void Update() {
-			if (InputUtil.WasNegativePressedFor(Player_.InputDevice)) {
+			if (Player_.Input.NegativeWasPressed) {
 				Player_.Skin = null;
 				MoveToPreviousState();
 			}
@@ -64,6 +64,10 @@ namespace DT.Game.PlayerCustomization.States {
 		private ElementSelectionView selectionView_;
 
 		protected override void Init() {
+			if (string.IsNullOrEmpty(Player_.Nickname)) {
+				Player_.Nickname = RegisteredPlayers.GetDefaultNicknameFor(Player_);
+			}
+
 			if (Player_.Skin == null) {
 				Player_.Skin = RegisteredPlayersUtil.GetBestRandomSkin();
 			}

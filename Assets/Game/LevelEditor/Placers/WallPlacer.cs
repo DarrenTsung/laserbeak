@@ -31,8 +31,7 @@ namespace DT.Game.LevelEditor {
 
 			if (InputDevice_.Action3.WasReleased) {
 				if (placingWall_) {
-					DynamicArenaData_.SerializeWall(PlacablePrefab_, this.transform.position, PreviewWall_.VertexLocalPositions);
-					UndoHistory_.RecordState();
+					Place();
 					placingWall_ = false;
 
 					PreviewWall_.SetVertexLocalPositions(new Vector3[] { Vector3.zero, Vector3.zero });
@@ -42,6 +41,10 @@ namespace DT.Game.LevelEditor {
 
 				Refresh(ignoreCheck: true);
 			}
+		}
+
+		protected override int SerializeToDynamicData() {
+			return DynamicArenaData_.SerializeWall(PlacablePrefab_, this.transform.position, PreviewWall_.VertexLocalPositions);
 		}
 
 		protected override void Initialize() {

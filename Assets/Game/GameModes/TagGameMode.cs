@@ -9,6 +9,7 @@ using DTObjectPoolManager;
 using InControl;
 
 using DT.Game.Battle;
+using DT.Game.Battle.AI;
 using DT.Game.Battle.Lasers;
 using DT.Game.Battle.Players;
 using DT.Game.GameModes.Tag;
@@ -59,6 +60,7 @@ namespace DT.Game.GameModes {
 		}
 
 		protected override void Activate() {
+			AIIdleState.SetShouldCheckDashAttackPredicate(ShouldBattlePlayerDashAttack);
 			PlayerSpawner.SpawnAllPlayers();
 
 			List<GameModeIntroView.Icon> icons = new List<GameModeIntroView.Icon>();
@@ -71,6 +73,9 @@ namespace DT.Game.GameModes {
 			BattlePlayerHealth.LaserDamage = 0;
 			InGameConstants.AllowChargingLasers = false;
 
+			// NOTE (darren): avoid showing shields to have less visual noise with exploding object
+			InGameConstants.ShowShields = false;
+
 			GameModeIntroView.Show(DisplayTitle, icons, onFinishedCallback: () => {
 				SetItPlayer(PlayerSpawner.AllSpawnedBattlePlayers.Random());
 			});
@@ -80,11 +85,13 @@ namespace DT.Game.GameModes {
 		}
 
 		protected override void CleanupInternal() {
+			AIIdleState.ClearShouldCheckDashAttackPredicate();
 			GameNotifications.OnBattlePlayerLaserHit.RemoveListener(HandleBattlePlayerHit);
 			PlayerSpawner.OnSpawnedPlayerRemoved -= HandleSpawnedPlayerRemoved;
 			BattlePlayerHealth.LaserDamage = 1;
 			InGameConstants.AllowChargingLasers = true;
 			InGameConstants.AllowedChargingLasersWhitelist.Clear();
+			InGameConstants.ShowShields = true;
 
 			itPlayer_ = null;
 
@@ -96,6 +103,10 @@ namespace DT.Game.GameModes {
 
 				ObjectPoolManager.Recycle(explosive);
 			}
+		}
+
+		private bool ShouldBattlePlayerDashAttack(BattlePlayer battlePlayer) {
+			return battlePlayer != itPlayer_;
 		}
 
 		private void HandleBattlePlayerHit(Laser laser, BattlePlayer playerHit) {

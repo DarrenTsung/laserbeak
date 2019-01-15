@@ -69,7 +69,7 @@ namespace DT.Game.GameModes.Ghost {
 				material.SetFloat("_Metallic", metallic);
 			}
 
-			battlePlayer_.ShieldRenderer.material.SetFloat("_Alpha", alpha);
+			battlePlayer_.SetShieldAlphaMultiply(alpha);
 
 			bool zeroAlpha = Mathf.Approximately(alpha, 0.0f);
 			foreach (Renderer renderer in battlePlayer_.BodyRenderers) {

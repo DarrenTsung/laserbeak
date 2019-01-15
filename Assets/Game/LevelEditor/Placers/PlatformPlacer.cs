@@ -38,11 +38,14 @@ namespace DT.Game.LevelEditor {
 			}
 
 			if (InputDevice_.Action3.WasReleased) {
-				DynamicArenaData_.SerializeObject(PlacablePrefab_, this.transform.position, Quaternion.identity, this.transform.localScale);
-				UndoHistory_.RecordState();
+				Place();
 				this.transform.localScale = Vector3.one;
 				RefreshPositionAndScale(ignoreCheck: true);
 			}
+		}
+
+		protected override int SerializeToDynamicData() {
+			return DynamicArenaData_.SerializeObject(PlacablePrefab_, this.transform.position, Quaternion.identity, this.transform.localScale);
 		}
 
 		protected override void HandleCusorMoved() {

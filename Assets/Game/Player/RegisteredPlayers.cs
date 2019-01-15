@@ -20,8 +20,14 @@ namespace DT.Game.Players {
 		}
 
 		public static void BeginPlayerRegistration() {
-			foreach (InputDevice inputDevice in InputManager.Devices) {
-				RegisterPlayerFor(inputDevice);
+			if (InGameConstants.RegisterHumanPlayers) {
+				foreach (InputDevice inputDevice in InputManager.Devices) {
+					RegisterPlayerFor(inputDevice);
+				}
+
+				if (InputManager.Devices.Count <= 0) {
+					RegisterKeyboardPlayer();
+				}
 			}
 
 			InputManager.OnDeviceAttached += HandleDeviceAttached;
@@ -39,12 +45,12 @@ namespace DT.Game.Players {
 				return false;
 			}
 
-			return players_.Any(p => p.InputDevice == inputDevice);
+			return players_.Any(p => p.Input.GetInputDevice() == inputDevice);
 		}
 
 		public static void Add(Player player) {
-			if (IsInputDeviceAlreadyRegistered(player.InputDevice)) {
-				Debug.LogWarning("Cannot add player: " + player + " because input device: " + player.InputDevice + " is already registered!");
+			if (IsInputDeviceAlreadyRegistered(player.Input.GetInputDevice())) {
+				Debug.LogWarning("Cannot add player: " + player + " because input device: " + player.Input.GetInputDevice() + " is already registered!");
 				return;
 			}
 
@@ -71,6 +77,10 @@ namespace DT.Game.Players {
 			get { return players_; }
 		}
 
+		public static IEnumerable<IInputWrapper> AllInputs {
+			get { return players_.Where(p => p.Input != null).Select(p => p.Input); }
+		}
+
 
 		// PRAGMA MARK - Static Internal
 		private static readonly List<Player> players_ = new List<Player>();
@@ -80,7 +90,15 @@ namespace DT.Game.Players {
 				return;
 			}
 
-			Player player = new Player(inputDevice);
+			Player player = new Player(new InputWrapperDevice(inputDevice));
+			player.Nickname = "";
+			player.Skin = null;
+
+			Add(player);
+		}
+
+		private static void RegisterKeyboardPlayer() {
+			Player player = new Player(new InputWrapperKeyboard());
 			player.Nickname = "";
 			player.Skin = null;
 
@@ -94,7 +112,7 @@ namespace DT.Game.Players {
 		}
 
 		private static void HandleDeviceDetached(InputDevice inputDevice) {
-			var player = players_.FirstOrDefault(p => p.InputDevice == inputDevice);
+			var player = players_.FirstOrDefault(p => p.Input.GetInputDevice() == inputDevice);
 			if (player == null) {
 				Debug.LogWarning("DeviceRemoved but not found in player list, unexpected.");
 				return;

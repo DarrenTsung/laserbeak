@@ -15,8 +15,8 @@ using DT.Game.Players;
 namespace DT.Game.Battle.Vibration {
 	public static class ControllerVibrationModule {
 		// PRAGMA MARK - Static
-		private const float kDamageVibrationAmount = 0.6f;
-		private const float kDamageVibrationDuration = 0.2f;
+		private const float kKnockbackVibrationAmount = 0.6f;
+		private const float kKnockbackVibrationDuration = 0.2f;
 
 		private const float kDeathVibrationAmount = 1.0f;
 		private const float kDeathVibrationDuration = 0.5f;
@@ -24,43 +24,61 @@ namespace DT.Game.Battle.Vibration {
 		private const float kFullyChargedVibrationAmount = 0.6f;
 		private const float kFullyChargedVibrationDuration = 0.2f;
 
+		private const float kPlayerJoinedVibrationAmount = 0.45f;
+		private const float kPlayerJoinedVibrationDuration = 0.2f;
+
 		private static readonly Dictionary<InputDevice, CoroutineWrapper> vibrationCoroutineMap_ = new Dictionary<InputDevice, CoroutineWrapper>();
 
 		[RuntimeInitializeOnLoadMethod]
 		private static void Initialize() {
-			BattlePlayerHealth.OnBattlePlayerDamaged += HandleBattlePlayerDamaged;
+			BattlePlayerHealth.OnBattlePlayerKnockbacked += HandleBattlePlayerKnockbacked;
 			BattlePlayerHealth.OnBattlePlayerDied += HandleBattlePlayerDied;
 			BattlePlayerInputChargedLaser.OnFullyCharged += HandleBattlePlayerFullyCharged;
+			GameNotifications.OnPlayerJoinedGame.AddListener(HandlePlayerJoinedGame);
 		}
 
-		private static void HandleBattlePlayerDamaged(BattlePlayer battlePlayer, int damage) {
+		private static void HandleBattlePlayerKnockbacked(BattlePlayer battlePlayer) {
 			Player player = PlayerSpawner.GetPlayerFor(battlePlayer);
-			if (player == null || player.InputDevice == null) {
+			if (player == null || player.Input == null) {
 				return;
 			}
 
-			VibrateInputDevice(player.InputDevice, kDamageVibrationAmount, kDamageVibrationDuration);
+			VibrateInputDevice(player.Input, kKnockbackVibrationAmount, kKnockbackVibrationDuration);
 		}
 
 		private static void HandleBattlePlayerDied(BattlePlayer battlePlayer) {
 			Player player = PlayerSpawner.GetPlayerFor(battlePlayer);
-			if (player == null || player.InputDevice == null) {
+			if (player == null || player.Input == null) {
 				return;
 			}
 
-			VibrateInputDevice(player.InputDevice, kDeathVibrationAmount, kDeathVibrationDuration);
+			VibrateInputDevice(player.Input, kDeathVibrationAmount, kDeathVibrationDuration);
 		}
 
 		private static void HandleBattlePlayerFullyCharged(BattlePlayer battlePlayer) {
 			Player player = PlayerSpawner.GetPlayerFor(battlePlayer);
-			if (player == null || player.InputDevice == null) {
+			if (player == null || player.Input == null) {
 				return;
 			}
 
-			VibrateInputDevice(player.InputDevice, kFullyChargedVibrationAmount, kFullyChargedVibrationDuration);
+			VibrateInputDevice(player.Input, kFullyChargedVibrationAmount, kFullyChargedVibrationDuration);
 		}
 
-		private static void VibrateInputDevice(InputDevice inputDevice, float vibrationAmount, float duration) {
+		private static void HandlePlayerJoinedGame(Player player) {
+			if (player == null || player.Input == null) {
+				return;
+			}
+
+			VibrateInputDevice(player.Input, kPlayerJoinedVibrationAmount, kPlayerJoinedVibrationDuration);
+		}
+
+		private static void VibrateInputDevice(IInputWrapper input, float vibrationAmount, float duration) {
+			var inputWrapperDevice = input as InputWrapperDevice;
+			if (inputWrapperDevice == null) {
+				return;
+			}
+
+			InputDevice inputDevice = inputWrapperDevice.InputDevice;
 			if (vibrationCoroutineMap_.ContainsKey(inputDevice)) {
 				vibrationCoroutineMap_[inputDevice].Cancel();
 			}

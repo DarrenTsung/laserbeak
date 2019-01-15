@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141008d30494344d58def5db0b29261f, type: 3}
+  m_Name: LaserSurvival
+  m_EditorClassIdentifier: 
+  instructionDetailPrefab_: {fileID: 1766356456812992, guid: 1b1b102ba9dc84442928cc1166326b2b,
+    type: 2}
+  arenaWhitelist_:
+  - {fileID: 11400000, guid: c4a6710ec74744ae69f86579169c006f, type: 2}

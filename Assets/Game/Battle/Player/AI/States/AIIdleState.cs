@@ -9,6 +9,26 @@ using DTObjectPoolManager;
 
 namespace DT.Game.Battle.AI {
 	public class AIIdleState : DTStateMachineBehaviour<AIStateMachine> {
+		// PRAGMA MARK - Static
+		public static void SetShouldCheckDashAttackPredicate(Predicate<BattlePlayer> shouldCheckDashAttackPredicate) {
+			shouldCheckDashAttackPredicate_ = shouldCheckDashAttackPredicate;
+		}
+
+		public static void ClearShouldCheckDashAttackPredicate() {
+			shouldCheckDashAttackPredicate_ = null;
+		}
+
+
+		private static Predicate<BattlePlayer> shouldCheckDashAttackPredicate_;
+		private static bool ShouldCheckDashAttack(BattlePlayer battlePlayer) {
+			if (shouldCheckDashAttackPredicate_ == null) {
+				return true;
+			}
+
+			return shouldCheckDashAttackPredicate_.Invoke(battlePlayer);
+		}
+
+
 		// PRAGMA MARK - Internal
 		private const float kCheckAttackMinDelay = 0.3f;
 		private const float kCheckAttackMaxDelay = 1.5f;
@@ -52,9 +72,13 @@ namespace DT.Game.Battle.AI {
 
 		}
 
-		protected IEnumerator CheckDashAttack() {
+		private IEnumerator CheckDashAttack() {
 			while (true) {
 				yield return new WaitForSeconds(GetRandomCheckAttackDelay());
+
+				if (!ShouldCheckDashAttack(StateMachine_.Player)) {
+					continue;
+				}
 
 				BattlePlayer target = BattlePlayerUtil.GetClosestEnemyPlayerFor(StateMachine_.Player, whereCondition: (otherPlayer) => {
 					return !AIUtil.DoesWallExistBetweenXZPoints(StateMachine_.Player.transform.position, otherPlayer.transform.position);

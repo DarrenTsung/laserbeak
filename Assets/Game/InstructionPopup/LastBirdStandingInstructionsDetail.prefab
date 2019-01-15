@@ -38,9 +38,9 @@ GameObject:
   - component: {fileID: 224068324963737196}
   - component: {fileID: 222527732520914590}
   - component: {fileID: 114718100956828204}
-  - component: {fileID: 114216667636481620}
+  - component: {fileID: 114054370865457446}
   m_Layer: 5
-  m_Name: MovieImage
+  m_Name: VideoImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114216667636481620
+--- !u!114 &114054370865457446
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9eeff2cb50f4485891c83adc0823fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movieTexture_: {fileID: 15200000, guid: dcbd0b31a2fdd4633b78c327eb01ea19, type: 3}
+  videoClip_: {fileID: 32900000, guid: 70cabc44d44c54d13aab61193357f8c5, type: 3}
 --- !u!114 &114272129802787108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 30
+    m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0

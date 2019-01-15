@@ -10,32 +10,26 @@ using DTEasings;
 using DTObjectPoolManager;
 
 namespace DT.Game.Transitions {
-	public class TransitionAnchoredPosition : TransitionBase, ITransition {
-		// PRAGMA MARK - ITransition Implementation
-		public override void Refresh(TransitionType transitionType, float percentage) {
-			Vector2 startAnchoredPosition = (transitionType == TransitionType.In) ? outAnchoredPosition_ : inAnchoredPosition_;
-			Vector2 endAnchoredPosition = (transitionType == TransitionType.In) ? inAnchoredPosition_ : outAnchoredPosition_;
-
-			SetAnchoredPosition(Vector2.Lerp(startAnchoredPosition, endAnchoredPosition, percentage));
-		}
-
+	public class TransitionAnchoredPosition : TransitionUI<Vector2> {
 		// PRAGMA MARK - Internal
-		[Header("Outlets")]
-		[SerializeField]
-		private RectTransform rectTransform_;
-
 		[Header("Properties")]
 		[SerializeField]
 		private Vector2 inAnchoredPosition_ = Vector3.zero;
 		[SerializeField]
 		private Vector2 outAnchoredPosition_ = Vector3.zero;
 
+		protected override Vector2 GetInValue() { return inAnchoredPosition_; }
+		protected override Vector2 GetOutValue() { return outAnchoredPosition_; }
+
+		protected override Vector2 GetCurrentValue() { return GetAnchoredPosition(); }
+		protected override void SetCurrentValue(Vector2 value) { SetAnchoredPosition(value); }
+
 		private void SetAnchoredPosition(Vector3 anchoredPosition) {
-			if (rectTransform_ != null) {
-				rectTransform_.anchoredPosition = anchoredPosition;
-			} else {
-				Debug.LogWarning("Missing rectTransform_ outlet!");
-			}
+			RectTransform_.anchoredPosition = anchoredPosition;
+		}
+
+		private Vector2 GetAnchoredPosition() {
+			return RectTransform_.anchoredPosition;
 		}
 	}
 }

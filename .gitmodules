@@ -37,3 +37,12 @@
 [submodule "Assets/Plugins/DTMediaCapture"]
 	path = Assets/Plugins/DTMediaCapture
 	url = https://github.com/DarrenTsung/DTMediaCapture.git
+[submodule "Assets/Plugins/DTBuildManifest"]
+	path = Assets/Plugins/DTBuildManifest
+	url = https://github.com/DarrenTsung/DTBuildManifest.git
+[submodule "Assets/Plugins/DTFPSView"]
+	path = Assets/Plugins/DTFPSView
+	url = https://github.com/DarrenTsung/DTFPSView.git
+[submodule "Assets/Plugins/DTLocalization"]
+	path = Assets/Plugins/DTLocalization
+	url = https://github.com/DarrenTsung/DTLocalization.git

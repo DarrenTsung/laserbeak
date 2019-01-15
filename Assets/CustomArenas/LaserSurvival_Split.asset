@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714c0c70020984e9280378a90cd77e0b, type: 3}
+  m_Name: LaserSurvival_Split
+  m_EditorClassIdentifier: 
+  prefab_: {fileID: 1025840809794776, guid: fd6c2f121012744c0af4d2204cb861fb, type: 2}
+  dynamicArenaDataJson_: {fileID: 0}
+  dynamicArenaDataJsonText_: '{"objects_":[{"PrefabName":"BasicPlatform","Position":{"x":-7.0,"y":0.0,"z":6.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":4.0,"y":1.0,"z":4.0}},{"PrefabName":"BasicPlatform","Position":{"x":-7.0,"y":0.0,"z":-6.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":4.0,"y":1.0,"z":4.0}},{"PrefabName":"BasicPlatform","Position":{"x":7.0,"y":0.0,"z":-6.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":4.0,"y":1.0,"z":4.0}},{"PrefabName":"BasicPlatform","Position":{"x":7.0,"y":0.0,"z":6.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":4.0,"y":1.0,"z":4.0}},{"PrefabName":"ThinPlatform","Position":{"x":0.0,"y":0.0,"z":6.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":10.0,"y":1.0,"z":4.0}},{"PrefabName":"ThinPlatform","Position":{"x":7.0,"y":0.0,"z":0.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":4.0,"y":1.0,"z":8.0}},{"PrefabName":"ThinPlatform","Position":{"x":0.0,"y":0.0,"z":-6.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":10.0,"y":1.0,"z":4.0}},{"PrefabName":"ThinPlatform","Position":{"x":-7.0,"y":0.0,"z":0.0},"Rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"LocalScale":{"x":4.0,"y":1.0,"z":8.0}}],"walls_":[{"PrefabName":"BarrierWall","Position":{"x":-9.0,"y":0.0,"z":8.0},"VertexLocalPositions":[{"x":0.0,"y":0.0,"z":0.0},{"x":0.0,"y":0.0,"z":-16.0}]},{"PrefabName":"BarrierWall","Position":{"x":-9.0,"y":0.0,"z":-8.0},"VertexLocalPositions":[{"x":0.0,"y":0.0,"z":0.0},{"x":18.0,"y":0.0,"z":0.0}]},{"PrefabName":"BarrierWall","Position":{"x":9.0,"y":0.0,"z":-8.0},"VertexLocalPositions":[{"x":0.0,"y":0.0,"z":0.0},{"x":0.0,"y":0.0,"z":16.0}]},{"PrefabName":"BarrierWall","Position":{"x":9.0,"y":0.0,"z":8.0},"VertexLocalPositions":[{"x":0.0,"y":0.0,"z":0.0},{"x":-18.0,"y":0.0,"z":0.0}]}],"playerSpawnPoints_":[{"x":-6.5,"y":0.0,"z":5.5},{"x":6.5,"y":0.0,"z":5.5},{"x":6.5,"y":0.0,"z":-5.5},{"x":-6.5,"y":0.0,"z":-5.5}]}'
